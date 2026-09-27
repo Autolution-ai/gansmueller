@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta: bei jeder Demo aus der Demo-Spec füllen.
+       Muster title:       Leistung in Ort – Firmenname (50–60 Zeichen)
+       Muster description: was, für wen, nächster Schritt (140–160 Zeichen)
+       Handwerk dazu: Skill `seo-basis`, Abschnitt 4.
+
+       ACHTUNG: In <title> und in content="…" ist ein HTML-Kommentar KEIN
+       Kommentar – er landet wörtlich im Browser-Tab und in der Teilen-
+       Vorschau. Deshalb steht hier sichtbarer Platzhaltertext, der beim
+       Füllen ersetzt wird. -->
+  <title>PLATZHALTER Titel – bei der Demo ersetzen</title>
+  <meta name="description" content="PLATZHALTER Beschreibung – bei der Demo ersetzen.">
+
+  <!-- Teilen-Vorschau. Der Demo-Link wandert in WhatsApp, Mail und Slack –
+       ohne diese Angaben sieht er dort aus wie eine kaputte Seite, bevor ihn
+       jemand öffnet. og:image liegt LOKAL im Repo (1200×630), nie als Hotlink. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PLATZHALTER Titel – bei der Demo ersetzen">
+  <meta property="og:description" content="PLATZHALTER Beschreibung – bei der Demo ersetzen.">
+  <meta property="og:image" content="assets/images/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Lokale Signale. NUR belegte Felder (Briefing/Scrape). Kein
+       aggregateRating, keine erfundenen Öffnungszeiten, kein priceRange ohne
+       Preisangabe – Feld weglassen ist immer richtiger als Feld raten.
+       Vorlage und erlaubte @type-Werte: Skill `seo-basis`, Abschnitt 2. -->
+  <!--
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "",
+    "url": "",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "",
+      "postalCode": "",
+      "addressLocality": "",
+      "addressCountry": "DE"
+    }
+  }
+  </script>
+  -->
+
+  <!-- Styles. fonts.css zuerst: @font-face muss stehen, bevor Tokens die
+       Familien referenzieren. Schriften liegen lokal, nie per CDN. -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <!-- Logo (freigestellt, aus Phase 1) + Navigation -->
+  </header>
+
+  <main>
+    <!-- Sektionen entstehen je Demo aus der Struktur (Phase 2).
+         KEINE feste Sektions-Vorgabe hier – Layout ist projektspezifisch. -->
+  </main>
+
+  <footer>
+    <!-- Footer-Inhalt je Demo. Pflicht: Impressum & Datenschutz als Links
+         mit Platzhalter-Inhalt (CLAUDE.md, Recht & Demo-Hinweise). Kein
+         Aufwand für echte Rechtstexte in der Demo-Phase. -->
+    <nav aria-label="Rechtliches">
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </nav>
+
+    <!-- Die Ziele existieren von Anfang an: Ein Link ins Leere ist in einer
+         Demo ein Vertrauensbruch, und genau das meldet copy-check.mjs. -->
+    <section id="impressum">
+      <h2>Impressum</h2>
+      <p>Wird im Rahmen der Zusammenarbeit eingerichtet.</p>
+    </section>
+    <section id="datenschutz">
+      <h2>Datenschutz</h2>
+      <p>Wird im Rahmen der Zusammenarbeit eingerichtet.</p>
+    </section>
+  </footer>
+
+  <!-- Animations-Libraries: nur einbinden, was die Demo wirklich nutzt.
+       Dateien liegen LOKAL unter assets/js/ – der Egress-Proxy blockiert CDNs,
+       eine CDN-Einbindung ist in der Prüfumgebung nicht testbar.
+       Bezugsquellen, Snippets & Fallstricke: docs/LIBRARIES.md. -->
+  <!--
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  -->
+  <script src="js/main.js"></script>
+</body>
+</html>

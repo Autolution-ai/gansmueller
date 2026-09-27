@@ -1,0 +1,16 @@
+# Stand des Demo-Templates, mit dem das Live-Template abgeglichen ist.
+#
+# Beide Repos führen diese Datei mit demselben Wert.
+#
+# Der Wert ist der Demo-Stand, zu dem die geteilten Bausteine zuletzt GEPRÜFT
+# wurden – auch dann, wenn nichts zu kopieren war. Eine Demo-Änderung, die nur
+# die Demo-Phase betrifft (`site-analyst`, `/closing`, `docs/DOSSIER.md`),
+# hebt den Wert also mit an. Sonst meldet der Marker eine Lücke, die es nicht
+# gibt, und wird beim dritten Mal ignoriert.
+#
+# Geteilt sind: .claude/skills, .claude/agents, .claude/commands, scripts/
+#
+# Steht TEMPLATE-VERSION des Demo-Templates über diesem Wert, ist das
+# Live-Template hinterher. scripts/live-start.mjs prüft das beim Übergang und
+# meldet jede Abweichung, statt sie stillschweigend zu überschreiben.
+2026.09.29

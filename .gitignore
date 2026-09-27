@@ -1,0 +1,43 @@
+# Secrets & Umgebungsvariablen – NIEMALS committen
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel
+
+# Build-Output
+dist/
+build/
+.cache/
+
+# Messläufe – Screenshots und Berichte gehören nicht ins Repo
+.hero-check/
+.layout-check/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Closing-Dokumente (/closing): Rueckmeldung und Vertriebs-Briefing.
+# Enthalten Kundennamen und interne Kritik - gehoeren nicht ins Repo, weil
+# "Use this template" alle Dateien in jedes neue Kundenrepo kopiert.
+.closing/
+.feedback/
+
+# Berichte des visual-critic - Zwischenstand, kein Repo-Inhalt
+.visual-check/
+
+# Messwerte des Erstbaus
+.demo-messung/

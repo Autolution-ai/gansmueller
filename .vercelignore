@@ -1,0 +1,21 @@
+# Zweite Sicherung, nicht die tragende.
+#
+# Tragend ist die Repo-Struktur: Die Website liegt in site/, und in Vercel
+# steht Root Directory = site. Nur dieser Ordner wird ausgeliefert, alles
+# hier drunter ist ohnehin außerhalb davon (CLAUDE.md §5).
+#
+# Diese Datei bleibt trotzdem stehen: Sie kostet nichts und fängt den Fall ab,
+# dass ein Projekt versehentlich mit Root Directory = Repo-Root angelegt wird.
+# Verlassen darf man sich darauf nicht – .vercelignore ist in erster Linie ein
+# Mechanismus der Vercel-CLI, seine Wirkung bei Git-Deployments ist nicht
+# verlässlich dokumentiert. Deshalb die Stichprobe in docs/CHECKLISTE.md:
+# <demo>.vercel.app/CLAUDE.md muss 404 liefern.
+CLAUDE.md
+TEMPLATE-VERSION
+docs/
+.claude/
+scripts/
+
+# Git-Interna
+.git
+.gitignore

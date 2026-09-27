@@ -1,0 +1,90 @@
+/* base.css – Reset & Grundlagen. Fix (technisches Skelett), nicht pro Demo ändern.
+   Die Regeln hier sind nicht kosmetisch: Jede einzelne hat schon einmal eine
+   zentrale Funktion ausgeschaltet. Details in docs/LIBRARIES.md, "Fallstricke". */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* overflow-x: clip statt hidden. `hidden` auf dem Body macht ihn zum
+   Scroll-Container und zerstört damit JEDES position: sticky auf der Seite
+   (Sticky-Header klebt nicht mehr). `clip` erzeugt keinen Scroll-Container. */
+html { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+body { overflow-x: clip; }
+
+/* Hintergrund sperren, solange ein Overlay/Mobilmenü offen ist. */
+body.is-locked { overflow-y: hidden; }
+
+/* Muss !important sein: `display: flex` o.ä. als Autoren-Regel schlägt sonst
+   die Browser-Regel [hidden] { display: none }. Ohne diese Zeile bleiben per
+   el.hidden abgeschaltete Schritte und Buttons sichtbar stehen. */
+[hidden] { display: none !important; }
+
+/* Sobald ein Sticky-Header existiert, springen alle Anker darunter. */
+:where([id]) { scroll-margin-top: var(--header-h); }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); line-height: var(--lh-heading); }
+h1 { line-height: var(--lh-display); letter-spacing: var(--tracking-display); }
+
+/* Fokus bleibt sichtbar. Der Browser-Default darf nicht wegretuschiert
+   werden – ohne sichtbaren Fokus ist die Seite per Tastatur unbedienbar. */
+/* Fallback currentColor ist kein Schmuck: Ohne ihn wird die ganze Regel
+   ungültig, solange --color-focus leer ist – dann gäbe es weniger Fokus als
+   ohne diese Zeile. */
+:focus-visible {
+  outline: 2px solid var(--color-focus, currentColor);
+  outline-offset: 2px;
+}
+
+img, picture, video, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+button, input, textarea, select { font: inherit; }
+
+/* Touch-Targets: Mindestmaß nach WCAG. Gilt besonders für Telefonnummern –
+   bei Handwerksbetrieben das wichtigste Ziel der ganzen Seite.
+
+   Zwei Regeln, nicht eine – aus gutem Grund: min-height wirkt NICHT auf
+   originär inline-Elementen (a, label) ohne einen Display-Wechsel. Die alte
+   einzelne Regel sah korrekt aus und tat trotzdem nichts: ein Telefon-Link
+   damit gemessen war 52×17px statt 44×44px, die Footer-Links 89×19px –
+   layout-check.mjs hat das an einer echten Demo aufgedeckt.
+
+   button und summary bleiben in der einfachen Regel: button ist bereits
+   inline-block, summary ist list-item – beide respektieren min-height auch
+   ohne Display-Wechsel. summary NICHT in die erste Regel aufnehmen: inline-
+   flex würde das native Aufklapp-Dreieck entfernen.
+
+   Deckt tel:/mailto:-Links, Label und Navigations-Links (Header + Footer) ab.
+   Fügt eine Demo einen freistehenden Link/CTA außerhalb von <nav> und
+   außerhalb von Fließtext hinzu (z.B. eine eigene .cta-Klasse), braucht der
+   dieselben drei Zeilen explizit – dieses Basis-CSS kann das nicht erraten. */
+a[href^="tel:"], a[href^="mailto:"], nav a, footer a, label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+button, [role="button"], summary {
+  min-height: 44px;
+}
+
+/* Barrierefreiheit: Bewegung reduzieren, wenn im System gewünscht. Pflicht.
+   Wichtig: Jede Animation braucht zusätzlich einen fertigen Endzustand –
+   kein Element darf hierdurch dauerhaft unsichtbar bleiben. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

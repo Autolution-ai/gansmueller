@@ -1,0 +1,124 @@
+/* tokens.css – Design-Tokens
+   STRUKTUR ist fix, WERTE werden je Demo aus der Kunden-CI (Phase 1) gesetzt.
+   Kein Einheitsdesign: Farben, Schriften, Radien immer projektspezifisch.
+   Die CI wird abgeleitet, nie erfunden (CLAUDE.md §6).
+
+   WIE die Werte entstehen, steht im Skill `design-system`:
+   Markenfarbe aus dem Logo in oklch umrechnen, Neutrale aus ihrem Farbton
+   ableiten, Kontraste nachmessen, Typo-Spannweite prüfen. */
+
+:root {
+  /* ---------------------------------------------------------------------
+     FARBE
+     Rollen, keine Farbnamen. --color-blau bricht beim ersten Kunden mit
+     grünem Logo.
+
+     Ableitung (design-system 1.3): Alle Neutralen übernehmen den Farbton H
+     der Marke bei sehr kleiner Buntheit C. Reines Grau neben einer farbigen
+     Marke wirkt tot und ist der Grundton jedes Baukastens.
+
+     Beispiel für eine Marke oklch(0.38 0.07 165):
+       --color-bg:         oklch(0.985 0.004 165);
+       --color-surface:    oklch(0.955 0.008 165);
+       --color-border:     oklch(0.880 0.012 165);
+       --color-text-muted: oklch(0.500 0.015 165);
+       --color-text:       oklch(0.250 0.020 165);
+  --------------------------------------------------------------------- */
+  --color-bg: /* aus CI, L 0.97–0.99 */;
+  --color-surface: /* aus CI, L 0.94–0.96 */;
+  --color-border: /* aus CI, L 0.85–0.90 */;
+  --color-text: /* aus CI, L 0.20–0.30 */;
+  --color-text-muted: /* aus CI, L 0.45–0.55 */;
+  --color-primary: /* Markenfarbe aus dem Logo */;
+  --color-accent: /* höchstens einer, sparsam */;
+
+  /* Dunkle Gegenseite – für randlose Zäsur-Sektionen (.full). */
+  --color-bg-dark: /* L 0.18–0.25, H der Marke */;
+  --color-text-on-dark: /* L 0.95–0.98 */;
+
+  /* Pflicht, sobald die Primärfarbe auf Dunkel eingesetzt wird: Die
+     Originalfarbe reißt dort fast immer den Kontrast unter 4,5:1
+     (gemessen in einer Demo: 3,3:1). L anheben, C leicht senken, H behalten. */
+  --color-primary-on-dark: /* aufgehellte Variante von --color-primary */;
+
+  /* Zustände. „Statisch" ist in der Kritik meistens wörtlich gemeint –
+     ohne diese Werte gibt es kein Feedback (section-craft 5). */
+  --color-hover: /* Fläche bei Hover, meist --color-surface eine Stufe dunkler */;
+  --color-focus: /* Fokusring, min. 3:1 gegen seinen Grund */;
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAFIE
+     Schriften je Demo wählen (zur Marke passend, Vorgabe des Kunden schlägt
+     jede Wahl). Dateien liegen lokal unter assets/fonts/, eingebunden über
+     css/fonts.css – Google Fonts wird vom Egress-Proxy blockiert.
+  --------------------------------------------------------------------- */
+  /* Je Demo die eigene Familie voranstellen, z.B.
+       --font-display: "Marken-Display", Georgia, serif;
+     Die Fallback-Kette bleibt stehen: Ohne sie zeigt die Seite gar nichts,
+     solange die Schriftdatei fehlt. */
+  --font-display: Georgia, serif;
+  --font-body: system-ui, sans-serif;
+
+  /* Größen – fluid via clamp, klein bei 390 px, groß bei 1440 px.
+     Untergrenze von --step--1 nie unter 14px: Fließtext bei 13,4px war ein
+     QA-Befund, keine Designentscheidung.
+     --step-3 ÷ --step-0 muss mindestens 2,5 ergeben (Typo-Spannweite,
+     hero-craft §5). Reicht es nicht, wird --step-3 erhöht – nie der
+     Fließtext verkleinert. */
+  --step--1: clamp(0.875rem, 0.85rem + 0.15vw, 0.95rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+
+  /* Zeilenhöhen. Ein einziger globaler Wert lässt jede große Überschrift in
+     Einzelzeilen zerfallen – große Schrift braucht enge Zeilen. */
+  --lh-display: 1.05;
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
+
+  /* Laufweite. Display läuft enger, Versal-Kicker weiter. */
+  --tracking-display: -0.02em;
+  --tracking-kicker: 0.08em;
+
+  /* ---------------------------------------------------------------------
+     ABSTÄNDE
+     Skala fix, Nutzung je Layout.
+     Zwischen zwei Sektionen polstert nur EINE Seite, nie beide – sonst
+     addieren sich die Abstände zu einem Loch (section-craft §4).
+  --------------------------------------------------------------------- */
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 2rem;
+  --space-l: 4rem;
+  --space-xl: 8rem;
+
+  /* ---------------------------------------------------------------------
+     LAYOUT
+  --------------------------------------------------------------------- */
+  --radius: /* je Demo */;
+
+  /* Drei Breiten statt einer. Getrennt, weil sie zwei verschiedene Jobs haben:
+     Lesbarkeit (Text) und Flächennutzung (alles andere). Ein einziges --maxw
+     für beides erzeugt zwangsläufig die schmale Mittelspalte, bei der auf einem
+     1920er Bildschirm über 300px je Seite tot bleiben – der häufigste
+     Kritikpunkt an bisherigen Demos.
+     Genutzt vom .layout-Raster in styles.css. */
+  --gutter: var(--space-s);   /* Mindestabstand zum Fensterrand */
+  --maxw-content: 68ch;       /* lesbare Textbreite, 60–75 Zeichen */
+  --breakout-extra: 30rem;    /* je Seite zusätzlich für .breakout. Gemessen:
+                                 1572px auf 1920px Fenster, also 174px Rand –
+                                 unter der 200px-Grenze aus der Checkliste. */
+
+  /* Header-Höhe. Wird von scroll-margin-top in base.css genutzt, damit Anker
+     nicht unter dem Sticky-Header landen. Je Demo an den echten Header anpassen. */
+  --header-h: 92px;
+
+  /* ---------------------------------------------------------------------
+     BEWEGUNG
+     Werkzeugwahl und Sparsamkeit: Skill `motion-toolkit`.
+  --------------------------------------------------------------------- */
+  --dur-schnell: 120ms;   /* Hover, Fokus – muss sofort wirken */
+  --dur-normal: 260ms;    /* Zustandswechsel, Einblenden */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}

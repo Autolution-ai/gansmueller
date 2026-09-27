@@ -1,0 +1,50 @@
+/* styles.css – Layout & Komponenten.
+   Entsteht je Demo. Hier KEINE Vorfestlegung des Aussehens (Farben, Typo,
+   Formen) – aber die Struktur, die bestimmt, wie breit Dinge sein können.
+   Nutzt Tokens aus tokens.css. Anti-Slop beachten (siehe CLAUDE.md):
+   keine gleichförmigen Kachelraster, echte Hierarchie, bewusste Typografie. */
+
+/* ---------------------------------------------------------------------------
+   Layout-Raster: drei Breiten statt einer Mittelspalte.
+
+   Ein rein zentrierender Container macht die schmale Mittelspalte zum
+   Standardweg und lässt links und rechts alles ungenutzt. Genau das ist der
+   häufigste Kritikpunkt an bisherigen Demos ("der linke und rechte Rand wird
+   überhaupt nicht genutzt", "sehr viel tote Fläche"). Mit diesem Raster ist
+   die Fläche zu nutzen eine Klasse statt eines Layout-Umbaus.
+
+   Anwendung: .layout auf den Sektions-Container, die Kinder wählen ihre Breite:
+
+     (ohne Klasse)   lesbare Textbreite  – Fließtext, Überschriften
+     .breakout       breiter             – Bildreihen, Karten, Galerien, Zahlen
+     .full           randlos             – Bildbänder, Hero, farbige Sektionen
+
+   Randlose Sektion mit lesbarem Text darin: dem .full-Element selbst wieder
+   .layout geben, dann greifen die drei Breiten innerhalb erneut.
+
+   Achtung: .full wirkt nur auf KINDER eines .layout-Containers
+   (.layout > .full). Auf dem .layout-Element selbst ist die Klasse wirkungslos
+   – eine Sektion ist als Blockelement ohnehin schon fensterbreit. Randlos
+   *wirkt* sie erst, wenn sie eine eigene Fläche trägt (Hintergrundfarbe oder
+   -bild); sonst sieht man nur den Text in der Mitte.
+
+   Pflicht je Seite: mindestens ein randloses Element. Auf 1920px darf kein
+   Abschnitt MIT BILDERN, KARTEN ODER GALERIEN mehr als etwa 200px je Seite
+   ungenutzt lassen. Reiner Fließtext bleibt auf Lesebreite (--maxw-content) –
+   das sind auf 1920px rund 570px je Seite, und das ist richtig so. Falsch ist
+   erst eine Seite, auf der JEDER Abschnitt so aussieht.
+   Gemessen mit: node scripts/layout-check.mjs <datei.html>
+--------------------------------------------------------------------------- */
+.layout {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [breakout-start] minmax(0, var(--breakout-extra))
+    [content-start] min(100% - var(--gutter) * 2, var(--maxw-content)) [content-end]
+    minmax(0, var(--breakout-extra)) [breakout-end]
+    minmax(var(--gutter), 1fr) [full-end];
+}
+
+.layout > *         { grid-column: content; }
+.layout > .breakout { grid-column: breakout; }
+.layout > .full     { grid-column: full; }

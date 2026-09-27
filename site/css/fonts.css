@@ -1,0 +1,32 @@
+/* fonts.css – Schrifteinbindung.
+   Schriftdateien liegen LOKAL unter assets/fonts/. Google Fonts und CDNs
+   werden vom Egress-Proxy der Arbeitsumgebung blockiert: Eine CDN-Einbindung
+   sieht lokal aus wie ein Fehler und geht live trotzdem – beides unbrauchbar
+   für eine Demo, die vor dem Termin geprüft werden muss (CLAUDE.md §5).
+
+   Regeln (Skill `design-system`, 2.5):
+   - nur woff2, nur die tatsächlich genutzten Schnitte
+   - font-display: swap, damit Text sofort sichtbar ist
+   - Fallback-Kette mit ähnlicher Breite, sonst springt das Layout beim Tausch
+   - Lizenz prüfen, bevor eine Schrift eingebunden wird. Im Zweifel fragen
+
+   Diese Datei ist eine Vorlage: Blöcke einkommentieren und Namen/Dateien
+   je Demo setzen. Ohne eigene Schrift wird sie nicht verlinkt. */
+
+/*
+@font-face {
+  font-family: "Marken-Display";
+  src: url("../assets/fonts/marken-display.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Marken-Text";
+  src: url("../assets/fonts/marken-text.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
