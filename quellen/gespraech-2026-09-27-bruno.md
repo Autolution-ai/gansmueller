@@ -105,3 +105,12 @@ Datum: 2026-09-27 · Wortlaut Bruno: „1. Ist schon angelegt 2. ja  Nutze unbed
 - Vercel-Projekt für die Demo ist angelegt (Bruno).
 - Der Mann auf dem Titelbild der Altseite (`site/assets/images/original/titelbild-header-original.jpg`, EXIF 2008-05-09) ist René Gansmüller (Bruno). Das Foto ist ca. 18 Jahre alt; bei Verwendung Hinweis „Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt".
 - Für den Hero ist der Skill `ui-ux-pro-max` zwingend zu nutzen (Bruno).
+
+## Nachtrag: Station 2 abgelehnt
+
+Datum: 2026-09-27 · Wortlaut Bruno: „Das sieht komplett nach AI-Slop aus! Standard Schrift, langweile Buttons, zu viel langer Text auf einem Hero"
+
+Bezieht sich auf beide Hero-Varianten (A typografisch, B Symbolbild) und die Design-Tokens (Archivo). Folgen für den Neubau:
+- Schrift mit eigenem Charakter statt Standard-Grotesk.
+- Buttons mit Gestaltung statt flacher Standard-Rechtecke.
+- Hero deutlich kürzer: kurze Headline, höchstens eine kurze Zeile darunter.
