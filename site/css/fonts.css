@@ -1,32 +1,21 @@
 /* fonts.css – Schrifteinbindung.
-   Schriftdateien liegen LOKAL unter assets/fonts/. Google Fonts und CDNs
-   werden vom Egress-Proxy der Arbeitsumgebung blockiert: Eine CDN-Einbindung
-   sieht lokal aus wie ein Fehler und geht live trotzdem – beides unbrauchbar
-   für eine Demo, die vor dem Termin geprüft werden muss (CLAUDE.md §5).
+   Schriftdateien liegen LOKAL unter assets/fonts/ (CLAUDE.md §5, Skill
+   `design-system` 2.5/2.6). Keine CDN-Einbindung.
 
-   Regeln (Skill `design-system`, 2.5):
-   - nur woff2, nur die tatsächlich genutzten Schnitte
-   - font-display: swap, damit Text sofort sichtbar ist
-   - Fallback-Kette mit ähnlicher Breite, sonst springt das Layout beim Tausch
-   - Lizenz prüfen, bevor eine Schrift eingebunden wird. Im Zweifel fragen
-
-   Diese Datei ist eine Vorlage: Blöcke einkommentieren und Namen/Dateien
-   je Demo setzen. Ohne eigene Schrift wird sie nicht verlinkt. */
-
-/*
-@font-face {
-  font-family: "Marken-Display";
-  src: url("../assets/fonts/marken-display.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+   Archivo, variabel (wght 100–900, wdth 62–125), nur Teilmenge latin
+   (deckt ä ö ü ß é ab). Quelle: npm @fontsource-variable/archivo 5.3.0,
+   Datei files/archivo-latin-wdth-normal.woff2. Lizenz: SIL OFL 1.1,
+   liegt als assets/fonts/archivo-LICENSE.txt bei. */
 
 @font-face {
-  font-family: "Marken-Text";
-  src: url("../assets/fonts/marken-text.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Archivo";
+  src: url("../assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations"),
+       url("../assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
-*/

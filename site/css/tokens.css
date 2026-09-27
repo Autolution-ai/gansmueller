@@ -24,27 +24,62 @@
        --color-text-muted: oklch(0.500 0.015 165);
        --color-text:       oklch(0.250 0.020 165);
   --------------------------------------------------------------------- */
-  --color-bg: /* aus CI, L 0.97–0.99 */;
-  --color-surface: /* aus CI, L 0.94–0.96 */;
-  --color-border: /* aus CI, L 0.85–0.90 */;
-  --color-text: /* aus CI, L 0.20–0.30 */;
-  --color-text-muted: /* aus CI, L 0.45–0.55 */;
-  --color-primary: /* Markenfarbe aus dem Logo */;
-  --color-accent: /* höchstens einer, sparsam */;
+  /* ABLEITUNG FÜR DIESE DEMO (Ingenieurbüro René Gansmüller, Phase 2c)
+     CI-Fundstück ist das Logo der Altseite (resources/_wsb_logo.jpg,
+     215×40 px, 2008), nicht das Farbschema der Seite: #036/#369/#630 sind
+     Vorgaben des 1&1-Baukastens (colorscheme.css, „(c) Schlund + Partner“).
+     Pixelmittel aus dem JPEG, daher Näherungswerte:
+       Querbalken der Bildmarke   #507fa6 → oklch(0.579 0.079 245)  Marke
+       Schriftzug INGENIEURBÜRO   #576c73 → oklch(0.517 0.027 220)  Sekundärtext
+       Schriftzug RENÉ GANSMÜLLER #2c2c2d → oklch(0.294 0.002 286)  Textton
+       Rechteck der Bildmarke     #d6ced4 → oklch(0.860 0.012 334)  Akzentfläche
+     Neutrale: Farbton H 245 der Marke, C steigt mit sinkendem L.
+     Kontraste gemessen (WCAG, sRGB aus oklch gerechnet, 27.09.2026):
+       text / bg 13,7 · text / surface 12,6 · text-muted / bg 5,3 ·
+       text-muted / surface 4,9 · primary / bg 4,1 (nur Flächen, Linien, große
+       Schrift) · primary-strong / bg 5,7 · bg auf primary-strong 5,7 ·
+       text-on-dark / bg-dark 15,6 · primary-on-dark / bg-dark 8,6 ·
+       text-muted-on-dark / bg-dark 8,6 · text / accent 9,3 */
+  --color-bg: oklch(0.985 0.004 245);
+  --color-surface: oklch(0.955 0.008 245);
+  --color-border: oklch(0.880 0.012 245);
+  --color-text: oklch(0.285 0.012 245);
+  /* = Schriftzug „INGENIEURBÜRO“ im Logo. Liegt ohnehin im Neutralen-Band
+     (L 0.45–0.55) und trägt den Farbton der Marke. */
+  --color-text-muted: oklch(0.517 0.027 220);
+  /* = Querbalken der Bildmarke. Auf Weiß nur 4,1:1: für Flächen, Linien,
+     Markierungen und Schrift ab 24 px. Für Text und Buttons darunter gilt
+     --color-primary-strong. */
+  --color-primary: oklch(0.579 0.079 245);
+  /* Aus --color-primary abgeleitet (nur L gesenkt, C leicht angehoben, H
+     gleich): Links, Buttonfläche mit hellem Text, Fokusring. 5,7:1 auf bg. */
+  --color-primary-strong: oklch(0.500 0.085 245);
+  /* = Rechteck der Bildmarke. Nur als Fläche oder Markierung, sparsam.
+     Darauf nur --color-text (9,3:1), nie --color-text-muted (3,6:1). */
+  --color-accent: oklch(0.860 0.012 334);
+
+  /* Streifenband aus dem Titelbild der Altseite (720×220, CSS #key_visual):
+     2-px-Linien im Wechsel #8ab4dc / #689acf, dazu lose gesetzte helle
+     Quadrate. Reines CI-Motiv, keine Bildaussage. --color-text darauf mind.
+     4,85:1 (auf dem dunkleren Streifen gemessen). */
+  --color-band-hell: oklch(0.754 0.073 248);
+  --color-band-dunkel: oklch(0.672 0.096 251);
 
   /* Dunkle Gegenseite – für randlose Zäsur-Sektionen (.full). */
-  --color-bg-dark: /* L 0.18–0.25, H der Marke */;
-  --color-text-on-dark: /* L 0.95–0.98 */;
+  --color-bg-dark: oklch(0.225 0.030 245);
+  --color-text-on-dark: oklch(0.970 0.005 245);
+  --color-text-muted-on-dark: oklch(0.780 0.022 240);
 
   /* Pflicht, sobald die Primärfarbe auf Dunkel eingesetzt wird: Die
      Originalfarbe reißt dort fast immer den Kontrast unter 4,5:1
-     (gemessen in einer Demo: 3,3:1). L anheben, C leicht senken, H behalten. */
-  --color-primary-on-dark: /* aufgehellte Variante von --color-primary */;
+     (hier: 4,0:1). L angehoben, C leicht gesenkt, H behalten → 8,6:1. */
+  --color-primary-on-dark: oklch(0.780 0.070 245);
 
   /* Zustände. „Statisch" ist in der Kritik meistens wörtlich gemeint –
      ohne diese Werte gibt es kein Feedback (section-craft 5). */
-  --color-hover: /* Fläche bei Hover, meist --color-surface eine Stufe dunkler */;
-  --color-focus: /* Fokusring, min. 3:1 gegen seinen Grund */;
+  --color-hover: oklch(0.925 0.012 245);           /* primary-strong darauf 4,8:1 */
+  --color-focus: var(--color-primary-strong);      /* 5,7:1 gegen bg */
+  --color-focus-on-dark: var(--color-primary-on-dark);
 
   /* ---------------------------------------------------------------------
      TYPOGRAFIE
@@ -56,8 +91,16 @@
        --font-display: "Marken-Display", Georgia, serif;
      Die Fallback-Kette bleibt stehen: Ohne sie zeigt die Seite gar nichts,
      solange die Schriftdatei fehlt. */
-  --font-display: Georgia, serif;
-  --font-body: system-ui, sans-serif;
+  /* Archivo (SIL OFL 1.1, Fontsource 5.3.0, variabel: wght 100–900,
+     wdth 62–125). Das Logo ist serifenlos mit gesperrten Versalien, die
+     Originalschrift ist aus dem 215-px-JPEG nicht bestimmbar. Archivo ist
+     eine Grotesk mit technischer Herkunft; bei wdth 78 deckt sie die
+     Buchstabenbreiten des Logos am genauesten (Messung beim SVG-Nachbau).
+     Eine Familie, zwei Schnitte: 400 Text, 700 Überschriften und Kicker. */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --weight-body: 400;
+  --weight-display: 700;
 
   /* Größen – fluid via clamp, klein bei 390 px, groß bei 1440 px.
      Untergrenze von --step--1 nie unter 14px: Fließtext bei 13,4px war ein
@@ -65,21 +108,24 @@
      --step-3 ÷ --step-0 muss mindestens 2,5 ergeben (Typo-Spannweite,
      hero-craft §5). Reicht es nicht, wird --step-3 erhöht – nie der
      Fließtext verkleinert. */
-  --step--1: clamp(0.875rem, 0.85rem + 0.15vw, 0.95rem);
+  /* Gemessen: 390 px → 14 / 16,2 / 19,2 / 28 / 41,6 px,
+               1440 px → 15,2 / 18 / 24 / 44 / 75,8 px.
+     Spannweite --step-3 ÷ --step-0: 2,57 (390) bis 4,2 (1440). */
+  --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
   --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
-  --step-3: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+  --step-2: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+  --step-3: clamp(2.6rem, 1.5rem + 3.6vw, 4.75rem);
 
   /* Zeilenhöhen. Ein einziger globaler Wert lässt jede große Überschrift in
      Einzelzeilen zerfallen – große Schrift braucht enge Zeilen. */
-  --lh-display: 1.05;
+  --lh-display: 1.02;
   --lh-heading: 1.2;
   --lh-body: 1.6;
 
   /* Laufweite. Display läuft enger, Versal-Kicker weiter. */
   --tracking-display: -0.02em;
-  --tracking-kicker: 0.08em;
+  --tracking-kicker: 0.14em;   /* Logo: „INGENIEURBÜRO“ läuft sehr weit gesperrt */
 
   /* ---------------------------------------------------------------------
      ABSTÄNDE
@@ -96,7 +142,8 @@
   /* ---------------------------------------------------------------------
      LAYOUT
   --------------------------------------------------------------------- */
-  --radius: /* je Demo */;
+  /* Die Bildmarke ist rechtwinklig, der Baukasten war es auch. Kaum Rundung. */
+  --radius: 2px;
 
   /* Drei Breiten statt einer. Getrennt, weil sie zwei verschiedene Jobs haben:
      Lesbarkeit (Text) und Flächennutzung (alles andere). Ein einziges --maxw
@@ -112,7 +159,7 @@
 
   /* Header-Höhe. Wird von scroll-margin-top in base.css genutzt, damit Anker
      nicht unter dem Sticky-Header landen. Je Demo an den echten Header anpassen. */
-  --header-h: 92px;
+  --header-h: 80px;
 
   /* ---------------------------------------------------------------------
      BEWEGUNG
