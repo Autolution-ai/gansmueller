@@ -78,8 +78,9 @@ wenn Bruno es verlangt: zusätzlich drei lokale Betriebe ansehen.
 | Metallbau / Schlosserei | `references/metallbau.md` | 2026-09-11 | 12 Startseiten aus 6 Bundesländern | Q5, Q8, Q11, Q12 |
 | Bau / Hochbau | `references/bau.md` | 2026-09-11 | 8 Startseiten – Raum Paderborn überrepräsentiert | Q1, Q7 |
 | Maler und Lackierer | `references/maler.md` | 2026-09-11 | 8 Startseiten aus 6 Städten | Q2, Q4, Q7 |
+| Ingenieurbüro Bauüberwachung & Projektsteuerung | `references/bauueberwachung-projektsteuerung.md` | 2026-09-27 | 8 Startseiten aus 6 Bundesländern (ohne NRW, Hessen, Niedersachsen), öffentliche Auftraggeber überrepräsentiert | – |
 
-Alle sechs Dateien laufen **fehlerfrei** durch `node scripts/branchen-check.mjs`
+Alle sieben Dateien laufen **fehlerfrei** durch `node scripts/branchen-check.mjs`
 (0 Fehler). Zwei davon – `maler.md` (2) und `metallbau.md` (5) – melden
 zusätzlich Warnungen: Strukturaussagen, die sich auf eine Vorlagen-Quelle
 stützen. Das ist kein Formfehler, sondern ein echter inhaltlicher Hinweis –
