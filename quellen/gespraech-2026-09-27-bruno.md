@@ -97,3 +97,11 @@ Datum: 2026-09-27 · Wortlaut Bruno: „ok, alle drei ja, weiter"
 - Wohnungsunternehmen werden als Zielgruppe unter „Sie bauen selbst" ergänzt (belegt durch HOWOGE und BauBeCon in der Referenzliste).
 - Einzugsgebiet vorläufig: Büro in Berlin, Projekte in Berlin, Brandenburg und Sachsen (belegt durch Referenzliste), bis der Kunde es bestätigt.
 - Mitentschieden ohne Widerspruch: Schreibweisen nach Referenzliste (PDF), keine Jahreszahlen an Referenzen, Vergabe unter Bauüberwachung ohne LPH-6/7-Nennung, Baubetreuung als Entwurf markiert, Präsenz bedingt formuliert, Fax nicht im Footer, Referenzfotos nicht hochskalieren, Logo als SVG-Nachbau.
+
+## Nachtrag: Titelbild und Vercel
+
+Datum: 2026-09-27 · Wortlaut Bruno: „1. Ist schon angelegt 2. ja  Nutze unbedingt UI ux pro SKill für Hero"
+
+- Vercel-Projekt für die Demo ist angelegt (Bruno).
+- Der Mann auf dem Titelbild der Altseite (`site/assets/images/original/titelbild-header-original.jpg`, EXIF 2008-05-09) ist René Gansmüller (Bruno). Das Foto ist ca. 18 Jahre alt; bei Verwendung Hinweis „Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt".
+- Für den Hero ist der Skill `ui-ux-pro-max` zwingend zu nutzen (Bruno).
