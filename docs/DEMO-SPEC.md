@@ -162,6 +162,7 @@ erlaubt höchstens 2 Pflichtfragen plus Kontakt.
 
 **Vor dem Absenden (Pflicht):**
 1. **Wer fragt an?** (Tap) Bauträger · Projektentwickler ·
+   Wohnungsunternehmen [Bruno, Station 1] ·
    Architektur-/Planungsbüro · Generalplaner · Gewerblicher Auftraggeber ·
    Privates Eigenheim [Zielgruppen beides].
    „Privates Eigenheim“: freundlicher Hinweis, Absenden bleibt möglich,
