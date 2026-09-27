@@ -267,7 +267,24 @@ Berichtsmuster, Summen über das Bauvolumen.
      Inventar trägt einen Vollbild-Hero (Abschnitt 5). Porträt nicht bestätigt
      (Abschnitt 6). Denkmal nicht im Hero [Bruno]. -->
 
-- **Empfohlener Hero-Typ:** <!-- mit Begründung aus Abschnitt 1–4 -->
-- **Tragendes Motiv:** <!-- welches konkrete Bild, aus dem Inventar -->
-- **Beweis für above the fold:** <!-- Bewertung, Partnerlogo, Zahl – mit Quelle -->
-- **Primärer CTA gehört:** <!-- welcher Zielgruppe, und warum -->
+- **Empfohlener Hero-Typ:** zwei Varianten zur Wahl durch hero-critic und
+  Bruno (Station 2), gebaut unter `hero-varianten/`. A: Leistung + Zielgruppe,
+  Ort im Kicker, typografisch (Zielgruppe in der Hero-Zeile: 0 von 8
+  [Branche]). B: Ergebnis („Ich sorge dafür, dass gebaut wird, was geplant
+  ist."), erklärt die Rolle in Alltagssprache (stärkster Einwand der Branche,
+  Abschnitt Einwände [Branche Q3]). Person in beiden als Name + Titel
+  [Scrape Impressum] + „über 30 Jahre in der Branche" [Transkript], kein
+  Porträt (nicht bestätigt, Abschnitt 6).
+- **Tragendes Motiv:** kein Kundenbild trägt einen Hero (Abschnitt 5).
+  A: vergrößerte Bildmarke des Logos und Streifenband des Titelbilds als
+  CI-Fundstück, ohne Person. B: KI-generiertes Symbolbild (Baustellentisch,
+  Plan, Helm; kein reales Gebäude, keine Person), sichtbar gekennzeichnet
+  (§11), Pfad `hero-varianten/assets/symbolbild-bauueberwachung.*`.
+- **Beweis für above the fold:** A: sechs Bauherren aus der Referenzliste
+  als Streifen, Link auf `#referenzen` [Scrape PDF]. B: zwei Objekte mit
+  Kennzahl und Bauherr, 450 Wohneinheiten HOWOGE mbH und 24 Liegenschaften
+  BauBeCon Wohnen GmbH [Scrape PDF]. Keine Summen, keine Jahreszahlen.
+- **Primärer CTA gehört:** Planungsbüros/Generalplanern, „Bauüberwachung für
+  Ihr Projekt anfragen" (`?leistung=bauueberwachung`). Das Hauptziel ist
+  über den Header-CTA und den Funnel-Abschnitt abgedeckt (§9) [STRUKTUR,
+  Bruno Station 1].
