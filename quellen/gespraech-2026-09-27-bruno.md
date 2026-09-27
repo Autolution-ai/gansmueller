@@ -79,3 +79,11 @@ Drei Stationen statt einzelner Kontrollpunkte:
 3. finale Abnahme
 
 QA-Agenten und Prüfskripte laufen trotzdem vollständig.
+
+## Nachtrag: Privates Eigenheim im Funnel
+
+Datum: 2026-09-27 · Wortlaut Bruno: „ok, so machen"
+
+Wer im Funnel „Privates Eigenheim" wählt, bekommt einen freundlichen Hinweis,
+kann aber trotzdem absenden. Die Anfrage wird für René Gansmüller markiert.
+Gleiche Logik wie bei „über 15 Mio. €".

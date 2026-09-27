@@ -165,8 +165,7 @@ erlaubt höchstens 2 Pflichtfragen plus Kontakt.
    Architektur-/Planungsbüro · Generalplaner · Gewerblicher Auftraggeber ·
    Privates Eigenheim [Zielgruppen beides].
    „Privates Eigenheim“: freundlicher Hinweis, Absenden bleibt möglich,
-   Anfrage wird markiert [Claude-Vorschlag, analog zur delegierten
-   Bauvolumen-Regel; Bruno kann abweichen].
+   Anfrage wird markiert [Bruno, freigegeben 27.09.2026].
 2. **Bauvolumen** (Tap) [Claude, von Bruno delegiert]:
    „unter 1 Mio. €“ · „1–5 Mio. €“ · „5–15 Mio. €“ · „über 15 Mio. €“ ·
    „noch offen“.
@@ -231,8 +230,6 @@ Keine genannt.
 - **Standort / Einzugsgebiet:** unbekannt; Adresse aus Scrape, Radius nicht
   belegt. Steuert lokale SEO.
 - **Titel René Gansmüller:** unbekannt.
-- **Privates Eigenheim im Funnel:** Handhabung als Claude-Vorschlag (Hinweis,
-  kein Abbruch), von Bruno nicht ausdrücklich bestätigt.
 
 **Widersprüche Briefing ↔ Transkript (gemeldet, nicht aufgelöst):**
 - **A1 Erfahrung:** Briefing „über 30 Jahre Erfahrung in Bauüberwachung &
