@@ -437,3 +437,45 @@ Schrift durchgehend: `font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif`
 (Links: `Trebuchet MS,sans-serif`), `font-weight: normal` überall.
 Größen: h1 26px, h2 20px, h3 15px, Text 12px, Navigation 12px, Footer 10px.
 Layout feste Breite 730px (`#container`), Header 220px hoch.
+
+---
+
+## Heruntergeladen am 2026-09-27
+
+Weg: `apify/web-fetch` (Format raw) je Bild-URL, Inhalt lokal aus Base64
+dekodiert (direkter Abruf der Domain und von api.apify.com ist vom
+Egress-Proxy gesperrt). Keine Bearbeitung, keine Skalierung. Maße mit Pillow
+aus der Datei gemessen, Server-Größe = `contentLengthBytes` des Abrufs.
+
+| Datei (`site/assets/images/original/`) | Quell-URL (exakt kopiert) | Pixel | Datei (Bytes) | Server (Bytes) | Treue |
+|---|---|---|---|---|---|
+| logo-original.jpg | http://www.ingenieurbuero-gansmueller.de/resources/_wsb_logo.jpg | 215 × 40 | 2660 | 2660 | bitgleich |
+| titelbild-header-original.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Titelbild+Hintergrund+fertig.jpg | 720 × 220 | 45613 | 45613 | bitgleich |
+| ref-dresden-loisenstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Loisenstr.jpg | 167 × 251 | 11138 | 21465 | Bilddaten bitgleich, EXIF/XMP entfernt |
+| ref-dresden-bundschuhstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Bundschuhstr.jpg | 191 × 269 | 14119 | 24446 | Bilddaten bitgleich, EXIF/XMP entfernt |
+| ref-dresden-woehlerstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/W$C3$B6hlerstr.jpg | 345 × 230 | 23441 | 33768 | Bilddaten bitgleich, EXIF/XMP entfernt |
+
+„Bilddaten bitgleich, EXIF/XMP entfernt": Übernommen sind SOI, der
+JFIF-Kopf und alles ab dem ersten DQT-Marker bis EOI, byte-genau (Länge
+geprüft: Server-Größe minus Offset des DQT-Markers). Entfernt sind nur die
+beiden Metadaten-Segmente (APP1 EXIF 6234 Bytes, APP1 XMP 4089 Bytes). Aus
+diesen Metadaten, wie im Abruf gelesen: Kamera NIKON E5900, Aufnahme
+2008-05-04 (Loisenstr. 10:49:34Z, Bundschuhstr. 11:03:09Z, Wöhlerstr.
+10:29:23Z laut XMP `DateTimeOriginal`). In der Wöhlerstr.-Aufnahme ist
+unten rechts der Kamera-Datumsstempel „04.05.2008" eingebrannt.
+
+Inhalt (visuell geprüft):
+- **logo-original.jpg:** wie oben beschrieben, weißer Hintergrund.
+- **titelbild-header-original.jpg:** oberes Drittel weiß, darunter ein
+  hellblaues, fein horizontal gestreiftes Band mit durchscheinenden hellen
+  Quadraten (gleiches Motiv wie die Bildmarke des Logos). Rechts ein
+  freigestelltes Porträt eines lächelnden Mannes in dunklem Nadelstreifen-Anzug,
+  weißem Hemd und hellblau gestreifter Krawatte, bis zur Brust angeschnitten.
+  Wer abgebildet ist, steht nirgends auf der Seite (vermutlich der Inhaber,
+  nicht belegt). EXIF DateTime 2008:05:09 11:37:50.
+- **ref-dresden-loisenstrasse.jpg:** Straßenansicht, sanierter
+  Gründerzeit-Eckbau in Ocker, Hochformat.
+- **ref-dresden-bundschuhstrasse.jpg:** Straßenansicht, sanierter
+  Gründerzeitbau, helle Fassade, Hochformat, parkende Autos im Vordergrund.
+- **ref-dresden-woehlerstrasse.jpg:** Eckgebäude mit roten Mansarddach-Gauben,
+  gelbe Putzfassade, Querformat.
