@@ -14,7 +14,7 @@ eine Sektion existiert, sondern ob sie die Gewichtung hat, die hier steht.**
 
 ## Template-Stand
 
-- **TEMPLATE-VERSION:** <!-- Inhalt der Datei TEMPLATE-VERSION im Repo-Root -->
+- **TEMPLATE-VERSION:** 2026.10.03
 
 <!-- Warum das hier steht: Wird diese Demo später angesehen, ist ohne diesen
      Stand nicht unterscheidbar, ob eine Regel verletzt wurde oder damals noch
