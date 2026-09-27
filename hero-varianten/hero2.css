@@ -29,7 +29,7 @@ h1, h2 {
    bg-dark auf primary-on-dark 8,6:1 · bg-dark auf text-on-dark 15,6:1.
 --------------------------------------------------------------------- */
 .cta {
-  --schatten: var(--color-accent);
+  --schatten: var(--color-text);
   display: inline-flex;
   align-items: center;
   gap: 1rem;
@@ -53,7 +53,7 @@ h1, h2 {
 .cta:hover {
   background: var(--color-text);
   transform: translate(-2px, -2px);
-  box-shadow: 9px 9px 0 0 var(--schatten);
+  box-shadow: 9px 9px 0 0 var(--color-primary);
 }
 .cta:active {
   transform: translate(4px, 4px);
@@ -106,12 +106,24 @@ h1, h2 {
   box-shadow: none;
   gap: 0.75rem;
 }
-.cta--kontur:hover { background: var(--color-hover); box-shadow: 5px 5px 0 0 var(--schatten); }
+.cta--kontur:hover { background: var(--color-hover); box-shadow: 5px 5px 0 0 var(--color-primary); }
 .cta--kontur .mono-klein { color: var(--color-text-muted); letter-spacing: 0.12em; }
 
 /* Header-CTA: dieselbe Sprache, kleiner. */
-.cta--kopf { min-height: 2.75rem; padding: 0 1rem; box-shadow: 4px 4px 0 0 var(--schatten); gap: 0.75rem; }
-.cta--kopf:hover { box-shadow: 6px 6px 0 0 var(--schatten); }
+.cta--kopf {
+  --schatten: var(--color-primary);
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  gap: 0.75rem;
+  background: var(--color-text);
+  box-shadow: none;
+}
+.cta--kopf:hover { background: var(--color-primary-strong); box-shadow: 4px 4px 0 0 var(--color-text); }
+/* Zweite Fassung des Wortlauts, Entscheidung bei Bruno:
+   <header class="kopf kopf--kurzfassung"> zeigt „Projekt prüfen lassen“. */
+.cta-text--kurzfassung { display: none; }
+.kopf--kurzfassung .cta-text--voll { display: none; }
+.kopf--kurzfassung .cta-text--kurzfassung { display: inline; }
 .cta--kopf .mass { width: 1.5rem; }
 
 /* Auf dunklem Grund */
@@ -142,7 +154,14 @@ h1, h2 {
   padding-inline: clamp(var(--space-s), 3vw, var(--space-l));
 }
 .kopf__logo img { height: 46px; width: auto; }
-.kopf__nav { display: flex; gap: 1.75rem; margin-left: auto; }
+.kopf__nav {
+  display: flex;
+  gap: 1.75rem;
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-stretch: var(--stretch-body);
+  font-size: var(--step-0);
+}
 .kopf__nav a {
   color: var(--color-text);
   border-bottom: 2px solid transparent;
@@ -158,7 +177,7 @@ h1, h2 {
   .kopf__nav { display: none; }
   .kopf__innen { justify-content: space-between; gap: var(--space-s); }
   .kopf__logo img { height: 34px; }
-  .lang { display: none; }
+  .lang { display: none !important; }
   .kurz { display: inline; }
   .cta--kopf .mass { display: none; }
 }
@@ -172,9 +191,11 @@ h1, h2 {
   --rand: clamp(var(--space-s), 3vw, var(--space-l));
   --raster-fein: color-mix(in oklch, var(--color-primary) 9%, transparent);
   --raster-grob: color-mix(in oklch, var(--color-primary) 20%, transparent);
+  --blatt-pad: clamp(1.25rem, 4vw, 4.5rem);
   position: relative;
-  min-height: min(calc(100svh - var(--header-h)), 64rem);
-  padding: var(--rand);
+  /* 3rem kürzer als das Fenster: der nächste Abschnitt schaut an. */
+  min-height: min(calc(100svh - var(--header-h) - 3rem), 64rem);
+  padding: 1rem var(--rand);
   background-color: var(--color-bg);
   background-image:
     linear-gradient(var(--raster-grob) 1px, transparent 1px),
@@ -185,51 +206,51 @@ h1, h2 {
   background-position: -1px -1px;
   display: grid;
 }
-/* Blattrahmen einer Bauzeichnung, mit Feldeinteilung am oberen Rand. */
+/* Blattrahmen einer Bauzeichnung. Aufbau: oben Luft, dann Kopf (Kicker,
+   H1, Unterzeile), direkt darunter die Knöpfe; das Schriftfeld sitzt wie
+   auf dem Plan unten rechts im Rahmen. */
 .blatt {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: 1fr auto;
-  gap: var(--space-m) var(--space-l);
-  padding: clamp(1.5rem, 4vw, 4.5rem) clamp(1.25rem, 4vw, 4.5rem) 0;
+  grid-template-rows: minmax(0, 1fr) auto auto minmax(var(--space-m), 1fr);
+  column-gap: var(--space-m);
+  padding: var(--space-m) var(--blatt-pad) 0;
   border: 2px solid var(--color-text);
   background: color-mix(in oklch, var(--color-bg) 55%, transparent);
 }
-.blatt__feldrand {
-  position: absolute;
-  inset: 0 0 auto 0;
-  display: flex;
-  justify-content: space-around;
-  pointer-events: none;
-  color: var(--color-text-muted);
-  font-size: var(--step--1);
-  letter-spacing: 0.1em;
-  transform: translateY(-1.5em);
-}
-.hero-c__kopf { grid-column: 1 / -1; align-self: center; display: grid; gap: 1.5rem; }
+.hero-c__kopf { grid-column: 1 / -1; grid-row: 2; display: grid; gap: 1.5rem; }
 .hero-c__kopf .mono { color: var(--color-text-muted); }
-.hero-c h1 { font-size: var(--step-3); line-height: 0.98; max-width: 14ch; }
-.hero-c__zeile, .hero-d__zeile {
-  font-family: var(--font-mono);
-  font-stretch: var(--stretch-mono);
-  font-size: var(--step-0);
-  line-height: 1.55;
+.kicker-c span + span::before { content: " · "; }
+.hero-c h1 { font-size: var(--step-3); line-height: 1.08; }
+.hero-c__zeile {
+  font-family: var(--font-body);
+  font-stretch: var(--stretch-body);
+  font-size: var(--step-1);
+  line-height: 1.4;
+  max-width: 75ch;
 }
-.hero-c__zeile { max-width: 48ch; }
-.hero-c .aktionen { align-self: center; padding-bottom: var(--space-m); }
+.hero-c .aktionen { grid-column: 1; grid-row: 3; align-self: start; margin-top: 2rem; gap: 1rem 1.25rem; }
+@media (min-width: 1101px) {
+  .hero-c__zeile { max-width: none; }
+}
+/* Umbruch nach dem Komma, sobald die Zeilen nebeneinander Platz haben. */
+@media (min-width: 701px) {
+  .hero-c .h1-teil { display: block; }
+}
 
-/* Schriftfeld: sitzt wie auf dem Plan unten rechts im Rahmen. */
 .schriftfeld {
+  grid-column: 2;
+  grid-row: 3 / 5;
   align-self: end;
   justify-self: end;
-  margin: 0 calc(-1 * clamp(1.25rem, 4vw, 4.5rem)) 0 0;
-  width: min(46rem, 100%);
+  margin: var(--space-m) calc(-1 * var(--blatt-pad)) 0 0;
+  width: min(29rem, 100%);
   background: var(--color-bg);
   border-top: 2px solid var(--color-text);
   border-left: 2px solid var(--color-text);
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   font-family: var(--font-mono);
   font-stretch: var(--stretch-mono);
   font-size: var(--step--1);
@@ -241,9 +262,9 @@ h1, h2 {
   border-bottom: 1px solid var(--color-text);
   margin: 0;
 }
-.schriftfeld > :nth-child(2n) { border-right: 0; }
+.schriftfeld > :nth-child(2n + 1) { border-right: 0; }
 .schriftfeld > :nth-last-child(-n + 2) { border-bottom: 0; }
-.schriftfeld dt, .schriftfeld .sf-titel {
+.schriftfeld dt {
   display: block;
   font-size: var(--step--1);
   letter-spacing: 0.1em;
@@ -277,23 +298,31 @@ h1, h2 {
 .sf-wert-gross { font-size: var(--step-0); }
 
 @media (max-width: 1100px) {
-  .blatt { grid-template-columns: 1fr; }
-  .schriftfeld { justify-self: stretch; width: auto; margin-inline: calc(-1 * clamp(1.25rem, 4vw, 4.5rem)); }
+  .blatt { grid-template-columns: 1fr; grid-template-rows: auto auto auto; padding-top: var(--space-l); row-gap: 0; }
+  .hero-c__kopf { grid-row: 1; }
+  .hero-c .aktionen { grid-row: 2; }
+  .schriftfeld { grid-column: 1; grid-row: 3; justify-self: stretch; width: auto; margin: var(--space-l) calc(-1 * var(--blatt-pad)) 0; }
 }
 @media (max-width: 700px) {
-  /* Mobil: eigener Entwurf. Rahmen bis an den Rand, Raster gröber, das
-     Schriftfeld behält vier Felder, der Rest steht im Register. */
+  /* Mobil: eigener Entwurf. Rahmen bis an den Rand, Raster gröber, Kicker
+     in drei kurzen Zeilen, Knöpfe volle Breite, Schriftfeld ohne Logo. */
   .hero-c { min-height: 0; padding: 0.75rem; background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; }
-  .blatt { padding: 1.5rem 1.1rem 0; gap: 1.25rem; }
-  .blatt__feldrand { display: none; }
+  .blatt { --blatt-pad: 1.1rem; padding-top: 1.5rem; }
+  .kicker-c { letter-spacing: 0.05em; }
+  .kicker-c span { display: block; }
+  .kicker-c span + span::before { content: none; }
   .hero-c__kopf { gap: 1rem; }
-  .hero-c .aktionen { flex-direction: column; align-items: stretch; gap: 0.9rem; padding-bottom: 0.5rem; }
-  .schriftfeld { margin-inline: -1.1rem; width: auto; }
+  .hero-c__zeile { font-size: var(--step-0); }
+  .hero-c .aktionen { flex-direction: column; align-items: stretch; gap: 0.9rem; margin-top: 1.25rem; }
+  .hero-c .cta { white-space: nowrap; letter-spacing: 0.03em; }
+  /* Mobil zwei Felder: Bauherr und Maßnahme. Name steht im Logo darüber,
+     die Leistung im Kicker. */
   .schriftfeld .nur-breit { display: none; }
+  .schriftfeld > :nth-child(2), .schriftfeld > :nth-child(3) { border-bottom: 0; }
+  .schriftfeld { margin-top: 1.5rem; }
   .schriftfeld .sf-kopf img { display: none; }
   .schriftfeld > * { padding: 0.45rem 0.6rem 0.5rem; }
   .sf-wert-gross { font-size: var(--step--1); }
-  .schriftfeld > :nth-last-child(-n + 2) { border-bottom: 0; }
 }
 
 /* =====================================================================

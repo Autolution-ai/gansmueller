@@ -127,13 +127,16 @@
      hero-craft §5). Reicht es nicht, wird --step-3 erhöht – nie der
      Fließtext verkleinert. */
   /* Gemessen: 390 px → 14 / 16,2 / 19,2 / 28 / 41,6 px,
-               1440 px → 15,2 / 18 / 24 / 44 / 75,8 px.
-     Spannweite --step-3 ÷ --step-0: 2,57 (390) bis 4,2 (1440). */
+               1440 px → 15,2 / 18 / 24 / 44 / 85,4 px,
+               1920 px → 15,2 / 18 / 24 / 44 / 107,5 px.
+     --step-3 für breite Fenster angehoben (hero-critic: bei 1920 blieb die
+     H1 bei 76 px und ließ rechts eine Leerfläche).
+     Spannweite --step-3 ÷ --step-0: 2,57 (390) bis 6,0 (1920). */
   --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
   --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-  --step-3: clamp(2.6rem, 1.5rem + 3.6vw, 4.75rem);
+  --step-3: clamp(2.6rem, 1.2rem + 4.6vw, 7rem);
   /* Nur für die grafische Kennzahl in Hero D („30“). Keine Textstufe. */
   --step-monument: clamp(9rem, 2rem + 24vw, 26rem);
 
