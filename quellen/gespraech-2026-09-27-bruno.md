@@ -87,3 +87,13 @@ Datum: 2026-09-27 · Wortlaut Bruno: „ok, so machen"
 Wer im Funnel „Privates Eigenheim" wählt, bekommt einen freundlichen Hinweis,
 kann aber trotzdem absenden. Die Anfrage wird für René Gansmüller markiert.
 Gleiche Logik wie bei „über 15 Mio. €".
+
+## Nachtrag: Station 1 (Struktur) freigegeben
+
+Datum: 2026-09-27 · Wortlaut Bruno: „ok, alle drei ja, weiter"
+
+- Seitenstruktur des structure-architect freigegeben (Header, Hero, Für wen, Leistungen, Bauherren-Streifen, Referenzen, Über mich & Arbeitsweise, Ablauf, Anfrage-Funnel, Footer).
+- Denkmal-/Altbau-Kompetenz wird in den Referenzen hervorgehoben, nicht im Hero.
+- Wohnungsunternehmen werden als Zielgruppe unter „Sie bauen selbst" ergänzt (belegt durch HOWOGE und BauBeCon in der Referenzliste).
+- Einzugsgebiet vorläufig: Büro in Berlin, Projekte in Berlin, Brandenburg und Sachsen (belegt durch Referenzliste), bis der Kunde es bestätigt.
+- Mitentschieden ohne Widerspruch: Schreibweisen nach Referenzliste (PDF), keine Jahreszahlen an Referenzen, Vergabe unter Bauüberwachung ohne LPH-6/7-Nennung, Baubetreuung als Entwurf markiert, Präsenz bedingt formuliert, Fax nicht im Footer, Referenzfotos nicht hochskalieren, Logo als SVG-Nachbau.

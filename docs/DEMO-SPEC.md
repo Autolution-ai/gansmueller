@@ -71,7 +71,7 @@ Seite. Die Seite bleibt knapp: „kurz prägnant … kein großes Schischi“
   Partner gemeint sind. Quellenangaben, Rollen-Credits und Hinweiskästen in
   dritter Person (§6).
 - **Ansprechpartner:** René Gansmüller [Bruno], Inhaber, Bauingenieur
-  („ich bin Bauingenieur“ [Transkript]). Titel unbekannt, keinen setzen.
+  („ich bin Bauingenieur“ [Transkript]). Titel: „Dipl.-Ing. (FH) Bauwesen“ [Scrape Impressum].
   Rechtsform unbekannt (A7).
 - **Persönlichkeitsprofil** (nur aus Transkript-Aussagen, die dem Kunden
   zugeordnet sind; Zuordnung aus dem Kontext erschlossen):
@@ -229,7 +229,6 @@ Keine genannt.
   hängen am Website-Scrape, ausstehend.
 - **Standort / Einzugsgebiet:** unbekannt; Adresse aus Scrape, Radius nicht
   belegt. Steuert lokale SEO.
-- **Titel René Gansmüller:** unbekannt.
 
 **Widersprüche Briefing ↔ Transkript (gemeldet, nicht aufgelöst):**
 - **A1 Erfahrung:** Briefing „über 30 Jahre Erfahrung in Bauüberwachung &
@@ -261,7 +260,7 @@ Keine genannt.
   (Impressum) prüfen.
 - **A8 Name:** Briefing „Herr Gansmüller“, Domain „gansmueller“, Transkript
   „Gansburger/Ganzmüller“ (Erkennungsfehler). Vorname jetzt belegt: René
-  [Bruno]. Schreibweise gegen Scrape prüfen, Titel unbekannt.
+  [Bruno]. Schreibweise „René Gansmüller“ und Titel „Dipl.-Ing. (FH) Bauwesen“ durch Scrape bestätigt.
 - **A9 Website-Alter:** Briefing „seit Jahren kaum gepflegt“; Transkript
   „schon 20 Jahre nie gepflegt“. Nur Kontext, nicht für die Seite.
 
@@ -290,3 +289,18 @@ Beispielen.
   machen“): Leistungsnamen, „HOAI Leistungsphase 8“ bei Bauüberwachung,
   „gemeinsam mit Partnern alle Leistungsphasen“, kein AHO. Offener Punkt
   erledigt. Kontrollpunkte auf drei Stationen gebündelt.
+
+## Station 1 freigegeben (2026-09-27) [Bruno]
+
+- Struktur des structure-architect freigegeben: Header · Hero · Für wen
+  (zwei Wege) · Leistungen · Bauherren-Streifen (randlos) · Referenzen
+  (Register aller 20 Objekte, 2–3 mit Foto) · Über mich & Arbeitsweise ·
+  Ablauf · Anfrage-Funnel (eigener Abschnitt) · Footer.
+- Zielgruppe ergänzt: Wohnungsunternehmen unter „Sie bauen selbst“.
+- Denkmal/Altbau in den Referenzen hervorheben, nicht im Hero.
+- Einzugsgebiet vorläufig: Büro Berlin, Projekte in Berlin, Brandenburg und
+  Sachsen [Scrape], bis Kundenbestätigung.
+- Hero-CTA primär für Planungsbüros: „Bauüberwachung für Ihr Projekt
+  anfragen“ (Vorschlag, endgültig in Station 2).
+- Beleg: quellen/gespraech-2026-09-27-bruno.md
+
