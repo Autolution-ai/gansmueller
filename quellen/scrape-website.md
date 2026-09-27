@@ -454,14 +454,17 @@ aus der Datei gemessen, Server-Größe = `contentLengthBytes` des Abrufs.
 | ref-dresden-loisenstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Loisenstr.jpg | 167 × 251 | 11138 | 21465 | Bilddaten bitgleich, EXIF/XMP entfernt |
 | ref-dresden-bundschuhstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Bundschuhstr.jpg | 191 × 269 | 14119 | 24446 | Bilddaten bitgleich, EXIF/XMP entfernt |
 | ref-dresden-woehlerstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/W$C3$B6hlerstr.jpg | 345 × 230 | 23441 | 33768 | Bilddaten bitgleich, EXIF/XMP entfernt |
+| ref-radebeul-augustusweg.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Augustusweg.jpg | 413 × 251 | 41161 | 41161 | bitgleich (inkl. EXIF) |
+| ref-berlin-koenigswinterstrasse.jpg | http://www.ingenieurbuero-gansmueller.de/resources/BlnK$C3$B6nigswinter.jpg | 284 × 186 | 16813 | 27139 | Bilddaten bitgleich, EXIF/XMP entfernt |
+| ref-kreischa-diska.jpg | http://www.ingenieurbuero-gansmueller.de/resources/Diska+Kreischa.jpg | 364 × 258 | 18625 | 28951 | Bilddaten bitgleich, EXIF/XMP entfernt |
 
 „Bilddaten bitgleich, EXIF/XMP entfernt": Übernommen sind SOI, der
 JFIF-Kopf und alles ab dem ersten DQT-Marker bis EOI, byte-genau (Länge
 geprüft: Server-Größe minus Offset des DQT-Markers). Entfernt sind nur die
-beiden Metadaten-Segmente (APP1 EXIF 6234 Bytes, APP1 XMP 4089 Bytes). Aus
+beiden Metadaten-Segmente (APP1 EXIF 6234 Bytes, APP1 XMP 4089 bzw. 4088 Bytes). Aus
 diesen Metadaten, wie im Abruf gelesen: Kamera NIKON E5900, Aufnahme
 2008-05-04 (Loisenstr. 10:49:34Z, Bundschuhstr. 11:03:09Z, Wöhlerstr.
-10:29:23Z laut XMP `DateTimeOriginal`). In der Wöhlerstr.-Aufnahme ist
+10:29:23Z laut XMP `DateTimeOriginal`). Königswinterstr./Berlin: Aufnahme 2008-04-22 17:43:39Z, Diska Kreischa: 2008-05-04 14:15:36Z (XMP), Augustusweg: EXIF DateTime 2008:05:04 12:13:34, NIKON E5900. In der Wöhlerstr.-Aufnahme ist
 unten rechts der Kamera-Datumsstempel „04.05.2008" eingebrannt.
 
 Inhalt (visuell geprüft):
@@ -479,3 +482,9 @@ Inhalt (visuell geprüft):
   Gründerzeitbau, helle Fassade, Hochformat, parkende Autos im Vordergrund.
 - **ref-dresden-woehlerstrasse.jpg:** Eckgebäude mit roten Mansarddach-Gauben,
   gelbe Putzfassade, Querformat.
+- **ref-radebeul-augustusweg.jpg:** Villa mit rotem Ziegeldach, Gauben und
+  Holzbalkonen hinter hohen Bäumen, Querformat.
+- **ref-berlin-koenigswinterstrasse.jpg:** Eckbau einer Wohnanlage, rotes Dach,
+  helle Putzfassade mit Erkern, Querformat.
+- **ref-kreischa-diska.jpg:** eingeschossige Markthalle mit rotem Satteldach,
+  weiße Fassade mit Rundbögen, gelb-rote „diska"-Schilder, Parkplatz, Querformat.
