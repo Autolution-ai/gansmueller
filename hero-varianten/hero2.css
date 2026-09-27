@@ -1,0 +1,395 @@
+/* hero2.css – Varianten C „Plankopf“ und D „Monument“ (Neubau nach Brunos
+   Kritik an Station 2, 27.09.2026). Außerhalb von site/ (CLAUDE.md §5).
+   Farben, Schriften, Größen ausschließlich aus site/css/tokens.css. */
+
+body { font-stretch: var(--stretch-body); }
+h1, h2 {
+  font-weight: var(--weight-display);
+  font-stretch: var(--stretch-display);
+  letter-spacing: var(--tracking-display);
+}
+
+/* Beschriftung wie auf einem Plan: Mono, Versalien, gesperrt. */
+.mono {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono);
+  font-stretch: var(--stretch-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  line-height: 1.45;
+}
+
+/* ---------------------------------------------------------------------
+   Knopf „Maßlinie“
+   Eckig wie die Rechtecke der Bildmarke, dahinter ein versetzter Block in
+   Logo-Malve (auf Dunkel: Logo-Blau), rechts eine Maßlinie mit Endstrich
+   und Pfeil, die bei Hover ausfährt. Beschriftung in Mono.
+   Kontrast: bg auf primary-strong 5,7:1 · bg auf text (Hover) 13,7:1 ·
+   bg-dark auf primary-on-dark 8,6:1 · bg-dark auf text-on-dark 15,6:1.
+--------------------------------------------------------------------- */
+.cta {
+  --schatten: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0 1.4rem;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: var(--color-primary-strong);
+  color: var(--color-bg);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 var(--schatten);
+  transition: transform var(--dur-schnell) var(--ease-out),
+              box-shadow var(--dur-schnell) var(--ease-out),
+              background-color var(--dur-schnell) var(--ease-out);
+}
+.cta:hover {
+  background: var(--color-text);
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 0 var(--schatten);
+}
+.cta:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 0 var(--schatten);
+}
+.cta:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
+
+/* Maßlinie: Endstrich links, Linie, Pfeilspitze rechts. */
+.mass {
+  position: relative;
+  flex: none;
+  width: 2.25rem;
+  height: 0.9rem;
+  border-left: 2px solid currentColor;
+}
+.mass::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+.mass::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+.cta:hover .mass::before { transform: scaleX(1.45); }
+.cta:hover .mass::after { transform: translateX(1rem) rotate(45deg); }
+
+/* Zweitweg Telefon: gleiche Form, Kontur statt Fläche. */
+.cta--kontur {
+  justify-content: flex-start;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid currentColor;
+  box-shadow: none;
+  gap: 0.75rem;
+}
+.cta--kontur:hover { background: var(--color-hover); box-shadow: 5px 5px 0 0 var(--schatten); }
+.cta--kontur .mono-klein { color: var(--color-text-muted); letter-spacing: 0.12em; }
+
+/* Header-CTA: dieselbe Sprache, kleiner. */
+.cta--kopf { min-height: 2.75rem; padding: 0 1rem; box-shadow: 4px 4px 0 0 var(--schatten); gap: 0.75rem; }
+.cta--kopf:hover { box-shadow: 6px 6px 0 0 var(--schatten); }
+.cta--kopf .mass { width: 1.5rem; }
+
+/* Auf dunklem Grund */
+.dunkel .cta { --schatten: var(--color-primary); background: var(--color-primary-on-dark); color: var(--color-bg-dark); }
+.dunkel .cta:hover { background: var(--color-text-on-dark); }
+.dunkel .cta:focus-visible { outline-color: var(--color-focus-on-dark); }
+.dunkel .cta--kontur { background: transparent; color: var(--color-text-on-dark); }
+.dunkel .cta--kontur:hover { background: color-mix(in oklch, var(--color-text-on-dark) 10%, transparent); }
+.dunkel .cta--kontur .mono-klein { color: var(--color-text-muted-on-dark); }
+
+.aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.75rem; }
+
+/* ---------------------------------------------------------------------
+   Header
+--------------------------------------------------------------------- */
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-text);
+}
+.kopf__innen {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  min-height: calc(var(--header-h) - 2px);
+  padding-inline: clamp(var(--space-s), 3vw, var(--space-l));
+}
+.kopf__logo img { height: 46px; width: auto; }
+.kopf__nav { display: flex; gap: 1.75rem; margin-left: auto; }
+.kopf__nav a {
+  color: var(--color-text);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur-schnell) var(--ease-out);
+}
+.kopf__nav a:hover { border-bottom-color: var(--color-primary); }
+.kurz { display: none; }
+@media (max-width: 700px) {
+  .cta { white-space: normal; letter-spacing: 0.05em; padding-inline: 1.1rem; justify-content: space-between; }
+  .cta--kopf { white-space: nowrap; }
+}
+@media (max-width: 1000px) {
+  .kopf__nav { display: none; }
+  .kopf__innen { justify-content: space-between; gap: var(--space-s); }
+  .kopf__logo img { height: 34px; }
+  .lang { display: none; }
+  .kurz { display: inline; }
+  .cta--kopf .mass { display: none; }
+}
+
+/* =====================================================================
+   VARIANTE C – „Plankopf“
+   Typ: Ergebnis, belegt durch ein Schriftfeld mit echten Referenzdaten.
+   Hintergrund: Planblatt (Blattrahmen, feines Raster), kein Bild.
+===================================================================== */
+.hero-c {
+  --rand: clamp(var(--space-s), 3vw, var(--space-l));
+  --raster-fein: color-mix(in oklch, var(--color-primary) 9%, transparent);
+  --raster-grob: color-mix(in oklch, var(--color-primary) 20%, transparent);
+  position: relative;
+  min-height: min(calc(100svh - var(--header-h)), 64rem);
+  padding: var(--rand);
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(var(--raster-grob) 1px, transparent 1px),
+    linear-gradient(90deg, var(--raster-grob) 1px, transparent 1px),
+    linear-gradient(var(--raster-fein) 1px, transparent 1px),
+    linear-gradient(90deg, var(--raster-fein) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+  display: grid;
+}
+/* Blattrahmen einer Bauzeichnung, mit Feldeinteilung am oberen Rand. */
+.blatt {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-m) var(--space-l);
+  padding: clamp(1.5rem, 4vw, 4.5rem) clamp(1.25rem, 4vw, 4.5rem) 0;
+  border: 2px solid var(--color-text);
+  background: color-mix(in oklch, var(--color-bg) 55%, transparent);
+}
+.blatt__feldrand {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: none;
+  color: var(--color-text-muted);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  transform: translateY(-1.5em);
+}
+.hero-c__kopf { grid-column: 1 / -1; align-self: center; display: grid; gap: 1.5rem; }
+.hero-c__kopf .mono { color: var(--color-text-muted); }
+.hero-c h1 { font-size: var(--step-3); line-height: 0.98; max-width: 14ch; }
+.hero-c__zeile, .hero-d__zeile {
+  font-family: var(--font-mono);
+  font-stretch: var(--stretch-mono);
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+.hero-c__zeile { max-width: 48ch; }
+.hero-c .aktionen { align-self: center; padding-bottom: var(--space-m); }
+
+/* Schriftfeld: sitzt wie auf dem Plan unten rechts im Rahmen. */
+.schriftfeld {
+  align-self: end;
+  justify-self: end;
+  margin: 0 calc(-1 * clamp(1.25rem, 4vw, 4.5rem)) 0 0;
+  width: min(46rem, 100%);
+  background: var(--color-bg);
+  border-top: 2px solid var(--color-text);
+  border-left: 2px solid var(--color-text);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  font-family: var(--font-mono);
+  font-stretch: var(--stretch-mono);
+  font-size: var(--step--1);
+  line-height: 1.35;
+}
+.schriftfeld > * {
+  padding: 0.55rem 0.8rem 0.65rem;
+  border-right: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+  margin: 0;
+}
+.schriftfeld > :nth-child(2n) { border-right: 0; }
+.schriftfeld > :nth-last-child(-n + 2) { border-bottom: 0; }
+.schriftfeld dt, .schriftfeld .sf-titel {
+  display: block;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.schriftfeld .sf-kopf {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-right: 0;
+  border-bottom: 2px solid var(--color-text);
+}
+.schriftfeld .sf-kopf img { height: 30px; width: auto; }
+.schriftfeld .sf-kopf a {
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-strong);
+  border-bottom: 1.5px solid var(--color-primary);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--dur-schnell) var(--ease-out);
+}
+.schriftfeld .sf-kopf a:hover { color: var(--color-text); border-bottom-color: var(--color-text); }
+.sf-feld { display: block; }
+.sf-feld dd { margin: 0; font-weight: var(--weight-mono-strong); overflow-wrap: anywhere; }
+.sf-wert-gross { font-size: var(--step-0); }
+
+@media (max-width: 1100px) {
+  .blatt { grid-template-columns: 1fr; }
+  .schriftfeld { justify-self: stretch; width: auto; margin-inline: calc(-1 * clamp(1.25rem, 4vw, 4.5rem)); }
+}
+@media (max-width: 700px) {
+  /* Mobil: eigener Entwurf. Rahmen bis an den Rand, Raster gröber, das
+     Schriftfeld behält vier Felder, der Rest steht im Register. */
+  .hero-c { min-height: 0; padding: 0.75rem; background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; }
+  .blatt { padding: 1.5rem 1.1rem 0; gap: 1.25rem; }
+  .blatt__feldrand { display: none; }
+  .hero-c__kopf { gap: 1rem; }
+  .hero-c .aktionen { flex-direction: column; align-items: stretch; gap: 0.9rem; padding-bottom: 0.5rem; }
+  .schriftfeld { margin-inline: -1.1rem; width: auto; }
+  .schriftfeld .nur-breit { display: none; }
+  .schriftfeld .sf-kopf img { display: none; }
+  .schriftfeld > * { padding: 0.45rem 0.6rem 0.5rem; }
+  .sf-wert-gross { font-size: var(--step--1); }
+  .schriftfeld > :nth-last-child(-n + 2) { border-bottom: 0; }
+}
+
+/* =====================================================================
+   VARIANTE D – „Monument“
+   Typ: Person/Erfahrung mit Leistung und Zielgruppe.
+   Hintergrund: dunkle Markenfläche, eine belegte Kennzahl als Bild,
+   komponiert auf der Bildmarke (Rechtecke) als Raster.
+===================================================================== */
+.hero-d {
+  --rand: clamp(var(--space-s), 3vw, var(--space-l));
+  position: relative;
+  overflow: hidden;
+  min-height: min(calc(100svh - var(--header-h)), 64rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto;
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+}
+.hero-d__text {
+  align-self: center;
+  display: grid;
+  gap: 1.5rem;
+  padding: var(--space-l) 0 var(--space-m) var(--rand);
+  position: relative;
+  z-index: 1;
+}
+.hero-d__text .mono { color: var(--color-primary-on-dark); }
+.hero-d h1 { font-size: var(--step-3); line-height: 0.98; max-width: 10ch; }
+.hero-d__zeile { max-width: 40ch; color: var(--color-text-on-dark); }
+
+/* Die Kennzahl, gesetzt in die Bildmarke des Logos: dieselben 25 × 28
+   Einheiten wie in logo.svg. Die drei Rechtecke in Malve, und an der Stelle
+   des blauen Balkens steht die Zahl in Logo-Blau (Schrift ab 24 px: 3:1
+   genügt, gemessen 4,0:1). Beschriftung auf Malve in --color-text (9,3:1). */
+.monument {
+  --u: clamp(7px, 1.5vw, 24px);
+  align-self: center;
+  justify-self: end;
+  margin: var(--space-m) var(--rand) var(--space-m) 0;
+  display: grid;
+  grid-template-columns: repeat(25, var(--u));
+  grid-template-rows: repeat(28, var(--u));
+}
+.monument__oben, .monument__links, .monument__unten { background: var(--color-accent); color: var(--color-text); }
+.monument__oben  { grid-area: 1 / 1 / 4 / 17; display: flex; align-items: center; padding-inline: calc(var(--u) * 0.8); }
+.monument__links { grid-area: 5 / 1 / 13 / 8; }
+.monument__unten { grid-area: 14 / 1 / 29 / 17; display: flex; align-items: flex-end; padding: calc(var(--u) * 0.8); }
+.monument__oben, .monument__unten { font-size: max(var(--step--1), calc(var(--u) * 0.75)); }
+.monument__zahl {
+  grid-area: 5 / 9 / 13 / 26;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-stretch: var(--stretch-display);
+  font-size: calc(var(--u) * 9.2);
+  line-height: 0.7;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.hero-d__fuss {
+  list-style: none;
+  margin: 0;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding: 1.1rem var(--rand);
+  border-top: 1px solid color-mix(in oklch, var(--color-text-on-dark) 25%, transparent);
+  color: var(--color-text-muted-on-dark);
+}
+
+@media (max-width: 900px) {
+  .hero-d { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-height: 0; }
+  .hero-d__text { padding: 1.5rem var(--rand) 1rem; gap: 1rem; }
+  .hero-d .aktionen { flex-direction: column; align-items: stretch; gap: 0.9rem; }
+  /* Mobil: eigener Entwurf. Die Kennzahl steht als Querzeile unter den
+     Knöpfen, links die Bildmarke, rechts die Zahl. */
+  .monument { --u: 6px; justify-self: start; margin: 0.25rem var(--rand) 1rem; }
+  .monument__oben, .monument__unten { padding: 0 0.4rem; }
+  .monument__oben { font-size: var(--step--1); }
+  .monument__unten { padding: 0.4rem; letter-spacing: 0.06em; }
+  .hero-d__fuss { padding-block: 0.7rem; }
+  .hero-d__fuss li:last-child { display: none; }
+}
+
+/* ---------------------------------------------------------------------
+   Anschluss: Anfang der nächsten Sektion, damit unter dem Hero sichtbar
+   wird, dass es weitergeht (ui-ux-pro-max, Above the fold).
+--------------------------------------------------------------------- */
+.anschluss {
+  padding: var(--space-l) clamp(var(--space-s), 3vw, var(--space-l)) var(--space-xl);
+  background: var(--color-surface);
+}
+.anschluss .mono { color: var(--color-text-muted); margin-bottom: 0.75rem; }
+.anschluss h2 { font-size: var(--step-2); line-height: 1.05; max-width: 22ch; }

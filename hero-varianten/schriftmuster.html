@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Schriftmuster Hero · Ingenieurbüro René Gansmüller</title>
+<link rel="stylesheet" href="../site/css/fonts.css">
+<link rel="stylesheet" href="../site/css/tokens.css">
+<style>
+/* Arbeitsdatei außerhalb von site/: Vergleich der Schriftkandidaten mit der
+   echten Hero-Zeile. Fontsource (npm pack), alle SIL OFL 1.1. */
+@font-face { font-family: "K-Anybody"; src: url("schriftmuster-fonts/anybody-latin-wdth-normal.woff2") format("woff2"); font-weight: 100 900; font-stretch: 50% 150%; }
+@font-face { font-family: "K-Unbounded"; src: url("schriftmuster-fonts/unbounded-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; }
+@font-face { font-family: "K-BigShoulders"; src: url("schriftmuster-fonts/big-shoulders-display-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "K-Martian"; src: url("schriftmuster-fonts/martian-mono-latin-wdth-normal.woff2") format("woff2"); font-weight: 100 800; font-stretch: 75% 112.5%; }
+@font-face { font-family: "K-JetBrains"; src: url("schriftmuster-fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2"); font-weight: 100 800; }
+@font-face { font-family: "K-Plex"; src: url("schriftmuster-fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "K-Plex"; src: url("schriftmuster-fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--color-bg); color: var(--color-text); font: 16px/1.5 "K-Plex", monospace; padding: 40px; }
+.muster { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 36px 0; border-top: 1px solid var(--color-text); }
+.meta { font-size: 13px; line-height: 1.5; color: var(--color-text-muted); }
+.meta b { display: block; font-size: 15px; color: var(--color-text); margin-bottom: 6px; }
+.h { font-size: 84px; line-height: 0.98; letter-spacing: -0.01em; margin-bottom: 18px; }
+.z { font-size: 22px; margin-bottom: 18px; }
+.label { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 14px; }
+.feld { display: grid; grid-template-columns: repeat(4, auto); width: max-content; border: 1.5px solid var(--color-text); }
+.feld div { padding: 6px 14px 8px; border-right: 1px solid var(--color-text); font-size: 15px; }
+.feld div:last-child { border-right: 0; }
+.feld small { display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-muted); }
+.k1 .d { font-family: "Archivo"; font-stretch: 125%; font-weight: 800; }
+.k1 .m { font-family: "K-Plex"; }
+.k2 .d { font-family: "K-Anybody"; font-stretch: 150%; font-weight: 800; letter-spacing: -0.02em; }
+.k2 .m { font-family: "K-Martian"; font-stretch: 100%; font-weight: 400; }
+.k3 .d { font-family: "K-Unbounded"; font-weight: 700; }
+.k3 .m { font-family: "K-JetBrains"; font-weight: 400; }
+.k4 .d { font-family: "K-BigShoulders"; font-weight: 800; font-size: 104px; }
+.k4 .m { font-family: "K-Plex"; }
+.m.label, .m .label { font-family: inherit; }
+</style>
+</head>
+<body>
+<p class="label">Schriftmuster Hero · echte Zeilen · Stand 27.09.2026</p>
+
+<section class="muster k1">
+  <p class="meta"><b>K1 Archivo Expanded</b>wdth 125, wght 800<br>+ IBM Plex Mono 400/600<br>(bisherige Familie, breiter Schnitt)</p>
+  <div>
+    <p class="label m">Ingenieurbüro · Berlin · Bauüberwachung HOAI LPH 8</p>
+    <p class="h d">Gebaut wird,<br>was geplant ist.</p>
+    <p class="z d">Für Bauträger und Planungsbüros</p>
+    <div class="feld m"><div><small>Bauherr</small>HOWOGE mbH</div><div><small>Objekt</small>Plattenbausanierung</div><div><small>Umfang</small>450 WE</div><div><small>Leistung</small>Bauüberwachung</div></div>
+  </div>
+</section>
+
+<section class="muster k2">
+  <p class="meta"><b>K2 Anybody Extra Expanded</b>wdth 150, wght 800<br>+ Martian Mono wdth 100, 400</p>
+  <div>
+    <p class="label m">Ingenieurbüro · Berlin · Bauüberwachung HOAI LPH 8</p>
+    <p class="h d">Gebaut wird,<br>was geplant ist.</p>
+    <p class="z d">Für Bauträger und Planungsbüros</p>
+    <div class="feld m"><div><small>Bauherr</small>HOWOGE mbH</div><div><small>Objekt</small>Plattenbausanierung</div><div><small>Umfang</small>450 WE</div><div><small>Leistung</small>Bauüberwachung</div></div>
+  </div>
+</section>
+
+<section class="muster k3">
+  <p class="meta"><b>K3 Unbounded</b>wght 700<br>+ JetBrains Mono 400</p>
+  <div>
+    <p class="label m">Ingenieurbüro · Berlin · Bauüberwachung HOAI LPH 8</p>
+    <p class="h d">Gebaut wird,<br>was geplant ist.</p>
+    <p class="z d">Für Bauträger und Planungsbüros</p>
+    <div class="feld m"><div><small>Bauherr</small>HOWOGE mbH</div><div><small>Objekt</small>Plattenbausanierung</div><div><small>Umfang</small>450 WE</div><div><small>Leistung</small>Bauüberwachung</div></div>
+  </div>
+</section>
+
+<section class="muster k4">
+  <p class="meta"><b>K4 Big Shoulders Display</b>wght 800<br>+ IBM Plex Mono 400/600</p>
+  <div>
+    <p class="label m">Ingenieurbüro · Berlin · Bauüberwachung HOAI LPH 8</p>
+    <p class="h d">Gebaut wird,<br>was geplant ist.</p>
+    <p class="z d">Für Bauträger und Planungsbüros</p>
+    <div class="feld m"><div><small>Bauherr</small>HOWOGE mbH</div><div><small>Objekt</small>Plattenbausanierung</div><div><small>Umfang</small>450 WE</div><div><small>Leistung</small>Bauüberwachung</div></div>
+  </div>
+</section>
+</body>
+</html>

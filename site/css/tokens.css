@@ -39,7 +39,13 @@
        text-muted / surface 4,9 · primary / bg 4,1 (nur Flächen, Linien, große
        Schrift) · primary-strong / bg 5,7 · bg auf primary-strong 5,7 ·
        text-on-dark / bg-dark 15,6 · primary-on-dark / bg-dark 8,6 ·
-       text-muted-on-dark / bg-dark 8,6 · text / accent 9,3 */
+       text-muted-on-dark / bg-dark 8,6 · text / accent 9,3.
+     Nachgemessen nach dem Schriftwechsel (27.09.2026, Farben unverändert):
+       Knopf: bg auf primary-strong 5,7 · bg auf text (Hover) 13,7 ·
+       bg-dark auf primary-on-dark 8,6 · bg-dark auf text-on-dark (Hover) 15,6 ·
+       Kontur-Knopf text auf hover 11,5 · Kennzahl primary auf bg-dark 4,0
+       (nur Schrift ab 24 px, Grenze 3:1) · Mono-Beschriftung text-muted auf
+       bg 5,3. */
   --color-bg: oklch(0.985 0.004 245);
   --color-surface: oklch(0.955 0.008 245);
   --color-border: oklch(0.880 0.012 245);
@@ -91,16 +97,28 @@
        --font-display: "Marken-Display", Georgia, serif;
      Die Fallback-Kette bleibt stehen: Ohne sie zeigt die Seite gar nichts,
      solange die Schriftdatei fehlt. */
-  /* Archivo (SIL OFL 1.1, Fontsource 5.3.0, variabel: wght 100–900,
-     wdth 62–125). Das Logo ist serifenlos mit gesperrten Versalien, die
-     Originalschrift ist aus dem 215-px-JPEG nicht bestimmbar. Archivo ist
-     eine Grotesk mit technischer Herkunft; bei wdth 78 deckt sie die
-     Buchstabenbreiten des Logos am genauesten (Messung beim SVG-Nachbau).
-     Eine Familie, zwei Schnitte: 400 Text, 700 Überschriften und Kicker. */
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  /* Neu nach Brunos Kritik an Station 2 („Standard Schrift“, 27.09.2026).
+     Herleitung aus CI und Gewerk, Vergleich im Schriftmuster
+     hero-varianten/schriftmuster.html:
+     - Display: Anybody, extra breit (wdth 150, wght 800). Das Logo setzt
+       „INGENIEURBÜRO“ in weit gelaufenen Versalien; die breite Grotesk
+       übersetzt diese Breite in die Headline, statt sie nur zu sperren.
+     - Mono: Martian Mono. Breite, technische Monospace für alles, was auf
+       einem Plan beschriftet wäre: Kicker, Feldnamen, Daten, Buttons.
+       Nähe zur Normschrift im Schriftfeld einer Bauzeichnung.
+     - Fließtext: Anybody in Normalbreite (wdth 100, wght 400).
+     Zwei Familien, je zwei Schnitte im Einsatz (400/800 bzw. 400/600).
+     Die Pfade im Logo-SVG sind davon unabhängig (Nachbau, siehe logo.svg). */
+  --font-display: "Anybody", "Arial Black", Arial, sans-serif;
+  --font-body: "Anybody", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Martian Mono", "Courier New", monospace;
   --weight-body: 400;
-  --weight-display: 700;
+  --weight-display: 800;
+  --weight-mono: 400;
+  --weight-mono-strong: 600;
+  --stretch-display: 150%;
+  --stretch-body: 100%;
+  --stretch-mono: 100%;
 
   /* Größen – fluid via clamp, klein bei 390 px, groß bei 1440 px.
      Untergrenze von --step--1 nie unter 14px: Fließtext bei 13,4px war ein
@@ -116,6 +134,8 @@
   --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
   --step-3: clamp(2.6rem, 1.5rem + 3.6vw, 4.75rem);
+  /* Nur für die grafische Kennzahl in Hero D („30“). Keine Textstufe. */
+  --step-monument: clamp(9rem, 2rem + 24vw, 26rem);
 
   /* Zeilenhöhen. Ein einziger globaler Wert lässt jede große Überschrift in
      Einzelzeilen zerfallen – große Schrift braucht enge Zeilen. */
@@ -124,8 +144,8 @@
   --lh-body: 1.6;
 
   /* Laufweite. Display läuft enger, Versal-Kicker weiter. */
-  --tracking-display: -0.02em;
-  --tracking-kicker: 0.14em;   /* Logo: „INGENIEURBÜRO“ läuft sehr weit gesperrt */
+  --tracking-display: -0.025em;
+  --tracking-kicker: 0.12em;   /* Logo: „INGENIEURBÜRO“ läuft sehr weit gesperrt */
 
   /* ---------------------------------------------------------------------
      ABSTÄNDE
@@ -168,4 +188,10 @@
   --dur-schnell: 120ms;   /* Hover, Fokus – muss sofort wirken */
   --dur-normal: 260ms;    /* Zustandswechsel, Einblenden */
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Auf schmalen Fenstern läuft die extra breite Display-Zeile sonst in
+   Einzelwörter auseinander. */
+@media (max-width: 600px) {
+  :root { --stretch-display: 125%; --header-h: 64px; }
 }
