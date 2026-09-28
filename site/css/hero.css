@@ -56,6 +56,9 @@
 .hero-c .aktionen { grid-column: 1; grid-row: 3; align-self: start; margin-top: 2rem; gap: 1rem 1.25rem; }
 @media (min-width: 1101px) {
   .hero-c__zeile { max-width: none; }
+  /* Unterste Zeile nur so hoch wie nötig: auf 1366×768 und 1280×720 war
+     der Hero sonst angeschnitten (responsive-qa S5). */
+  .blatt { grid-template-rows: minmax(0, 1fr) auto auto minmax(var(--space-m), auto); }
 }
 /* Umbruch nach dem Komma, sobald die Zeilen nebeneinander Platz haben. */
 @media (min-width: 701px) {
@@ -115,7 +118,7 @@
   align-items: center;
   transition: color var(--dur-schnell) var(--ease-out);
 }
-.schriftfeld .sf-kopf a:hover { color: var(--color-text); border-bottom-color: var(--color-text); }
+@media (hover: hover) { .schriftfeld .sf-kopf a:hover { color: var(--color-text); border-bottom-color: var(--color-text); } }
 .sf-feld { display: block; }
 .sf-feld dd { margin: 0; font-weight: var(--weight-mono-strong); overflow-wrap: anywhere; }
 .sf-wert-gross { font-size: var(--step-0); }
@@ -146,6 +149,16 @@
   .schriftfeld .sf-kopf img { display: none; }
   .schriftfeld > * { padding: 0.45rem 0.6rem 0.5rem; }
   .sf-wert-gross { font-size: var(--step--1); }
+}
+/* Unter 400 px passt der Knopf mit nowrap nicht mehr ins Blatt (B1, 360/375). */
+@media (max-width: 400px) {
+  /* „geplant ist.“ ist mit &nbsp; gekoppelt und war bei 125 % Laufweite
+     321 px breit: Das Blatt lief auf 360/375 rechts aus dem Fenster. Mit
+     normaler Laufweite und 40 px passt die Zeile ab 320 px, die
+     Typo-Spannweite bleibt bei 2,5 (40 ÷ 16). */
+  .hero-c h1 { font-size: 2.5rem; font-stretch: 100%; }
+  .hero-c .cta { white-space: normal; letter-spacing: 0.02em; }
+  .hero-c .cta--kontur { flex-wrap: wrap; column-gap: 0.6rem; }
 }
 
 /* ---------------------------------------------------------------------

@@ -75,6 +75,14 @@ function initAnker() {
 const kopf = document.querySelector("[data-kopf]");
 const menueKnopf = document.querySelector("[data-menue]");
 
+// Solange das Mobilmenü offen ist, bleiben Inhalt und Footer für Tastatur
+// und Screenreader außen vor (inert), der Fokus bleibt im Menü (S2).
+function hintergrundSperren(an) {
+  document.querySelectorAll("body > main, body > footer").forEach((el) => {
+    el.inert = an;
+  });
+}
+
 function menueSchliessen() {
   if (!kopf || !kopf.classList.contains("kopf--offen")) return;
   kopf.classList.remove("kopf--offen");
@@ -83,6 +91,7 @@ function menueSchliessen() {
   if (text) text.textContent = "Menü";
   menueKnopf.setAttribute("aria-label", "Menü");
   document.body.classList.remove("is-locked");
+  hintergrundSperren(false);
   if (lenis) lenis.start();
 }
 
@@ -97,6 +106,7 @@ function initMenue() {
     if (text) text.textContent = label;
     menueKnopf.setAttribute("aria-label", label);
     document.body.classList.toggle("is-locked", offen);
+    hintergrundSperren(offen);
     if (lenis) (offen ? lenis.stop() : lenis.start());
     if (offen) {
       const erster = kopf.querySelector(".kopf__nav a");
@@ -109,7 +119,7 @@ function initMenue() {
       menueKnopf.focus();
     }
   });
-  window.matchMedia("(min-width: 1001px)").addEventListener("change", (m) => {
+  window.matchMedia("(min-width: 1101px)").addEventListener("change", (m) => {
     if (m.matches) menueSchliessen();
   });
 }
@@ -157,7 +167,11 @@ const funnel = (() => {
     absenden.hidden = nr !== gesamt;
     anzeige.textContent = `Schritt ${nr} von ${gesamt}`;
     box.dataset.schritt = String(nr);
-    if (fokus) schritte[nr - 1].focus({ preventScroll: true });
+    if (fokus) {
+      schritte[nr - 1].focus({ preventScroll: true });
+      // Mobil liegt der Kasten nach dem Wechsel oft unter dem Header (S3).
+      if (box.getBoundingClientRect().top < kopfHoehe()) scrolleZu(box);
+    }
   }
 
   function gewaehlt(name) {
@@ -224,9 +238,18 @@ const funnel = (() => {
     }
   });
   // Fehler am Feld verschwindet, sobald die Eingabe passt (auf Verlassen).
+  // Nur das verlassene Feld prüfen und nichts fokussieren: Sonst verschiebt
+  // das Ausblenden der Meldung das Layout zwischen mousedown und mouseup,
+  // und der nächste Klick (z. B. auf die Einwilligung) geht ins Leere.
+  const regeln = {
+    "f-name": (v) => v.trim().length > 1,
+    "f-mail": (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
+  };
   form.querySelectorAll("#f-name, #f-mail").forEach((input) => {
-    input.addEventListener("blur", () => {
-      if (input.getAttribute("aria-invalid") === "true") pruefeKontakt();
+    input.addEventListener("input", () => {
+      if (input.getAttribute("aria-invalid") === "true" && regeln[input.id](input.value)) {
+        feldPruefen(input, true);
+      }
     });
   });
   form.querySelector("#f-einwilligung").addEventListener("change", (e) => {
@@ -273,6 +296,7 @@ const funnel = (() => {
     zusatz.hidden = true;
     const meldung = danke.querySelector("[data-zusatz-danke]");
     meldung.textContent = "Danke, damit lässt sich das Gespräch gut vorbereiten.";
+    meldung.focus({ preventScroll: true });
     if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   });
 
