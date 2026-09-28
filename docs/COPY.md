@@ -41,20 +41,20 @@ ich) · H2 „Aus meiner Referenzliste“.
 ## Überschriften-Plan
 
 ```
-H1  [Hero, Platzhalter: schreibt der hero-specialist, Entscheidung Station 2]
+H1  Gebaut wird, was geplant ist.   (Hero, Station 2; Akzent auf „geplant ist.“)
 H2  Für wen ich arbeite                                   #fuer-wen
   H3  Sie bauen selbst
   H3  Sie planen und brauchen die Bauüberwachung
 H2  Projektsteuerung und Bauüberwachung                   #leistungen
   H3  Projektsteuerung                                    #projektsteuerung
-  H3  Bauüberwachung (HOAI Leistungsphase 8)              #bauueberwachung
+  H3  Bauüberwachung (darunter Kicker „HOAI Leistungsphase 8“)  #bauueberwachung
   H3  Baubetreuung                                        #baubetreuung
   H3  Bauberatung                                         #bauberatung
-H2  Aus meiner Referenzliste                           #referenzen  (dunkles Band, randlos)
+H2  Aus meiner Referenzliste                           #referenzen  (seit Stilumbau hell, Bauherren-Raster)
   H3  Altbau und Denkmal
   H3  Alle Objekte nach Bauherr
   H3  Projektbereiche
-H2  Über mich                                             #ueber-mich
+H2  René Gansmüller, Bauingenieur  (Kicker „Über mich“)  #ueber-mich
 H2  Ablauf der Zusammenarbeit                             #ablauf
   H3  (sieben Stationen, je eine H3)
 H2  Lassen Sie Ihr Projekt unverbindlich prüfen           #anfrage
@@ -103,6 +103,32 @@ lassen" [Briefing], objektbezogen [Transkript].
 [Menü und CTA: Struktur; CTA-Wortlaut: Briefing]
 
 ---
+
+## Nachtrag Stilumbau (2026-09-28, Referenz maler-heusser.de)
+
+Grundlage: `docs/REFERENZ-ANALYSE.md`, Umsetzung in `site/` (Commits 9ae2b5a,
+b3f26ff). **Neue sichtbare Texte, von Bruno noch zu bestätigen:**
+
+| Stelle | Text | Beleg / Grund |
+|---|---|---|
+| Hero, Plakette | Dipl.-Ing. (FH) Bauwesen | Scrape Impressum; Plakette ersetzt das Bewertungs-Badge der Referenz (keine Bewertung belegt, §3) |
+| Hero, Kicker | Ingenieurbüro in Berlin | Station 2 (unverändert) |
+| Hero, Knöpfe | Bauüberwachung anfragen · Referenzliste ansehen | Station 2 / STRUKTUR (sekundär) |
+| Hero, Kennzahl 1 | über 30 · Jahre in der Branche | Transkript; steht nur hier (Steckbrief-Zeile gestrichen) |
+| Hero, Kennzahl 2 | 450 · Wohneinheiten in der größten Sanierung der Liste | PDF, Rostocker Str./Woldecker Str., größte Zeile nach WE und Bauvolumen |
+| Hero, Plankopf-Karte | Referenzliste (Link) · Referenz · Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin · Bauherr HOWOGE mbH · Umfang Komplexe Altbausanierung, 85 WE · Leistung Bauüberwachung, Qualitätscontrolling · Bearbeitung René Gansmüller | Bildunterschrift Altseite 4.html, übrige Felder PDF |
+| Leistungen | H3 „Bauüberwachung“, darunter Kicker „HOAI Leistungsphase 8“ | Wortlaut unverändert, nur getrennt |
+| Leistungen | Vergabe als eigene Zeile: Titel „Vergabe“, Text „Auf Wunsch liegt vorher auch die Vergabe bei mir: …“ | Text unverändert, „Vergabe:“ wird Zeilentitel |
+| Referenzen | Label „Bauherren“, je Bauherr Objektzahl: HOWOGE 2 · Argentum 10 · Ortus 2 · BauBeCon 3 · GVC 1 Objekt · Kaufland 2 | gezählt aus den 20 Registerzeilen (PDF) |
+| Referenzen | Altbau und Denkmal mit zwei Fotos (Loisenstraße, Augustusweg), Bildunterschrift Objekt, Ort und Bauherr | Königswinter-Foto steht jetzt im Hero |
+| Über mich | Kicker „Über mich“, H2 „René Gansmüller, Bauingenieur“ | Name: Bruno; „Bauingenieur“: Transkript, Scrape |
+| Ablauf | Kicker „Ablauf“; je Station Label „Ergebnis“ (statt „Ergebnis:“) | Stil |
+| Ablauf | Abschlusskarte: Knopf „Projekt unverbindlich prüfen lassen“, darunter Label „Telefon“ und 030/ 69 520 364 | CTA aus Station 7, Nummer Scrape |
+| Anfrage | Kontaktzeilen: Telefon (030/ 69 520 364, 0173/ 57 31 045) · E-Mail (rene.gansmueller@online.de) · Büro (Schwedenstraße 13, 13357 Berlin) | Scrape Kontakt/Impressum |
+| Footer | Spalten „Leistungen“ (Projektsteuerung, Bauüberwachung, Baubetreuung, Bauberatung) und „Kontakt“; „Telefon“/„Mobil“ vor den Nummern; fett gesetzter Name unter dem Logo gestrichen (steht im Logo) | Stil, visual-critic |
+
+Weitere Änderungen ohne neuen Text: In „Für wen“ steht der Absatz jetzt vor
+den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 
 ## 1 · Hero
 
