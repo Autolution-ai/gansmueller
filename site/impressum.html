@@ -18,6 +18,13 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<!-- Icons (Strich, currentColor), einmal definiert. Funktion, kein Fotoersatz. -->
+<svg width="0" height="0" class="vh" aria-hidden="true" focusable="false">
+  <symbol id="i-telefon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></g></symbol>
+  <symbol id="i-ort" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+</svg>
+
 <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
 
 <header class="kopf kopf--kurzfassung" data-kopf>
@@ -30,9 +37,10 @@
       <a href="index.html#referenzen">Referenzen</a>
       <a href="index.html#ueber-mich">Über mich</a>
       <a href="index.html#ablauf">Ablauf</a>
-      <a class="cta" href="index.html#anfrage">Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+      <a class="btn" href="index.html#anfrage">Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a>
     </nav>
-    <a class="cta cta--kopf" href="index.html#anfrage"><span class="lang"><span class="cta-text--voll">Projekt unverbindlich prüfen lassen</span><span class="cta-text--kurzfassung">Projekt prüfen lassen</span></span><span class="kurz">Projekt prüfen</span><span class="mass" aria-hidden="true"></span></a>
+    <a class="kopf__tel" href="tel:+493069520364"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>030/ 69 520 364</a>
+    <a class="btn" href="index.html#anfrage"><span class="lang"><span class="cta-text--voll">Projekt unverbindlich prüfen lassen</span><span class="cta-text--kurzfassung">Projekt prüfen lassen</span></span><span class="kurz">Projekt prüfen</span><span class="mass" aria-hidden="true"></span></a>
     <button class="kopf__menue" type="button" aria-expanded="false" aria-controls="hauptmenue" data-menue>
       <span class="kopf__menue-zeichen" aria-hidden="true"></span><span class="kopf__menue-text" data-menue-text>Menü</span>
     </button>
@@ -41,29 +49,39 @@
 
 <main id="inhalt" tabindex="-1">
   <section class="layout rechtsseite" aria-labelledby="titel">
-    <div class="full planraster abschnitt layout">
-    <h1 class="breakout" id="titel">Impressum</h1>
-    <p class="demo-hinweis breakout" role="note"><strong>Demo-Stand:</strong> Impressum und Datenschutzerklärung werden im Rahmen der Zusammenarbeit eingerichtet.</p>
-    <p class="breakout"><a class="textlink" href="index.html">Zur Startseite<span class="mass" aria-hidden="true"></span></a></p>
+    <div class="full panel abschnitt layout">
+      <h1 class="breakout" id="titel">Impressum</h1>
+      <p class="demo-hinweis breakout" role="note"><strong>Demo-Stand:</strong> Impressum und Datenschutzerklärung werden im Rahmen der Zusammenarbeit eingerichtet.</p>
+      <p class="breakout"><a class="textlink" href="index.html">Zur Startseite<span class="mass" aria-hidden="true"></span></a></p>
     </div>
   </section>
 </main>
 
-<footer class="fuss dunkel layout">
+<!-- 9 · FOOTER – NAP aus Scrape (Impressum/Kontakt), kein Fax -->
+<footer class="fuss layout">
   <div class="breakout fuss__raster">
     <div class="fuss__marke">
-      <img src="assets/images/logo-hell.svg" alt="" width="156" height="32">
-      <p><strong>Ingenieurbüro René Gansmüller</strong></p>
+      <img src="assets/images/logo-hell.svg" alt="Ingenieurbüro René Gansmüller" width="156" height="32">
       <p>Dipl.-Ing. (FH) Bauwesen</p>
+      <a class="btn btn--kontur btn--klein" href="index.html#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
     </div>
-    <address>
-      <p>Schwedenstraße 13, 13357 Berlin</p>
-      <p>Telefon <a href="tel:+493069520364">030/ 69 520 364</a></p>
-      <p>Mobil <a href="tel:+491735731045">0173/ 57 31 045</a></p>
-      <p><a href="mailto:rene.gansmueller@online.de">rene.gansmueller@online.de</a></p>
-    </address>
-    <div class="fuss__aktion">
-      <a class="cta" href="index.html#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+    <nav aria-label="Leistungen">
+      <p class="label">Leistungen</p>
+      <ul>
+        <li><a href="index.html#projektsteuerung">Projektsteuerung</a></li>
+        <li><a href="index.html#bauueberwachung">Bauüberwachung</a></li>
+        <li><a href="index.html#baubetreuung">Baubetreuung</a></li>
+        <li><a href="index.html#bauberatung">Bauberatung</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="label">Kontakt</p>
+      <address>
+        <p><svg class="icon" aria-hidden="true"><use href="#i-ort"/></svg>Schwedenstraße 13, 13357 Berlin</p>
+        <a href="tel:+493069520364"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>Telefon 030/ 69 520 364</a>
+        <a href="tel:+491735731045"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>Mobil 0173/ 57 31 045</a>
+        <a href="mailto:rene.gansmueller@online.de"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>rene.gansmueller@online.de</a>
+      </address>
     </div>
     <nav class="fuss__recht" aria-label="Rechtliches">
       <a href="impressum.html" aria-current="page">Impressum</a>

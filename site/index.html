@@ -42,9 +42,15 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
+<!-- Icons (Strich, currentColor), einmal definiert. Funktion, kein Fotoersatz. -->
+<svg width="0" height="0" class="vh" aria-hidden="true" focusable="false">
+  <symbol id="i-telefon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></g></symbol>
+  <symbol id="i-ort" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+</svg>
+
 <a class="sprunglink" href="#top">Zum Inhalt springen</a>
 
 <header class="kopf kopf--kurzfassung" data-kopf>
@@ -57,9 +63,10 @@
       <a href="#referenzen">Referenzen</a>
       <a href="#ueber-mich">Über mich</a>
       <a href="#ablauf">Ablauf</a>
-      <a class="cta" href="#anfrage">Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+      <a class="btn" href="#anfrage">Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a>
     </nav>
-    <a class="cta cta--kopf" href="#anfrage"><span class="lang"><span class="cta-text--voll">Projekt unverbindlich prüfen lassen</span><span class="cta-text--kurzfassung">Projekt prüfen lassen</span></span><span class="kurz">Projekt prüfen</span><span class="mass" aria-hidden="true"></span></a>
+    <a class="kopf__tel" href="tel:+493069520364"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>030/ 69 520 364</a>
+    <a class="btn" href="#anfrage"><span class="lang"><span class="cta-text--voll">Projekt unverbindlich prüfen lassen</span><span class="cta-text--kurzfassung">Projekt prüfen lassen</span></span><span class="kurz">Projekt prüfen</span><span class="mass" aria-hidden="true"></span></a>
     <button class="kopf__menue" type="button" aria-expanded="false" aria-controls="hauptmenue" data-menue>
       <span class="kopf__menue-zeichen" aria-hidden="true"></span><span class="kopf__menue-text" data-menue-text>Menü</span>
     </button>
@@ -68,74 +75,94 @@
 
 <main id="top" tabindex="-1">
 
-  <!-- 1 · HERO – Variante C „Plankopf“, freigegeben an Station 2 (Stand 25aa3bc).
-       Quellen: Schriftfeld = Referenzliste.pdf, Zeile 1 · Name, Titel: Impressum ·
-       Telefon: Kontakt/Impressum · „über 30 Jahre in der Branche“: Transkript. -->
-  <section class="hero-c" data-hero aria-labelledby="hero-titel">
-    <div class="blatt">
-      <div class="hero-c__kopf">
-        <p class="mono kicker-c"><span>Ingenieurbüro in Berlin</span><span>über 30 Jahre in der Branche</span><span>Bauüberwachung HOAI LPH&nbsp;8</span></p>
-        <h1 id="hero-titel"><span class="h1-teil">Gebaut wird,</span> <span class="h1-teil">was geplant&nbsp;ist.</span></h1>
-        <p class="hero-c__zeile">Ich übernehme Bauüberwachung und Projektsteuerung für Bauträger und Planungsbüros.</p>
+  <!-- 1 · HERO – Referenz-Split. Inhalte aus Hero C (Station 2), Plankopf-Karte
+       mit echter Referenz. Quellen: Objekt, Bauherr, Umfang, Leistung:
+       Referenzliste.pdf; Bildunterschrift: Altseite 4.html; Titel: Impressum;
+       „über 30 Jahre in der Branche“: Transkript; 450 WE: Referenzliste.pdf. -->
+  <section class="hero layout" aria-labelledby="hero-titel">
+    <div class="breakout hero__raster">
+      <div class="hero__text">
+        <p class="plakette">Dipl.-Ing. (FH) Bauwesen</p>
+        <p class="kicker">Ingenieurbüro in Berlin</p>
+        <h1 id="hero-titel">Gebaut wird, was <span class="akzent">geplant&nbsp;ist.</span></h1>
+        <p class="hero__zeile">Ich übernehme Bauüberwachung und Projektsteuerung für Bauträger und Planungsbüros.</p>
+        <div class="aktionen">
+          <a class="btn" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
+          <a class="btn btn--kontur" href="#referenzen">Referenzliste ansehen</a>
+        </div>
+        <dl class="kennzahlen">
+          <div><dt>Jahre in der Branche</dt><dd>über 30</dd></div>
+          <div><dt>Wohneinheiten in der größten Sanierung der Liste</dt><dd>450</dd></div>
+        </dl>
       </div>
-      <div class="aktionen">
-        <a class="cta" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
-        <a class="cta cta--kontur" href="tel:+493069520364"><span class="mono-klein">Telefon</span>030/ 69 520 364</a>
+
+      <div class="plankopf">
+        <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#referenzen">Referenzliste</a></div>
+        <figure class="plankopf__objekt">
+          <picture>
+            <source srcset="assets/images/altbau-berlin-koenigswinterstrasse.webp" type="image/webp">
+            <img src="assets/images/altbau-berlin-koenigswinterstrasse.jpg" alt="Wohngebäude an der Königswinterstraße in Berlin" width="284" height="186" decoding="async">
+          </picture>
+          <figcaption><span class="label">Referenz</span><strong>Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin</strong></figcaption>
+        </figure>
+        <dl class="schriftfeld">
+          <div><dt>Bauherr</dt><dd>HOWOGE mbH</dd></div>
+          <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 85&nbsp;WE</dd></div>
+          <div><dt>Leistung</dt><dd>Bauüberwachung, Qualitäts&shy;controlling</dd></div>
+          <div><dt>Bearbeitung</dt><dd>René Gansmüller</dd></div>
+        </dl>
       </div>
-      <dl class="schriftfeld" aria-label="Auszug aus der Referenzliste">
-        <div class="sf-kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#referenzen">Referenzliste</a></div>
-        <div class="sf-feld"><dt>Bauherr</dt><dd class="sf-wert-gross">HOWOGE mbH</dd></div>
-        <div class="sf-feld"><dt>Maßnahme</dt><dd>Platten&shy;bau&shy;sanierung, 450&nbsp;WE</dd></div>
-        <div class="sf-feld nur-breit"><dt>Leistung</dt><dd>Bauüberwachung, Qualitäts&shy;controlling</dd></div>
-        <div class="sf-feld nur-breit"><dt>Bearbeitung</dt><dd>René Gansmüller, Dipl.-Ing. (FH)</dd></div>
-      </dl>
     </div>
   </section>
 
-  <!-- 2 · FÜR WEN – Gegenüberstellung, zwei getrennte Wege (§9) -->
-  <section class="abschnitt abschnitt--getoent layout fuer-wen" id="fuer-wen" aria-labelledby="fuer-wen-titel">
-    <h2 class="breakout" id="fuer-wen-titel">Für wen ich arbeite</h2>
-    <div class="breakout wege">
-      <div class="weg">
-        <h3>Sie bauen selbst</h3>
-        <ul class="zielgruppen">
-          <li><a href="?auftraggeber=bautraeger#anfrage" aria-label="Anfrage als Bauträger beginnen" data-vorbelegen>Bauträger<span class="mass" aria-hidden="true"></span></a></li>
-          <li><a href="?auftraggeber=projektentwickler#anfrage" aria-label="Anfrage als Projektentwickler beginnen" data-vorbelegen>Projektentwickler<span class="mass" aria-hidden="true"></span></a></li>
-          <li><a href="?auftraggeber=wohnungsunternehmen#anfrage" aria-label="Anfrage als Wohnungsunternehmen beginnen" data-vorbelegen>Wohnungsunternehmen<span class="mass" aria-hidden="true"></span></a></li>
-          <li><a href="?auftraggeber=gewerblich#anfrage" aria-label="Anfrage als gewerblicher Auftraggeber beginnen" data-vorbelegen>Gewerbliche Auftraggeber<span class="mass" aria-hidden="true"></span></a></li>
-        </ul>
-        <p>Sie haben ein Bauvorhaben und brauchen jemanden, der es auf Ihrer Seite steuert oder überwacht. Vielleicht ist Ihre eigene Bauleitung gerade ausgelastet, vielleicht haben Sie keine. Sie beauftragen mich für dieses eine Objekt, und mit dem Objekt endet auch Ihre Verpflichtung.</p>
+  <!-- 2 · FÜR WEN – zwei getrennte Wege (§9), abgesetzte Fläche -->
+  <section class="layout" id="fuer-wen" aria-labelledby="fuer-wen-titel">
+    <div class="full panel abschnitt layout">
+      <div class="breakout fuer-wen__kopf">
+        <h2 id="fuer-wen-titel">Für wen ich arbeite</h2>
+        <p>Vorhaben bis etwa 15 Mio. € Bauvolumen sind der Rahmen, in dem ich arbeite. In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</p>
       </div>
-      <div class="weg">
-        <h3>Sie planen und brauchen die Bauüberwachung</h3>
-        <ul class="zielgruppen">
-          <li><a href="?auftraggeber=planungsbuero#anfrage" aria-label="Anfrage als Architektur- oder Planungsbüro beginnen" data-vorbelegen>Architektur- und Planungsbüros<span class="mass" aria-hidden="true"></span></a></li>
-          <li><a href="?auftraggeber=generalplaner#anfrage" aria-label="Anfrage als Generalplaner beginnen" data-vorbelegen>Generalplaner<span class="mass" aria-hidden="true"></span></a></li>
-        </ul>
-        <p>Die Planung liegt bei Ihnen, auf der Baustelle fehlt gerade jemand. Die Bauüberwachung für Ihr Projekt können Sie an mich abgeben. Sie behalten die Planung und haben vor Ort jemanden, der die Ausführung an Ihren Plänen misst.</p>
+      <div class="breakout wege">
+        <div class="weg karte">
+          <h3>Sie bauen selbst</h3>
+          <p>Sie haben ein Bauvorhaben und brauchen jemanden, der es auf Ihrer Seite steuert oder überwacht. Vielleicht ist Ihre eigene Bauleitung gerade ausgelastet, vielleicht haben Sie keine. Sie beauftragen mich für dieses eine Objekt, und mit dem Objekt endet auch Ihre Verpflichtung.</p>
+          <ul class="zielgruppen">
+            <li><a href="?auftraggeber=bautraeger#anfrage" aria-label="Anfrage als Bauträger beginnen" data-vorbelegen>Bauträger<span class="mass" aria-hidden="true"></span></a></li>
+            <li><a href="?auftraggeber=projektentwickler#anfrage" aria-label="Anfrage als Projektentwickler beginnen" data-vorbelegen>Projektentwickler<span class="mass" aria-hidden="true"></span></a></li>
+            <li><a href="?auftraggeber=wohnungsunternehmen#anfrage" aria-label="Anfrage als Wohnungsunternehmen beginnen" data-vorbelegen>Wohnungsunternehmen<span class="mass" aria-hidden="true"></span></a></li>
+            <li><a href="?auftraggeber=gewerblich#anfrage" aria-label="Anfrage als gewerblicher Auftraggeber beginnen" data-vorbelegen>Gewerbliche Auftraggeber<span class="mass" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+        <div class="weg karte">
+          <h3>Sie planen und brauchen die Bauüberwachung</h3>
+          <p>Die Planung liegt bei Ihnen, auf der Baustelle fehlt gerade jemand. Die Bauüberwachung für Ihr Projekt können Sie an mich abgeben. Sie behalten die Planung und haben vor Ort jemanden, der die Ausführung an Ihren Plänen misst.</p>
+          <ul class="zielgruppen">
+            <li><a href="?auftraggeber=planungsbuero#anfrage" aria-label="Anfrage als Architektur- oder Planungsbüro beginnen" data-vorbelegen>Architektur- und Planungsbüros<span class="mass" aria-hidden="true"></span></a></li>
+            <li><a href="?auftraggeber=generalplaner#anfrage" aria-label="Anfrage als Generalplaner beginnen" data-vorbelegen>Generalplaner<span class="mass" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="breakout rahmen">
-      <span class="massband" aria-hidden="true"></span>
-      <p>Vorhaben bis etwa 15 Mio. € Bauvolumen sind der Rahmen, in dem ich arbeite. In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</p>
     </div>
   </section>
 
-  <!-- 3 · LEISTUNGEN – gewichtete Liste: zwei groß, zwei als Zeile, Partnerzeile -->
-  <section class="abschnitt layout leistungen" id="leistungen" aria-labelledby="leistungen-titel">
-    <p class="mono kicker breakout">Leistungen</p>
-    <h2 class="breakout" id="leistungen-titel">Projektsteuerung und Bauüberwachung</h2>
-    <p class="lead breakout">Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.</p>
+  <!-- 3 · LEISTUNGEN – zwei große Karten, Zeilen, Partnerzeile -->
+  <section class="abschnitt layout" id="leistungen" aria-labelledby="leistungen-titel">
+    <header class="breakout abschnitt-kopf">
+      <p class="kicker">Leistungen</p>
+      <h2 id="leistungen-titel">Projektsteuerung und Bauüberwachung</h2>
+      <p class="lead">Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.</p>
+    </header>
 
     <div class="breakout leistung-gross">
-      <article class="leistung" id="projektsteuerung" aria-labelledby="projektsteuerung-titel">
+      <article class="leistung karte" id="projektsteuerung" aria-labelledby="projektsteuerung-titel">
         <h3 id="projektsteuerung-titel">Projektsteuerung</h3>
         <p>Mit einer Projektsteuerung haben Sie schon in der Planungsphase einen Bauingenieur auf Ihrer Seite, also früher als bei einer reinen Bauüberwachung. Zwischen Ihnen und dem Generalunternehmer oder Generalübernehmer vertrete ich Ihre Interessen, solange geplant und gebaut wird.</p>
         <p>Das passt, wenn Sie Bauherr sind und Ihr Vorhaben nicht selbst durch Planung und Bau führen möchten.</p>
-        <a class="cta" href="?leistung=projektsteuerung#anfrage" data-vorbelegen>Projektsteuerung anfragen<span class="mass" aria-hidden="true"></span></a>
+        <a class="btn btn--kontur" href="?leistung=projektsteuerung#anfrage" data-vorbelegen>Projektsteuerung anfragen<span class="mass" aria-hidden="true"></span></a>
       </article>
-      <article class="leistung" id="bauueberwachung" aria-labelledby="bauueberwachung-titel">
-        <h3 id="bauueberwachung-titel">Bauüberwachung (HOAI Leistungsphase&nbsp;8)</h3>
+      <article class="leistung karte" id="bauueberwachung" aria-labelledby="bauueberwachung-titel">
+        <h3 id="bauueberwachung-titel">Bauüberwachung</h3>
+        <p class="kicker">HOAI Leistungsphase&nbsp;8</p>
         <p>Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag. Dazu gehören:</p>
         <ul class="aufgaben">
           <li>die Kontrolle, ob nach den Ausführungsplänen und nach den Regeln der Technik gebaut wird</li>
@@ -143,13 +170,16 @@
           <li>ein Ablaufplan für die Bauzeit und die Überwachung der Termine</li>
           <li>Kostenkontrolle sowie Aufmaß- und Rechnungsprüfung, bevor Sie zahlen</li>
         </ul>
-        <p><strong>Vergabe:</strong> Auf Wunsch liegt vorher auch die Vergabe bei mir: Leistungsverzeichnisse mit genauer Mengenermittlung, Ausschreibungsunterlagen, Angebotsauswertung und Bieterverhandlungen.</p>
         <p><strong>Danach:</strong> Auf Wunsch nehme ich vor Ablauf der Gewährleistungsfrist die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.</p>
-        <a class="cta" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
+        <a class="btn btn--kontur" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
       </article>
     </div>
 
     <div class="breakout leistung-zeilen">
+      <div class="leistung-zeile" id="vergabe">
+        <p class="zeile-titel">Vergabe</p>
+        <p>Auf Wunsch liegt vorher auch die Vergabe bei mir: Leistungsverzeichnisse mit genauer Mengenermittlung, Ausschreibungsunterlagen, Angebotsauswertung und Bieterverhandlungen.</p>
+      </div>
       <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Die Leistung Baubetreuung stammt aus dem Vorgespräch, eine Beschreibung dazu gab es noch nicht. Der Text ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt, in seinen eigenen Worten.</p>
       <div class="leistung-zeile" id="baubetreuung">
         <h3>Baubetreuung</h3>
@@ -163,25 +193,29 @@
       </div>
       <aside class="partnerzeile" aria-label="Planung mit Partnern">
         <p>Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit.</p>
-        <a class="textlink" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a>
+        <a class="btn btn--kontur btn--klein" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a>
       </aside>
     </div>
   </section>
 
-  <!-- 4 + 5 · REFERENZEN – randloses dunkles Band (Bauherren), darunter Register.
-       Alle Daten: Referenzliste.pdf (quellen/scrape-website.md), Schreibweise nach PDF. -->
-  <section class="layout referenzen" id="referenzen" aria-labelledby="referenzen-titel">
-    <div class="full band dunkel layout">
-      <p class="mono kicker breakout">Referenzen</p>
-      <h2 class="breakout" id="referenzen-titel">Aus meiner Referenzliste</h2>
-      <p class="mono band__label breakout">Bauherren</p>
-      <ul class="breakout bauherren">
-        <li>HOWOGE mbH</li>
-        <li>Argentum GmbH &amp; Co. KG</li>
-        <li>Ortus GmbH &amp; Co. KG</li>
-        <li>BauBeCon Wohnen GmbH</li>
-        <li>GVC mbH</li>
-        <li>Kaufland Ladenbau GmbH</li>
+  <!-- 4 + 5 · REFERENZEN – Bauherren-Raster, Altbau und Denkmal, Register.
+       Alle Daten: Referenzliste.pdf (quellen/scrape-website.md), Schreibweise
+       nach PDF. Objektzahl je Bauherr = Zeilen im Register. -->
+  <section class="abschnitt layout referenzen" id="referenzen" aria-labelledby="referenzen-titel">
+    <header class="breakout abschnitt-kopf">
+      <p class="kicker">Referenzen</p>
+      <h2 id="referenzen-titel">Aus meiner Referenzliste</h2>
+    </header>
+
+    <div class="breakout bauherren-block">
+      <p class="label">Bauherren</p>
+      <ul class="bauherren">
+        <li><strong>HOWOGE mbH</strong><span>2 Objekte</span></li>
+        <li><strong>Argentum GmbH &amp; Co. KG</strong><span>10 Objekte</span></li>
+        <li><strong>Ortus GmbH &amp; Co. KG</strong><span>2 Objekte</span></li>
+        <li><strong>BauBeCon Wohnen GmbH</strong><span>3 Objekte</span></li>
+        <li><strong>GVC mbH</strong><span>1 Objekt</span></li>
+        <li><strong>Kaufland Ladenbau GmbH</strong><span>2 Objekte</span></li>
       </ul>
     </div>
 
@@ -193,34 +227,19 @@
         <p>Die meisten Objekte dieser Liste sind Einzeldenkmale in und um Dresden. Wer dort saniert, muss die alten Bauweisen kennen. Sonst schadet eine gut gemeinte Maßnahme der Substanz, und die Folgen sind teuer zu beheben. Holzbalkendecken fachgerecht zu sanieren oder Hausschwamm zu beseitigen, gehört auf solchen Baustellen dazu.</p>
       </div>
       <div class="denkmal__fotos">
-        <div class="foto-paar">
-          <figure class="ref-foto">
-            <span class="ref-foto__bild">
-              <picture>
-                <source srcset="assets/images/denkmal-dresden-loisenstrasse.webp" type="image/webp">
-                <img src="assets/images/denkmal-dresden-loisenstrasse.jpg" alt="Wohnhaus Loisenstraße 10 in Dresden, Straßenansicht" width="167" height="251" decoding="async">
-              </picture>
-            </span>
-            <figcaption><strong>Loisenstraße 10, Dresden</strong><span class="mono">Argentum GmbH &amp; Co. KG</span></figcaption>
-          </figure>
-          <figure class="ref-foto">
-            <span class="ref-foto__bild">
-              <picture>
-                <source srcset="assets/images/denkmal-radebeul-augustusweg.webp" type="image/webp">
-                <img src="assets/images/denkmal-radebeul-augustusweg.jpg" alt="Wohnhaus Augustusweg 114 in Radebeul" width="413" height="251" decoding="async">
-              </picture>
-            </span>
-            <figcaption><strong>Augustusweg 114, Radebeul</strong><span class="mono">Argentum GmbH &amp; Co. KG</span></figcaption>
-          </figure>
-        </div>
-        <figure class="ref-foto ref-foto--versetzt">
-          <span class="ref-foto__bild">
-            <picture>
-              <source srcset="assets/images/altbau-berlin-koenigswinterstrasse.webp" type="image/webp">
-              <img src="assets/images/altbau-berlin-koenigswinterstrasse.jpg" alt="Wohngebäude an der Königswinterstraße in Berlin" width="284" height="186" decoding="async">
-            </picture>
-          </span>
-          <figcaption><strong>Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin</strong><span class="mono">HOWOGE mbH</span></figcaption>
+        <figure class="ref-foto karte">
+          <picture>
+            <source srcset="assets/images/denkmal-dresden-loisenstrasse.webp" type="image/webp">
+            <img src="assets/images/denkmal-dresden-loisenstrasse.jpg" alt="Wohnhaus Loisenstraße 10 in Dresden, Straßenansicht" width="167" height="251" decoding="async">
+          </picture>
+          <figcaption><strong>Loisenstraße 10, Dresden</strong><span>Argentum GmbH &amp; Co. KG</span></figcaption>
+        </figure>
+        <figure class="ref-foto karte">
+          <picture>
+            <source srcset="assets/images/denkmal-radebeul-augustusweg.webp" type="image/webp">
+            <img src="assets/images/denkmal-radebeul-augustusweg.jpg" alt="Wohnhaus Augustusweg 114 in Radebeul" width="413" height="251" decoding="async">
+          </picture>
+          <figcaption><strong>Augustusweg 114, Radebeul</strong><span>Argentum GmbH &amp; Co. KG</span></figcaption>
         </figure>
       </div>
     </div>
@@ -228,8 +247,9 @@
     <div class="breakout register-block">
       <div class="register-kopf">
         <h3>Alle Objekte nach Bauherr</h3>
-        <p class="mono">WE = Wohneinheiten</p>
+        <p class="label">WE = Wohneinheiten</p>
       </div>
+      <div class="karte register-karte">
       <table class="register">
         <caption class="vh">Referenzobjekte nach Bauherr</caption>
         <thead>
@@ -237,43 +257,44 @@
         </thead>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">HOWOGE mbH</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
-          <tr><td class="objekt">Rostocker Str./Woldecker Str.</td><td class="ort" data-label="Ort">Berlin</td><td data-label="Umfang">Plattenbausanierung (Strangsanierung, Treppenhäuser, Keller, Hauseingänge, Dach), 450 WE</td><td class="betrag" data-label="Bauvolumen in €">4.500.000</td></tr>
-          <tr><td class="objekt">Andenacher Str./Winterfelsstr. Königswinterstr.</td><td class="ort" data-label="Ort">Berlin</td><td data-label="Umfang">Komplexe Altbausanierung (Strangsanierung, Fassade, Dach, Keller, Treppenhäuser, Außenanlagen), 85 WE</td><td class="betrag" data-label="Bauvolumen in €">3.600.000</td></tr>
+          <tr><td class="objekt">Rostocker Str./Woldecker Str.</td><td class="ort">Berlin</td><td class="umfang">Plattenbausanierung (Strangsanierung, Treppenhäuser, Keller, Hauseingänge, Dach), 450 WE</td><td class="betrag">4.500.000</td></tr>
+          <tr><td class="objekt">Andenacher Str./Winterfelsstr. Königswinterstr.</td><td class="ort">Berlin</td><td class="umfang">Komplexe Altbausanierung (Strangsanierung, Fassade, Dach, Keller, Treppenhäuser, Außenanlagen), 85 WE</td><td class="betrag">3.600.000</td></tr>
         </tbody>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Argentum GmbH &amp; Co. KG</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
-          <tr><td class="objekt">Loisenstraße 10</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 24 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">950.000</td></tr>
-          <tr><td class="objekt">Heynathsstraße 16</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">650.000</td></tr>
-          <tr><td class="objekt">Moritzburger Str. 15</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 22 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">850.000</td></tr>
-          <tr><td class="objekt">Moritzburger Straße 67</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 8 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">350.000</td></tr>
-          <tr><td class="objekt">Bundschuhstraße 1</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 22 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">750.000</td></tr>
-          <tr><td class="objekt">Lindenstraße 9</td><td class="ort" data-label="Ort">Coswig</td><td data-label="Umfang">Komplexe Altbausanierung, 7 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">300.000</td></tr>
-          <tr><td class="objekt">Lenbachstraße 3/5</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 36 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">1.350.000</td></tr>
-          <tr><td class="objekt">Augustusweg 114</td><td class="ort" data-label="Ort">Radebeul</td><td data-label="Umfang">Komplexe Altbausanierung, 10 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">1.200.000</td></tr>
-          <tr><td class="objekt">Wöhlerstraße 1/1a</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 32 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">950.000</td></tr>
-          <tr><td class="objekt">Eduard-Bilz-Str. 49</td><td class="ort" data-label="Ort">Radebeul</td><td data-label="Umfang">Komplexe Sanierung einer denkmalgeschützten Villa</td><td class="betrag" data-label="Bauvolumen in €">1.350.000</td></tr>
+          <tr><td class="objekt">Loisenstraße 10</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 24 WE (Einzeldenkmal)</td><td class="betrag">950.000</td></tr>
+          <tr><td class="objekt">Heynathsstraße 16</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag">650.000</td></tr>
+          <tr><td class="objekt">Moritzburger Str. 15</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 22 WE (Einzeldenkmal)</td><td class="betrag">850.000</td></tr>
+          <tr><td class="objekt">Moritzburger Straße 67</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 8 WE (Einzeldenkmal)</td><td class="betrag">350.000</td></tr>
+          <tr><td class="objekt">Bundschuhstraße 1</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 22 WE (Einzeldenkmal)</td><td class="betrag">750.000</td></tr>
+          <tr><td class="objekt">Lindenstraße 9</td><td class="ort">Coswig</td><td class="umfang">Komplexe Altbausanierung, 7 WE (Einzeldenkmal)</td><td class="betrag">300.000</td></tr>
+          <tr><td class="objekt">Lenbachstraße 3/5</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 36 WE (Einzeldenkmal)</td><td class="betrag">1.350.000</td></tr>
+          <tr><td class="objekt">Augustusweg 114</td><td class="ort">Radebeul</td><td class="umfang">Komplexe Altbausanierung, 10 WE (Einzeldenkmal)</td><td class="betrag">1.200.000</td></tr>
+          <tr><td class="objekt">Wöhlerstraße 1/1a</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 32 WE (Einzeldenkmal)</td><td class="betrag">950.000</td></tr>
+          <tr><td class="objekt">Eduard-Bilz-Str. 49</td><td class="ort">Radebeul</td><td class="umfang">Komplexe Sanierung einer denkmalgeschützten Villa</td><td class="betrag">1.350.000</td></tr>
         </tbody>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Ortus GmbH &amp; Co. KG</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
-          <tr><td class="objekt">Weimarische Str. 12</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 12 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">650.000</td></tr>
-          <tr><td class="objekt">Zwickauer Str. 128</td><td class="ort" data-label="Ort">Dresden</td><td data-label="Umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag" data-label="Bauvolumen in €">750.000</td></tr>
+          <tr><td class="objekt">Weimarische Str. 12</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 12 WE (Einzeldenkmal)</td><td class="betrag">650.000</td></tr>
+          <tr><td class="objekt">Zwickauer Str. 128</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag">750.000</td></tr>
         </tbody>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">BauBeCon Wohnen GmbH</span> <span class="gruppe__leistung">Leistung: Ausschreibung, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling</span></th></tr>
-          <tr><td class="objekt">120 WE im Stadtgebiet Berlin</td><td class="ort" data-label="Ort">Berlin</td><td data-label="Umfang">Teilsanierung einzelner Leer-WE, verteilt im Stadtgebiet</td><td class="betrag" data-label="Bauvolumen in €">1.350.000</td></tr>
-          <tr><td class="objekt">24 Liegenschaften im Stadtgebiet Berlin</td><td class="ort" data-label="Ort">Berlin</td><td data-label="Umfang">Teilsanierung von Dächern, Fassaden, Treppenhäusern, Kellern, Heizungsanlagen</td><td class="betrag" data-label="Bauvolumen in €">1.500.000</td></tr>
-          <tr><td class="objekt">Linienstraße 56</td><td class="ort" data-label="Ort">Brandenburg</td><td data-label="Umfang">Teilsanierung von 6 Leer-WE</td><td class="betrag" data-label="Bauvolumen in €">140.000</td></tr>
+          <tr><td class="objekt">120 WE im Stadtgebiet Berlin</td><td class="ort">Berlin</td><td class="umfang">Teilsanierung einzelner Leer-WE, verteilt im Stadtgebiet</td><td class="betrag">1.350.000</td></tr>
+          <tr><td class="objekt">24 Liegenschaften im Stadtgebiet Berlin</td><td class="ort">Berlin</td><td class="umfang">Teilsanierung von Dächern, Fassaden, Treppenhäusern, Kellern, Heizungsanlagen</td><td class="betrag">1.500.000</td></tr>
+          <tr><td class="objekt">Linienstraße 56</td><td class="ort">Brandenburg</td><td class="umfang">Teilsanierung von 6 Leer-WE</td><td class="betrag">140.000</td></tr>
         </tbody>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">GVC mbH</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
-          <tr><td class="objekt">Dresdner Str. 36</td><td class="ort" data-label="Ort">Kreischa</td><td data-label="Umfang">Neubau eines Edeka Lebensmittelmarktes</td><td class="betrag" data-label="Bauvolumen in €">650.000</td></tr>
+          <tr><td class="objekt">Dresdner Str. 36</td><td class="ort">Kreischa</td><td class="umfang">Neubau eines Edeka Lebensmittelmarktes</td><td class="betrag">650.000</td></tr>
         </tbody>
         <tbody>
           <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Kaufland Ladenbau GmbH</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
-          <tr><td class="objekt">Kaufland Schönerberger Str. 7</td><td class="ort" data-label="Ort">Berlin</td><td data-label="Umfang">Umbau eines Parkdecks</td><td class="betrag" data-label="Bauvolumen in €">45.000</td></tr>
-          <tr><td class="objekt">Kaufland Strausberg</td><td class="ort" data-label="Ort">Strausberg</td><td data-label="Umfang">Neubau von 2 Werbeanlagen</td><td class="betrag" data-label="Bauvolumen in €">55.000</td></tr>
+          <tr><td class="objekt">Kaufland Schönerberger Str. 7</td><td class="ort">Berlin</td><td class="umfang">Umbau eines Parkdecks</td><td class="betrag">45.000</td></tr>
+          <tr><td class="objekt">Kaufland Strausberg</td><td class="ort">Strausberg</td><td class="umfang">Neubau von 2 Werbeanlagen</td><td class="betrag">55.000</td></tr>
         </tbody>
       </table>
+      </div>
     </div>
 
     <div class="breakout bereiche">
@@ -289,100 +310,114 @@
     </div>
   </section>
 
-  <!-- 6 · ÜBER MICH – asymmetrischer Zweispalter, Steckbrief bricht aus -->
-  <section class="abschnitt abschnitt--getoent layout" id="ueber-mich" aria-labelledby="ueber-mich-titel">
-    <div class="breakout ueber">
-      <div class="portraet-spalte">
-        <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt.</p>
-        <figure class="portraet">
-          <picture>
-            <source srcset="assets/images/rene-gansmueller-portraet.webp" type="image/webp">
-            <img src="assets/images/rene-gansmueller-portraet.png" alt="René Gansmüller" width="210" height="220" decoding="async">
-          </picture>
-        </figure>
+  <!-- 6 · ÜBER MICH – abgesetzte Fläche: Porträt, Text, Steckbrief -->
+  <section class="layout" id="ueber-mich" aria-labelledby="ueber-mich-titel">
+    <div class="full panel abschnitt layout">
+      <div class="breakout ueber">
+        <div class="portraet-spalte">
+          <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt.</p>
+          <figure class="portraet">
+            <picture>
+              <source srcset="assets/images/rene-gansmueller-portraet.webp" type="image/webp">
+              <img src="assets/images/rene-gansmueller-portraet.png" alt="René Gansmüller" width="210" height="220" decoding="async">
+            </picture>
+          </figure>
+        </div>
+        <div class="ueber__text">
+          <p class="kicker">Über mich</p>
+          <h2 id="ueber-mich-titel">René Gansmüller, Bauingenieur</h2>
+          <p>Mein Büro ist klein, und Sie sprechen deshalb mit dem, der Ihr Projekt auch verantwortet.</p>
+          <p>Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.</p>
+          <p>Die meisten neuen Auftraggeber kommen über Empfehlungen. Mit einigen arbeite ich seit 20 bis 30 Jahren zusammen.</p>
+        </div>
+        <dl class="steckbrief karte" aria-label="Steckbrief">
+          <div><dt>Abschluss</dt><dd>Dipl.-Ing. (FH) Bauwesen</dd></div>
+          <div><dt>Büro</dt><dd>Berlin seit 2007, vorher im Raum Dresden</dd></div>
+          <div><dt>Direkt erreichbar</dt><dd class="telefonzeile"><a href="tel:+493069520364">030/ 69 520 364</a> <a href="tel:+491735731045">mobil 0173/ 57 31 045</a></dd></div>
+        </dl>
       </div>
-      <div class="ueber__text">
-        <h2 id="ueber-mich-titel">Über mich</h2>
-        <p>Mein Büro ist klein, und Sie sprechen deshalb mit dem, der Ihr Projekt auch verantwortet.</p>
-        <p>Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.</p>
-        <p>Die meisten neuen Auftraggeber kommen über Empfehlungen. Mit einigen arbeite ich seit 20 bis 30 Jahren zusammen.</p>
-      </div>
-      <dl class="steckbrief" aria-label="Steckbrief">
-        <div><dt>Abschluss</dt><dd>Dipl.-Ing. (FH) Bauwesen</dd></div>
-        <div><dt>Büro</dt><dd>Berlin seit 2007, vorher im Raum Dresden</dd></div>
-        <div><dt>Direkt erreichbar</dt><dd class="telefonzeile"><a href="tel:+493069520364">030/ 69 520 364</a> <a href="tel:+491735731045">mobil 0173/ 57 31 045</a></dd></div>
-      </dl>
     </div>
   </section>
 
-  <!-- 7 · ABLAUF – Stationen, nummeriert (echte Reihenfolge) -->
+  <!-- 7 · ABLAUF – Karten mit großer Ziffer (echte Reihenfolge) -->
   <section class="abschnitt layout ablauf" id="ablauf" aria-labelledby="ablauf-titel">
-    <h2 class="breakout" id="ablauf-titel">Ablauf der Zusammenarbeit</h2>
+    <header class="breakout abschnitt-kopf">
+      <p class="kicker">Ablauf</p>
+      <h2 id="ablauf-titel">Ablauf der Zusammenarbeit</h2>
+    </header>
     <div class="breakout ablauf__inhalt">
       <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Die Stationen 1 bis 3 sind ein Entwurf für die Demo; dass die Beauftragung je Objekt erfolgt, stammt aus dem Vorgespräch. Die Stationen 4 bis 7 folgen dem Leistungsangebot der bisherigen Website. Im Projekt legt René Gansmüller den Einstieg so fest, wie er tatsächlich arbeitet.</p>
-      <div class="stationen-wrap" data-stationen>
-        <span class="stationen-linie" aria-hidden="true"><span data-linie></span></span>
+      <div class="stationen-raster">
         <ol class="stationen">
-          <li class="station">
+          <li class="station karte">
             <h3>Anfrage</h3>
             <p>Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.</p></div>
           </li>
-          <li class="station">
+          <li class="station karte">
             <h3>Erstgespräch</h3>
             <p>Sie schildern Ihr Vorhaben und bekommen die Rückfragen, die ein Bauingenieur dazu hat.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Sie wissen, welche Leistung Ihr Projekt braucht und in welchem Umfang.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie wissen, welche Leistung Ihr Projekt braucht und in welchem Umfang.</p></div>
           </li>
-          <li class="station">
+          <li class="station karte">
             <h3>Beauftragung für Ihr Objekt</h3>
             <p>Sie vergeben den Auftrag für dieses eine Vorhaben.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Eine klare Vereinbarung für ein Objekt, ohne Bindung darüber hinaus.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Eine klare Vereinbarung für ein Objekt, ohne Bindung darüber hinaus.</p></div>
           </li>
-          <li class="station">
+          <li class="station karte">
             <h3>Bestandsaufnahme und Beratung</h3>
             <p>Bei Sanierung und Modernisierung steht die Prüfung der vorhandenen Substanz am Anfang.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Sie planen mit einer Kostenschätzung, die den tatsächlichen Zustand kennt.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie planen mit einer Kostenschätzung, die den tatsächlichen Zustand kennt.</p></div>
           </li>
-          <li class="station">
+          <li class="station karte">
             <h3>Vergabe</h3>
             <p>Ich bereite die Vergabe vor und begleite sie bis zum Auftrag an die Firma.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Sie vergeben auf Grundlage vergleichbarer Angebote.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie vergeben auf Grundlage vergleichbarer Angebote.</p></div>
           </li>
-          <li class="station">
+          <li class="station karte">
             <h3>Objektüberwachung</h3>
             <p>Die Überwachung läuft, bis das Objekt fertig ist.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Sie zahlen, was geprüft und aufgemessen ist.</p>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie zahlen, was geprüft und aufgemessen ist.</p></div>
           </li>
-          <li class="station">
-            <h3>Gewährleistungsabnahme und Dokumentation</h3>
+          <li class="station karte">
+            <h3>Gewährleistungs&shy;abnahme und Dokumentation</h3>
             <p>Vor Ablauf der Gewährleistungsfrist nehme ich die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.</p>
-            <p class="ergebnis"><span class="mono">Ergebnis:</span> Mängel kommen auf den Tisch, solange die Firmen noch dafür einstehen.</p>
-            <a class="cta" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Mängel kommen auf den Tisch, solange die Firmen noch dafür einstehen.</p></div>
           </li>
         </ol>
+        <div class="station-abschluss">
+          <a class="btn" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+          <a class="station-abschluss__tel" href="tel:+493069520364"><span class="label">Telefon</span>030/ 69 520 364</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 8 · ANFRAGE-FUNNEL – docs/FUNNEL.md, DEMO-SPEC: zwei Pflichtfragen plus Kontakt -->
-  <section class="abschnitt layout anfrage" id="anfrage" aria-labelledby="anfrage-titel">
-    <div class="breakout anfrage__raster">
-      <div class="anfrage__intro">
-        <p class="mono kicker">Anfrage</p>
-        <h2 id="anfrage-titel">Lassen Sie Ihr Projekt unverbindlich prüfen</h2>
-        <p>Zwei kurze Fragen, dann Ihre Kontaktdaten. Melden Sie sich auch, wenn Ihr Vorhaben erst in einem oder zwei Jahren beginnt: Viele Aufträge sind aus einem Gespräch entstanden, das lange vorher stattfand.</p>
-      </div>
+  <section class="layout" id="anfrage" aria-labelledby="anfrage-titel">
+    <div class="full panel abschnitt layout">
+      <div class="breakout anfrage__raster">
+        <div class="anfrage__intro">
+          <p class="kicker">Anfrage</p>
+          <h2 id="anfrage-titel">Lassen Sie Ihr Projekt unverbindlich prüfen</h2>
+          <p>Zwei kurze Fragen, dann Ihre Kontaktdaten. Melden Sie sich auch, wenn Ihr Vorhaben erst in einem oder zwei Jahren beginnt: Viele Aufträge sind aus einem Gespräch entstanden, das lange vorher stattfand.</p>
+          <ul class="kontaktzeilen">
+            <li><span class="icon-feld" aria-hidden="true"><svg class="icon"><use href="#i-telefon"/></svg></span><div><span class="label">Telefon</span><a href="tel:+493069520364">030/ 69 520 364</a><a href="tel:+491735731045">0173/ 57 31 045</a></div></li>
+            <li><span class="icon-feld" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></span><div><span class="label">E-Mail</span><a href="mailto:rene.gansmueller@online.de">rene.gansmueller@online.de</a></div></li>
+            <li><span class="icon-feld" aria-hidden="true"><svg class="icon"><use href="#i-ort"/></svg></span><div><span class="label">Büro</span><span>Schwedenstraße 13, 13357 Berlin</span></div></li>
+          </ul>
+        </div>
 
-      <div class="anfrage__form-spalte" id="anfrage-formular">
-        <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Das Formular zeigt den Ablauf, abgeschickt wird im Projekt.</p>
-        <div class="funnel" data-funnel data-funnel-total="3">
-          <div class="funnel__kopf">
-            <p class="mono">Projektanfrage</p>
-            <p class="mono schrittanzeige" aria-live="polite" data-schrittanzeige>Schritt 1 von 3</p>
-          </div>
-          <div class="funnel__balken" aria-hidden="true"><span data-balken></span></div>
+        <div class="anfrage__form-spalte" id="anfrage-formular">
+          <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Das Formular zeigt den Ablauf, abgeschickt wird im Projekt.</p>
+          <div class="funnel" data-funnel data-funnel-total="3">
+            <div class="funnel__kopf">
+              <p class="funnel__titel">Projektanfrage</p>
+              <p class="label schrittanzeige" aria-live="polite" data-schrittanzeige>Schritt 1 von 3</p>
+            </div>
+            <div class="funnel__balken" aria-hidden="true"><span data-balken></span></div>
 
-          <div class="funnel__koerper">
+            <div class="funnel__koerper">
             <form class="funnel__form" action="#anfrage" method="post" novalidate data-form>
               <div class="funnel__chip" data-chip hidden>
                 <span>Gewählte Leistung: <strong data-chip-wert>Bauüberwachung</strong></span>
@@ -448,10 +483,10 @@
               </fieldset>
 
               <div class="funnel__nav" data-nav>
-                <button type="button" class="cta cta--kontur cta--zurueck" data-zurueck>Zurück</button>
+                <button type="button" class="btn btn--kontur btn--klein" data-zurueck>Zurück</button>
                 <div class="funnel__vor">
-                  <button type="button" class="cta" data-weiter>Weiter<span class="mass" aria-hidden="true"></span></button>
-                  <button type="submit" class="cta" data-absenden>Anfrage absenden<span class="mass" aria-hidden="true"></span></button>
+                  <button type="button" class="btn" data-weiter>Weiter<span class="mass" aria-hidden="true"></span></button>
+                  <button type="submit" class="btn" data-absenden>Anfrage absenden<span class="mass" aria-hidden="true"></span></button>
                 </div>
               </div>
             </form>
@@ -462,7 +497,7 @@
               <p>Ich sehe mir Ihre Angaben an und melde mich bei Ihnen.</p>
 
               <form class="zusatz" action="#anfrage" method="post" novalidate data-zusatz>
-                <p><span class="mono">Freiwillig:</span> Wenn Sie mögen, erzählen Sie mehr über Ihr Vorhaben. Das erste Gespräch wird dadurch konkreter.</p>
+                <p><strong>Freiwillig:</strong> Wenn Sie mögen, erzählen Sie mehr über Ihr Vorhaben. Das erste Gespräch wird dadurch konkreter.</p>
                 <fieldset>
                   <legend>Um welche Art Projekt geht es?</legend>
                   <div class="optionen">
@@ -508,7 +543,7 @@
                   </div>
                 </fieldset>
                 <div class="zusatz__aktionen" data-zusatz-aktionen>
-                  <button type="submit" class="cta">Angaben ergänzen<span class="mass" aria-hidden="true"></span></button>
+                  <button type="submit" class="btn btn--kontur">Angaben ergänzen<span class="mass" aria-hidden="true"></span></button>
                   <a class="textlink" href="#top">Zurück zur Seite</a>
                 </div>
               </form>
@@ -517,6 +552,7 @@
           </div>
 
           <p class="funnel__fuss" data-fuss>Pflichtfelder sind mit <span class="pflicht">*</span> markiert.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -524,21 +560,30 @@
 </main>
 
 <!-- 9 · FOOTER – NAP aus Scrape (Impressum/Kontakt), kein Fax -->
-<footer class="fuss dunkel layout">
+<footer class="fuss layout">
   <div class="breakout fuss__raster">
     <div class="fuss__marke">
-      <img src="assets/images/logo-hell.svg" alt="" width="156" height="32">
-      <p><strong>Ingenieurbüro René Gansmüller</strong></p>
+      <img src="assets/images/logo-hell.svg" alt="Ingenieurbüro René Gansmüller" width="156" height="32">
       <p>Dipl.-Ing. (FH) Bauwesen</p>
+      <a class="btn btn--kontur btn--klein" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
     </div>
-    <address>
-      <p>Schwedenstraße 13, 13357 Berlin</p>
-      <p>Telefon <a href="tel:+493069520364">030/ 69 520 364</a></p>
-      <p>Mobil <a href="tel:+491735731045">0173/ 57 31 045</a></p>
-      <p><a href="mailto:rene.gansmueller@online.de">rene.gansmueller@online.de</a></p>
-    </address>
-    <div class="fuss__aktion">
-      <a class="cta" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+    <nav aria-label="Leistungen">
+      <p class="label">Leistungen</p>
+      <ul>
+        <li><a href="#projektsteuerung">Projektsteuerung</a></li>
+        <li><a href="#bauueberwachung">Bauüberwachung</a></li>
+        <li><a href="#baubetreuung">Baubetreuung</a></li>
+        <li><a href="#bauberatung">Bauberatung</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="label">Kontakt</p>
+      <address>
+        <p><svg class="icon" aria-hidden="true"><use href="#i-ort"/></svg>Schwedenstraße 13, 13357 Berlin</p>
+        <a href="tel:+493069520364"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>Telefon 030/ 69 520 364</a>
+        <a href="tel:+491735731045"><svg class="icon" aria-hidden="true"><use href="#i-telefon"/></svg>Mobil 0173/ 57 31 045</a>
+        <a href="mailto:rene.gansmueller@online.de"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>rene.gansmueller@online.de</a>
+      </address>
     </div>
     <nav class="fuss__recht" aria-label="Rechtliches">
       <a href="impressum.html">Impressum</a>
@@ -547,9 +592,6 @@
   </div>
 </footer>
 
-<script src="assets/js/lenis.min.js" defer></script>
-<script src="assets/js/gsap.min.js" defer></script>
-<script src="assets/js/ScrollTrigger.min.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

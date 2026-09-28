@@ -1,55 +1,20 @@
-// main.js – Interaktion & Bewegung, Ingenieurbüro René Gansmüller.
-// Libraries lokal unter assets/js/ (Lenis, GSAP, ScrollTrigger), per defer
-// vor dieser Datei geladen. Einsatz nach Skill motion-toolkit:
-//   - Hero-Einblendung: reines CSS (css/hero.css)
-//   - Lenis: sanftes Scrollen als Basis
-//   - GSAP + ScrollTrigger: nur die Fortschrittslinie im Ablauf
-//   - alles andere: CSS-Hover
-// Ohne JS ist alles sichtbar; bei prefers-reduced-motion gibt es kein Lenis
-// und keine Scroll-Animation, der Endzustand steht sofort.
-
-const reduziert = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let lenis = null;
+// main.js – Interaktion, Ingenieurbüro René Gansmüller.
+// Stil nach Referenz (docs/REFERENZ-ANALYSE.md): Die Seite bewegt sich nur,
+// wenn man sie anfasst. Keine Scroll- und Ladeanimationen, keine Libraries
+// (Lenis und GSAP sind entfernt). Hier stehen nur Mobilmenü, Sprünge zu
+// Ankern und der Anfrage-Funnel. Ohne JS ist alles sichtbar und bedienbar.
 
 function kopfHoehe() {
   const kopf = document.querySelector("[data-kopf]");
   return kopf ? kopf.getBoundingClientRect().height : 0;
 }
 
-/* ---------------------------------------------------------------------------
-   Scrollen: Lenis als Basis, Anker mit Abstand zum Sticky-Header
---------------------------------------------------------------------------- */
-function initScrollen() {
-  if (!reduziert && typeof window.Lenis === "function") {
-    lenis = new window.Lenis({ duration: 1.05, smoothWheel: true });
-    if (window.gsap && window.ScrollTrigger) {
-      lenis.on("scroll", window.ScrollTrigger.update);
-      window.gsap.ticker.add((zeit) => lenis.raf(zeit * 1000));
-      window.gsap.ticker.lagSmoothing(0);
-    } else {
-      const raf = (zeit) => { lenis.raf(zeit); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
-    }
-  }
-}
-
+// Sprung ohne Animation (Referenz: scroll-behavior auto). scrollIntoView
+// beachtet scroll-margin-top, der Header verdeckt das Ziel also nicht.
 function scrolleZu(ziel, { fokus = null } = {}) {
   if (!ziel) return;
-  const offset = -kopfHoehe();
-  const fertig = () => {
-    if (fokus) fokus.focus({ preventScroll: true });
-  };
-  if (lenis) {
-    // Maße frisch holen: Schriften, Formularschritte und das Register ändern
-    // die Seitenhöhe nach dem Start, Lenis rechnet sonst mit altem Ende.
-    lenis.resize();
-    // Lenis rechnet scroll-margin-top (base.css: Header-Höhe) selbst ein.
-    lenis.scrollTo(ziel, { onComplete: fertig });
-  } else {
-    const y = ziel.getBoundingClientRect().top + window.scrollY + offset;
-    window.scrollTo({ top: y, behavior: reduziert ? "auto" : "smooth" });
-    fertig();
-  }
+  ziel.scrollIntoView({ block: "start" });
+  if (fokus) fokus.focus({ preventScroll: true });
 }
 
 function initAnker() {
@@ -92,7 +57,6 @@ function menueSchliessen() {
   menueKnopf.setAttribute("aria-label", "Menü");
   document.body.classList.remove("is-locked");
   hintergrundSperren(false);
-  if (lenis) lenis.start();
 }
 
 function initMenue() {
@@ -107,7 +71,6 @@ function initMenue() {
     menueKnopf.setAttribute("aria-label", label);
     document.body.classList.toggle("is-locked", offen);
     hintergrundSperren(offen);
-    if (lenis) (offen ? lenis.stop() : lenis.start());
     if (offen) {
       const erster = kopf.querySelector(".kopf__nav a");
       if (erster) erster.focus();
@@ -287,7 +250,6 @@ const funnel = (() => {
     const titel = danke.querySelector("[data-danke-titel]");
     titel.focus({ preventScroll: true });
     scrolleZu(box);
-    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   });
 
   const zusatz = danke.querySelector("[data-zusatz]");
@@ -297,7 +259,6 @@ const funnel = (() => {
     const meldung = danke.querySelector("[data-zusatz-danke]");
     meldung.textContent = "Danke, damit lässt sich das Gespräch gut vorbereiten.";
     meldung.focus({ preventScroll: true });
-    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
   });
 
   function leistungSetzen(wert) {
@@ -358,51 +319,8 @@ function initVorbelegung() {
   });
 }
 
-/* ---------------------------------------------------------------------------
-   Ablauf: Fortschrittslinie (GSAP + ScrollTrigger, scrub). Die Stationen
-   füllen sich, sobald die Linie sie erreicht. Ohne JS oder bei reduzierter
-   Bewegung steht die Linie voll und alle Stationen sind gefüllt.
---------------------------------------------------------------------------- */
-function initAblauf() {
-  const wrap = document.querySelector("[data-stationen]");
-  if (!wrap || reduziert || !window.gsap || !window.ScrollTrigger) return;
-  const { gsap, ScrollTrigger } = window;
-  gsap.registerPlugin(ScrollTrigger);
-
-  const abschnitt = wrap.closest(".ablauf");
-  const linie = wrap.querySelector("[data-linie]");
-  abschnitt.classList.add("ablauf--animiert");
-
-  gsap.fromTo(linie, { scaleY: 0 }, {
-    scaleY: 1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: wrap,
-      start: "top 65%",
-      end: "bottom 65%",
-      scrub: 0.4
-    }
-  });
-
-  wrap.querySelectorAll(".station").forEach((station) => {
-    ScrollTrigger.create({
-      trigger: station,
-      start: "top 65%",
-      onEnter: () => station.classList.add("ist-erreicht"),
-      onLeaveBack: () => station.classList.remove("ist-erreicht")
-    });
-  });
-
-  // Schriften verschieben die Höhen: danach neu messen.
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => ScrollTrigger.refresh());
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  initScrollen();
   initMenue();
   initAnker();
   initVorbelegung();
-  initAblauf();
 });
