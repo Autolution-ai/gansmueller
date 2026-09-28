@@ -803,7 +803,7 @@ main:focus { outline: none; }
 /* ---------------------------------------------------------------------------
    8 · Anfrage-Funnel – gerahmter Kasten auf Planraster
 --------------------------------------------------------------------------- */
-.anfrage {
+.anfrage, .planraster {
   --raster-fein: color-mix(in oklch, var(--color-primary) 8%, transparent);
   --raster-grob: color-mix(in oklch, var(--color-primary) 16%, transparent);
   background-color: var(--color-surface);
@@ -864,11 +864,11 @@ main:focus { outline: none; }
   line-height: 1.25;
 }
 .funnel legend + * { clear: both; }
-.pflicht { color: var(--color-primary-strong); }
+.pflicht { color: var(--color-primary-strong); font-family: var(--font-mono); font-weight: var(--weight-mono-strong); }
 
 .optionen {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
   gap: 0.6rem;
 }
 .option {
@@ -1065,7 +1065,8 @@ main:focus { outline: none; }
 /* ---------------------------------------------------------------------------
    Rechtsseiten (Impressum, Datenschutz)
 --------------------------------------------------------------------------- */
-.rechtsseite { min-height: 50vh; }
+.rechtsseite .planraster { min-height: 60vh; align-content: center; }
+.rechtsseite .demo-hinweis { max-width: 68ch; }
 .rechtsseite h1 { font-size: var(--step-3); line-height: 1.02; margin-bottom: var(--space-m); }
 .rechtsseite .textlink { margin-top: var(--space-m); }
 
@@ -1081,6 +1082,11 @@ main:focus { outline: none; }
   .denkmal__fotos { justify-content: flex-start; }
   .anfrage__raster { grid-template-columns: 1fr; }
   .anfrage__intro p:not(.kicker) { max-width: 60ch; }
+}
+@media (min-width: 1400px) {
+  /* Breit: Projektsteuerung schmaler, damit beide Kästen ohne Leerfläche
+     gleich hoch enden. */
+  .leistung-gross { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
 }
 @media (max-width: 1200px) {
   .leistung-gross { grid-template-columns: 1fr; }
@@ -1138,3 +1144,7 @@ main:focus { outline: none; }
   .bauherren { font-size: var(--step-1); }
   .ref-foto--versetzt { margin-bottom: 0; }
 }
+
+/* Ohne JS: alle drei Schritte stehen untereinander, nur „Anfrage absenden“
+   bleibt als Knopf (Weiter/Zurück hätten keine Funktion). */
+html:not(.js) [data-weiter], html:not(.js) [data-zurueck] { display: none; }
