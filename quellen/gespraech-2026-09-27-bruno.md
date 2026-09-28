@@ -123,3 +123,10 @@ Datum: 2026-09-28 · Wortlaut Bruno: „ok, C freigegeben, kurzer Button, weiter
 - Header-Button: Kurzfassung „Projekt prüfen lassen".
 - Tokens (Anybody + Martian Mono, Farben aus dem Logo), Logo-SVG, Button-Konzept „Maßlinie" damit freigegeben.
 - Auftrag: kompletten Rest der Website bauen (Phase 4).
+
+## Nachtrag: Referenz-Website für den Designstil
+
+Datum: 2026-09-28 · Wortlaut Bruno: „https://www.maler-heusser.de/?gad_source=1&gad_campaignid=22581389216&gbraid=0AAAAA_ps41TcJBRdUSNoi-hhisRaFPudZ&gclid=CjwKCAjw2aPVBhBkEiwA0Cptt6xwlBu1s_NOE_BxNy8zmzrjjfwCPIOC6A9rN5D5GBm1-CEK2PQAjxoC_yQQAvD_BwE  Analysiere diesen Design Stil und übernimm ihn für unsere Demo"
+
+- Referenz: https://www.maler-heusser.de/ (Parameter hinter „?" sind Google-Ads-Tracking, für die Analyse ohne sie aufgerufen).
+- Auftrag: Designstil analysieren (Aufbau, Gestaltung, Bewegung, CLAUDE.md §7) und für die Demo übernehmen. CI (Farben, Logo) bleibt aus dem Kundenmaterial (§6); Inhalte und Belege bleiben die von Gansmüller.
