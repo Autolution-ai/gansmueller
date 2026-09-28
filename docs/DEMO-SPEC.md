@@ -305,3 +305,10 @@ Beispielen.
   anfragen“ (Vorschlag, endgültig in Station 2).
 - Beleg: quellen/gespraech-2026-09-27-bruno.md
 
+
+## Station 2 freigegeben (2026-09-28) [Bruno]
+
+- Hero C „Plankopf" (hero-varianten/c-plankopf.html), später Überarbeitung durch Bruno angekündigt.
+- Header-Button Kurzfassung „Projekt prüfen lassen"; langer Wortlaut „Projekt unverbindlich prüfen lassen" bleibt für den Funnel-Abschnitt.
+- Schriften Anybody (Display, breit) + Martian Mono (Labels, Daten, Buttons); Button-Konzept „Maßlinie".
+- Beleg: quellen/gespraech-2026-09-27-bruno.md

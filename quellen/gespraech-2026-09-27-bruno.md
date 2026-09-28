@@ -114,3 +114,12 @@ Bezieht sich auf beide Hero-Varianten (A typografisch, B Symbolbild) und die Des
 - Schrift mit eigenem Charakter statt Standard-Grotesk.
 - Buttons mit Gestaltung statt flacher Standard-Rechtecke.
 - Hero deutlich kürzer: kurze Headline, höchstens eine kurze Zeile darunter.
+
+## Nachtrag: Station 2 freigegeben (Hero C)
+
+Datum: 2026-09-28 · Wortlaut Bruno: „ok, C freigegeben, kurzer Button, weiter  Den Hero werden wir nachher nochmal überarbeiten, aber baue schonmal den kompletten Rest der Website"
+
+- Hero-Variante C „Plankopf" freigegeben (Stand Commit 25aa3bc), wird später noch überarbeitet.
+- Header-Button: Kurzfassung „Projekt prüfen lassen".
+- Tokens (Anybody + Martian Mono, Farben aus dem Logo), Logo-SVG, Button-Konzept „Maßlinie" damit freigegeben.
+- Auftrag: kompletten Rest der Website bauen (Phase 4).
