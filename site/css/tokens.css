@@ -63,6 +63,8 @@
   /* = Rechteck der Bildmarke. Nur als Fläche oder Markierung, sparsam.
      Darauf nur --color-text (9,3:1), nie --color-text-muted (3,6:1). */
   --color-accent: oklch(0.860 0.012 334);
+  /* Karten reinweiß auf fast weißem Grund (Referenz). */
+  --color-karte: oklch(1 0 0);
 
   /* Streifenband aus dem Titelbild der Altseite (720×220, CSS #key_visual):
      2-px-Linien im Wechsel #8ab4dc / #689acf, dazu lose gesetzte helle
@@ -95,66 +97,40 @@
 
   /* ---------------------------------------------------------------------
      TYPOGRAFIE
-     Schriften je Demo wählen (zur Marke passend, Vorgabe des Kunden schlägt
-     jede Wahl). Dateien liegen lokal unter assets/fonts/, eingebunden über
-     css/fonts.css – Google Fonts wird vom Egress-Proxy blockiert.
+     Stilumbau nach Referenz (docs/REFERENZ-ANALYSE.md, 28.09.2026): eine
+     Grotesk für alles, Hierarchie über Größe, Gewicht 800 und Zeilenhöhe
+     1,0, nicht über Schriftwechsel. Schibsted Grotesk statt Space Grotesk
+     (Referenz), weil sachlicher und nicht der Baukasten-Standard.
+     Labels, Kicker und Knöpfe: Versal, 600, leicht gesperrt, gleiche Familie.
   --------------------------------------------------------------------- */
-  /* Je Demo die eigene Familie voranstellen, z.B.
-       --font-display: "Marken-Display", Georgia, serif;
-     Die Fallback-Kette bleibt stehen: Ohne sie zeigt die Seite gar nichts,
-     solange die Schriftdatei fehlt. */
-  /* Neu nach Brunos Kritik an Station 2 („Standard Schrift“, 27.09.2026).
-     Herleitung aus CI und Gewerk, Vergleich im Schriftmuster
-     hero-varianten/schriftmuster.html:
-     - Display: Anybody, extra breit (wdth 150, wght 800). Das Logo setzt
-       „INGENIEURBÜRO“ in weit gelaufenen Versalien; die breite Grotesk
-       übersetzt diese Breite in die Headline, statt sie nur zu sperren.
-     - Mono: Martian Mono. Breite, technische Monospace für alles, was auf
-       einem Plan beschriftet wäre: Kicker, Feldnamen, Daten, Buttons.
-       Nähe zur Normschrift im Schriftfeld einer Bauzeichnung.
-     - Fließtext: Anybody in Normalbreite (wdth 100, wght 400).
-     Zwei Familien, je zwei Schnitte im Einsatz (400/800 bzw. 400/600).
-     Die Pfade im Logo-SVG sind davon unabhängig (Nachbau, siehe logo.svg). */
-  --font-display: "Anybody", "Arial Black", Arial, sans-serif;
-  --font-body: "Anybody", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Martian Mono", "Courier New", monospace;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
   --weight-body: 400;
+  --weight-label: 600;
+  --weight-heading: 700;
   --weight-display: 800;
-  --weight-mono: 400;
-  --weight-mono-strong: 600;
-  --stretch-display: 150%;
-  --stretch-body: 100%;
-  --stretch-mono: 100%;
 
-  /* Größen – fluid via clamp, klein bei 390 px, groß bei 1440 px.
-     Untergrenze von --step--1 nie unter 14px: Fließtext bei 13,4px war ein
-     QA-Befund, keine Designentscheidung.
-     --step-3 ÷ --step-0 muss mindestens 2,5 ergeben (Typo-Spannweite,
-     hero-craft §5). Reicht es nicht, wird --step-3 erhöht – nie der
-     Fließtext verkleinert. */
-  /* Gemessen: 390 px → 14 / 16,2 / 19,2 / 28 / 41,6 px,
-               1440 px → 15,2 / 18 / 24 / 44 / 85,4 px,
-               1920 px → 15,2 / 18 / 24 / 44 / 107,5 px.
-     --step-3 für breite Fenster angehoben (hero-critic: bei 1920 blieb die
-     H1 bei 76 px und ließ rechts eine Leerfläche).
-     Spannweite --step-3 ÷ --step-0: 2,57 (390) bis 6,0 (1920). */
+  /* Stufen laut Referenz (Desktop 60 / 48 / 30 / 24 px, Text 18 px).
+     Gerechnet:
+       390 px  → 14 / 16,2 / 19,2 / 24 / 30,4 / 40 px
+       1440 px → 15,2 / 18 / 24 / 30 / 48 / 60 px
+     Typo-Spannweite H1 ÷ Text: 2,5 (390) bis 3,3 (1440). */
   --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
   --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-  --step-2: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-  --step-3: clamp(2.6rem, 1.2rem + 4.6vw, 7rem);
-  /* Nur für die grafische Kennzahl in Hero D („30“). Keine Textstufe. */
-  --step-monument: clamp(9rem, 2rem + 24vw, 26rem);
+  --step-1-5: clamp(1.5rem, 1.25rem + 0.6vw, 1.875rem);
+  --step-2: clamp(1.9rem, 1.3rem + 1.9vw, 3rem);
+  --step-3: clamp(2.5rem, 1.9rem + 2.3vw, 3.75rem);
+  --step-kennzahl: clamp(2rem, 1.6rem + 1vw, 2.5rem);
 
-  /* Zeilenhöhen. Ein einziger globaler Wert lässt jede große Überschrift in
-     Einzelzeilen zerfallen – große Schrift braucht enge Zeilen. */
-  --lh-display: 1.02;
-  --lh-heading: 1.2;
+  /* Zeilenhöhen. Überschriften kompakt (Referenz: 1,0). */
+  --lh-display: 1.0;
+  --lh-heading: 1.08;
   --lh-body: 1.6;
 
-  /* Laufweite. Display läuft enger, Versal-Kicker weiter. */
-  --tracking-display: -0.025em;
-  --tracking-kicker: 0.12em;   /* Logo: „INGENIEURBÜRO“ läuft sehr weit gesperrt */
+  --tracking-display: -0.015em;
+  --tracking-kicker: 0.1em;
+  --tracking-label: 0.03em;
 
   /* ---------------------------------------------------------------------
      ABSTÄNDE
@@ -171,8 +147,18 @@
   /* ---------------------------------------------------------------------
      LAYOUT
   --------------------------------------------------------------------- */
-  /* Die Bildmarke ist rechtwinklig, der Baukasten war es auch. Kaum Rundung. */
+  /* Die Bildmarke ist rechtwinklig: Knöpfe und Karten fast eckig. Nur die
+     abgesetzten Flächen (Panels) runden stark, wie in der Referenz. */
   --radius: 2px;
+  --radius-karte: 6px;
+  --radius-panel: 40px;
+
+  /* Harte Schatten ohne Unschärfe, immer in Textfarbe, Stufen nach Gewicht
+     (Referenz: 3 / 5 / 8 / 12 px). Größte Stufe nur Hero-Karte und Formular. */
+  --schatten-1: 3px 3px 0 0 var(--color-text);
+  --schatten-2: 5px 5px 0 0 var(--color-text);
+  --schatten-3: 8px 8px 0 0 var(--color-text);
+  --schatten-4: 12px 12px 0 0 var(--color-text);
 
   /* Drei Breiten statt einer. Getrennt, weil sie zwei verschiedene Jobs haben:
      Lesbarkeit (Text) und Flächennutzung (alles andere). Ein einziges --maxw
@@ -183,6 +169,10 @@
   /* Mindestabstand zum Fensterrand. Wächst mit dem Fenster wie der Rand von
      Header und Hero-Blatt (3vw), damit alle Kanten fluchten. */
   --gutter: clamp(var(--space-s), 3vw, var(--space-l));
+  /* Größte Breite der .breakout-Spur. Header, Hero und alle Sektionen
+     laufen auf derselben Spur (Kantenflucht). 98.25rem = 1572 px, auf
+     1920 also 174 px Rand (Grenze 200 px). */
+  --breakout-max: 98.25rem;
   --maxw-content: 68ch;       /* lesbare Textbreite, 60–75 Zeichen */
   --breakout-extra: 30rem;    /* je Seite zusätzlich für .breakout. Gemessen:
                                  1572px auf 1920px Fenster, also 174px Rand –
@@ -201,8 +191,6 @@
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* Auf schmalen Fenstern läuft die extra breite Display-Zeile sonst in
-   Einzelwörter auseinander. */
 @media (max-width: 600px) {
-  :root { --stretch-display: 125%; --header-h: 64px; }
+  :root { --header-h: 64px; }
 }
