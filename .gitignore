@@ -17,6 +17,7 @@ build/
 # Messläufe – Screenshots und Berichte gehören nicht ins Repo
 .hero-check/
 .layout-check/
+.referenz/
 
 # macOS
 .DS_Store
