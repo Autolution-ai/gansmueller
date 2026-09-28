@@ -18,24 +18,30 @@ Suchvolumen, kein Ranking, keine „X verlorene Anfragen pro Monat".
 
 ## Befund zur bestehenden Seite
 
-<!-- Vom site-analyst in Phase 1 zu füllen. Nur was im Scrape sichtbar war.
-     Leere Zeilen streichen statt raten. -->
+Nachgetragen in Phase 4 (Bau) am 2026-09-28, nur aus `quellen/scrape-website.md`
+und `quellen/scrape-google.md`.
 
 | Punkt | Befund auf der Altseite | Quelle |
 |---|---|---|
-| Anzahl H1 | | Scrape |
-| Überschriftenhierarchie | | Scrape |
-| `<title>` (Länge, Inhalt) | | Scrape |
-| `<meta description>` | | Scrape |
-| Bilder ohne Alt-Text | | Scrape |
-| Ort im sichtbaren Text | | Scrape |
-| Strukturierte Daten (JSON-LD) | | Scrape |
-| NAP-Konsistenz (Name/Adresse/Telefon) | | Scrape |
-| Teilen-Vorschau (Open Graph) | | Scrape |
+| Anzahl H1 | Startseite ohne H1 (Begrüßung als h2/h3); H1 nur auf Kontakt und Impressum | Scrape, Text je Seite |
+| Überschriftenhierarchie | Seiten beginnen mit h2 („Mein Leistungsangebot“, „Referenzen“), Unterpunkte h3 | Scrape |
+| `<title>` (Länge, Inhalt) | Auf allen Seiten gleiches Muster „Ingenieurbuero-Gansmueller-Diplom-Bauingenieur(FH) - Home“ (57 Zeichen auf der Startseite), ohne Umlaute, ohne Leistung, ohne Ort | Scrape, Tabelle Unterseiten |
+| `<meta description>` | Auf allen Seiten identisch: „Ingenieurbüro Rene Gansmüller, Bauingenieur“ (43 Zeichen), ohne Leistung, ohne Ort | Scrape, Meta |
+| Bilder ohne Alt-Text | Alle sechs Inhaltsbilder ohne `alt` | Scrape, Bilder |
+| Ort im sichtbaren Text | „Berlin“ im Begrüßungstext der Startseite und im Footer | Scrape |
+| Strukturierte Daten (JSON-LD) | keine | Scrape, Meta |
+| NAP-Konsistenz (Name/Adresse/Telefon) | Website und Google-Eintrag stimmen in Name, Adresse, Telefon überein; Fax nur auf der Website | Scrape, scrape-google.md |
+| Teilen-Vorschau (Open Graph) | keine; außerdem kein Viewport-Meta, kein `lang` | Scrape, Meta |
 
-**Widersprüche, die aufgefallen sind:**
-<!-- Zwei Adressen, zwei Telefonnummern, zwei Gründungsjahre. Melden, nicht
-     auflösen (CLAUDE.md §3). -->
+**Widersprüche, die aufgefallen sind:** keine bei NAP. Offen bleibt die
+Schreibweise der Berliner Straßennamen (Referenzliste gegen Bildunterschrift,
+siehe `docs/COPY.md`, offene Punkte 2).
+
+**Umsetzung in der Demo (Phase 4):** eine H1, Title 58 und Description 154
+Zeichen laut `docs/COPY.md`, Alt-Texte an allen Fotos, Open Graph mit
+lokalem Bild, JSON-LD `ProfessionalService` nur mit Name, Adresse, Telefon,
+E-Mail und der bestehenden Domain als `url` (kein `aggregateRating`, keine
+`openingHours`, kein `priceRange`, kein `sameAs`, kein `areaServed`).
 
 ---
 
