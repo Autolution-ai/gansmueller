@@ -48,3 +48,1093 @@
 .layout > *         { grid-column: content; }
 .layout > .breakout { grid-column: breakout; }
 .layout > .full     { grid-column: full; }
+
+/* ===========================================================================
+   INGENIEURBÜRO RENÉ GANSMÜLLER – Seitenkomponenten (Phase 4)
+   Designsprache aus Hero C „Plankopf“, dosiert: Anybody breit für H2,
+   Martian Mono nur für Beschriftungen, Daten und Knöpfe, Knopf „Maßlinie“,
+   Schriftfeld-Motiv für Register, Steckbrief und Formular. Das Planraster
+   steht nur im Hero und im Anfrage-Abschnitt (Klammer der Seite).
+=========================================================================== */
+
+/* Lenis (lenis.css, auf das Nötige gekürzt) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+
+body { font-stretch: var(--stretch-body); }
+
+h1, h2 {
+  font-weight: var(--weight-display);
+  font-stretch: var(--stretch-display);
+  letter-spacing: var(--tracking-display);
+}
+h2 {
+  font-size: var(--step-2);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+h3 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  font-stretch: 118%;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+p, li, dd { text-wrap: pretty; }
+
+/* Beschriftung wie auf einem Plan: Mono, Versalien, gesperrt. */
+.mono {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono);
+  font-stretch: var(--stretch-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  line-height: 1.45;
+}
+.kicker { color: var(--color-text-muted); margin-bottom: 0.9rem; }
+
+.vh {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Sprunglink: nur bei Tastaturfokus sichtbar. */
+.sprunglink {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 50;
+  padding: 0.75rem 1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  transition: top var(--dur-schnell) var(--ease-out);
+}
+.sprunglink:focus { top: 0.5rem; }
+
+/* Fließtext-Links im Inhalt */
+.link {
+  color: var(--color-primary-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-schnell) var(--ease-out), text-decoration-color var(--dur-schnell) var(--ease-out);
+}
+.link:hover { color: var(--color-text); text-decoration-color: var(--color-primary); }
+
+/* ---------------------------------------------------------------------------
+   Knopf „Maßlinie“ (freigegeben an Station 2)
+   Eckig wie die Rechtecke der Bildmarke, dahinter ein versetzter Block,
+   rechts eine Maßlinie mit Endstrich und Pfeil, die bei Hover ausfährt.
+   Kontrast: bg auf primary-strong 5,7:1 · bg auf text (Hover) 13,7:1 ·
+   bg-dark auf primary-on-dark 8,6:1 · bg-dark auf text-on-dark 15,6:1.
+--------------------------------------------------------------------------- */
+.cta {
+  --schatten: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0 1.4rem;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: var(--color-primary-strong);
+  color: var(--color-bg);
+  border: 0;
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 var(--schatten);
+  cursor: pointer;
+  transition: transform var(--dur-schnell) var(--ease-out),
+              box-shadow var(--dur-schnell) var(--ease-out),
+              background-color var(--dur-schnell) var(--ease-out);
+}
+.cta:hover {
+  background: var(--color-text);
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 0 var(--color-primary);
+}
+.cta:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 0 var(--schatten);
+}
+.cta:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
+/* base.css setzt Telefon-Links auf 44 px; der Knopf bleibt so hoch wie die anderen. */
+a.cta[href^="tel:"] { min-height: 3.5rem; }
+
+.mass {
+  position: relative;
+  flex: none;
+  width: 2.25rem;
+  height: 0.9rem;
+  border-left: 2px solid currentColor;
+}
+.mass::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+.mass::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+.cta:hover .mass::before, .textlink:hover .mass::before, .zielgruppen a:hover .mass::before { transform: scaleX(1.45); }
+.cta:hover .mass::after, .textlink:hover .mass::after, .zielgruppen a:hover .mass::after { transform: translateX(1rem) rotate(45deg); }
+
+/* Zweitweg: gleiche Form, Kontur statt Fläche. */
+.cta--kontur {
+  justify-content: flex-start;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid currentColor;
+  box-shadow: none;
+  gap: 0.75rem;
+}
+.cta--kontur:hover { background: var(--color-hover); box-shadow: 5px 5px 0 0 var(--color-primary); }
+.cta--kontur .mono-klein { color: var(--color-text-muted); letter-spacing: 0.12em; }
+
+/* Header-CTA: dieselbe Sprache, kleiner. */
+.cta--kopf {
+  --schatten: var(--color-primary);
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  gap: 0.75rem;
+  background: var(--color-text);
+  box-shadow: none;
+}
+.cta--kopf:hover { background: var(--color-primary-strong); box-shadow: 4px 4px 0 0 var(--color-text); }
+.cta-text--kurzfassung { display: none; }
+.kopf--kurzfassung .cta-text--voll { display: none; }
+.kopf--kurzfassung .cta-text--kurzfassung { display: inline; }
+.cta--kopf .mass { width: 1.5rem; }
+
+/* Textlink mit kleiner Maßlinie: für Zeilen-Leistungen und Partnerzeile. */
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-strong);
+  border-bottom: 2px solid var(--color-primary);
+  transition: color var(--dur-schnell) var(--ease-out), border-color var(--dur-schnell) var(--ease-out);
+}
+.textlink .mass { width: 1.5rem; height: 0.75rem; }
+.textlink:hover { color: var(--color-text); border-bottom-color: var(--color-text); }
+.textlink:active { transform: translateY(1px); }
+
+/* Auf dunklem Grund */
+.dunkel { background: var(--color-bg-dark); color: var(--color-text-on-dark); }
+.dunkel .kicker { color: var(--color-primary-on-dark); }
+.dunkel .cta { --schatten: var(--color-primary); background: var(--color-primary-on-dark); color: var(--color-bg-dark); }
+.dunkel .cta:hover { background: var(--color-text-on-dark); }
+.dunkel .cta:focus-visible, .dunkel a:focus-visible { outline-color: var(--color-focus-on-dark); }
+
+.aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.75rem; }
+
+/* ---------------------------------------------------------------------------
+   Demo-Hinweis (CLAUDE.md §11): sichtbar, direkt über dem Inhalt, kein Band.
+   Malve der Bildmarke als Fläche, Text in --color-text (9,3:1).
+--------------------------------------------------------------------------- */
+.demo-hinweis {
+  position: relative;
+  padding: 0.8rem 1rem 0.85rem 1.1rem;
+  background: var(--color-accent);
+  color: var(--color-text);
+  border-left: 4px solid var(--color-text);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+.demo-hinweis strong {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-right: 0.35em;
+}
+
+/* ---------------------------------------------------------------------------
+   Header
+--------------------------------------------------------------------------- */
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-text);
+}
+.kopf__innen {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  min-height: calc(var(--header-h) - 2px);
+  padding-inline: clamp(var(--space-s), 3vw, var(--space-l));
+}
+.kopf__logo { display: inline-flex; align-items: center; min-height: 44px; }
+.kopf__logo img { height: 46px; width: auto; }
+.kopf__nav {
+  display: flex;
+  gap: 1.75rem;
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-stretch: var(--stretch-body);
+  font-size: var(--step-0);
+}
+.kopf__nav a {
+  color: var(--color-text);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur-schnell) var(--ease-out);
+}
+.kopf__nav a:hover { border-bottom-color: var(--color-primary); }
+.kopf__nav .cta { display: none; }
+.kurz { display: none; }
+
+.kopf__menue {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.6rem;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--dur-schnell) var(--ease-out);
+}
+.kopf__menue:hover { background: var(--color-hover); }
+.kopf__menue:active { transform: translateY(1px); }
+/* Zeichen: zwei Striche, beim Öffnen ein Kreuz. */
+.kopf__menue-zeichen { position: relative; width: 1.1rem; height: 0.7rem; }
+.kopf__menue-zeichen::before, .kopf__menue-zeichen::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: currentColor;
+  transition: transform var(--dur-normal) var(--ease-out), top var(--dur-normal) var(--ease-out);
+}
+.kopf__menue-zeichen::before { top: 0; }
+.kopf__menue-zeichen::after { top: calc(100% - 2px); }
+.kopf--offen .kopf__menue-zeichen::before { top: calc(50% - 1px); transform: rotate(45deg); }
+.kopf--offen .kopf__menue-zeichen::after { top: calc(50% - 1px); transform: rotate(-45deg); }
+
+@media (max-width: 700px) {
+  .cta { white-space: normal; letter-spacing: 0.05em; padding-inline: 1.1rem; justify-content: space-between; }
+  .cta--kopf { white-space: nowrap; }
+}
+@media (max-width: 1000px) {
+  .kopf__innen { gap: var(--space-xs); }
+  .kopf__logo { margin-right: auto; }
+  .kopf__logo img { height: 34px; }
+  .lang { display: none !important; }
+  .kurz { display: inline; }
+  .cta--kopf .mass { display: none; }
+  .js .kopf__menue { display: inline-flex; }
+  .kopf__nav { display: none; }
+  .js .kopf--offen .kopf__nav {
+    display: flex;
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    z-index: 19;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: var(--space-m) clamp(var(--space-s), 3vw, var(--space-l));
+    background: var(--color-bg);
+    overflow-y: auto;
+  }
+  .js .kopf--offen .kopf__nav a:not(.cta) {
+    min-height: 3.5rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-stretch: 125%;
+    font-size: var(--step-2);
+    letter-spacing: var(--tracking-display);
+  }
+  .js .kopf--offen .kopf__nav a:not(.cta):hover { border-bottom-color: var(--color-primary); background: var(--color-hover); }
+  .js .kopf--offen .kopf__nav .cta { display: inline-flex; margin-top: var(--space-m); align-self: flex-start; }
+}
+@media (max-width: 420px) {
+  .kopf__logo img { height: 28px; }
+  .cta--kopf { padding: 0 0.7rem; letter-spacing: 0.04em; }
+  .kopf__menue { padding: 0 0.55rem; }
+  .kopf__menue-text { display: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Abschnitte: gemeinsame Hülle. Jede Sektion polstert sich selbst oben und
+   unten, innen stehen am Rand keine zusätzlichen Außenabstände (erstes und
+   letztes Kind ohne margin), damit sich nichts zu einem Loch addiert.
+--------------------------------------------------------------------------- */
+main:focus { outline: none; }
+.abschnitt { padding-block: clamp(var(--space-l), 7vw, 7rem); }
+.abschnitt > :first-child { margin-top: 0; }
+.abschnitt > :last-child { margin-bottom: 0; }
+.abschnitt--getoent { background: var(--color-surface); }
+.fuer-wen { padding-block: clamp(var(--space-l), 4.5vw, 4.5rem); }
+.lead { font-size: var(--step-1); line-height: 1.45; margin-top: 1.25rem; max-width: 52ch; }
+
+/* ---------------------------------------------------------------------------
+   2 · Für wen – Gegenüberstellung zweier Wege
+--------------------------------------------------------------------------- */
+.wege {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* start statt center: zwei parallele Wege mit gemeinsamer Oberkante,
+     beide Spalten etwa gleich hoch (CLAUDE.md §7 erlaubt das). */
+  align-items: start;
+  gap: var(--space-m) var(--space-l);
+  margin-top: var(--space-m);
+}
+.weg {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  padding-top: var(--space-m);
+  border-top: 2px solid var(--color-text);
+}
+.weg h3 { font-size: var(--step-2); font-stretch: 100%; font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.08; max-width: 18ch; }
+.weg p { max-width: 54ch; }
+.zielgruppen { list-style: none; border-top: 1px solid var(--color-text); }
+.zielgruppen a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.1rem;
+  padding: 0.45rem 0.25rem;
+  border-bottom: 1px solid var(--color-text);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.25;
+  transition: background-color var(--dur-schnell) var(--ease-out), padding var(--dur-normal) var(--ease-out), color var(--dur-schnell) var(--ease-out);
+}
+.zielgruppen a .mass { color: var(--color-primary-strong); margin-right: 1rem; }
+.zielgruppen a:hover { background: var(--color-bg); padding-left: 0.9rem; color: var(--color-primary-strong); }
+.zielgruppen a:active { background: var(--color-hover); }
+
+.rahmen {
+  display: grid;
+  gap: 1rem;
+  margin-top: var(--space-m);
+}
+/* Maßkette über die ganze Breite: Endstriche und Linie, reine Zeichnung. */
+.massband {
+  height: 1rem;
+  border-inline: 2px solid var(--color-text);
+  background: linear-gradient(var(--color-text), var(--color-text)) center / 100% 1px no-repeat;
+}
+.rahmen p { font-size: var(--step-1); line-height: 1.45; max-width: 62ch; }
+
+/* ---------------------------------------------------------------------------
+   3 · Leistungen – gewichtete Liste: zwei groß, zwei als Zeile
+--------------------------------------------------------------------------- */
+.leistung-gross {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+.leistung {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
+}
+.leistung:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 0 var(--color-accent); }
+.leistung h3 { font-size: var(--step-2); font-weight: var(--weight-display); font-stretch: 100%; letter-spacing: var(--tracking-display); line-height: 1.08; }
+.leistung .cta { align-self: flex-start; margin-top: auto; }
+.leistung > p:last-of-type { margin-bottom: 0.75rem; }
+.aufgaben { list-style: none; display: grid; gap: 0.55rem; }
+.aufgaben li { position: relative; padding-left: 1.4rem; }
+.aufgaben li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--color-primary);
+}
+.leistung strong { font-weight: 700; }
+
+.leistung-zeilen { margin-top: var(--space-l); display: grid; }
+.leistung-zeilen .demo-hinweis { margin-bottom: 1rem; }
+.leistung-zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem var(--space-m);
+  padding: 1.5rem 0.25rem;
+  border-top: 2px solid var(--color-text);
+  transition: background-color var(--dur-schnell) var(--ease-out);
+}
+.leistung-zeile:hover { background: var(--color-surface); }
+.leistung-zeile + .leistung-zeile { border-top-width: 1px; }
+.leistung-zeile p { max-width: 60ch; }
+.partnerzeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem var(--space-m);
+  margin-top: var(--space-m);
+  padding: 1.5rem clamp(1rem, 2.5vw, 2rem);
+  border: 2px dashed var(--color-text-muted);
+  background: var(--color-surface);
+  transition: border-color var(--dur-schnell) var(--ease-out);
+}
+.partnerzeile:hover { border-color: var(--color-text); }
+.partnerzeile p { font-size: var(--step-1); line-height: 1.45; max-width: 64ch; }
+
+/* ---------------------------------------------------------------------------
+   4 + 5 · Referenzen: randloses dunkles Band, darunter Register
+--------------------------------------------------------------------------- */
+.referenzen { padding-bottom: clamp(var(--space-l), 7vw, 7rem); }
+.band { padding-block: clamp(var(--space-l), 6vw, 6rem); }
+.band h2 { color: var(--color-text-on-dark); }
+.band__label { color: var(--color-text-muted-on-dark); margin-top: var(--space-l); }
+.bauherren {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 2.25rem;
+  margin-top: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in oklch, var(--color-text-on-dark) 30%, transparent);
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-stretch: 125%;
+  font-size: var(--step-2);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.15;
+}
+.bauherren li { white-space: nowrap; }
+.bauherren li::before {
+  content: "";
+  display: inline-block;
+  width: 0.34em;
+  height: 0.34em;
+  margin: 0 0.45em 0.12em 0;
+  background: var(--color-primary-on-dark);
+  vertical-align: middle;
+}
+
+.ref-intro { margin-top: clamp(var(--space-l), 6vw, 6rem); font-size: var(--step-1); line-height: 1.45; max-width: 60ch; }
+
+.denkmal {
+  display: grid;
+  grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-l);
+  margin-top: var(--space-l);
+  padding-top: var(--space-m);
+  border-top: 2px solid var(--color-text);
+}
+.denkmal__text { display: grid; gap: 1rem; }
+.denkmal__text h3 { font-size: var(--step-2); font-weight: var(--weight-display); font-stretch: 125%; letter-spacing: var(--tracking-display); line-height: 1.08; }
+.denkmal__fotos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--space-m);
+}
+.foto-paar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-m); }
+.ref-foto { display: grid; justify-items: start; gap: 0.6rem; width: fit-content; max-width: 100%; }
+.ref-foto__bild {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border: 2px solid var(--color-text);
+  background: var(--color-surface);
+  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
+}
+.ref-foto:hover .ref-foto__bild { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 0 var(--color-primary); }
+.ref-foto img { display: block; max-width: 100%; height: auto; }
+.ref-foto figcaption { display: grid; gap: 0.15rem; font-size: var(--step--1); line-height: 1.35; max-width: 26rem; }
+.ref-foto figcaption strong { font-weight: 700; font-size: var(--step-0); }
+.ref-foto figcaption .mono { color: var(--color-text-muted); letter-spacing: 0.08em; }
+.ref-foto--versetzt { margin-bottom: var(--space-l); }
+
+/* Register im Schriftfeld-Stil: Rahmen 2 px, Linien 1 px, Mono für Daten. */
+.register-block { margin-top: clamp(var(--space-l), 7vw, 7rem); }
+.register-kopf { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem var(--space-m); margin-bottom: 1rem; }
+.register-kopf h3 { font-size: var(--step-2); font-weight: var(--weight-display); font-stretch: 125%; letter-spacing: var(--tracking-display); line-height: 1.08; }
+.register-kopf .mono { color: var(--color-text-muted); }
+.register {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--color-text);
+  background: var(--color-bg);
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+.register caption { text-align: left; }
+.register th, .register td { padding: 0.7rem 0.9rem; text-align: left; vertical-align: top; }
+.register thead th {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text);
+  white-space: nowrap;
+}
+.register .spalte-betrag { text-align: right; }
+.register tbody th[scope="rowgroup"] {
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+  padding-block: 0.85rem;
+}
+.gruppe__bauherr {
+  display: inline;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-stretch: 125%;
+  font-size: var(--step-1);
+  letter-spacing: var(--tracking-display);
+  margin-right: 1rem;
+}
+.gruppe__leistung {
+  display: inline;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+.register tbody tr:not(.gruppe) td { border-bottom: 1px solid var(--color-border); transition: background-color var(--dur-schnell) var(--ease-out); }
+.register tbody tr:not(.gruppe):hover td { background: var(--color-hover); }
+.register .objekt { font-size: var(--step-0); font-weight: 600; }
+.register .betrag { font-family: var(--font-mono); font-weight: var(--weight-mono-strong); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.register .ort { white-space: nowrap; }
+
+.bereiche { margin-top: clamp(var(--space-l), 6vw, 6rem); display: grid; gap: 1rem; }
+.bereiche h3 { margin-top: 0.5rem; }
+.bereiche ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--color-text);
+}
+.bereiche li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  font-stretch: 118%;
+}
+.bereiche li::before { content: ""; width: 0.6rem; height: 0.6rem; background: var(--color-accent); outline: 1.5px solid var(--color-text); }
+
+/* ---------------------------------------------------------------------------
+   6 · Über mich – asymmetrischer Zweispalter, Steckbrief bricht aus
+--------------------------------------------------------------------------- */
+.ueber {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 40rem) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-l);
+}
+.portraet-spalte { display: grid; gap: 1rem; justify-items: start; }
+.portraet-spalte .demo-hinweis { max-width: 16rem; }
+/* Porträt auf der Bildmarke: Malve-Fläche mit blauem Querbalken, wie im Logo.
+   Kein runder Avatar. Bild nicht hochskaliert (Datei 210 × 220, Anzeige 200). */
+.portraet {
+  position: relative;
+  width: 200px;
+  max-width: 100%;
+  padding-top: 1.5rem;
+  background: var(--color-accent);
+  border: 2px solid var(--color-text);
+  transition: box-shadow var(--dur-normal) var(--ease-out), transform var(--dur-normal) var(--ease-out);
+}
+.portraet::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 42%;
+  height: 0.9rem;
+  background: var(--color-primary);
+}
+.portraet:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 0 var(--color-primary); }
+.portraet img { position: relative; display: block; width: 100%; height: auto; }
+.ueber__text { display: grid; gap: 1.1rem; }
+.ueber__text h2 { margin-bottom: 0.4rem; }
+.steckbrief {
+  border: 2px solid var(--color-text);
+  background: var(--color-bg);
+}
+.steckbrief div {
+  padding: 0.75rem 1rem 0.85rem;
+  border-bottom: 1px solid var(--color-text);
+  transition: background-color var(--dur-schnell) var(--ease-out);
+}
+.steckbrief div:last-child { border-bottom: 0; }
+.steckbrief div:hover { background: var(--color-hover); }
+.steckbrief dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.steckbrief dd { font-weight: 600; }
+.steckbrief dd a {
+  color: var(--color-primary-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+  min-height: 44px;
+}
+.steckbrief dd a:hover { color: var(--color-text); }
+.telefonzeile { display: flex; flex-wrap: wrap; column-gap: 1.25rem; }
+
+/* ---------------------------------------------------------------------------
+   7 · Ablauf – Stationen mit Fortschrittslinie (GSAP scrub, sonst voll)
+--------------------------------------------------------------------------- */
+.ablauf__inhalt { margin-top: var(--space-l); display: grid; gap: 1.25rem; }
+.stationen-wrap { position: relative; --nr: 3rem; }
+.stationen-linie {
+  position: absolute;
+  left: calc(var(--nr) / 2 - 1px);
+  top: 2.2rem;
+  bottom: 2.2rem;
+  width: 2px;
+  background: var(--color-border);
+}
+.stationen-linie span {
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary-strong);
+  transform-origin: top center;
+}
+.stationen { list-style: none; counter-reset: station; position: relative; }
+.station {
+  counter-increment: station;
+  display: grid;
+  grid-template-columns: var(--nr) minmax(0, 24rem) minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  column-gap: var(--space-m);
+  row-gap: 0.5rem;
+  padding-block: 1.4rem;
+  border-top: 1px solid var(--color-border);
+  transition: background-color var(--dur-schnell) var(--ease-out);
+}
+.station:last-child { border-bottom: 1px solid var(--color-border); }
+.station:hover { background: var(--color-surface); }
+.station::before {
+  content: counter(station);
+  grid-row: 1 / span 3;
+  align-self: start;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--nr);
+  height: var(--nr);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono-strong);
+  font-size: var(--step-0);
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: 2px solid var(--color-text);
+  transition: background-color var(--dur-normal) var(--ease-out), color var(--dur-normal) var(--ease-out);
+}
+/* Mit JS: Stationen erst hohl, gefüllt, sobald die Linie sie erreicht. */
+.ablauf--animiert .station::before { background: var(--color-bg); color: var(--color-text); }
+.ablauf--animiert .station.ist-erreicht::before { background: var(--color-text); color: var(--color-bg); }
+.station h3 { grid-column: 2; grid-row: 1 / span 3; align-self: start; min-height: var(--nr); display: flex; align-items: center; font-stretch: 105%; }
+.station p { grid-column: 3; max-width: 58ch; }
+.station > p:first-of-type { grid-row: 1; }
+.station .ergebnis { grid-row: 2; }
+.ergebnis .mono { color: var(--color-text-muted); letter-spacing: 0.08em; margin-right: 0.4rem; }
+.station .cta { grid-column: 3; grid-row: 3; justify-self: start; margin-top: 1rem; }
+
+/* ---------------------------------------------------------------------------
+   8 · Anfrage-Funnel – gerahmter Kasten auf Planraster
+--------------------------------------------------------------------------- */
+.anfrage {
+  --raster-fein: color-mix(in oklch, var(--color-primary) 8%, transparent);
+  --raster-grob: color-mix(in oklch, var(--color-primary) 16%, transparent);
+  background-color: var(--color-surface);
+  background-image:
+    linear-gradient(var(--raster-grob) 1px, transparent 1px),
+    linear-gradient(90deg, var(--raster-grob) 1px, transparent 1px),
+    linear-gradient(var(--raster-fein) 1px, transparent 1px),
+    linear-gradient(90deg, var(--raster-fein) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+.anfrage__raster {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: var(--space-l);
+}
+.anfrage__intro p:not(.kicker) { margin-top: 1.25rem; font-size: var(--step-1); line-height: 1.45; max-width: 44ch; }
+.anfrage__form-spalte { display: grid; gap: 1rem; }
+
+.funnel {
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+  box-shadow: 10px 10px 0 0 var(--color-primary);
+}
+.funnel__kopf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.85rem clamp(1rem, 3vw, 2rem);
+  border-bottom: 2px solid var(--color-text);
+}
+.funnel__kopf .mono { letter-spacing: 0.1em; }
+.funnel__kopf .schrittanzeige { color: var(--color-text-muted); }
+.funnel__balken { height: 5px; background: var(--color-border); }
+.funnel__balken span {
+  display: block;
+  height: 100%;
+  background: var(--color-primary-strong);
+  transform-origin: left center;
+  transform: scaleX(0.3333);
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+[data-schritt="2"] .funnel__balken span { transform: scaleX(0.6667); }
+[data-schritt="3"] .funnel__balken span, [data-schritt="fertig"] .funnel__balken span { transform: scaleX(1); }
+.funnel__koerper { padding: clamp(1.25rem, 3vw, 2rem); }
+.funnel form, .zusatz { display: grid; gap: 1.5rem; }
+.funnel fieldset { border: 0; min-width: 0; display: grid; gap: 1rem; }
+.funnel fieldset:focus { outline: none; }
+.funnel legend, .feldgruppe__titel {
+  float: left;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 118%;
+  font-size: var(--step-1);
+  line-height: 1.25;
+}
+.funnel legend + * { clear: both; }
+.pflicht { color: var(--color-primary-strong); }
+
+.optionen {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
+  gap: 0.6rem;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.25rem;
+  padding: 0.55rem 0.9rem;
+  border: 1.5px solid var(--color-text-muted);
+  background: var(--color-bg);
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color var(--dur-schnell) var(--ease-out), border-color var(--dur-schnell) var(--ease-out), box-shadow var(--dur-schnell) var(--ease-out);
+}
+.option:hover { background: var(--color-hover); border-color: var(--color-text); }
+.option:active { transform: translateY(1px); }
+.option input {
+  /* Gezeichneter Auswahlkreis (20 px sichtbar) auf 44 × 44 px Trefferfläche:
+     sichtbar wie ein normaler Radioknopf, bedienbar wie ein Touch-Ziel. */
+  appearance: none;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin: -0.55rem -0.35rem -0.55rem -0.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 8.5px, var(--color-text-muted) 9px 10.5px, transparent 11px);
+  cursor: pointer;
+}
+.option:hover input { background: radial-gradient(circle, transparent 0 8.5px, var(--color-text) 9px 10.5px, transparent 11px); }
+.option input:checked { background: radial-gradient(circle, var(--color-primary-strong) 0 5px, transparent 5.5px 8.5px, var(--color-primary-strong) 9px 10.5px, transparent 11px); }
+.option input:focus-visible { outline: none; }
+.option:has(input:checked) { border-color: var(--color-primary-strong); box-shadow: inset 0 0 0 1px var(--color-primary-strong); background: var(--color-hover); font-weight: 650; }
+.option:has(input:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+.feld-hinweis {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--color-primary);
+  background: var(--color-surface);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+.feld-fehler {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--color-fehler);
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.feld-fehler::before { content: "!"; flex: none; display: grid; place-items: center; width: 1.2rem; height: 1.2rem; background: var(--color-fehler); color: var(--color-bg); font-family: var(--font-mono); font-size: 0.75rem; }
+
+.feld { display: grid; gap: 0.35rem; }
+.feld label { min-height: 0; font-weight: 600; }
+.feld input[type="text"], .feld input[type="email"], .feld input[type="tel"] {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid var(--color-text-muted);
+  border-radius: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--dur-schnell) var(--ease-out), box-shadow var(--dur-schnell) var(--ease-out);
+}
+.feld input:hover { border-color: var(--color-text); }
+.feld input:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 1px; border-color: var(--color-text); }
+.feld input::placeholder { color: var(--color-text-muted); opacity: 1; }
+.feld input[aria-invalid="true"] { border-color: var(--color-fehler); box-shadow: inset 0 0 0 1px var(--color-fehler); }
+.feld input[type="file"] { max-width: 100%; min-height: 44px; padding: 0.5rem 0; }
+.felder-zwei { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+
+.einwilligung { display: grid; gap: 0.35rem; }
+.einwilligung label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.einwilligung input {
+  /* Gezeichnetes Kästchen (20 px) auf 44 × 44 px Trefferfläche. */
+  appearance: none;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin: -0.7rem -0.5rem -0.5rem -0.75rem;
+  border: 0;
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) center / 17px 17px no-repeat,
+    linear-gradient(var(--color-text-muted), var(--color-text-muted)) center / 20px 20px no-repeat;
+  cursor: pointer;
+}
+.einwilligung input:checked {
+  background:
+    linear-gradient(var(--color-primary-strong), var(--color-primary-strong)) center / 11px 11px no-repeat,
+    linear-gradient(var(--color-bg), var(--color-bg)) center / 16px 16px no-repeat,
+    linear-gradient(var(--color-primary-strong), var(--color-primary-strong)) center / 20px 20px no-repeat;
+}
+.einwilligung input[aria-invalid="true"] {
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) center / 16px 16px no-repeat,
+    linear-gradient(var(--color-fehler), var(--color-fehler)) center / 20px 20px no-repeat;
+}
+.einwilligung input:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -8px; }
+@media (forced-colors: active) {
+  .option input, .einwilligung input { appearance: auto; width: 1.25rem; height: 1.25rem; margin: 0; }
+}
+
+.funnel__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+.funnel__vor { display: flex; gap: 1rem; margin-left: auto; }
+.cta--zurueck { min-height: 3rem; }
+
+.funnel__chip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.9rem;
+  border: 1.5px solid var(--color-primary-strong);
+  background: var(--color-hover);
+  font-size: var(--step--1);
+  justify-self: start;
+}
+.chip-weg {
+  min-height: 44px;
+  padding: 0 0.6rem;
+  background: transparent;
+  border: 0;
+  color: var(--color-primary-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.chip-weg:hover { color: var(--color-text); }
+
+.funnel__fuss {
+  padding: 0.7rem clamp(1rem, 3vw, 2rem);
+  border-top: 2px solid var(--color-text);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.danke { display: grid; gap: 1.25rem; }
+.danke h3 { font-size: var(--step-2); font-weight: var(--weight-display); font-stretch: 125%; letter-spacing: var(--tracking-display); line-height: 1.1; }
+.danke h3:focus { outline: none; }
+.zusatz { margin-top: 0.5rem; padding-top: 1.5rem; border-top: 2px solid var(--color-text); }
+.zusatz .optionen { grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr)); }
+.zusatz__aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.zusatz-danke { font-weight: 600; }
+
+/* ---------------------------------------------------------------------------
+   9 · Footer
+--------------------------------------------------------------------------- */
+.fuss { padding-block: var(--space-l) var(--space-m); }
+.fuss__raster {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-m) var(--space-l);
+}
+.fuss__marke { display: grid; gap: 0.4rem; }
+.fuss__marke img { height: 40px; width: auto; margin-bottom: 0.75rem; }
+.fuss__marke strong { font-weight: 700; }
+.fuss__marke p:last-child { color: var(--color-text-muted-on-dark); }
+.fuss address { font-style: normal; display: grid; gap: 0.1rem; }
+.fuss a { transition: color var(--dur-schnell) var(--ease-out); }
+.fuss address a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.fuss address a:hover, .fuss__recht a:hover { color: var(--color-primary-on-dark); }
+.fuss__aktion { display: grid; gap: var(--space-m); justify-items: start; }
+.fuss__recht {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in oklch, var(--color-text-on-dark) 25%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted-on-dark);
+}
+.fuss__recht a { border-bottom: 1px solid transparent; }
+.fuss__recht a:hover { border-bottom-color: currentColor; }
+
+/* ---------------------------------------------------------------------------
+   Rechtsseiten (Impressum, Datenschutz)
+--------------------------------------------------------------------------- */
+.rechtsseite { min-height: 50vh; }
+.rechtsseite h1 { font-size: var(--step-3); line-height: 1.02; margin-bottom: var(--space-m); }
+.rechtsseite .textlink { margin-top: var(--space-m); }
+
+/* ---------------------------------------------------------------------------
+   Responsive: Desktop und Mobil parallel gebaut
+--------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .ueber { grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); }
+  .steckbrief { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steckbrief div:nth-child(odd) { border-right: 1px solid var(--color-text); }
+  .steckbrief div:nth-last-child(-n + 2) { border-bottom: 0; }
+  .denkmal { grid-template-columns: 1fr; }
+  .denkmal__fotos { justify-content: flex-start; }
+  .anfrage__raster { grid-template-columns: 1fr; }
+  .anfrage__intro p:not(.kicker) { max-width: 60ch; }
+}
+@media (max-width: 1200px) {
+  .leistung-gross { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .wege { grid-template-columns: 1fr; }
+  .leistung-zeile { grid-template-columns: 1fr; }
+  .leistung-zeile .textlink, .partnerzeile .textlink { justify-self: start; }
+  .partnerzeile { grid-template-columns: 1fr; }
+  .station { grid-template-columns: var(--nr) minmax(0, 1fr); }
+  .station h3, .station p, .station .cta { grid-column: 2; }
+  .station > p:first-of-type { grid-row: 2; }
+  .station .ergebnis { grid-row: 3; }
+  .station .cta { grid-row: 4; }
+  .station::before { grid-row: 1 / span 2; }
+  .station h3 { grid-row: 1; font-stretch: 100%; overflow-wrap: break-word; hyphens: auto; }
+  .fuss__raster { grid-template-columns: 1fr 1fr; }
+  .fuss__aktion { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  /* Register: Zeilen als gestapelte Einträge, Gruppenzeile bleibt Kopf. */
+  .register, .register tbody, .register tr, .register td, .register th { display: block; width: 100%; }
+  .register thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .register tbody tr:not(.gruppe) { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--color-border); }
+  .register tbody tr:not(.gruppe) td { border-bottom: 0; padding: 0.1rem 0; }
+  .register tbody tr:not(.gruppe):hover { background: var(--color-hover); }
+  .register tbody tr:not(.gruppe):hover td { background: transparent; }
+  .register td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+  }
+  .register td.objekt::before { display: none; }
+  .register .betrag, .register .spalte-betrag { text-align: left; }
+  .register .ort { white-space: normal; }
+  .gruppe__bauherr, .gruppe__leistung { display: block; }
+  .gruppe__leistung { margin-top: 0.3rem; }
+}
+@media (max-width: 700px) {
+  .ueber { grid-template-columns: 1fr; }
+  .steckbrief { grid-template-columns: 1fr; }
+  .steckbrief div:nth-child(odd) { border-right: 0; }
+  .steckbrief div:nth-last-child(2) { border-bottom: 1px solid var(--color-text); }
+  .felder-zwei { grid-template-columns: 1fr; }
+  .funnel { box-shadow: 6px 6px 0 0 var(--color-primary); }
+  .funnel__nav { flex-direction: column-reverse; align-items: stretch; }
+  .funnel__vor { margin-left: 0; }
+  .funnel__vor .cta { flex: 1; }
+  .fuss__raster { grid-template-columns: 1fr; }
+  .bauherren { font-size: var(--step-1); }
+  .ref-foto--versetzt { margin-bottom: 0; }
+}

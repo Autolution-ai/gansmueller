@@ -87,6 +87,12 @@
   --color-focus: var(--color-primary-strong);      /* 5,7:1 gegen bg */
   --color-focus-on-dark: var(--color-primary-on-dark);
 
+  /* Fehlermeldungen im Formular. Funktionsfarbe, keine Markenfarbe: Die CI
+     hat kein Rot, eine Fehlermeldung braucht aber eine Farbe, die nicht mit
+     Links und Knöpfen (Blau) verwechselt wird. Steht nie allein, immer mit
+     Text am Feld. Gerechnet (WCAG, sRGB aus oklch): 6,8:1 auf --color-bg, 6,2:1 auf --color-surface. */
+  --color-fehler: oklch(0.480 0.160 28);
+
   /* ---------------------------------------------------------------------
      TYPOGRAFIE
      Schriften je Demo wählen (zur Marke passend, Vorgabe des Kunden schlägt
@@ -174,7 +180,9 @@
      1920er Bildschirm über 300px je Seite tot bleiben – der häufigste
      Kritikpunkt an bisherigen Demos.
      Genutzt vom .layout-Raster in styles.css. */
-  --gutter: var(--space-s);   /* Mindestabstand zum Fensterrand */
+  /* Mindestabstand zum Fensterrand. Wächst mit dem Fenster wie der Rand von
+     Header und Hero-Blatt (3vw), damit alle Kanten fluchten. */
+  --gutter: clamp(var(--space-s), 3vw, var(--space-l));
   --maxw-content: 68ch;       /* lesbare Textbreite, 60–75 Zeichen */
   --breakout-extra: 30rem;    /* je Seite zusätzlich für .breakout. Gemessen:
                                  1572px auf 1920px Fenster, also 174px Rand –
