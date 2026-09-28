@@ -40,8 +40,8 @@ Grundlage: `docs/DEMO-SPEC.md`, `quellen/*`,
 
 ## CTA-Hierarchie
 
-- Header: „Projekt unverbindlich prüfen lassen“ → `#anfrage`
-- Hero primär (Vorschlag): „Bauüberwachung für Ihr Projekt anfragen“ → `#anfrage`, `leistung=bauueberwachung`; sekundär Textlink „Referenzliste ansehen“ → `#referenzen`
+- Header: „Projekt prüfen lassen“ (Kurzfassung, Station 2; unter 1100 px „Projekt prüfen“) → `#anfrage`. Der lange Wortlaut „Projekt unverbindlich prüfen lassen“ bleibt für Funnel-H2, Ablauf und Footer
+- Hero primär: „Bauüberwachung anfragen“ (auch in Leistungen, ein Label je Ziel) → `#anfrage`, `leistung=bauueberwachung`; sekundär Textlink „Referenzliste ansehen“ → `#referenzen`
 - Für wen: Zielgruppen-Links belegen Schritt 1 vor
 - Leistungen: je CTA mit `?leistung=`
 - Ablauf: letzte Station → Funnel

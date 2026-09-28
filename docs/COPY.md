@@ -8,6 +8,15 @@ Entwurf vom 2026-09-27, vorgezogen wegen des Termins am 29.09.2026. Grundlage:
 Skills: `website-copy`, `anti-slop` (Zwei-Pass), `seo-basis`, `branchen-wissen`.
 Status: **wartet auf qa-reviewer, dann Freigabe durch Bruno.**
 
+**Nachtrag 2026-09-28 (Phase 5c, Befunde qa-reviewer, im Bau umgesetzt):**
+LPH-9-Punkt aus der LPH-8-Liste als eigener Satz „Danach:“ · ein Label
+„Bauüberwachung anfragen“ für Hero und Leistungen · Header-Kurzfassung
+„Projekt prüfen lassen“ (mobil „Projekt prüfen“) · Steckbrief ohne „über 30
+Jahre“ (steht im Hero-Kicker) · „450“ aus der Referenz-Einleitung · Ablauf-
+Hinweis ehrlicher · Bildunterschrift Berliner Foto wie auf der Altseite ·
+„Mein Büro ist klein, und …“ · Hinweis über 15 Mio. ohne „wir“ (Perspektive
+ich) · H2 „Aus meiner Referenzliste“.
+
 ## Lesehilfe für den Bau
 
 - Alles in **eckigen Klammern** ist ein Quellenvermerk und kommt **nicht** auf
@@ -41,7 +50,7 @@ H2  Projektsteuerung und Bauüberwachung                   #leistungen
   H3  Bauüberwachung (HOAI Leistungsphase 8)              #bauueberwachung
   H3  Baubetreuung                                        #baubetreuung
   H3  Bauberatung                                         #bauberatung
-H2  Auszug aus der Referenzliste                       #referenzen  (dunkles Band, randlos)
+H2  Aus meiner Referenzliste                           #referenzen  (dunkles Band, randlos)
   H3  Altbau und Denkmal
   H3  Alle Objekte nach Bauherr
   H3  Projektbereiche
@@ -87,7 +96,7 @@ lassen" [Briefing], objektbezogen [Transkript].
 >
 > Menü: **Leistungen** (#leistungen) · **Referenzen** (#referenzen) · **Über mich** (#ueber-mich) · **Ablauf** (#ablauf)
 >
-> Dauerhafter CTA: **Projekt unverbindlich prüfen lassen** → `#anfrage`
+> Dauerhafter CTA: **Projekt prüfen lassen** (Kurzfassung, Station 2; unter 1100 px „Projekt prüfen“) → `#anfrage`
 >
 > Mobil: Knopf **Menü** / **Menü schließen** · Sprunglink (nur bei Fokus sichtbar): **Zum Inhalt springen**
 
@@ -99,7 +108,7 @@ lassen" [Briefing], objektbezogen [Transkript].
 
 **Nicht Teil dieses Entwurfs.** Text, H1 und CTA liefert der
 `hero-specialist`, entschieden in Station 2. Vorschlag laut Struktur:
-primär „Bauüberwachung für Ihr Projekt anfragen" (`?leistung=bauueberwachung`),
+primär „Bauüberwachung anfragen" (`?leistung=bauueberwachung`, freigegeben Station 2),
 sekundär Textlink „Referenzliste ansehen" (#referenzen).
 
 **Abstimmung mit dem Hero (bitte an den hero-specialist):**
@@ -207,11 +216,16 @@ Bauüberwacher dort nicht: Transkript. Bewusst **nicht** genannt:
 > - die Koordination der Gewerke und Handwerker
 > - ein Ablaufplan für die Bauzeit und die Überwachung der Termine
 > - Kostenkontrolle sowie Aufmaß- und Rechnungsprüfung, bevor Sie zahlen
-> - die Gewährleistungsabnahme vor Ablauf der Frist und die Übergabe der Revisionsunterlagen
 >
 > **Vergabe:** Auf Wunsch liegt vorher auch die Vergabe bei mir: Leistungsverzeichnisse mit genauer Mengenermittlung, Ausschreibungsunterlagen, Angebotsauswertung und Bieterverhandlungen.
 >
-> **CTA:** Bauüberwachung für Ihr Projekt anfragen → `?leistung=bauueberwachung#anfrage`
+> **Danach:** Auf Wunsch nehme ich vor Ablauf der Gewährleistungsfrist die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.
+>
+> **CTA:** Bauüberwachung anfragen → `?leistung=bauueberwachung#anfrage`
+
+[Nachtrag qa-reviewer 28.09.: Gewährleistungsabnahme und Revisionsunterlagen
+sind Leistungsphase 9, deshalb aus der LPH-8-Liste genommen und ohne
+LPH-Nummer als eigener Satz. Liste jetzt vier Punkte.]
 
 [„HOAI Leistungsphase 8": Transkript, Freigabe Bruno · „Ablaufplan für die Bauzeit" = „Erstellung der Ablaufpläne" · alle fünf Punkte:
 Scrape Leistungen, Abschnitte „Objektüberwachung" und „Objektbetreuung und
@@ -267,7 +281,7 @@ keine Partnernamen, keine Logos]
 
 > *Kicker (p):* Referenzen
 >
-> ## Auszug aus der Referenzliste
+> ## Aus meiner Referenzliste
 >
 > *Label (p):* Bauherren
 >
@@ -278,7 +292,7 @@ Schriftzug, keine Logos (keine vorhanden, nicht nachbauen).]
 
 ### Heller Teil: Einleitung
 
-> Zwanzig Objekte, sortiert nach Bauherr. Zu jedem Objekt stehen Umfang und Bauvolumen, zu jedem Bauherrn meine Leistung. Die Spanne reicht vom Umbau eines Parkdecks bis zur Sanierung von 450 Wohnungen im Plattenbau.
+> Zwanzig Objekte, sortiert nach Bauherr. Zu jedem Objekt stehen Umfang und Bauvolumen, zu jedem Bauherrn meine Leistung. Die Spanne reicht vom Umbau eines Parkdecks bis zur Plattenbausanierung für die HOWOGE.
 
 [20 Zeilen, Parkdeck, 450 WE Plattenbausanierung: PDF. Keine Summe, keine
 Jahreszahl (Bruno, Station 1).]
@@ -298,7 +312,7 @@ Schwammsanierung: Scrape Referenzen (neu formuliert)]
 8820686 noch ausstehend; Ersatz bei Ausfall: Bundschuhstraße 1, liegt schon
 unter `site/assets/images/original/ref-dresden-bundschuhstrasse.jpg`)
 
-> **Andenacher Str./Winterfelsstr. Königswinterstr., Berlin**
+> **Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin** (Bildunterschrift exakt wie Altseite 4.html; Register behält PDF-Schreibweise, Klärung im Termin)
 > Komplexe Altbausanierung mit Strangsanierung, Fassade, Dach, Keller, Treppenhäusern und Außenanlagen, 85 WE
 > Bauherr: HOWOGE mbH · Leistung: Bauüberwachung, Qualitätscontrolling · Bauvolumen: 3.600.000 €
 
@@ -436,7 +450,7 @@ darauf zu sehen ist, steht nirgends (Scrape).
 
 > ## Über mich
 >
-> Mein Büro ist klein. Für Sie heißt das: Sie sprechen mit dem, der Ihr Projekt auch verantwortet.
+> Mein Büro ist klein, und Sie sprechen deshalb mit dem, der Ihr Projekt auch verantwortet.
 >
 > Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.
 >
@@ -449,12 +463,11 @@ Station 1) · Büro- und Mobilnummer: Scrape · Empfehlungen: Briefing
 („hauptsächlich über Empfehlungen"), Transkript · 20 bis 30 Jahre: Briefing
 („teilweise seit 20–30 Jahren"), Transkript]
 
-**Steckbrief (bricht aus, vier Zeilen):**
+**Steckbrief (bricht aus, drei Zeilen; „über 30 Jahre“ steht im Hero-Kicker, Ein-Nennung):**
 
 > **Abschluss** · Dipl.-Ing. (FH) Bauwesen
-> **In der Branche** · über 30 Jahre
 > **Büro** · Berlin seit 2007, vorher im Raum Dresden
-> **Direkt erreichbar** · 030 69 520 364 · mobil 0173 57 31 045
+> **Direkt erreichbar** · 030/ 69 520 364 · mobil 0173/ 57 31 045 (Schreibweise Scrape, wie Hero und Footer)
 
 [Titel: Scrape Impressum · „über 30 Jahre in der Branche": Transkript,
 **nicht** „in Bauüberwachung & Projektsteuerung" (A1) · 2007, Raum Dresden:
@@ -474,7 +487,7 @@ stehen schon unter Leistungen und werden hier nicht noch einmal aufgezählt
 
 **Demo-Hinweis direkt über Station 1:**
 
-> **Demo-Stand:** Die Stationen 1 bis 3 sind ein Entwurf nach dem Vorgespräch. Die Stationen 4 bis 7 folgen dem Leistungsangebot der bisherigen Website. Im Projekt legt René Gansmüller den Einstieg so fest, wie er tatsächlich arbeitet.
+> **Demo-Stand:** Die Stationen 1 bis 3 sind ein Entwurf für die Demo; dass die Beauftragung je Objekt erfolgt, stammt aus dem Vorgespräch. Die Stationen 4 bis 7 folgen dem Leistungsangebot der bisherigen Website. Im Projekt legt René Gansmüller den Einstieg so fest, wie er tatsächlich arbeitet.
 
 > **1 · Anfrage** (H3)
 > Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.
@@ -568,7 +581,7 @@ Punkte) · Verhalten: Bruno, Nachtrag „Privates Eigenheim"]
 **Hinweis bei Auswahl „über 15 Mio. €"** (Absenden bleibt möglich, Anfrage
 wird markiert):
 
-> Das liegt über meinem üblichen Rahmen. Senden Sie Ihre Anfrage ruhig ab, dann sehen Sie im Gespräch, wo ich Ihr Vorhaben unterstützen kann.
+> Das liegt über meinem üblichen Rahmen. Senden Sie Ihre Anfrage ruhig ab, dann klärt sich im Gespräch, wo ich Ihr Vorhaben unterstützen kann.
 
 [Stufen: Bruno, delegierte Entscheidung · Verhalten: Spec · „Rahmen" greift
 das Wort aus „Für wen" auf, ohne die Zahl zu wiederholen]
@@ -653,8 +666,8 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 
 | Ziel | Label | Wo | Ziel-URL |
 |---|---|---|---|
-| Hauptziel Anfrage | **Projekt unverbindlich prüfen lassen** | Header, Ablauf Station 7, Footer | `#anfrage` |
-| Bauüberwachung | **Bauüberwachung für Ihr Projekt anfragen** | Hero (Vorschlag), Leistungen | `?leistung=bauueberwachung#anfrage` |
+| Hauptziel Anfrage | **Projekt unverbindlich prüfen lassen** | Ablauf Station 7, Footer (Header: Kurzfassung **Projekt prüfen lassen**) | `#anfrage` |
+| Bauüberwachung | **Bauüberwachung anfragen** | Hero, Leistungen | `?leistung=bauueberwachung#anfrage` |
 | Projektsteuerung | **Projektsteuerung anfragen** | Leistungen | `?leistung=projektsteuerung#anfrage` |
 | Baubetreuung | **Baubetreuung anfragen** | Leistungen | `?leistung=baubetreuung#anfrage` |
 | Bauberatung | **Bauberatung anfragen** | Leistungen | `?leistung=bauberatung#anfrage` |
