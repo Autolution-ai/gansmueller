@@ -22,3 +22,21 @@ Apify-Läufe (runId): PzyBim9zXJnwH9d8i (Suche HOWOGE), wR9BZQ5j9fG6jWMgr
 
 **Vor dem Live-Gang:** Nennung der Bauherren und Nutzung des HOWOGE-Logos mit
 René Gansmüller klären (Demo-Hinweis steht über dem Band).
+
+## Von Bruno geliefert (2026-09-29)
+
+Bruno hat im Chat vier Logos geschickt, wörtlich: „Hier sind die anderen Logos. Werte diese selbständig auf und bearbeite sie, dass du sie hochwertig im Marquee einbauen kannst." Originale unverändert abgelegt:
+
+| Datei | Maße | Zeigt | Eintrag in der Referenzliste |
+|---|---|---|---|
+| `quellen/logos/argentum-bruno.png` | 201×66 | „ARGENTUM" mit Stier-Bildmarke | Argentum GmbH & Co. KG |
+| `quellen/logos/baubecon-bruno.png` | 219×93 | „BauBeCon Facility Management" | BauBeCon Wohnen GmbH |
+| `quellen/logos/gcv-bruno.png` | 298×86 | „GCV Verwaltungsgesellschaft mbH" | GVC mbH |
+| `quellen/logos/kaufland-bruno.png` | 148×125 | Kaufland-Bildmarke mit Schriftzug | Kaufland Ladenbau GmbH |
+
+**Abweichungen, zu klären mit René Gansmüller (nicht aufgelöst):**
+- Referenzliste „GVC mbH", Logo „GCV Verwaltungsgesellschaft mbH" (Buchstabendreher in einer der beiden Quellen?).
+- Referenzliste „BauBeCon Wohnen GmbH", Logo „BauBeCon Facility Management".
+- Referenzliste „Kaufland Ladenbau GmbH", Logo ist die Handelsmarke Kaufland.
+
+Ortus GmbH & Co. KG: kein Logo geliefert, bleibt Wortmarke.
