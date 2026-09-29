@@ -319,8 +319,153 @@ function initVorbelegung() {
   });
 }
 
+/* ---------------------------------------------------------------------------
+   Bauherren-Band: Knopf zum Anhalten/Abspielen (CSS-Animation). Hover und
+   Fokus halten das Band per CSS an; bei reduzierter Bewegung läuft nichts,
+   der Knopf bleibt dann ausgeblendet (CSS).
+--------------------------------------------------------------------------- */
+function initMarquee() {
+  const band = document.querySelector("[data-marquee]");
+  const knopf = document.querySelector("[data-marquee-knopf]");
+  if (!band || !knopf) return;
+  const text = knopf.querySelector("[data-marquee-knopf-text]");
+  knopf.hidden = false;
+  knopf.addEventListener("click", () => {
+    const angehalten = band.classList.toggle("marquee--angehalten");
+    knopf.setAttribute("aria-pressed", String(angehalten));
+    text.textContent = angehalten ? "Band abspielen" : "Band anhalten";
+  });
+}
+
+/* ---------------------------------------------------------------------------
+   Register einklappen: die ersten 6 Objektzeilen sichtbar, der Rest per Knopf.
+   Ohne JS bleibt die Tabelle vollständig offen.
+--------------------------------------------------------------------------- */
+function initRegister() {
+  const karte = document.querySelector("[data-register]");
+  const knopf = document.querySelector("[data-register-knopf]");
+  if (!karte || !knopf) return;
+  const text = knopf.querySelector("[data-register-knopf-text]");
+  const SICHTBAR = 6;
+  // Alle Zeilen nach der 6. Objektzeile, einschließlich späterer Gruppenköpfe.
+  const zeilen = [...karte.querySelectorAll("tbody tr")];
+  let objekte = 0;
+  const weitere = zeilen.filter((tr) => {
+    if (!tr.classList.contains("gruppe")) objekte++;
+    return objekte > SICHTBAR || (tr.classList.contains("gruppe") && objekte >= SICHTBAR);
+  });
+  const setzen = (offen) => {
+    weitere.forEach((tr) => { tr.hidden = !offen; });
+    karte.classList.toggle("ist-eingeklappt", !offen);
+    knopf.setAttribute("aria-expanded", String(offen));
+    text.textContent = offen ? "Weniger anzeigen" : "Alle 20 Objekte anzeigen";
+  };
+  knopf.hidden = false;
+  setzen(false);
+  knopf.addEventListener("click", () => {
+    const offen = knopf.getAttribute("aria-expanded") !== "true";
+    setzen(offen);
+    // Beim Einklappen springt der Knopf nach oben: im Blick behalten.
+    if (!offen) knopf.scrollIntoView({ block: "nearest" });
+    knopf.focus({ preventScroll: true });
+  });
+}
+
+/* ---------------------------------------------------------------------------
+   Ablauf: ab 900 px Tabs mit einem Detailfeld (WAI-ARIA Tabs, automatische
+   Aktivierung, Pfeiltasten, Pos1/Ende). Die Liste bleibt im Dokument und ist
+   darunter (mobil, ohne JS) die sichtbare Fassung.
+--------------------------------------------------------------------------- */
+function initZeitstrahl() {
+  const wurzel = document.querySelector("[data-zeitstrahl]");
+  if (!wurzel) return;
+  const stationen = [...wurzel.querySelectorAll(".zs-station")].map((li) => ({
+    nr: li.dataset.station,
+    titel: li.querySelector(".zs-titel").innerHTML,
+    text: li.querySelector(".zs-beschreibung").textContent,
+    ergebnis: li.querySelector(".zs-ergebnis__text").textContent,
+    details: li.querySelector("details")
+  }));
+
+  // Mobil: Beschreibungen eingeklappt (ohne JS bleiben sie offen).
+  const mobil = window.matchMedia("(max-width: 899px)");
+  const mobilSetzen = () => stationen.forEach((s) => { s.details.open = !mobil.matches; });
+  mobilSetzen();
+  mobil.addEventListener("change", mobilSetzen);
+
+  const zweistellig = (n) => String(n).padStart(2, "0");
+  const tabs = document.createElement("div");
+  tabs.className = "zs-tabs";
+  tabs.innerHTML = `
+    <p class="zs-abschnitte" aria-hidden="true">
+      <span class="label zs-abschnitt zs-abschnitt--vor">Bevor es losgeht</span>
+      <span class="label zs-abschnitt zs-abschnitt--bau">Am Bau</span>
+    </p>
+    <div class="zs-tabliste" role="tablist" aria-label="Stationen der Zusammenarbeit">
+      <span class="zs-linie" aria-hidden="true"><span></span></span>
+      ${stationen.map((s) => `
+        <button class="zs-tab" type="button" role="tab" id="zs-tab-${s.nr}"
+          aria-controls="zs-panel" aria-selected="false" tabindex="-1">
+          <span class="zs-nr" aria-hidden="true">${zweistellig(s.nr)}</span>
+          <span>${s.titel}</span>
+        </button>`).join("")}
+    </div>
+    <div class="zs-unten">
+      <div class="zs-panel" id="zs-panel" role="tabpanel" tabindex="0">
+        <span class="zs-panel__nr" aria-hidden="true"></span>
+        <h3 data-panel-titel></h3>
+        <p data-panel-text></p>
+        <p class="zs-panel__ergebnis"><span class="zs-ergebnis__label">Ergebnis</span><span data-panel-ergebnis></span></p>
+      </div>
+    </div>`;
+  const abschluss = wurzel.querySelector(".zs-abschluss");
+  wurzel.insertBefore(tabs, abschluss);
+  tabs.querySelector(".zs-unten").appendChild(abschluss.cloneNode(true));
+  abschluss.classList.add("zs-abschluss--liste");
+  wurzel.classList.add("zeitstrahl--tabs");
+
+  const knoepfe = [...tabs.querySelectorAll('[role="tab"]')];
+  const panel = tabs.querySelector('[role="tabpanel"]');
+
+  function waehlen(index, { fokus = false } = {}) {
+    const s = stationen[index];
+    knoepfe.forEach((k, i) => {
+      const aktiv = i === index;
+      k.setAttribute("aria-selected", String(aktiv));
+      k.tabIndex = aktiv ? 0 : -1;
+      k.classList.toggle("zs-tab--erreicht", i < index);
+    });
+    tabs.dataset.aktiv = s.nr;
+    panel.setAttribute("aria-labelledby", `zs-tab-${s.nr}`);
+    panel.querySelector(".zs-panel__nr").textContent = zweistellig(s.nr);
+    panel.querySelector("[data-panel-titel]").innerHTML = s.titel;
+    panel.querySelector("[data-panel-text]").textContent = s.text;
+    panel.querySelector("[data-panel-ergebnis]").textContent = " " + s.ergebnis;
+    if (fokus) knoepfe[index].focus();
+  }
+
+  knoepfe.forEach((k, i) => {
+    k.addEventListener("click", () => waehlen(i));
+    k.addEventListener("keydown", (e) => {
+      const letzte = knoepfe.length - 1;
+      let ziel = null;
+      if (e.key === "ArrowRight") ziel = i === letzte ? 0 : i + 1;
+      else if (e.key === "ArrowLeft") ziel = i === 0 ? letzte : i - 1;
+      else if (e.key === "Home") ziel = 0;
+      else if (e.key === "End") ziel = letzte;
+      if (ziel === null) return;
+      e.preventDefault();
+      waehlen(ziel, { fokus: true });
+    });
+  });
+  waehlen(0);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMenue();
   initAnker();
   initVorbelegung();
+  initMarquee();
+  initRegister();
+  initZeitstrahl();
 });

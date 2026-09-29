@@ -115,6 +115,39 @@
     </div>
   </section>
 
+  <!-- BAUHERREN-BAND – Namen: Referenzliste.pdf; Logo HOWOGE: quellen/logos.md.
+       Übrige als Wortmarke. Reines CSS, pausiert bei Hover/Fokus und per Knopf,
+       bei reduzierter Bewegung statische Reihe. Das Duplikat ist aria-hidden. -->
+  <section class="layout marquee-band" aria-labelledby="bauherren-titel">
+    <div class="breakout marquee-kopf">
+      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Die Namen stammen aus der Referenzliste der bisherigen Website, das HOWOGE-Logo von der eigenen Website der HOWOGE. Vor dem Live-Gang klärt René Gansmüller, wer genannt werden darf.</p>
+      <div class="marquee-zeile">
+        <h2 class="label marquee-titel" id="bauherren-titel">Bauherren aus meiner Referenzliste</h2>
+        <button class="marquee-knopf" type="button" aria-pressed="false" data-marquee-knopf hidden><span class="marquee-knopf__zeichen" aria-hidden="true"></span><span data-marquee-knopf-text>Band anhalten</span></button>
+      </div>
+    </div>
+    <div class="full marquee" data-marquee>
+      <div class="marquee__spur">
+        <ul class="marquee__liste">
+            <li class="marquee__eintrag"><img src="assets/images/logos/howoge.svg" alt="HOWOGE mbH" width="108" height="36"></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Argentum GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">BauBeCon Wohnen GmbH</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">GVC mbH</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Kaufland Ladenbau GmbH</span></li>
+        </ul>
+        <ul class="marquee__liste marquee__liste--kopie" aria-hidden="true">
+            <li class="marquee__eintrag"><img src="assets/images/logos/howoge.svg" alt="" width="108" height="36"></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Argentum GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">BauBeCon Wohnen GmbH</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">GVC mbH</span></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Kaufland Ladenbau GmbH</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- 2 · FÜR WEN – zwei getrennte Wege (§9), abgesetzte Fläche -->
   <section class="layout" id="fuer-wen" aria-labelledby="fuer-wen-titel">
     <div class="full panel abschnitt layout">
@@ -207,18 +240,6 @@
       <h2 id="referenzen-titel">Aus meiner Referenzliste</h2>
     </header>
 
-    <div class="breakout bauherren-block">
-      <p class="label">Bauherren</p>
-      <ul class="bauherren">
-        <li><strong>HOWOGE mbH</strong><span>2 Objekte</span></li>
-        <li><strong>Argentum GmbH &amp; Co. KG</strong><span>10 Objekte</span></li>
-        <li><strong>Ortus GmbH &amp; Co. KG</strong><span>2 Objekte</span></li>
-        <li><strong>BauBeCon Wohnen GmbH</strong><span>3 Objekte</span></li>
-        <li><strong>GVC mbH</strong><span>1 Objekt</span></li>
-        <li><strong>Kaufland Ladenbau GmbH</strong><span>2 Objekte</span></li>
-      </ul>
-    </div>
-
     <p class="ref-intro breakout">Zwanzig Objekte, sortiert nach Bauherr. Zu jedem Objekt stehen Umfang und Bauvolumen, zu jedem Bauherrn meine Leistung. Die Spanne reicht vom Umbau eines Parkdecks bis zur Plattenbausanierung für die HOWOGE.</p>
 
     <div class="breakout denkmal">
@@ -249,19 +270,19 @@
         <h3>Alle Objekte nach Bauherr</h3>
         <p class="label">WE = Wohneinheiten</p>
       </div>
-      <div class="karte register-karte">
+      <div class="karte register-karte" id="register-tabelle" data-register>
       <table class="register">
         <caption class="vh">Referenzobjekte nach Bauherr</caption>
         <thead>
           <tr><th scope="col">Objekt</th><th scope="col">Ort</th><th scope="col">Umfang</th><th scope="col" class="spalte-betrag">Bauvolumen in €</th></tr>
         </thead>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">HOWOGE mbH</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">HOWOGE mbH</span> <span class="gruppe__zahl">2 Objekte</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
           <tr><td class="objekt">Rostocker Str./Woldecker Str.</td><td class="ort">Berlin</td><td class="umfang">Plattenbausanierung (Strangsanierung, Treppenhäuser, Keller, Hauseingänge, Dach), 450 WE</td><td class="betrag">4.500.000</td></tr>
           <tr><td class="objekt">Andenacher Str./Winterfelsstr. Königswinterstr.</td><td class="ort">Berlin</td><td class="umfang">Komplexe Altbausanierung (Strangsanierung, Fassade, Dach, Keller, Treppenhäuser, Außenanlagen), 85 WE</td><td class="betrag">3.600.000</td></tr>
         </tbody>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Argentum GmbH &amp; Co. KG</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Argentum GmbH &amp; Co. KG</span> <span class="gruppe__zahl">10 Objekte</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
           <tr><td class="objekt">Loisenstraße 10</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 24 WE (Einzeldenkmal)</td><td class="betrag">950.000</td></tr>
           <tr><td class="objekt">Heynathsstraße 16</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag">650.000</td></tr>
           <tr><td class="objekt">Moritzburger Str. 15</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 22 WE (Einzeldenkmal)</td><td class="betrag">850.000</td></tr>
@@ -274,27 +295,28 @@
           <tr><td class="objekt">Eduard-Bilz-Str. 49</td><td class="ort">Radebeul</td><td class="umfang">Komplexe Sanierung einer denkmalgeschützten Villa</td><td class="betrag">1.350.000</td></tr>
         </tbody>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Ortus GmbH &amp; Co. KG</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Ortus GmbH &amp; Co. KG</span> <span class="gruppe__zahl">2 Objekte</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
           <tr><td class="objekt">Weimarische Str. 12</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 12 WE (Einzeldenkmal)</td><td class="betrag">650.000</td></tr>
           <tr><td class="objekt">Zwickauer Str. 128</td><td class="ort">Dresden</td><td class="umfang">Komplexe Altbausanierung, 16 WE (Einzeldenkmal)</td><td class="betrag">750.000</td></tr>
         </tbody>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">BauBeCon Wohnen GmbH</span> <span class="gruppe__leistung">Leistung: Ausschreibung, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">BauBeCon Wohnen GmbH</span> <span class="gruppe__zahl">3 Objekte</span> <span class="gruppe__leistung">Leistung: Ausschreibung, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling</span></th></tr>
           <tr><td class="objekt">120 WE im Stadtgebiet Berlin</td><td class="ort">Berlin</td><td class="umfang">Teilsanierung einzelner Leer-WE, verteilt im Stadtgebiet</td><td class="betrag">1.350.000</td></tr>
           <tr><td class="objekt">24 Liegenschaften im Stadtgebiet Berlin</td><td class="ort">Berlin</td><td class="umfang">Teilsanierung von Dächern, Fassaden, Treppenhäusern, Kellern, Heizungsanlagen</td><td class="betrag">1.500.000</td></tr>
           <tr><td class="objekt">Linienstraße 56</td><td class="ort">Brandenburg</td><td class="umfang">Teilsanierung von 6 Leer-WE</td><td class="betrag">140.000</td></tr>
         </tbody>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">GVC mbH</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">GVC mbH</span> <span class="gruppe__zahl">1 Objekt</span> <span class="gruppe__leistung">Leistung: Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung</span></th></tr>
           <tr><td class="objekt">Dresdner Str. 36</td><td class="ort">Kreischa</td><td class="umfang">Neubau eines Edeka Lebensmittelmarktes</td><td class="betrag">650.000</td></tr>
         </tbody>
         <tbody>
-          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Kaufland Ladenbau GmbH</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
+          <tr class="gruppe"><th scope="rowgroup" colspan="4"><span class="gruppe__bauherr">Kaufland Ladenbau GmbH</span> <span class="gruppe__zahl">2 Objekte</span> <span class="gruppe__leistung">Leistung: Bauüberwachung, Qualitätscontrolling</span></th></tr>
           <tr><td class="objekt">Kaufland Schönerberger Str. 7</td><td class="ort">Berlin</td><td class="umfang">Umbau eines Parkdecks</td><td class="betrag">45.000</td></tr>
           <tr><td class="objekt">Kaufland Strausberg</td><td class="ort">Strausberg</td><td class="umfang">Neubau von 2 Werbeanlagen</td><td class="betrag">55.000</td></tr>
         </tbody>
       </table>
       </div>
+      <button class="btn btn--kontur btn--klein register-knopf" type="button" aria-expanded="true" aria-controls="register-tabelle" data-register-knopf hidden><span data-register-knopf-text>Weniger anzeigen</span></button>
     </div>
 
     <div class="breakout bereiche">
@@ -308,6 +330,8 @@
         <li>Krankenhäuser</li>
       </ul>
     </div>
+
+    <p class="breakout referenzen-cta"><a class="btn" href="#anfrage">Ähnliches Vorhaben? Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a></p>
   </section>
 
   <!-- 6 · ÜBER MICH – abgesetzte Fläche: Porträt, Text, Steckbrief -->
@@ -339,7 +363,9 @@
     </div>
   </section>
 
-  <!-- 7 · ABLAUF – Karten mit großer Ziffer (echte Reihenfolge) -->
+  <!-- 7 · ABLAUF – Zeitstrahl. Mobil und ohne JS: senkrechte Liste, Beschreibung
+       in <details>. Ab 900 px baut main.js daraus Tabs mit einem Detailfeld.
+       Texte unverändert aus docs/COPY.md, keine Dauern an der Linie (§3). -->
   <section class="abschnitt layout ablauf" id="ablauf" aria-labelledby="ablauf-titel">
     <header class="breakout abschnitt-kopf">
       <p class="kicker">Ablauf</p>
@@ -347,48 +373,107 @@
     </header>
     <div class="breakout ablauf__inhalt">
       <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Die Stationen 1 bis 3 sind ein Entwurf für die Demo; dass die Beauftragung je Objekt erfolgt, stammt aus dem Vorgespräch. Die Stationen 4 bis 7 folgen dem Leistungsangebot der bisherigen Website. Im Projekt legt René Gansmüller den Einstieg so fest, wie er tatsächlich arbeitet.</p>
-      <div class="stationen-raster">
-        <ol class="stationen">
-          <li class="station karte">
-            <h3>Anfrage</h3>
-            <p>Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Erstgespräch</h3>
-            <p>Sie schildern Ihr Vorhaben und bekommen die Rückfragen, die ein Bauingenieur dazu hat.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie wissen, welche Leistung Ihr Projekt braucht und in welchem Umfang.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Beauftragung für Ihr Objekt</h3>
-            <p>Sie vergeben den Auftrag für dieses eine Vorhaben.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Eine klare Vereinbarung für ein Objekt, ohne Bindung darüber hinaus.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Bestandsaufnahme und Beratung</h3>
-            <p>Bei Sanierung und Modernisierung steht die Prüfung der vorhandenen Substanz am Anfang.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie planen mit einer Kostenschätzung, die den tatsächlichen Zustand kennt.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Vergabe</h3>
-            <p>Ich bereite die Vergabe vor und begleite sie bis zum Auftrag an die Firma.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie vergeben auf Grundlage vergleichbarer Angebote.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Objektüberwachung</h3>
-            <p>Die Überwachung läuft, bis das Objekt fertig ist.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Sie zahlen, was geprüft und aufgemessen ist.</p></div>
-          </li>
-          <li class="station karte">
-            <h3>Gewährleistungs&shy;abnahme und Dokumentation</h3>
-            <p>Vor Ablauf der Gewährleistungsfrist nehme ich die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.</p>
-            <div class="ergebnis"><span class="ergebnis__label">Ergebnis</span><p>Mängel kommen auf den Tisch, solange die Firmen noch dafür einstehen.</p></div>
-          </li>
-        </ol>
-        <div class="station-abschluss">
-          <a class="btn" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
-          <a class="station-abschluss__tel" href="tel:+493069520364"><span class="label">Telefon</span>030/ 69 520 364</a>
+      <div class="zeitstrahl" data-zeitstrahl>
+        <div class="zs-gruppen" data-zs-liste>
+          <div class="zs-gruppe">
+            <p class="label zs-gruppe__titel">Bevor es losgeht</p>
+            <ol class="zs-liste">
+            <li class="zs-station" id="station-1" data-station="1">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">01</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Anfrage</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.</p>
+              </details>
+            </li>
+            <li class="zs-station" id="station-2" data-station="2">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">02</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Erstgespräch</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Sie wissen, welche Leistung Ihr Projekt braucht und in welchem Umfang.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Sie schildern Ihr Vorhaben und bekommen die Rückfragen, die ein Bauingenieur dazu hat.</p>
+              </details>
+            </li>
+            <li class="zs-station" id="station-3" data-station="3">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">03</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Beauftragung für Ihr Objekt</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Eine klare Vereinbarung für ein Objekt, ohne Bindung darüber hinaus.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Sie vergeben den Auftrag für dieses eine Vorhaben.</p>
+              </details>
+            </li>
+            </ol>
+          </div>
+          <div class="zs-gruppe">
+            <p class="label zs-gruppe__titel">Am Bau</p>
+            <ol class="zs-liste" start="4">
+            <li class="zs-station" id="station-4" data-station="4">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">04</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Bestandsaufnahme und Beratung</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Sie planen mit einer Kostenschätzung, die den tatsächlichen Zustand kennt.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Bei Sanierung und Modernisierung steht die Prüfung der vorhandenen Substanz am Anfang.</p>
+              </details>
+            </li>
+            <li class="zs-station" id="station-5" data-station="5">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">05</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Vergabe</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Sie vergeben auf Grundlage vergleichbarer Angebote.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Ich bereite die Vergabe vor und begleite sie bis zum Auftrag an die Firma.</p>
+              </details>
+            </li>
+            <li class="zs-station" id="station-6" data-station="6">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">06</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Objektüberwachung</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Sie zahlen, was geprüft und aufgemessen ist.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Die Überwachung läuft, bis das Objekt fertig ist.</p>
+              </details>
+            </li>
+            <li class="zs-station" id="station-7" data-station="7">
+              <details class="zs-details" open>
+                <summary class="zs-kopf">
+                  <span class="zs-nr" aria-hidden="true">07</span>
+                  <span class="zs-kopftext">
+                    <h3 class="zs-titel">Gewährleistungs&shy;abnahme und Dokumentation</h3>
+                    <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Mängel kommen auf den Tisch, solange die Firmen noch dafür einstehen.</span></span>
+                  </span>
+                </summary>
+                <p class="zs-beschreibung">Vor Ablauf der Gewährleistungsfrist nehme ich die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.</p>
+              </details>
+            </li>
+            </ol>
+          </div>
         </div>
+        <p class="zs-abschluss">
+          <a class="btn" href="#anfrage">Projekt unverbindlich prüfen lassen<span class="mass" aria-hidden="true"></span></a>
+          <a class="zs-abschluss__tel" href="tel:+493069520364"><span class="label">Telefon</span>030/ 69 520 364</a>
+        </p>
       </div>
     </div>
   </section>
