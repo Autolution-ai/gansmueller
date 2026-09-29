@@ -439,9 +439,6 @@ function initZeitstrahl() {
           <span>${s.titel}</span>
         </button>`).join("")}
     </div>
-    <button class="zs-auto" type="button" aria-pressed="true" data-zs-auto>
-      <span class="zs-auto__zeichen" aria-hidden="true"></span>Stationen automatisch weiterschalten
-    </button>
     <div class="zs-unten">
       <div class="zs-panel" id="zs-panel" role="tabpanel" tabindex="0">
         <span class="zs-panel__nr" aria-hidden="true"></span>
@@ -486,8 +483,7 @@ function initZeitstrahl() {
   // ---- Autoplay ------------------------------------------------------------
   const reduziert = window.matchMedia("(prefers-reduced-motion: reduce)");
   const breit = window.matchMedia("(min-width: 900px)");
-  const zustand = { sichtbar: false, hover: false, fokus: false, ruhe: false, aus: false };
-  const autoKnopf = tabs.querySelector("[data-zs-auto]");
+  const zustand = { sichtbar: false, hover: false, fokus: false, ruhe: false };
   let lauf = null;
   let ruheUhr = null;
 
@@ -497,7 +493,7 @@ function initZeitstrahl() {
     return Math.round(Math.min(9000, Math.max(6500, 3000 + zeichen * 30)));
   };
   const darfLaufen = () => !reduziert.matches && breit.matches && zustand.sichtbar
-    && !zustand.hover && !zustand.fokus && !zustand.ruhe && !zustand.aus && !document.hidden;
+    && !zustand.hover && !zustand.fokus && !zustand.ruhe && !document.hidden;
 
   function melden() {
     tabs.dataset.autoplay = !lauf ? "aus" : lauf.playState === "running" ? "laeuft" : "pausiert";
@@ -547,15 +543,6 @@ function initZeitstrahl() {
       vonHand();
       waehlen(ziel, { fokus: true });
     });
-  });
-
-  // Sichtbarer Schalter (WCAG 2.2.2): Autoplay dauerhaft aus- und wieder
-  // einschalten. Bei reduzierter Bewegung blendet CSS ihn aus.
-  autoKnopf.addEventListener("click", () => {
-    zustand.aus = !zustand.aus;
-    autoKnopf.setAttribute("aria-pressed", String(!zustand.aus));
-    if (zustand.aus && lauf) { lauf.cancel(); lauf = null; }
-    melden();
   });
 
   tabs.addEventListener("mouseenter", () => { zustand.hover = true; pruefen(); });
