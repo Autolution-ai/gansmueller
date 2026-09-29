@@ -310,20 +310,20 @@ und H2 „Aus meiner Referenzliste" stehen seitdem am Kopf der Referenzen.
 
 **Demo-Hinweis direkt über dem Band (dritte Person):**
 
-> **Demo-Stand:** Namen aus der Referenzliste der bisherigen Website, HOWOGE-Logo von der Website der HOWOGE. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.
+> **Demo-Stand:** Namen aus der bisherigen Referenzliste, HOWOGE-Logo von deren Website, übrige Logos von Bruno. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.
 
-[Seit 2026-09-29 gekürzt, damit der Hinweis auf dem Desktop in einer Zeile steht. Aussage unverändert.]
+[Stand 2026-09-29, zweite Fassung: Herkunft der vier gelieferten Logos
+ergänzt, auf dem Desktop einzeilig.]
 
 > *H2 als Label:* Bauherren aus meiner Referenzliste
 >
-> HOWOGE mbH (Logo) · Argentum GmbH & Co. KG · Ortus GmbH & Co. KG · BauBeCon Wohnen GmbH · GVC mbH · Kaufland Ladenbau GmbH
->
-> *Knopf:* Band anhalten / Band abspielen
+> HOWOGE mbH (Logo) · Argentum GmbH & Co. KG (Logo) · Ortus GmbH & Co. KG (Wortmarke) · BauBeCon Wohnen GmbH (Logo) · GVC mbH (Logo) · Kaufland Ladenbau GmbH (Logo)
 
-[Namen exakt nach PDF, Spalte „Bauherr" · Logo nur HOWOGE, Datei und
-Herkunft in `quellen/logos.md` · alle anderen als Wortmarke (kein
-eindeutiges Logo oder nicht geprüft, Begründung dort) · Alt-Text des Logos
-„HOWOGE mbH", im Duplikat leer (aria-hidden)]
+[Namen und Alt-Texte exakt nach PDF, Spalte „Bauherr", auch wo das Logo
+anders lautet (GCV, BauBeCon Facility Management, Kaufland-Handelsmarke):
+die Abweichungen stehen in `quellen/logos.md` und werden im Termin geklärt ·
+Alt-Texte in den drei Kopien leer (aria-hidden) · Knopf „Band anhalten“
+auf Brunos Wunsch entfernt, Pause bei Hover bleibt]
 
 ### Kopf der Referenzen
 
@@ -735,7 +735,6 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 | Referenzen | Referenzliste ansehen (Textlink) | Hero (Vorschlag) | `#referenzen` |
 | Hauptziel aus den Referenzen | **Ähnliches Vorhaben? Projekt prüfen lassen** | unter den Referenzen | `#anfrage` |
 | Register | Alle 20 Objekte anzeigen · Weniger anzeigen | Referenzen | – (klappt auf) |
-| Band | Band anhalten · Band abspielen | Bauherren-Band | – |
 | Funnel | Weiter · Zurück · **Anfrage absenden** · Angaben ergänzen · Zurück zur Seite | Funnel | – |
 
 Ein Label je Ziel, keine Varianten. Die H2 des Funnels („Lassen Sie Ihr

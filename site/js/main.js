@@ -320,24 +320,6 @@ function initVorbelegung() {
 }
 
 /* ---------------------------------------------------------------------------
-   Bauherren-Band: Knopf zum Anhalten/Abspielen (CSS-Animation). Hover und
-   Fokus halten das Band per CSS an; bei reduzierter Bewegung läuft nichts,
-   der Knopf bleibt dann ausgeblendet (CSS).
---------------------------------------------------------------------------- */
-function initMarquee() {
-  const band = document.querySelector("[data-marquee]");
-  const knopf = document.querySelector("[data-marquee-knopf]");
-  if (!band || !knopf) return;
-  const text = knopf.querySelector("[data-marquee-knopf-text]");
-  knopf.hidden = false;
-  knopf.addEventListener("click", () => {
-    const angehalten = band.classList.toggle("marquee--angehalten");
-    knopf.setAttribute("aria-pressed", String(angehalten));
-    text.textContent = angehalten ? "Band abspielen" : "Band anhalten";
-  });
-}
-
-/* ---------------------------------------------------------------------------
    Register einklappen: die ersten 6 Objektzeilen sichtbar, der Rest per Knopf.
    Ohne JS bleibt die Tabelle vollständig offen.
 --------------------------------------------------------------------------- */
@@ -465,7 +447,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMenue();
   initAnker();
   initVorbelegung();
-  initMarquee();
   initRegister();
   initZeitstrahl();
 });

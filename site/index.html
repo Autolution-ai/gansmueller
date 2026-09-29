@@ -115,34 +115,64 @@
     </div>
   </section>
 
-  <!-- BAUHERREN-BAND – Namen: Referenzliste.pdf; Logo HOWOGE: quellen/logos.md.
-       Übrige als Wortmarke. Reines CSS, pausiert bei Hover/Fokus und per Knopf,
-       bei reduzierter Bewegung statische Reihe. Das Duplikat ist aria-hidden. -->
+  <!-- BAUHERREN-BAND – Namen und Alt-Texte: Referenzliste.pdf. Logos: HOWOGE von
+       deren Website, die übrigen vier von Bruno geliefert und vektorisiert
+       (quellen/logos.md). Ortus als Wortmarke. Reines CSS: läuft langsam, hält bei
+       Hover an, bei reduzierter Bewegung statische Reihe. Drei Kopien aria-hidden,
+       damit das Band auch auf breiten Fenstern lückenlos gefüllt ist. -->
   <section class="layout marquee-band" aria-labelledby="bauherren-titel">
     <div class="breakout marquee-kopf">
-      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Namen aus der Referenzliste der bisherigen Website, HOWOGE-Logo von der Website der HOWOGE. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.</p>
-      <div class="marquee-zeile">
-        <h2 class="label marquee-titel" id="bauherren-titel">Bauherren aus meiner Referenzliste</h2>
-        <button class="marquee-knopf" type="button" aria-pressed="false" data-marquee-knopf hidden><span class="marquee-knopf__zeichen" aria-hidden="true"></span><span data-marquee-knopf-text>Band anhalten</span></button>
-      </div>
+      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Namen aus der bisherigen Referenzliste, HOWOGE-Logo von deren Website, übrige Logos von Bruno. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.</p>
+      <h2 class="label marquee-titel" id="bauherren-titel">Bauherren aus meiner Referenzliste</h2>
     </div>
+    <!-- Einfärbung der Logos im Ruhezustand: exakt --color-text-muted (flood-color per CSS).
+         „negativ“: HOWOGE hat weiße Schrift auf eigener Fläche; die Fläche wird eingefärbt,
+         die Schrift bleibt ausgespart. -->
+    <svg class="svg-filter" aria-hidden="true" focusable="false" width="0" height="0">
+      <filter id="logo-mono" color-interpolation-filters="sRGB">
+        <feFlood class="logo-mono-farbe"/>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+      <filter id="logo-mono-negativ" color-interpolation-filters="sRGB">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -0.4316 -1.4519 -0.1466 0 2.0301" result="flaeche"/>
+        <feComposite in="flaeche" in2="SourceAlpha" operator="in" result="maske"/>
+        <feFlood class="logo-mono-farbe"/>
+        <feComposite in2="maske" operator="in"/>
+      </filter>
+    </svg>
     <div class="full marquee" data-marquee>
       <div class="marquee__spur">
         <ul class="marquee__liste">
-            <li class="marquee__eintrag"><img src="assets/images/logos/howoge.svg" alt="HOWOGE mbH" width="108" height="36"></li>
-            <li class="marquee__eintrag"><span class="wortmarke">Argentum GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--howoge marquee__logo--negativ" src="assets/images/logos/howoge.svg" alt="HOWOGE mbH" width="108" height="36"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--argentum" src="assets/images/logos/argentum.svg" alt="Argentum GmbH &amp; Co. KG" width="175" height="35"></li>
             <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">BauBeCon Wohnen GmbH</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">GVC mbH</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">Kaufland Ladenbau GmbH</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--baubecon" src="assets/images/logos/baubecon.svg" alt="BauBeCon Wohnen GmbH" width="173" height="37"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--gcv" src="assets/images/logos/gcv.svg" alt="GVC mbH" width="147" height="43"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--kaufland" src="assets/images/logos/kaufland.svg" alt="Kaufland Ladenbau GmbH" width="53" height="53"></li>
         </ul>
         <ul class="marquee__liste marquee__liste--kopie" aria-hidden="true">
-            <li class="marquee__eintrag"><img src="assets/images/logos/howoge.svg" alt="" width="108" height="36"></li>
-            <li class="marquee__eintrag"><span class="wortmarke">Argentum GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--howoge marquee__logo--negativ" src="assets/images/logos/howoge.svg" alt="" width="108" height="36"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--argentum" src="assets/images/logos/argentum.svg" alt="" width="175" height="35"></li>
             <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">BauBeCon Wohnen GmbH</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">GVC mbH</span></li>
-            <li class="marquee__eintrag"><span class="wortmarke">Kaufland Ladenbau GmbH</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--baubecon" src="assets/images/logos/baubecon.svg" alt="" width="173" height="37"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--gcv" src="assets/images/logos/gcv.svg" alt="" width="147" height="43"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--kaufland" src="assets/images/logos/kaufland.svg" alt="" width="53" height="53"></li>
+        </ul>
+        <ul class="marquee__liste marquee__liste--kopie" aria-hidden="true">
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--howoge marquee__logo--negativ" src="assets/images/logos/howoge.svg" alt="" width="108" height="36"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--argentum" src="assets/images/logos/argentum.svg" alt="" width="175" height="35"></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--baubecon" src="assets/images/logos/baubecon.svg" alt="" width="173" height="37"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--gcv" src="assets/images/logos/gcv.svg" alt="" width="147" height="43"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--kaufland" src="assets/images/logos/kaufland.svg" alt="" width="53" height="53"></li>
+        </ul>
+        <ul class="marquee__liste marquee__liste--kopie" aria-hidden="true">
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--howoge marquee__logo--negativ" src="assets/images/logos/howoge.svg" alt="" width="108" height="36"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--argentum" src="assets/images/logos/argentum.svg" alt="" width="175" height="35"></li>
+            <li class="marquee__eintrag"><span class="wortmarke">Ortus GmbH &amp; Co. KG</span></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--baubecon" src="assets/images/logos/baubecon.svg" alt="" width="173" height="37"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--gcv" src="assets/images/logos/gcv.svg" alt="" width="147" height="43"></li>
+            <li class="marquee__eintrag"><img class="marquee__logo marquee__logo--kaufland" src="assets/images/logos/kaufland.svg" alt="" width="53" height="53"></li>
         </ul>
       </div>
     </div>

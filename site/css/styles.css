@@ -752,53 +752,22 @@ html:has(body.is-locked) { overflow: hidden; }
 
 /* ---------------------------------------------------------------------------
    Bauherren-Band unter dem Hero (Marquee, reines CSS)
-   Läuft nur, wenn keine reduzierte Bewegung gewünscht ist; hält bei Hover,
-   Fokus und per Knopf an. Die zweite Liste ist die Kopie für die Schleife.
+   Läuft langsam (rund 20 bis 25 px/s) und nur ohne Wunsch nach reduzierter
+   Bewegung; hält bei Hover an. Vier gleiche Listen (drei davon aria-hidden),
+   die Spur wandert um genau eine Liste: so bleibt das Band auch auf 1920 px
+   und breiter lückenlos gefüllt.
 --------------------------------------------------------------------------- */
 .marquee-band { padding-block: var(--space-s) clamp(var(--space-m), 4vw, var(--space-l)); }
 .marquee-kopf { display: grid; gap: 0.75rem; }
 .demo-hinweis--klein { font-size: 0.875rem; line-height: 1.45; padding-block: 0.4rem 0.45rem; max-width: none; justify-self: start; }
-.marquee-zeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
 .marquee-titel { color: var(--color-text-muted); font-weight: var(--weight-label); line-height: 1.4; }
-.marquee-knopf {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-height: 44px;
-  padding: 0 0.9rem;
-  background: transparent;
-  color: var(--color-text);
-  border: 2px solid var(--color-text);
-  font-size: var(--step--1);
-  font-weight: var(--weight-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color var(--dur-schnell) var(--ease-out), color var(--dur-schnell) var(--ease-out);
-}
-@media (hover: hover) { .marquee-knopf:hover { background: var(--color-text); color: var(--color-bg); } }
-.marquee-knopf:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
-/* Zeichen: zwei Balken (anhalten) bzw. Dreieck (abspielen). */
-.marquee-knopf__zeichen { position: relative; width: 0.7rem; height: 0.8rem; }
-.marquee-knopf__zeichen::before, .marquee-knopf__zeichen::after {
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 0.22rem;
-  background: currentColor;
-}
-.marquee-knopf__zeichen::before { left: 0; }
-.marquee-knopf__zeichen::after { right: 0; }
-.marquee-knopf[aria-pressed="true"] .marquee-knopf__zeichen::before {
-  width: 0; height: 0;
-  background: none;
-  border-top: 0.4rem solid transparent;
-  border-bottom: 0.4rem solid transparent;
-  border-left: 0.7rem solid currentColor;
-}
-.marquee-knopf[aria-pressed="true"] .marquee-knopf__zeichen::after { display: none; }
+
+/* Filter-Definitionen: nimmt keinen Platz ein */
+.svg-filter { position: absolute; width: 0; height: 0; overflow: hidden; }
+.logo-mono-farbe { flood-color: var(--color-text-muted); }
 
 .marquee {
+  --marquee-abstand: clamp(3.5rem, 7vw, 7rem);
   margin-top: 1rem;
   overflow: hidden;
   border-block: 2px solid var(--color-text);
@@ -807,27 +776,33 @@ html:has(body.is-locked) { overflow: hidden; }
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 .marquee__spur { display: flex; width: max-content; }
+/* Abstand zwischen zwei Listen = Abstand innerhalb einer Liste, sonst ruckelt die Naht */
 .marquee__liste {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
-  padding: 1.1rem clamp(1.25rem, 2.5vw, 2.25rem);
+  gap: var(--marquee-abstand);
+  padding: 1.25rem calc(var(--marquee-abstand) / 2);
   margin: 0;
-}
-.marquee__eintrag { display: flex; align-items: center; min-height: 2.5rem; flex: none; }
-/* HOWOGE-Logo: weiße Schrift auf eigener Farbfläche. Graustufen machen daraus
-   einen grauen Block, deshalb Originalfarbe, gedämpft; voll bei Hover.
-   Höhe an der Wortmarke ausgerichtet (Fläche etwa 1,55 × Schriftgröße). */
-.marquee__eintrag img {
-  height: calc(var(--step-1) * 1.55);
-  width: auto;
-  filter: saturate(0.55);
-  opacity: 0.7;
-  transition: filter var(--dur-normal) var(--ease-out), opacity var(--dur-normal) var(--ease-out);
-}
-.wortmarke {
   font-size: var(--step-1);
+}
+.marquee__eintrag { display: flex; align-items: center; min-height: 3.5rem; flex: none; }
+
+/* Logos: im Ruhezustand einfarbig in --color-text-muted, bei Hover Originalfarben.
+   Höhen optisch abgeglichen (in em der Wortmarke): breite Schriftzüge flacher,
+   das quadratische Kaufland-Zeichen höher, die volle HOWOGE-Fläche kleiner. */
+.marquee__logo {
+  width: auto;
+  height: 1.5em;
+  filter: url(#logo-mono);
+}
+.marquee__logo--howoge { height: 1.3em; filter: url(#logo-mono-negativ); }
+.marquee__logo--argentum { height: 1.45em; }
+.marquee__logo--baubecon { height: 1.6em; }
+.marquee__logo--gcv { height: 2.1em; }
+.marquee__logo--kaufland { height: 2.35em; }
+.wortmarke {
+  font-size: 0.92em;
   font-weight: var(--weight-display);
   letter-spacing: var(--tracking-display);
   line-height: 1;
@@ -836,18 +811,20 @@ html:has(body.is-locked) { overflow: hidden; }
   transition: color var(--dur-normal) var(--ease-out);
 }
 @media (hover: hover) {
-  .marquee__eintrag:hover img { filter: none; opacity: 1; }
+  .marquee__eintrag:hover .marquee__logo { filter: none; }
   .marquee__eintrag:hover .wortmarke { color: var(--color-text); }
 }
 @keyframes marquee-lauf {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-25%); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .marquee__spur { animation: marquee-lauf 45s linear infinite; }
-  .marquee:hover .marquee__spur,
-  .marquee-band:focus-within .marquee__spur,
-  .marquee--angehalten .marquee__spur { animation-play-state: paused; }
+  .marquee__spur { animation: marquee-lauf 70s linear infinite; }
+  .marquee:hover .marquee__spur { animation-play-state: paused; }
+}
+/* Schmale Fenster: kürzere Liste, deshalb kürzere Dauer für dasselbe ruhige Tempo */
+@media (prefers-reduced-motion: no-preference) and (max-width: 600px) {
+  .marquee__spur { animation-duration: 50s; }
 }
 /* Reduzierte Bewegung: keine Schleife, eine statische, umbrechende Reihe. */
 @media (prefers-reduced-motion: reduce) {
@@ -855,7 +832,6 @@ html:has(body.is-locked) { overflow: hidden; }
   .marquee__spur { width: auto; }
   .marquee__liste { flex-wrap: wrap; justify-content: center; row-gap: 1rem; width: 100%; }
   .marquee__liste--kopie { display: none; }
-  .marquee-knopf { display: none; }
 }
 
 /* ---------------------------------------------------------------------------

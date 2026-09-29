@@ -40,3 +40,21 @@ Bruno hat im Chat vier Logos geschickt, wörtlich: „Hier sind die anderen Logo
 - Referenzliste „Kaufland Ladenbau GmbH", Logo ist die Handelsmarke Kaufland.
 
 Ortus GmbH & Co. KG: kein Logo geliefert, bleibt Wortmarke.
+
+### Aufbereitung (2026-09-29)
+
+Die vier PNGs sind voll deckend (kein Alpha), Hintergrund weiß bzw. bei
+BauBeCon blaugrau. Vektorisiert mit `potracer` (Python-Port von Potrace),
+Skript: 8-fach hochskaliert (Lanczos), leicht geglättet, Hintergrund über
+den Abstand zur Hintergrundfarbe freigestellt, je Farbfläche einzeln
+getraced. Form und Text unverändert, nichts ergänzt. Ergebnis:
+
+| Datei | Farben (aus dem Original gemessen) | Anmerkung |
+|---|---|---|
+| `site/assets/images/logos/argentum.svg` | #1a1a18 | Stier und Rahmen mit geringerer Glättung, damit Schwanz und Hörner erhalten bleiben |
+| `site/assets/images/logos/baubecon.svg` | #0f594a (Bildmarke), #1d1d1b (Schrift) | Blaugrauer Hintergrund des PNG entfernt; kleine Zeile mit wenig Glättung wegen der i-Punkte |
+| `site/assets/images/logos/gcv.svg` | #b5b4b4 (Linien), #716f6f (Schrift) | Die untersten 5 Pixelzeilen des PNG (dunkle Linie und roter Balken über die volle Breite) gehören zur Kopfleiste der Website, nicht zum Logo, und sind weggelassen. Die unterste Linie des Gebäudes endet deshalb dort, wo sie im PNG vom Balken überdeckt wird |
+| `site/assets/images/logos/kaufland.svg` | #dc0322 | – |
+
+Die Alt-Texte folgen der Referenzliste (siehe Abweichungen oben).
+
