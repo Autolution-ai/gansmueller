@@ -146,3 +146,14 @@ Datum: 2026-09-29 · Wortlaut Bruno (mit Screenshot des Hinweises): „Das raus 
 
 - Der Demo-Hinweis über dem Bauherren-Band ist entfernt. Namen sind durch die Referenzliste belegt, Logos durch Bruno (quellen/logos.md).
 - Offen für den Termin: Freigabe der Nennung aller Bauherren und der Logos; Abweichungen GVC/GCV, BauBeCon Wohnen/Facility Management, Kaufland Ladenbau/Handelsmarke.
+
+## Nachtrag: Überarbeitung Für wen, Leistungen, Projektbereiche, Über mich, Ablauf, Anfrage
+
+Datum: 2026-09-29 · Bruno per Sprachnachricht/Text, mit Beispielbild (Leistungs-Kacheln einer Verkehrsplanungs-Website: randlose Fotokacheln 2×2, Nummer, großer Titel, Text auf dunklem Verlauf; abgelegt als .referenz/leistungen-beispiel-bruno.webp, nicht im Repo). Wortlaut (Auszug, vollständig im Chat):
+
+„Im Bereich, für wen ich arbeite, stelle das ein bisschen mehr als so Kundenprofil dar … Und wenn du aus dem Gespräch zum Beispiel auch eine Zahl rausnehmen kannst, zum Beispiel, dass er keine Projekte unter einer Million oder so … dann mach auch Ausschlusskriterium … beschreibe da noch nicht so viel die Leistungen … Im Bereich Leistungen mache bitte eine visuelle Darstellung in der Art wie im Beispielbild … Fokus soll ja auf die Projektsteuerung und die Bauüberwachung liegen … Projektbereiche auch ein bisschen ansehnlicher darstellen … Bereich über mich schreibe nicht sowas wie mein Büro ist klein, sondern am Anfang erstmal Expertise aufbauen mit der Jahren Erfahrung … lege es auf den Mehrwert, dass … Kunden … ihn als direkten Ansprechpartner haben und beim Büro auf jeden Fall die richtige Adresse … angeben … und auf Google Maps verlinken … Ablauf … weitere visuelle Differenzierung zwischen bevor es losgeht und am Bau und es soll … von selbst langsam durchlaufen … unter dem Call to Action nicht nochmal extra die Telefonnummer … sondern … einen Satz … wie in unter zwei Minuten anfragen. Und beim Anfragenformular die Überschrift so lassen … aber den Text darunter … bitte rausnehmen."
+
+Umsetzung mit Belegpflicht:
+- Ausschlusskriterien nur, was belegt ist: Obergrenze „maximal 10 oder 15 Millionen Bauvolumen" (Transkript), keine reinen privaten Eigenheime (Transkript), keine großen Baukonzerne/Großbaustellen im Bereich 50–100 Mio. (Transkript). Eine Untergrenze (z. B. „unter 1 Mio.") ist NICHT belegt und wird nicht geschrieben.
+- „In unter zwei Minuten anfragen": Aussage von Bruno.
+- Google-Maps-Link: Profil-URL aus quellen/scrape-google.md (kopiert).
