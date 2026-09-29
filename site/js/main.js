@@ -354,6 +354,47 @@ function initRegister() {
 }
 
 /* ---------------------------------------------------------------------------
+   Für wen: Profil-Wähler. Ab 900 px zeigt die rechte Spalte die Aussage zur
+   Rolle, die gerade unter Maus oder Fokus liegt (Standard: die erste). Die
+   Links in der Liste bleiben die eigentlichen Ziele (Funnel, vorbelegt) und
+   tragen Satz und Linktext weiterhin für Screenreader. Die Anzeige rechts
+   ist eine Wiederholung und deshalb aria-hidden, ihr Link nicht fokussierbar.
+--------------------------------------------------------------------------- */
+function initProfilwahl() {
+  const wurzel = document.querySelector("[data-profilwahl]");
+  if (!wurzel) return;
+  const profile = [...wurzel.querySelectorAll("[data-profil]")];
+  const anzeige = document.createElement("div");
+  anzeige.className = "profilwahl__anzeige";
+  anzeige.setAttribute("aria-hidden", "true");
+  anzeige.innerHTML = `
+    <p class="profilwahl__anzeige-rolle"></p>
+    <p class="profilwahl__anzeige-satz"></p>
+    <a class="btn" tabindex="-1" data-vorbelegen><span></span><span class="mass"></span></a>`;
+  wurzel.appendChild(anzeige);
+  wurzel.classList.add("profilwahl--js");
+
+  const rolle = anzeige.querySelector(".profilwahl__anzeige-rolle");
+  const satz = anzeige.querySelector(".profilwahl__anzeige-satz");
+  const link = anzeige.querySelector("a");
+
+  function zeigen(li) {
+    profile.forEach((p) => p.classList.toggle("profil--aktiv", p === li));
+    const a = li.querySelector(".profil__link");
+    rolle.textContent = li.querySelector(".profil__rolle").textContent;
+    satz.textContent = li.querySelector(".profil__satz").textContent;
+    link.href = a.getAttribute("href");
+    link.querySelector("span").textContent = li.querySelector(".profil__weiter").textContent;
+  }
+  profile.forEach((li) => {
+    const a = li.querySelector(".profil__link");
+    a.addEventListener("mouseenter", () => zeigen(li));
+    a.addEventListener("focus", () => zeigen(li));
+  });
+  zeigen(profile[0]);
+}
+
+/* ---------------------------------------------------------------------------
    Ablauf: ab 900 px Tabs mit einem Detailfeld (WAI-ARIA Tabs, automatische
    Aktivierung, Pfeiltasten, Pos1/Ende). Die Liste bleibt im Dokument und ist
    darunter (mobil, ohne JS) die sichtbare Fassung.
@@ -603,4 +644,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initRegister();
   initZeitstrahl();
   initZaehler();
+  initProfilwahl();
 });

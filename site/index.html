@@ -182,54 +182,63 @@
     <div class="full panel abschnitt layout">
       <header class="breakout fuer-wen__kopf">
         <h2 id="fuer-wen-titel">Für wen ich arbeite</h2>
-        <p>Erkennen Sie sich in einem Profil wieder, führt die Karte direkt in die Anfrage, mit Ihrer Rolle schon eingetragen.</p>
       </header>
-      <div class="breakout profil-gruppen">
-        <div class="profil-gruppe">
-          <div class="profil-gruppe__kopf">
-            <h3>Sie bauen selbst</h3>
-            <p>Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.</p>
+      <div class="breakout profilwahl" data-profilwahl>
+        <div class="profilwahl__liste">
+          <div class="profilwahl__gruppe">
+            <h3 class="profilwahl__titel">Sie bauen selbst</h3>
+            <p class="profilwahl__text">Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.</p>
+            <ul class="profile">
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=bautraeger#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Bauträger</span>
+                <span class="profil__satz">Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.</span>
+                <span class="profil__weiter">Anfrage als Bauträger beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=projektentwickler#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Projektentwickler</span>
+                <span class="profil__satz">Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.</span>
+                <span class="profil__weiter">Anfrage als Projektentwickler beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=wohnungsunternehmen#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Wohnungsunternehmen</span>
+                <span class="profil__satz">Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.</span>
+                <span class="profil__weiter">Anfrage als Wohnungsunternehmen beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=gewerblich#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Gewerbliche Auftraggeber</span>
+                <span class="profil__satz">Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.</span>
+                <span class="profil__weiter">Anfrage als gewerblicher Auftraggeber beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            </ul>
           </div>
-          <ul class="profile">
-            <li><a class="profil" href="?auftraggeber=bautraeger#anfrage" aria-label="Anfrage als Bauträger beginnen" data-vorbelegen>
-              <span class="profil__rolle">Bauträger</span>
-              <span class="profil__satz">Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-            <li><a class="profil" href="?auftraggeber=projektentwickler#anfrage" aria-label="Anfrage als Projektentwickler beginnen" data-vorbelegen>
-              <span class="profil__rolle">Projektentwickler</span>
-              <span class="profil__satz">Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-            <li><a class="profil" href="?auftraggeber=wohnungsunternehmen#anfrage" aria-label="Anfrage als Wohnungsunternehmen beginnen" data-vorbelegen>
-              <span class="profil__rolle">Wohnungsunternehmen</span>
-              <span class="profil__satz">Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-            <li><a class="profil" href="?auftraggeber=gewerblich#anfrage" aria-label="Anfrage als gewerblicher Auftraggeber beginnen" data-vorbelegen>
-              <span class="profil__rolle">Gewerbliche Auftraggeber</span>
-              <span class="profil__satz">Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-          </ul>
-        </div>
-        <div class="profil-gruppe profil-gruppe--dunkel">
-          <div class="profil-gruppe__kopf">
-            <h3>Sie planen und brauchen die Bauüberwachung</h3>
-            <p>Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.</p>
+          <div class="profilwahl__gruppe">
+            <h3 class="profilwahl__titel">Sie planen und brauchen die Bauüberwachung</h3>
+            <p class="profilwahl__text">Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.</p>
+            <ul class="profile">
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=planungsbuero#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Architektur- und Planungsbüros</span>
+                <span class="profil__satz">Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.</span>
+                <span class="profil__weiter">Anfrage als Planungsbüro beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            <li class="profil" data-profil>
+              <a class="profil__link" href="?auftraggeber=generalplaner#anfrage" data-vorbelegen>
+                <span class="profil__rolle">Generalplaner</span>
+                <span class="profil__satz">Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.</span>
+                <span class="profil__weiter">Anfrage als Generalplaner beginnen<span class="mass" aria-hidden="true"></span></span>
+              </a>
+            </li>
+            </ul>
           </div>
-          <ul class="profile">
-            <li><a class="profil" href="?auftraggeber=planungsbuero#anfrage" aria-label="Anfrage als Architektur- oder Planungsbüro beginnen" data-vorbelegen>
-              <span class="profil__rolle">Architektur- und Planungsbüros</span>
-              <span class="profil__satz">Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-            <li><a class="profil" href="?auftraggeber=generalplaner#anfrage" aria-label="Anfrage als Generalplaner beginnen" data-vorbelegen>
-              <span class="profil__rolle">Generalplaner</span>
-              <span class="profil__satz">Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.</span>
-              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
-            </a></li>
-          </ul>
         </div>
       </div>
       <div class="breakout rahmen">
@@ -238,15 +247,15 @@
           <div class="rahmen__spalte rahmen__spalte--passt">
             <p class="label">Passt gut</p>
             <ul>
-              <li><strong>Vorhaben bis etwa 15&nbsp;Mio.&nbsp;€ Bauvolumen.</strong> In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</li>
-              <li><strong>Ein konkretes Objekt.</strong> Sie beauftragen mich für dieses eine Vorhaben, und mit dem Objekt endet auch Ihre Verpflichtung.</li>
+              <li><svg class="rahmen__zeichen" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="vh">Passt gut: </span><strong>Vorhaben bis etwa 15&nbsp;Mio.&nbsp;€ Bauvolumen.</strong> In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</span></li>
+              <li><svg class="rahmen__zeichen" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="vh">Passt gut: </span><strong>Ein konkretes Objekt.</strong> Sie beauftragen mich für dieses eine Vorhaben, und mit dem Objekt endet auch Ihre Verpflichtung.</span></li>
             </ul>
           </div>
           <div class="rahmen__spalte rahmen__spalte--weniger">
             <p class="label">Passt weniger</p>
             <ul>
-              <li><strong>Reine private Eigenheime.</strong> Meine Arbeit richtet sich an Bauträger, Unternehmen und Planungsbüros.</li>
-              <li><strong>Großbaustellen im Bereich von 50 bis 100&nbsp;Mio.&nbsp;€.</strong> Solche Projekte brauchen ein ganzes Bauleitungsteam; bei mir haben Sie mich selbst als Ansprechpartner.</li>
+              <li><svg class="rahmen__zeichen" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span><span class="vh">Passt weniger: </span><strong>Reine private Eigenheime.</strong> Meine Arbeit richtet sich an Bauträger, Unternehmen und Planungsbüros.</span></li>
+              <li><svg class="rahmen__zeichen" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span><span class="vh">Passt weniger: </span><strong>Großbaustellen im Bereich von 50 bis 100&nbsp;Mio.&nbsp;€.</strong> Solche Projekte brauchen ein ganzes Bauleitungsteam; bei mir haben Sie mich selbst als Ansprechpartner.</span></li>
             </ul>
           </div>
         </div>

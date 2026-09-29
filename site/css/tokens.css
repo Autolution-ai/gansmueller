@@ -94,6 +94,9 @@
      Links und Knöpfen (Blau) verwechselt wird. Steht nie allein, immer mit
      Text am Feld. Gerechnet (WCAG, sRGB aus oklch): 6,8:1 auf --color-bg, 6,2:1 auf --color-surface. */
   --color-fehler: oklch(0.480 0.160 28);
+  /* Haken „Passt gut“ (Für wen): gleiches L wie --color-fehler, Grün statt Rot.
+     Nur als Zeichen neben Text eingesetzt, nie als alleinige Aussage. */
+  --color-erfolg: oklch(0.500 0.120 150);
 
   /* ---------------------------------------------------------------------
      TYPOGRAFIE

@@ -525,48 +525,26 @@ html:has(body.is-locked) { overflow: hidden; }
 --------------------------------------------------------------------------- */
 .fuer-wen__kopf { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: var(--space-m) var(--space-l); }
 .fuer-wen__kopf p { font-size: var(--step-1); line-height: 1.45; max-width: 48ch; padding-top: 0.35rem; }
-.profil-gruppen {
+/* Profil-Wähler: links die Rollen als typografische Liste, rechts (ab 900 px,
+   mit JS) die Aussage zum gewählten Profil. Ohne JS und mobil steht der Satz
+   unter jeder Rolle. Keine Karten, nur Haarlinien. */
+.profilwahl { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-l); margin-top: var(--space-m); }
+.profilwahl__liste { display: grid; gap: var(--space-l); }
+.profilwahl__titel { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-primary-strong); }
+.profilwahl__text { margin-top: 0.35rem; max-width: 46ch; color: var(--color-text-muted); }
+.profile { list-style: none; margin-top: 1rem; border-top: 1px solid var(--color-border); }
+.profil { border-bottom: 1px solid var(--color-border); }
+.profil__link {
   display: grid;
-  grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
-  gap: var(--space-m);
-  margin-top: var(--space-l);
-}
-.profil-gruppe { display: grid; align-content: start; gap: 1.25rem; }
-.profil-gruppe__kopf h3 { font-size: var(--step-1-5); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.05; }
-.profil-gruppe__kopf p { margin-top: 0.5rem; max-width: 46ch; color: var(--color-text-muted); }
-.profile { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.profil-gruppe--dunkel {
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-  background: var(--color-bg-dark);
-  color: var(--color-text-on-dark);
-  border-radius: var(--radius-karte);
-}
-.profil-gruppe--dunkel h3 { color: var(--color-text-on-dark); }
-.profil-gruppe--dunkel .profil-gruppe__kopf p { color: var(--color-text-muted-on-dark); }
-.profil-gruppe--dunkel .profile { grid-template-columns: minmax(0, 1fr); }
-
-.profil {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 0.75rem;
-  height: 100%;
-  min-height: 12rem;
-  padding: clamp(1.1rem, 2vw, 1.5rem);
-  background: var(--color-karte);
+  gap: 0.35rem;
+  padding: 0.9rem 0.25rem;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-karte);
-  transition: box-shadow var(--dur-normal) var(--ease-out), border-color var(--dur-normal) var(--ease-out), transform var(--dur-normal) var(--ease-out);
+  transition: color var(--dur-schnell) var(--ease-out), background-color var(--dur-schnell) var(--ease-out);
 }
-.profil__rolle {
-  font-size: var(--step--1);
-  font-weight: var(--weight-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-primary-strong);
-}
-.profil__satz { font-size: var(--step-1); font-weight: var(--weight-heading); line-height: 1.3; }
+.profil__rolle { font-size: var(--step-1); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.15; transition: transform var(--dur-normal) var(--ease-out); }
+.profil__satz { max-width: 52ch; }
 .profil__weiter {
+  justify-self: start;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -574,27 +552,53 @@ html:has(body.is-locked) { overflow: hidden; }
   font-weight: var(--weight-label);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+  color: var(--color-primary-strong);
 }
 .profil__weiter .mass { width: 1.4rem; height: 0.7rem; }
-.profil-gruppe--dunkel .profil {
-  min-height: 0;
-  background: transparent;
-  color: var(--color-text-on-dark);
-  border-color: var(--color-text-muted-on-dark);
-}
-.profil-gruppe--dunkel .profil__rolle { color: var(--color-primary-on-dark); }
 @media (hover: hover) {
-  .profil:hover { border-color: var(--color-text); box-shadow: var(--schatten-3); transform: translate(-2px, -2px); }
-  .profil:hover .profil__weiter { color: var(--color-primary-strong); }
-  .profil:hover .mass::before { transform: scaleX(1.35); }
-  .profil:hover .mass::after { transform: translateX(0.6rem) rotate(45deg); }
-  .profil-gruppe--dunkel .profil:hover { background: var(--color-text-on-dark); color: var(--color-text); border-color: var(--color-text-on-dark); box-shadow: none; }
-  .profil-gruppe--dunkel .profil:hover .profil__rolle,
-  .profil-gruppe--dunkel .profil:hover .profil__weiter { color: var(--color-primary-strong); }
+  .profil__link:hover { color: var(--color-primary-strong); }
+  .profil__link:hover .profil__rolle { transform: translateX(0.4rem); }
+  .profil__link:hover .mass::before { transform: scaleX(1.35); }
+  .profil__link:hover .mass::after { transform: translateX(0.6rem) rotate(45deg); }
 }
-.profil:active { transform: none; box-shadow: none; }
-.profil:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
-.profil-gruppe--dunkel .profil:focus-visible { outline-color: var(--color-focus-on-dark); }
+.profil__link:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+@media (min-width: 900px) {
+  .profilwahl--js { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+  .profilwahl--js .profil__satz,
+  .profilwahl--js .profil__weiter {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .profilwahl--js .profil__link { position: relative; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding-block: 0.75rem; }
+  .profilwahl--js .profil__rolle { font-size: var(--step-1-5); }
+  .profilwahl--js .profil__link::after {
+    /* Markierung der gewählten Rolle: Strich rechts */
+    content: "";
+    width: 0;
+    height: 2px;
+    background: var(--color-primary-strong);
+    transition: width var(--dur-normal) var(--ease-out);
+  }
+  .profilwahl--js .profil--aktiv .profil__link { color: var(--color-primary-strong); }
+  .profilwahl--js .profil--aktiv .profil__link::after { width: 2.5rem; }
+  .profilwahl--js .profil:not(.profil--aktiv) .profil__rolle { color: var(--color-text-muted); }
+  .profilwahl--js .profil:not(.profil--aktiv) .profil__link:hover .profil__rolle { color: var(--color-primary-strong); }
+}
+.profilwahl__anzeige { display: none; }
+@media (min-width: 900px) {
+  .profilwahl--js .profilwahl__anzeige {
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+    position: sticky;
+    top: calc(var(--kopf-hoehe, 5rem) + 2rem);
+    padding-top: 2.25rem;
+    border-top: 2px solid var(--color-text);
+  }
+}
+.profilwahl__anzeige-rolle { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-primary-strong); }
+.profilwahl__anzeige-satz { color: var(--color-text); font-size: var(--step-2); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.12; max-width: 20ch; text-wrap: balance; }
+.profilwahl__anzeige .btn { justify-self: start; margin-top: 0.5rem; }
 
 /* Projektrahmen: Passt gut / Passt weniger, sachlich nebeneinander */
 .rahmen {
@@ -609,19 +613,12 @@ html:has(body.is-locked) { overflow: hidden; }
 .rahmen__spalten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-m); }
 .rahmen__spalte .label { margin-bottom: 0.75rem; }
 .rahmen__spalte ul { list-style: none; display: grid; gap: 1rem; }
-.rahmen__spalte li { position: relative; padding-left: 1.4rem; max-width: 52ch; }
-.rahmen__spalte li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 0.6rem;
-  height: 0.6rem;
-}
-.rahmen__spalte--passt .label { color: var(--color-primary-strong); }
-.rahmen__spalte--passt li::before { background: var(--color-primary-strong); }
-.rahmen__spalte--weniger .label { color: var(--color-text-muted); }
-.rahmen__spalte--weniger li::before { border: 2px solid var(--color-text-muted); }
+.rahmen__spalte li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 0.75rem; max-width: 56ch; }
+.rahmen__zeichen { width: 1.4rem; height: 1.4rem; margin-top: 0.1rem; }
+.rahmen__spalte--passt .label { color: var(--color-erfolg); }
+.rahmen__spalte--passt .rahmen__zeichen { color: var(--color-erfolg); }
+.rahmen__spalte--weniger .label { color: var(--color-fehler); }
+.rahmen__spalte--weniger .rahmen__zeichen { color: var(--color-fehler); }
 
 /* ---------------------------------------------------------------------------
    3 · Leistungen: zwei große Kacheln randlos (Referenz: Fotokacheln mit
@@ -1567,8 +1564,6 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .plankopf { justify-self: start; }
   .anfrage__raster { grid-template-columns: minmax(0, 1fr); }
   .fuer-wen__kopf { grid-template-columns: minmax(0, 1fr); }
-  .profil-gruppen { grid-template-columns: minmax(0, 1fr); }
-  .profil-gruppe--dunkel .profile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1000px) {
   .aufgaben { grid-template-columns: minmax(0, 1fr); }
@@ -1589,9 +1584,6 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
 }
 @media (max-width: 700px) {
   .aufgaben__liste { grid-template-columns: minmax(0, 1fr); }
-  .profile, .profil-gruppe--dunkel .profile { grid-template-columns: minmax(0, 1fr); }
-  .profil { min-height: 0; gap: 0.5rem; }
-  .profil__satz { font-size: var(--step-0); }
   .kachel { min-height: 21rem; }
   .btn { letter-spacing: 0.02em; }
   .hero .aktionen { flex-direction: column; align-items: stretch; width: 100%; }
@@ -1630,7 +1622,7 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .gruppe__leistung { margin-top: 0.25rem; }
 }
 @media (max-width: 400px) {
-  .profil-gruppe__kopf h3, .rahmen__titel { font-size: var(--step-1); }
+  .rahmen__titel { font-size: var(--step-1); }
   .btn { gap: 0.6rem; padding-inline: 0.9rem; }
   .plankopf__kopf, .schriftfeld > div { padding-inline: 0.9rem; }
 }
