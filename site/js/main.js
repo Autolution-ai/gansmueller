@@ -354,6 +354,87 @@ function initRegister() {
 }
 
 /* ---------------------------------------------------------------------------
+   Bauherren-Band: Abstand und Bewegung.
+   1. Abstand: Eine Liste (6 Marken + Abstände) ist mindestens so breit wie
+      das Fenster plus die breiteste Marke. So ist dieselbe Marke nie zweimal
+      gleichzeitig zu sehen (Wunsch Bruno). Neu gemessen bei Größenänderung.
+   2. Bewegung per requestAnimationFrame mit rund 21 px/s. Bei Hover bremst
+      das Band in 0,4 s auf langsames Kriechen ab und läuft danach ebenso
+      sanft wieder an, statt hart stehenzubleiben. Außerhalb des Bildes und
+      bei verdecktem Tab ruht es. Bei reduzierter Bewegung: nichts (CSS zeigt
+      dann eine statische Reihe).
+--------------------------------------------------------------------------- */
+function initMarquee() {
+  const band = document.querySelector("[data-marquee]");
+  if (!band) return;
+  const spur = band.querySelector(".marquee__spur");
+  const liste = band.querySelector(".marquee__liste");
+  const reduziert = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduziert.matches) return;
+
+  const TEMPO = 21;        // px/s
+  const KRIECHEN = 3;      // px/s unter der Maus
+  const UEBERGANG = 0.4;   // s
+  let periode = 0;
+
+  function abstandSetzen() {
+    band.style.removeProperty("--marquee-abstand");
+    const eintraege = [...liste.children];
+    const summe = eintraege.reduce((n, li) => n + li.getBoundingClientRect().width, 0);
+    const breiteste = Math.max(...eintraege.map((li) => li.getBoundingClientRect().width));
+    const cssAbstand = parseFloat(getComputedStyle(liste).columnGap) || 0;
+    // Liste = Summe + 5 Lücken innen + 2 halbe Lücken als Rand = Summe + 6 Lücken
+    const noetig = (window.innerWidth + breiteste + 24 - summe) / 6;
+    const abstand = Math.max(cssAbstand, Math.ceil(noetig));
+    band.style.setProperty("--marquee-abstand", `${abstand}px`);
+    periode = liste.getBoundingClientRect().width;
+    band.dataset.periode = String(Math.round(periode));
+  }
+
+  let x = 0;
+  let tempo = TEMPO;
+  let ziel = TEMPO;
+  let letzte = null;
+  let sichtbar = true;
+  let rahmen = null;
+
+  function schritt(jetzt) {
+    rahmen = null;
+    if (!sichtbar || document.hidden) { letzte = null; return; }
+    const dt = letzte === null ? 0 : Math.min(0.1, (jetzt - letzte) / 1000);
+    letzte = jetzt;
+    // exponentielle Annäherung an das Zieltempo: nach 0,4 s gut 95 %
+    tempo += (ziel - tempo) * (1 - Math.exp(-dt * 3 / UEBERGANG));
+    x -= tempo * dt;
+    if (periode > 0 && -x >= periode) x += periode;
+    spur.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
+    rahmen = requestAnimationFrame(schritt);
+  }
+  const starten = () => { if (rahmen === null) rahmen = requestAnimationFrame(schritt); };
+
+  band.classList.add("marquee--js");
+  abstandSetzen();
+  band.addEventListener("mouseenter", () => { ziel = KRIECHEN; });
+  band.addEventListener("mouseleave", () => { ziel = TEMPO; });
+  let zeitgeber = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(zeitgeber);
+    zeitgeber = setTimeout(() => { abstandSetzen(); x = x % periode; }, 150);
+  });
+  document.addEventListener("visibilitychange", starten);
+  new IntersectionObserver((e) => { sichtbar = e[0].isIntersecting; if (sichtbar) starten(); }).observe(band);
+  reduziert.addEventListener("change", () => {
+    if (!reduziert.matches) return;
+    band.classList.remove("marquee--js");
+    spur.style.removeProperty("transform");
+    sichtbar = false;
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(abstandSetzen);
+  window.addEventListener("load", abstandSetzen);
+  starten();
+}
+
+/* ---------------------------------------------------------------------------
    Für wen: Profil-Wähler. Ab 900 px zeigt die rechte Spalte die Aussage zur
    Rolle, die gerade unter Maus oder Fokus liegt (Standard: die erste). Die
    Links in der Liste bleiben die eigentlichen Ziele (Funnel, vorbelegt) und
@@ -632,4 +713,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initZeitstrahl();
   initZaehler();
   initProfilwahl();
+  initMarquee();
 });

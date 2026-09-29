@@ -63,6 +63,9 @@
   /* = Rechteck der Bildmarke. Nur als Fläche oder Markierung, sparsam.
      Darauf nur --color-text (9,3:1), nie --color-text-muted (3,6:1). */
   --color-accent: oklch(0.860 0.012 334);
+  /* Linie des Demo-Hinweises: Malve der Bildmarke, dunkler, damit die
+     3-px-Linie auf hellem Grund als Kennung trägt (Nicht-Text, ≥ 3:1). */
+  --color-accent-linie: oklch(0.560 0.050 334);
   /* Karten reinweiß auf fast weißem Grund (Referenz). */
   --color-karte: oklch(1 0 0);
 

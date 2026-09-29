@@ -233,12 +233,12 @@ a, button, label, summary { -webkit-tap-highlight-color: transparent; }
 
 /* Demo-Hinweis (CLAUDE.md §11): sichtbar, direkt über dem Inhalt, kein Band.
    Malve der Bildmarke als Fläche, Text in --color-text (9,3:1). */
+/* Als Zeile mit Linie links statt als Kasten (Überarbeitung 2); die Malve
+   der Bildmarke bleibt als Kennfarbe der Linie. */
 .demo-hinweis {
-  padding: 0.8rem 1rem 0.85rem 1.1rem;
-  background: var(--color-accent);
+  padding: 0.15rem 0 0.15rem 0.9rem;
   color: var(--color-text);
-  border-left: 4px solid var(--color-text);
-  border-radius: 0 var(--radius-karte) var(--radius-karte) 0;
+  border-left: 3px solid var(--color-accent-linie);
   font-size: var(--step--1);
   line-height: 1.5;
   max-width: 68ch;
@@ -427,7 +427,7 @@ html:has(body.is-locked) { overflow: hidden; }
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.hero__zeile { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.45; max-width: 40ch; }
+.hero__zeile { margin-top: 1.25rem; font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); line-height: 1.55; max-width: 62ch; }
 .hero .aktionen { margin-top: 2rem; }
 .kennzahlen {
   display: flex;
@@ -772,17 +772,12 @@ html:has(body.is-locked) { overflow: hidden; }
 .denkmal__text { display: grid; gap: 1rem; }
 .denkmal__text h3, .register-kopf h3, .bereiche h3 { font-size: var(--step-1-5); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.05; }
 .denkmal__fotos { display: flex; align-items: flex-end; gap: var(--space-m); }
-.ref-foto { display: grid; width: fit-content; max-width: 100%; overflow: hidden; }
-.ref-foto picture {
-  /* Bildfläche über die ganze Kartenbreite in Flächenfarbe, Foto mittig in
-     nativer Größe: keine weiße Lücke, nicht hochskaliert. */
-  display: flex;
-  justify-content: center;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-}
-.ref-foto img { display: block; max-width: 100%; height: auto; }
-.ref-foto figcaption { display: grid; gap: 0.15rem; padding: 0.85rem 1rem 1rem; font-size: var(--step--1); line-height: 1.35; max-width: 26rem; }
+/* Referenzfotos ohne Karte: Foto in nativer Größe, Bildunterschrift darunter */
+.ref-foto { display: grid; width: fit-content; max-width: 100%; }
+.ref-foto picture { display: block; }
+.ref-foto img { display: block; max-width: 100%; height: auto; border-radius: var(--radius-karte); transition: transform var(--dur-normal) var(--ease-out); }
+@media (hover: hover) { .ref-foto:hover img { transform: translateY(-3px); } }
+.ref-foto figcaption { display: grid; gap: 0.15rem; padding-top: 0.7rem; border-top: 1px solid var(--color-border); margin-top: 0.7rem; font-size: var(--step--1); line-height: 1.35; max-width: 26rem; }
 .ref-foto figcaption strong { font-size: var(--step-0); }
 
 .register-block { margin-top: clamp(var(--space-l), 7vw, 7rem); }
@@ -838,49 +833,19 @@ html:has(body.is-locked) { overflow: hidden; }
 .register-knopf { margin-top: 1.25rem; }
 .referenzen-cta { margin-top: var(--space-l); }
 
-/* Projektbereiche: großer typografischer Streifen über die volle Breite.
-   Wohnungsbau und Gewerbe führen ins Register (dort belegt). */
-.bereiche-kopf { display: grid; justify-items: start; gap: 1rem; margin-top: clamp(var(--space-l), 6vw, 6rem); }
-.bereiche-kopf h3 { font-size: var(--step-1-5); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.05; }
-.bereiche { list-style: none; margin-top: 1.25rem; border-top: 2px solid var(--color-text); }
-.bereiche li { border-bottom: 1px solid var(--color-border); }
-.bereich {
+/* Projektbereiche: eine unauffällige Zeile unter dem Register */
+.bereiche {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 0.25rem 2rem;
-  padding: clamp(0.6rem, 1.4vw, 1.1rem) var(--spur);
-  color: var(--color-text);
-  transition: background-color var(--dur-schnell) var(--ease-out), color var(--dur-schnell) var(--ease-out);
+  gap: 0.5rem 1rem;
+  margin-top: var(--space-m);
 }
-.bereich__name {
-  font-size: clamp(2rem, 1.2rem + 3.6vw, 4.75rem);
-  font-weight: var(--weight-display);
-  letter-spacing: var(--tracking-display);
-  line-height: 1;
-  transition: transform var(--dur-normal) var(--ease-out);
-}
-.bereich__zusatz {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: var(--step--1);
-  font-weight: var(--weight-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-primary-strong);
-}
-.bereich__zusatz .mass { width: 1.4rem; height: 0.7rem; }
-.bereiche li:nth-child(n+3) .bereich__name { color: var(--color-text-muted); }
-@media (hover: hover) {
-  .bereich:hover { background: var(--color-surface); }
-  .bereich:hover .bereich__name { transform: translateX(0.5rem); }
-  a.bereich:hover .bereich__name { color: var(--color-primary-strong); }
-  a.bereich:hover .mass::before { transform: scaleX(1.35); }
-  a.bereich:hover .mass::after { transform: translateX(0.6rem) rotate(45deg); }
-}
-a.bereich:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -3px; }
+.bereiche > .demo-hinweis { flex-basis: 100%; }
+.bereiche__titel { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-text-muted); }
+.bereiche__liste { list-style: none; display: flex; flex-wrap: wrap; column-gap: 0.6rem; }
+.bereiche__liste li { color: var(--color-text); }
+.bereiche__liste li + li::before { content: "·"; margin-right: 0.6rem; color: var(--color-text-muted); }
 
 /* ---------------------------------------------------------------------------
    6 · Über mich: Panel, Porträt-Karte, Text, Steckbrief-Karte
@@ -900,17 +865,16 @@ a.bereich:focus-visible { outline: 3px solid var(--color-focus); outline-offset:
   max-width: 100%;
   padding-top: 1.25rem;
   background: var(--color-accent);
-  border: 2px solid var(--color-text);
   border-radius: var(--radius-karte);
-  box-shadow: var(--schatten-2);
   overflow: hidden;
 }
 .portraet img { display: block; width: 100%; height: auto; }
 .ueber__text { display: grid; gap: 1.1rem; }
 .ueber__text h2 { margin-bottom: 0.4rem; }
 .ueber__text p { font-size: var(--step-0); }
-.steckbrief { overflow: hidden; }
-.steckbrief div { padding: 0.9rem 1.25rem 1rem; border-bottom: 1px solid var(--color-border); }
+/* Steckbrief ohne Karte: Linie oben, Haarlinien zwischen den Zeilen */
+.steckbrief { border-top: 2px solid var(--color-text); }
+.steckbrief div { padding: 0.9rem 0 1rem; border-bottom: 1px solid var(--color-border); }
 .steckbrief div:last-child { border-bottom: 0; }
 .steckbrief dt {
   font-size: var(--step--1);
@@ -941,7 +905,7 @@ a.bereich:focus-visible { outline: 3px solid var(--color-focus); outline-offset:
 --------------------------------------------------------------------------- */
 .marquee-band { padding-block: var(--space-s) clamp(var(--space-m), 4vw, var(--space-l)); }
 .marquee-kopf { display: grid; gap: 0.75rem; }
-.demo-hinweis--klein { font-size: 0.875rem; line-height: 1.45; padding-block: 0.4rem 0.45rem; max-width: none; justify-self: start; }
+.demo-hinweis--klein { font-size: 0.875rem; line-height: 1.45; max-width: none; justify-self: start; }
 .marquee-titel { color: var(--color-text-muted); font-weight: var(--weight-label); line-height: 1.4; }
 
 /* Filter-Definitionen: nimmt keinen Platz ein */
@@ -1002,7 +966,9 @@ a.bereich:focus-visible { outline: 3px solid var(--color-focus); outline-offset:
 }
 @media (prefers-reduced-motion: no-preference) {
   .marquee__spur { animation: marquee-lauf 70s linear infinite; }
-  .marquee:hover .marquee__spur { animation-play-state: paused; }
+  /* Mit JS: Bewegung per requestAnimationFrame (sanftes Abbremsen bei
+     Hover statt hartem Stopp), die CSS-Animation ist dann aus. */
+  .marquee--js .marquee__spur { animation: none; will-change: transform; }
 }
 /* Schmale Fenster: kürzere Liste, deshalb kürzere Dauer für dasselbe ruhige Tempo */
 @media (prefers-reduced-motion: no-preference) and (max-width: 600px) {
@@ -1271,18 +1237,10 @@ a.bereich:focus-visible { outline: 3px solid var(--color-focus); outline-offset:
 }
 .anfrage__intro > p:not(.kicker) { margin-top: 1.25rem; font-size: var(--step-1); line-height: 1.45; max-width: 44ch; }
 .kontaktzeilen { list-style: none; display: grid; gap: 1.25rem; margin-top: var(--space-m); }
-.kontaktzeilen li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); align-items: start; gap: 1rem; }
-.kontaktzeilen .icon-feld {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  background: var(--color-primary-strong);
-  color: var(--color-bg);
-  border: 2px solid var(--color-text);
-  border-radius: var(--radius-karte);
-}
-.kontaktzeilen .icon-feld .icon { width: 1.3rem; height: 1.3rem; }
+.kontaktzeilen li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: start; gap: 0.9rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-border); }
+.kontaktzeilen li:last-child { border-bottom: 0; }
+.kontaktzeilen .icon-feld { display: grid; place-items: start center; padding-top: 0.15rem; color: var(--color-primary-strong); }
+.kontaktzeilen .icon-feld .icon { width: 1.5rem; height: 1.5rem; }
 .kontaktzeilen .label { display: block; color: var(--color-text); }
 .kontaktzeilen a, .kontaktzeilen span:not(.label):not(.icon-feld) { color: var(--color-text); font-size: var(--step-0); }
 .kontaktzeilen a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; transition: color var(--dur-schnell) var(--ease-out); }
@@ -1545,7 +1503,8 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .denkmal { grid-template-columns: minmax(0, 1fr); }
   .ueber { grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); }
   .steckbrief { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .steckbrief div:nth-child(odd) { border-right: 1px solid var(--color-border); }
+  .steckbrief div:nth-child(odd) { border-right: 1px solid var(--color-border); padding-right: 1.25rem; }
+  .steckbrief div:nth-child(even) { padding-left: 1.25rem; }
   .steckbrief div:nth-last-child(-n+2) { border-bottom: 0; }
 }
 @media (max-width: 1100px) {
@@ -1580,7 +1539,7 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .plankopf__objekt { grid-template-columns: minmax(0, 1fr); }
   .ueber { grid-template-columns: minmax(0, 1fr); }
   .steckbrief { grid-template-columns: minmax(0, 1fr); }
-  .steckbrief div, .steckbrief div:nth-child(odd) { border-right: 0; border-bottom: 1px solid var(--color-border); }
+  .steckbrief div, .steckbrief div:nth-child(odd), .steckbrief div:nth-child(even) { border-right: 0; padding-inline: 0; border-bottom: 1px solid var(--color-border); }
   .steckbrief div:last-child { border-bottom: 0; }
   .felder-zwei { grid-template-columns: minmax(0, 1fr); }
   .funnel__nav { flex-direction: column-reverse; align-items: stretch; }
