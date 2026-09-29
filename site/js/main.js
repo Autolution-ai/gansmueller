@@ -182,7 +182,7 @@ const funnel = (() => {
   }
 
   // Hinweise bei „Privates Eigenheim“ und „über 15 Mio. €“: Absenden bleibt
-  // möglich, die Anfrage wird markiert (DEMO-SPEC, Bruno 27.09.2026).
+  // möglich, die Anfrage wird markiert.
   function hinweiseAktualisieren() {
     const a = gewaehlt("auftraggeber");
     const v = gewaehlt("bauvolumen");
