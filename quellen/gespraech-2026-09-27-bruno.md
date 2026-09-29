@@ -130,3 +130,12 @@ Datum: 2026-09-28 · Wortlaut Bruno: „https://www.maler-heusser.de/?gad_source
 
 - Referenz: https://www.maler-heusser.de/ (Parameter hinter „?" sind Google-Ads-Tracking, für die Analyse ohne sie aufgerufen).
 - Auftrag: Designstil analysieren (Aufbau, Gestaltung, Bewegung, CLAUDE.md §7) und für die Demo übernehmen. CI (Farben, Logo) bleibt aus dem Kundenmaterial (§6); Inhalte und Belege bleiben die von Gansmüller.
+
+## Nachtrag: Ablauf neu, Marquee, Register
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Finde für den Ablauf eine bessere/schönere Lösung um diesen darzustellen. Checke allgemein nochmal die ganze Seite ab und entwickle Ideen wie an sie optimieren könnte" – Auswahl aus der Ideenliste: „Die Logos der Refferenze als Marquee unter den HERO, um schon etwas vertrauen aufzubauen, Register einklappen"
+
+- Ablauf: neue Darstellung (Zeitstrahl statt Kartenraster).
+- Bauherren der Referenzliste als laufendes Band (Marquee) direkt unter dem Hero, mit Logos, wo eindeutig belegbar.
+- Referenz-Register standardmäßig eingeklappt.
+- Nicht gewählt: schlankere Demo-Hinweise, mobile Anfrageleiste.
