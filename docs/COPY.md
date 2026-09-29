@@ -310,7 +310,7 @@ und H2 „Aus meiner Referenzliste" stehen seitdem am Kopf der Referenzen.
 
 **Demo-Hinweis direkt über dem Band (dritte Person):**
 
-> **Demo-Stand:** Namen aus der bisherigen Referenzliste, HOWOGE-Logo von deren Website, übrige Logos von Bruno. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.
+> **Demo-Stand:** Namen aus der bisherigen Referenzliste, Logos für die Demo zusammengestellt. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.
 
 [Stand 2026-09-29, zweite Fassung: Herkunft der vier gelieferten Logos
 ergänzt, auf dem Desktop einzeilig.]
