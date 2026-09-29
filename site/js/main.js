@@ -357,6 +357,11 @@ function initRegister() {
    Ablauf: ab 900 px Tabs mit einem Detailfeld (WAI-ARIA Tabs, automatische
    Aktivierung, Pfeiltasten, Pos1/Ende). Die Liste bleibt im Dokument und ist
    darunter (mobil, ohne JS) die sichtbare Fassung.
+   Autoplay (Wunsch Bruno): Die Linie füllt sich langsam bis zur nächsten
+   Station, dann wechselt das Detailfeld. Start erst, wenn der Zeitstrahl zu
+   sehen ist; Pause bei Hover, Fokus, verdecktem Tab oder außerhalb des
+   Bildes; nach einer Auswahl von Hand 15 s Ruhe, dann geht es weiter. Bei
+   reduzierter Bewegung kein Autoplay. Autoplay setzt nie den Fokus.
 --------------------------------------------------------------------------- */
 function initZeitstrahl() {
   const wurzel = document.querySelector("[data-zeitstrahl]");
@@ -366,6 +371,8 @@ function initZeitstrahl() {
     titel: li.querySelector(".zs-titel").innerHTML,
     text: li.querySelector(".zs-beschreibung").textContent,
     ergebnis: li.querySelector(".zs-ergebnis__text").textContent,
+    phase: li.closest(".zs-gruppe").querySelector(".zs-gruppe__titel").textContent,
+    bau: li.closest(".zs-gruppe").classList.contains("zs-gruppe--bau"),
     details: li.querySelector("details")
   }));
 
@@ -376,25 +383,28 @@ function initZeitstrahl() {
   mobil.addEventListener("change", mobilSetzen);
 
   const zweistellig = (n) => String(n).padStart(2, "0");
+  const vor = stationen.filter((s) => !s.bau);
   const tabs = document.createElement("div");
   tabs.className = "zs-tabs";
   tabs.innerHTML = `
-    <p class="zs-abschnitte" aria-hidden="true">
-      <span class="label zs-abschnitt zs-abschnitt--vor">Bevor es losgeht</span>
-      <span class="label zs-abschnitt zs-abschnitt--bau">Am Bau</span>
-    </p>
     <div class="zs-tabliste" role="tablist" aria-label="Stationen der Zusammenarbeit">
+      <span class="zs-phase zs-phase--vor" aria-hidden="true"><span class="label">${vor[0].phase}</span></span>
+      <span class="zs-phase zs-phase--bau" aria-hidden="true"><span class="label">${stationen[stationen.length - 1].phase}</span></span>
       <span class="zs-linie" aria-hidden="true"><span></span></span>
       ${stationen.map((s) => `
-        <button class="zs-tab" type="button" role="tab" id="zs-tab-${s.nr}"
+        <button class="zs-tab${s.bau ? " zs-tab--bau" : ""}" type="button" role="tab" id="zs-tab-${s.nr}"
           aria-controls="zs-panel" aria-selected="false" tabindex="-1">
           <span class="zs-nr" aria-hidden="true">${zweistellig(s.nr)}</span>
           <span>${s.titel}</span>
         </button>`).join("")}
     </div>
+    <button class="zs-auto" type="button" aria-pressed="true" data-zs-auto>
+      <span class="zs-auto__zeichen" aria-hidden="true"></span>Stationen automatisch weiterschalten
+    </button>
     <div class="zs-unten">
       <div class="zs-panel" id="zs-panel" role="tabpanel" tabindex="0">
         <span class="zs-panel__nr" aria-hidden="true"></span>
+        <p class="zs-panel__phase" data-panel-phase></p>
         <h3 data-panel-titel></h3>
         <p data-panel-text></p>
         <p class="zs-panel__ergebnis"><span class="zs-ergebnis__label">Ergebnis</span><span data-panel-ergebnis></span></p>
@@ -408,9 +418,13 @@ function initZeitstrahl() {
 
   const knoepfe = [...tabs.querySelectorAll('[role="tab"]')];
   const panel = tabs.querySelector('[role="tabpanel"]');
+  const fuellung = tabs.querySelector(".zs-linie span");
+  const letzte = knoepfe.length - 1;
+  let aktuell = 0;
 
   function waehlen(index, { fokus = false } = {}) {
     const s = stationen[index];
+    aktuell = index;
     knoepfe.forEach((k, i) => {
       const aktiv = i === index;
       k.setAttribute("aria-selected", String(aktiv));
@@ -418,18 +432,70 @@ function initZeitstrahl() {
       k.classList.toggle("zs-tab--erreicht", i < index);
     });
     tabs.dataset.aktiv = s.nr;
+    panel.classList.toggle("zs-panel--bau", s.bau);
     panel.setAttribute("aria-labelledby", `zs-tab-${s.nr}`);
     panel.querySelector(".zs-panel__nr").textContent = zweistellig(s.nr);
+    panel.querySelector("[data-panel-phase]").textContent = s.phase;
     panel.querySelector("[data-panel-titel]").innerHTML = s.titel;
     panel.querySelector("[data-panel-text]").textContent = s.text;
     panel.querySelector("[data-panel-ergebnis]").textContent = " " + s.ergebnis;
     if (fokus) knoepfe[index].focus();
   }
 
+  // ---- Autoplay ------------------------------------------------------------
+  const reduziert = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const breit = window.matchMedia("(min-width: 900px)");
+  const zustand = { sichtbar: false, hover: false, fokus: false, ruhe: false, aus: false };
+  const autoKnopf = tabs.querySelector("[data-zs-auto]");
+  let lauf = null;
+  let ruheUhr = null;
+
+  // Lesezeit je Station aus der Textlänge: 6,5 bis 9 s.
+  const dauer = (i) => {
+    const zeichen = stationen[i].text.length + stationen[i].ergebnis.length;
+    return Math.round(Math.min(9000, Math.max(6500, 3000 + zeichen * 30)));
+  };
+  const darfLaufen = () => !reduziert.matches && breit.matches && zustand.sichtbar
+    && !zustand.hover && !zustand.fokus && !zustand.ruhe && !zustand.aus && !document.hidden;
+
+  function melden() {
+    tabs.dataset.autoplay = !lauf ? "aus" : lauf.playState === "running" ? "laeuft" : "pausiert";
+  }
+  function schritt() {
+    if (lauf) lauf.cancel();
+    const i = aktuell;
+    const von = i / letzte;
+    const bis = i < letzte ? (i + 1) / letzte : 1;
+    lauf = fuellung.animate(
+      [{ transform: `scaleX(${von})` }, { transform: `scaleX(${bis})` }],
+      { duration: dauer(i), easing: "linear", fill: "forwards" }
+    );
+    lauf.onfinish = () => {
+      waehlen(i < letzte ? i + 1 : 0);
+      schritt();
+    };
+    if (!darfLaufen()) lauf.pause();
+    melden();
+  }
+  function pruefen() {
+    if (lauf) {
+      if (darfLaufen()) lauf.play(); else lauf.pause();
+      melden();
+    } else if (darfLaufen()) {
+      schritt();
+    }
+  }
+  function vonHand() {
+    if (lauf) { lauf.cancel(); lauf = null; }
+    zustand.ruhe = true;
+    clearTimeout(ruheUhr);
+    ruheUhr = setTimeout(() => { zustand.ruhe = false; pruefen(); }, 15000);
+    melden();
+  }
+
   knoepfe.forEach((k, i) => {
-    k.addEventListener("click", () => waehlen(i));
+    k.addEventListener("click", () => { vonHand(); waehlen(i); });
     k.addEventListener("keydown", (e) => {
-      const letzte = knoepfe.length - 1;
       let ziel = null;
       if (e.key === "ArrowRight") ziel = i === letzte ? 0 : i + 1;
       else if (e.key === "ArrowLeft") ziel = i === 0 ? letzte : i - 1;
@@ -437,10 +503,38 @@ function initZeitstrahl() {
       else if (e.key === "End") ziel = letzte;
       if (ziel === null) return;
       e.preventDefault();
+      vonHand();
       waehlen(ziel, { fokus: true });
     });
   });
+
+  // Sichtbarer Schalter (WCAG 2.2.2): Autoplay dauerhaft aus- und wieder
+  // einschalten. Bei reduzierter Bewegung blendet CSS ihn aus.
+  autoKnopf.addEventListener("click", () => {
+    zustand.aus = !zustand.aus;
+    autoKnopf.setAttribute("aria-pressed", String(!zustand.aus));
+    if (zustand.aus && lauf) { lauf.cancel(); lauf = null; }
+    melden();
+  });
+
+  tabs.addEventListener("mouseenter", () => { zustand.hover = true; pruefen(); });
+  tabs.addEventListener("mouseleave", () => { zustand.hover = false; pruefen(); });
+  tabs.addEventListener("focusin", () => { zustand.fokus = true; pruefen(); });
+  tabs.addEventListener("focusout", (e) => {
+    if (tabs.contains(e.relatedTarget)) return;
+    zustand.fokus = false;
+    pruefen();
+  });
+  document.addEventListener("visibilitychange", pruefen);
+  reduziert.addEventListener("change", () => { if (reduziert.matches && lauf) { lauf.cancel(); lauf = null; melden(); } pruefen(); });
+  breit.addEventListener("change", pruefen);
+  new IntersectionObserver((eintraege) => {
+    zustand.sichtbar = eintraege[0].isIntersecting;
+    pruefen();
+  }, { threshold: 0.35 }).observe(tabs);
+
   waehlen(0);
+  melden();
 }
 
 /* ---------------------------------------------------------------------------

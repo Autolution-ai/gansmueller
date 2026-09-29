@@ -132,172 +132,120 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 
 ## 1 · Hero
 
-**Nicht Teil dieses Entwurfs.** Text, H1 und CTA liefert der
-`hero-specialist`, entschieden in Station 2. Vorschlag laut Struktur:
-primär „Bauüberwachung anfragen" (`?leistung=bauueberwachung`, freigegeben Station 2),
-sekundär Textlink „Referenzliste ansehen" (#referenzen).
+**Stand 2026-09-29 (Bruno, Beleg: `quellen/gespraech-2026-09-27-bruno.md`, Nachtrag „Hero-Claim und Zähler").** Layout unverändert.
 
-**Abstimmung mit dem Hero (bitte an den hero-specialist):**
-- „über 30 Jahre in der Branche" steht in diesem Entwurf **einmal**, im
-  Steckbrief unter „Über mich". Nimmt der Hero die Zahl auf, fliegt die
-  Steckbrief-Zeile raus (Ein-Nennung, jede Zahl einmal pro Seite).
-- Kernbegriffe, die dieser Entwurf bewusst **nicht** benutzt, damit der Hero sie
-  hat: „Erfahrung" (0×), „persönlich" (0×).
-- Dreiergruppen: Dieser Entwurf verbraucht **eine** (Funnel, drei Schritte).
-  Der Hero hat höchstens noch eine.
+> *Plakette:* Dipl.-Ing. (FH) Bauwesen
+>
+> *Kicker:* Ingenieurbüro René Gansmüller
+>
+> # Ihr Partner für **Bauüberwachung und Projektsteuerung** in Berlin, Brandenburg und Sachsen
+>
+> Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme.
+>
+> **CTA:** Bauüberwachung anfragen · *Kontur:* Referenzliste ansehen
+>
+> *Kennzahlen (zählen beim Laden hoch, gemeinsames Ende):* über 30 · Jahre in der Branche / 450 · Wohneinheiten in der größten Sanierung der Liste
+
+[„Partner" steht auf der Verbotsliste der Branchendatei; bewusste
+Entscheidung von Bruno („ok, Partner statt Bauingenieur") · Region: Büro
+Berlin (Impressum), Objekte in Berlin, Strausberg (Brandenburg), Dresden,
+Radebeul, Coswig, Kreischa (Sachsen) laut Referenzliste · Zielgruppen:
+DEMO-SPEC · „über 30" steht zusätzlich unter „Über mich" (Wunsch Bruno)]
 
 ---
 
 ## 2 · Für wen ich arbeite  `#fuer-wen`
 
-Muster: Gegenüberstellung, zwei getrennte Wege (§9). Psychologie:
-Wiedererkennung der eigenen Lage (Stufe 2 der Konkretheits-Leiter).
+**Stand 2026-09-29:** Kundenprofile statt Leistungsbeschreibung. Jede
+Profilkarte ist ein Link `?auftraggeber=…#anfrage` (aria-label „Anfrage als … beginnen").
 
 > ## Für wen ich arbeite
+>
+> Erkennen Sie sich in einem Profil wieder, führt die Karte direkt in die Anfrage, mit Ihrer Rolle schon eingetragen.
 
-**Weg A**
+**Gruppe hell**
 
 > ### Sie bauen selbst
+> Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.
 >
-> Bauträger · Projektentwickler · Wohnungsunternehmen · Gewerbliche Auftraggeber
+> - *Bauträger:* Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.
+> - *Projektentwickler:* Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.
+> - *Wohnungsunternehmen:* Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.
+> - *Gewerbliche Auftraggeber:* Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.
 >
-> Sie haben ein Bauvorhaben und brauchen jemanden, der es auf Ihrer Seite steuert oder überwacht. Vielleicht ist Ihre eigene Bauleitung gerade ausgelastet, vielleicht haben Sie keine. Sie beauftragen mich für dieses eine Objekt, und mit dem Objekt endet auch Ihre Verpflichtung.
+> Karten-Link: **Anfrage beginnen**
 
-[Zielgruppen: Briefing, Transkript, Wohnungsunternehmen: Bruno Station 1 ·
-eigene Bauleiter beim Stammkunden: Transkript · objektbezogen, keine
-Verpflichtung danach: Transkript]
-
-**Weg B**
+**Gruppe dunkel**
 
 > ### Sie planen und brauchen die Bauüberwachung
+> Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.
 >
-> Architektur- und Planungsbüros · Generalplaner
+> - *Architektur- und Planungsbüros:* Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.
+> - *Generalplaner:* Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.
+
+**Projektrahmen**
+
+> ### Projektrahmen
+> **Passt gut**
+> - **Vorhaben bis etwa 15 Mio. € Bauvolumen.** In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.
+> - **Ein konkretes Objekt.** Sie beauftragen mich für dieses eine Vorhaben, und mit dem Objekt endet auch Ihre Verpflichtung.
 >
-> Die Planung liegt bei Ihnen, auf der Baustelle fehlt gerade jemand. Die Bauüberwachung für Ihr Projekt können Sie an mich abgeben. Sie behalten die Planung und haben vor Ort jemanden, der die Ausführung an Ihren Plänen misst.
+> **Passt weniger**
+> - **Reine private Eigenheime.** Meine Arbeit richtet sich an Bauträger, Unternehmen und Planungsbüros.
+> - **Großbaustellen im Bereich von 50 bis 100 Mio. €.** Solche Projekte brauchen ein ganzes Bauleitungsteam; bei mir haben Sie mich selbst als Ansprechpartner.
 
-[Zielgruppen: Briefing, Transkript („arbeite für Architektur- oder
-Planungsbüros … die Bauüberwachung") · Überwachung auf Übereinstimmung mit
-den Ausführungsplänen: Scrape Leistungen]
-
-**Unter beiden Spalten (Projektrahmen als Nutzen):**
-
-> Vorhaben bis etwa 15 Mio. € Bauvolumen sind der Rahmen, in dem ich arbeite. In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.
-
-[Obergrenze: Transkript „maximal 10 oder 15 Millionen", Briefing
-„idealerweise bis ca. 10–15 Mio. €" · „überschaubar": Kundenwort, Transkript]
-
-**Links (belegen Funnel-Schritt 1 vor und springen auf Schritt 2):**
-
-| Linktext (sichtbar) | `aria-label` | Ziel |
-|---|---|---|
-| Bauträger | Anfrage als Bauträger beginnen | `?auftraggeber=bautraeger#anfrage` |
-| Projektentwickler | Anfrage als Projektentwickler beginnen | `?auftraggeber=projektentwickler#anfrage` |
-| Wohnungsunternehmen | Anfrage als Wohnungsunternehmen beginnen | `?auftraggeber=wohnungsunternehmen#anfrage` |
-| Gewerbliche Auftraggeber | Anfrage als gewerblicher Auftraggeber beginnen | `?auftraggeber=gewerblich#anfrage` |
-| Architektur- und Planungsbüros | Anfrage als Architektur- oder Planungsbüro beginnen | `?auftraggeber=planungsbuero#anfrage` |
-| Generalplaner | Anfrage als Generalplaner beginnen | `?auftraggeber=generalplaner#anfrage` |
-
-Die Zielgruppennamen sind die Links selbst (mit Pfeil und Hover), kein
-zusätzlicher Button je Spalte.
+[Zielgruppen: DEMO-SPEC, Transkript · Profilsätze beschreiben die Lage des
+Lesers, keine Tatsachen über den Betrieb · „eigene Bauleitung ausgelastet":
+Lage des Lesers (website-copy Stufe 2), aus dem bisher freigegebenen Text · Obergrenze „maximal 10
+oder 15 Millionen", keine „private Eigenheimbauer", keine Baustellen „50, 100
+Millionen" und keine großen Baufirmen (Name nicht genannt): Transkript ·
+objektbezogen: Transkript · **keine Untergrenze** (nicht belegt) · Ton nach
+§8: sachlich, keine Ablehnungs-Rhetorik]
 
 ---
 
 ## 3 · Leistungen  `#leistungen`
 
-Muster: gewichtete Liste, zwei groß, zwei als Zeile, Partnerzeile.
-Psychologie: Einwand „Was macht ihr eigentlich genau?" (stärkster Einwand der
-Branche, Branchendatei) wird mit der Rolle beantwortet, nicht mit einer
-Begriffsliste.
+**Stand 2026-09-29:** Kacheln nach Brunos Beispielbild. Zwei große randlose
+Kacheln (Nummer, Titel, 1 bis 2 Zeilen, CTA), darunter Aufgaben und Vergabe
+als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 
-> *Kicker (p):* Leistungen
+> *Kicker:* Leistungen
 >
 > ## Projektsteuerung und Bauüberwachung
 >
 > Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.
 
-[„Metier": Kundenwort, Transkript · Leistungen: Briefing, Transkript]
+**Demo-Hinweis über den Kacheln:**
 
-### Groß 1
+> **Demo-Stand:** Die beiden Kacheln sind für Fotos angelegt. Im Projekt stehen hier Aufnahmen von René Gansmüllers Baustellen oder als Symbolbild gekennzeichnete freie Fotos.
 
-> ### Projektsteuerung
+> **01 · Projektsteuerung** (H3)
+> Schon in der Planungsphase ein Bauingenieur auf Ihrer Seite, der Ihre Interessen gegenüber dem Generalunternehmer vertritt, bis gebaut ist.
+> **CTA:** Projektsteuerung anfragen
+
+> **02 · Bauüberwachung** (H3), *Kicker:* HOAI Leistungsphase 8
+> Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag: Ausführung, Termine und Kosten, bevor Sie zahlen.
+> **CTA:** Bauüberwachung anfragen
+
+> *Zur Bauüberwachung gehören:* Kontrolle nach Ausführungsplänen und Regeln der Technik · Koordination der Gewerke und Handwerker · Ablaufplan und Terminüberwachung · Kostenkontrolle, Aufmaß- und Rechnungsprüfung · Gewährleistungsabnahme und Revisionsunterlagen, auf Wunsch
 >
-> Mit einer Projektsteuerung haben Sie schon in der Planungsphase einen Bauingenieur auf Ihrer Seite, also früher als bei einer reinen Bauüberwachung. Zwischen Ihnen und dem Generalunternehmer oder Generalübernehmer vertrete ich Ihre Interessen, solange geplant und gebaut wird.
+> *Auf Wunsch vorher: Vergabe:* Leistungsverzeichnisse mit genauer Mengenermittlung · Ausschreibungsunterlagen · Angebotsauswertung · Bieterverhandlungen
+
+**Demo-Hinweis über den kleinen Kacheln:**
+
+> **Demo-Stand:** Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.
+
+> **03 · Baubetreuung** (H3) Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen. *Textlink:* Baubetreuung anfragen
 >
-> Das passt, wenn Sie Bauherr sind und Ihr Vorhaben nicht selbst durch Planung und Bau führen möchten.
->
-> **CTA:** Projektsteuerung anfragen → `?leistung=projektsteuerung#anfrage`
+> **04 · Bauberatung** (H3) Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben. *Textlink:* Bauberatung anfragen
 
-[Rolle zwischen Auftraggeber und GU/GÜ, in der Planungsphase dabei, als
-Bauüberwacher dort nicht: Transkript. Bewusst **nicht** genannt:
-„alle Leistungsphasen" (nur mit Partnern freigegeben), Abrechnung nach HU/AHO
-(A5, ungeklärt).]
+> *Partnerzeile:* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit. **CTA:** Vorhaben mit Planung anfragen
 
-### Groß 2
-
-> ### Bauüberwachung (HOAI Leistungsphase 8)
->
-> Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag. Dazu gehören:
->
-> - die Kontrolle, ob nach den Ausführungsplänen und nach den Regeln der Technik gebaut wird
-> - die Koordination der Gewerke und Handwerker
-> - ein Ablaufplan für die Bauzeit und die Überwachung der Termine
-> - Kostenkontrolle sowie Aufmaß- und Rechnungsprüfung, bevor Sie zahlen
->
-> **Vergabe:** Auf Wunsch liegt vorher auch die Vergabe bei mir: Leistungsverzeichnisse mit genauer Mengenermittlung, Ausschreibungsunterlagen, Angebotsauswertung und Bieterverhandlungen.
->
-> **Danach:** Auf Wunsch nehme ich vor Ablauf der Gewährleistungsfrist die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.
->
-> **CTA:** Bauüberwachung anfragen → `?leistung=bauueberwachung#anfrage`
-
-[Nachtrag qa-reviewer 28.09.: Gewährleistungsabnahme und Revisionsunterlagen
-sind Leistungsphase 9, deshalb aus der LPH-8-Liste genommen und ohne
-LPH-Nummer als eigener Satz. Liste jetzt vier Punkte.]
-
-[„HOAI Leistungsphase 8": Transkript, Freigabe Bruno · „Ablaufplan für die Bauzeit" = „Erstellung der Ablaufpläne" · alle fünf Punkte:
-Scrape Leistungen, Abschnitte „Objektüberwachung" und „Objektbetreuung und
-Dokumentation" · Vergabe: Scrape, Abschnitte „Vorbereitung der Vergabe" und
-„Mitwirkung bei der Vergabe", **ohne** Leistungsphasen-Nummer (Bruno,
-Station 1) · CTA-Wortlaut = Hero-Vorschlag, ein Label pro Ziel]
-
-Liste mit fünf Punkten, keine Dreiergruppe. Vergabe als Absatz mit fettem
-Auftakt, keine H4.
-
-### Zeile 1
-
-**Demo-Hinweis direkt über dieser Zeile:**
-
-> **Demo-Stand:** Die Leistung Baubetreuung stammt aus dem Vorgespräch, eine Beschreibung dazu gab es noch nicht. Der Text ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt, in seinen eigenen Worten.
-
-> ### Baubetreuung
->
-> Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen.
->
-> **CTA:** Baubetreuung anfragen → `?leistung=baubetreuung#anfrage`
-
-[Leistungsname: Briefing, Transkript · Behördenabstimmungen als Leistung:
-PDF · Rest ist Entwurf, deshalb der Hinweis]
-
-### Zeile 2
-
-> ### Bauberatung
->
-> Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben.
->
-> **CTA:** Bauberatung anfragen → `?leistung=bauberatung#anfrage`
-
-[Scrape Leistungen: „Beratung", „Bestandsaufnahme: Zustandsermittlung der
-Bausubstanz bei Sanierungs- und Modernisierungsvorhaben, Kostenschätzung"]
-
-### Partnerzeile
-
-> Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit.
->
-> **Textlink:** Vorhaben mit Planung anfragen → `?leistung=alle-leistungsphasen#anfrage`
-
-[Satz „gemeinsam mit Partnern alle Leistungsphasen": Transkript, Freigabe
-Bruno · vier Rollen: Transkript („einen Planer, einen Architekten …
-Brandschutzexperten … Statiker"), Struktur: nie zu drei zusammenziehen ·
-keine Partnernamen, keine Logos]
+[Leistungen, Aufgaben, Vergabe: Scrape (Leistungsseite) · Projektsteuerung
+ab Planungsphase, GU/GÜ: Transkript · Baubetreuung: Transkript, Text Entwurf
+· Fotos: gekennzeichneter Bildplatz; Unsplash-Kandidaten und Grund
+(Proxy sperrt den Download) in `quellen/bilder-unsplash.md`]
 
 ---
 
@@ -444,27 +392,19 @@ siehe offene Punkte.]
 
 ### Projektbereiche
 
-**Demo-Hinweis direkt über der Bereichszeile:**
+**Stand 2026-09-29:** großer typografischer Streifen über die volle Breite.
 
-> **Demo-Stand:** Industriebau sowie Arztpraxen und Krankenhäuser nennt René Gansmüller selbst als Bereiche seiner Arbeit. Die Referenzliste der bisherigen Website enthält dazu noch keine Objekte. Im Projekt stehen hier seine Beispiele mit Foto und Leistung.
+**Demo-Hinweis (einzeilig, direkt über dem Streifen):**
+
+> **Demo-Stand:** Industrie, Arztpraxen und Krankenhäuser nennt René Gansmüller selbst als Bereiche; im Projekt stehen hier seine Beispiele mit Foto.
 
 > ### Projektbereiche
 >
-> Wohnungsbau · Gewerbe · Industrie · Arztpraxen · Krankenhäuser
+> Wohnungsbau (*Objekte im Register*, Link `#register`) · Gewerbe (*Objekte im Register*) · Industrie · Arztpraxen · Krankenhäuser
 
-[Bereiche: Transkript („nicht bloß sozialer Wohnungsbau … Gewerbe …
-Industrie … Arztpraxen, Krankenhäuser"), Briefing · Wohnungsbau und Gewerbe
-durch PDF belegt · Formulierung im Hinweis „Industriebau sowie Arztpraxen und
-Krankenhäuser" als 1 + 2 gesetzt, damit keine Dreiergruppe entsteht ·
-Keine Aussage, dass es dort keine Projekte gibt (§3, Abwesenheit ≠
-Nichtexistenz)]
-
-### Abschluss der Referenzen
-
-> **CTA:** Ähnliches Vorhaben? Projekt prüfen lassen → `#anfrage`
-
-[Vorgabe Koordination 2026-09-29. Bewusst mit Bezug auf die Referenzliste,
-Ziel identisch mit dem Hauptziel.]
+[Bereiche: Transkript · Wohnungsbau und Gewerbe durch die Referenzliste
+belegt, deshalb der Verweis ins Register · für Industrie, Arztpraxen und
+Krankenhäuser keine Objekte behauptet]
 
 ### Alt-Texte der Referenzfotos
 
@@ -488,43 +428,25 @@ Wertung, kein Vorher/Nachher, kein Jahr.
 
 ## 6 · Über mich  `#ueber-mich`
 
-Muster: asymmetrischer Zweispalter, Steckbrief bricht aus. Psychologie:
-Vertrauen über prüfbare Angaben, Stammkunden als Beweis.
+**Stand 2026-09-29 (Bruno):** Expertise zuerst, dann der Mehrwert direkter
+Ansprechpartner. Nicht „Mein Büro ist klein".
 
-**Demo-Hinweis direkt über dem Bildplatz:**
-
-> **Demo-Stand:** Hier steht im Projekt ein aktuelles Porträt von René Gansmüller.
-
-Bildplatz: gerahmte Fläche im Seitenverhältnis des späteren Porträts, `alt=""`
-solange leer, `role="img"` mit `aria-label="Platz für das Porträt von René
-Gansmüller"`. Das Porträt im alten Titelbild wird **nicht** verwendet: Wer
-darauf zu sehen ist, steht nirgends (Scrape).
-
-> ## Über mich
+> *Kicker:* Über mich
 >
-> Mein Büro ist klein, und Sie sprechen deshalb mit dem, der Ihr Projekt auch verantwortet.
+> ## René Gansmüller, Bauingenieur
 >
-> Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.
+> Ich bin seit über 30 Jahren in der Branche, als Diplom-Ingenieur (FH) für Bauwesen. Seit 2007 arbeite ich von Berlin aus, davor lag mein Wirkungskreis im Raum Dresden. Einige Auftraggeber begleite ich seit 20 bis 30 Jahren, von Projekt zu Projekt.
 >
-> Die meisten neuen Auftraggeber kommen über Empfehlungen. Mit einigen arbeite ich seit 20 bis 30 Jahren zusammen.
+> Für Sie heißt das: Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.
 
-[Klein, persönlich statt großes Ingenieurbüro: Briefing (Positionierung),
-Transkript („begrenzt in meiner Größe") · ein Mitarbeiter, täglich vor Ort,
-er selbst in der Baubesprechung: Transkript, **bedingt** formuliert (Bruno,
-Station 1) · Büro- und Mobilnummer: Scrape · Empfehlungen: Briefing
-(„hauptsächlich über Empfehlungen"), Transkript · 20 bis 30 Jahre: Briefing
-(„teilweise seit 20–30 Jahren"), Transkript]
+**Steckbrief:** Abschluss: Dipl.-Ing. (FH) Bauwesen · Büro: Schwedenstraße 13, 13357 Berlin, Link „In Google Maps öffnen" (neuer Tab) · In Berlin: seit 2007, vorher Raum Dresden · Direkt erreichbar: 030/ 69 520 364, mobil 0173/ 57 31 045
 
-**Steckbrief (bricht aus, drei Zeilen; „über 30 Jahre“ steht im Hero-Kicker, Ein-Nennung):**
+**Demo-Hinweis über dem Porträt (unverändert):** Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt.
 
-> **Abschluss** · Dipl.-Ing. (FH) Bauwesen
-> **Büro** · Berlin seit 2007, vorher im Raum Dresden
-> **Direkt erreichbar** · 030/ 69 520 364 · mobil 0173/ 57 31 045 (Schreibweise Scrape, wie Hero und Footer)
-
-[Titel: Scrape Impressum · „über 30 Jahre in der Branche": Transkript,
-**nicht** „in Bauüberwachung & Projektsteuerung" (A1) · 2007, Raum Dresden:
-Scrape Home · Nummern: Scrape Kontakt/Impressum, Schreibweise ohne
-Schrägstrich, `tel:+493069520364` und `tel:+491735731045`]
+[über 30 Jahre, Stammkunden 20 bis 30 Jahre, ein Mitarbeiter täglich vor
+Ort: Transkript · Dipl.-Ing. (FH) Bauwesen: Impressum · Berlin seit 2007,
+zuvor Raum Dresden: Scrape · Adresse: Impressum, Google-Eintrag (geprüft) ·
+Maps-Link: Profil-URL aus `quellen/scrape-google.md`, kopiert]
 
 ---
 
@@ -542,7 +464,16 @@ Seit 2026-09-29 als Zeitstrahl. Gruppenlabels: **Bevor es losgeht**
 Tabs („Stationen der Zusammenarbeit") mit einem Detailfeld (Titel,
 Beschreibung, Ergebnis); mobil eine Zeile je Station (Ziffer, Titel,
 Ergebnis), die Beschreibung klappt auf. Neben dem Detailfeld bzw. unter der
-Liste: CTA und „Telefon 030/ 69 520 364". Stationstexte unverändert.
+Liste: CTA und darunter „In unter zwei Minuten angefragt." (Aussage Bruno,
+2026-09-29; die Telefonnummer steht dort nicht mehr). Stationstexte unverändert.
+
+**Stand 2026-09-29:** Die Phasen sind deutlich getrennt: „Bevor es losgeht"
+mit gestrichelter Fläche, Linie und Ziffern, „Am Bau" getönt und
+durchgezogen; das Detailfeld nennt die Phase. Autoplay: Die Linie füllt sich
+in 6,5 bis 9 s (nach Textlänge) bis zur nächsten Station, dann wechselt das
+Detailfeld, nach 07 wieder 01. Start erst im Bild, Pause bei Hover und
+Fokus, nach einer Auswahl von Hand 15 s Ruhe; Schalter „Stationen
+automatisch weiterschalten"; bei reduzierter Bewegung kein Autoplay.
 
 **Demo-Hinweis direkt über Station 1:**
 
@@ -598,11 +529,9 @@ Fortschrittsbalken, Fußzeile. Zwei Pflichtfragen plus Kontakt.
 > *Kicker (p):* Anfrage
 >
 > ## Lassen Sie Ihr Projekt unverbindlich prüfen
->
-> Zwei kurze Fragen, dann Ihre Kontaktdaten. Melden Sie sich auch, wenn Ihr Vorhaben erst in einem oder zwei Jahren beginnt: Viele Aufträge sind aus einem Gespräch entstanden, das lange vorher stattfand.
 
-[„unverbindlich prüfen": Briefing · Kontakte melden sich oft ein bis zwei
-Jahre später: Transkript]
+[„unverbindlich prüfen": Briefing · Der Text unter der Überschrift ist seit
+2026-09-29 entfernt (Bruno)]
 
 **Kopfzeile des Kastens:** Projektanfrage · Schritt 1 von 3
 
@@ -731,7 +660,7 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 | Baubetreuung | **Baubetreuung anfragen** | Leistungen | `?leistung=baubetreuung#anfrage` |
 | Bauberatung | **Bauberatung anfragen** | Leistungen | `?leistung=bauberatung#anfrage` |
 | Planung mit Partnern | **Vorhaben mit Planung anfragen** (Textlink) | Leistungen, Partnerzeile | `?leistung=alle-leistungsphasen#anfrage` |
-| Zielgruppe | Name der Zielgruppe als Link | Für wen (6×) | `?auftraggeber=…#anfrage` |
+| Zielgruppe | Profilkarte „Anfrage beginnen" | Für wen (6×) | `?auftraggeber=…#anfrage` |
 | Referenzen | Referenzliste ansehen (Textlink) | Hero (Vorschlag) | `#referenzen` |
 | Hauptziel aus den Referenzen | **Ähnliches Vorhaben? Projekt prüfen lassen** | unter den Referenzen | `#anfrage` |
 | Register | Alle 20 Objekte anzeigen · Weniger anzeigen | Referenzen | – (klappt auf) |
