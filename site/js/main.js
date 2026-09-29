@@ -443,10 +443,70 @@ function initZeitstrahl() {
   waehlen(0);
 }
 
+/* ---------------------------------------------------------------------------
+   Hero-Kennzahlen zählen hoch (Wunsch Bruno). Beide starten zusammen und
+   enden zusammen; die 30 bremst stark ab (die letzten Schritte sind spürbar),
+   die 450 mild. Im HTML steht der Endwert (ohne JS, Screenreader, Prüfung);
+   während der Animation ist die Anzeige aria-hidden und der Endwert steht
+   unsichtbar daneben. Bei reduzierter Bewegung passiert nichts.
+--------------------------------------------------------------------------- */
+// Ease-out mit Exponent: Die Zahl wird abgerundet, die letzte Stufe fällt
+// also immer auf das Ende. Ein Quint-Verlauf hielte die 29 über eine Sekunde
+// fest; mit 2,6 dauern die letzten Schritte der 30 etwa 0,15 / 0,2 / 0,6 s.
+// Die 450 läuft mit 2 flacher aus und wirkt dadurch schneller.
+const KURVEN = {
+  stark: (t) => 1 - Math.pow(1 - t, 2.6),
+  mild: (t) => 1 - Math.pow(1 - t, 2),
+};
+
+function initZaehler() {
+  const zaehler = [...document.querySelectorAll("[data-zaehler]")];
+  if (!zaehler.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const DAUER = 2400;
+
+  const vorbereiten = (el) => {
+    const ziel = Number(el.dataset.zaehler);
+    const vorlesen = document.createElement("span");
+    vorlesen.className = "vh";
+    vorlesen.textContent = String(ziel);
+    el.after(vorlesen);
+    el.setAttribute("aria-hidden", "true");
+    el.textContent = "0";
+    return { el, ziel, kurve: KURVEN[el.dataset.kurve] || KURVEN.mild, vorlesen };
+  };
+
+  const starten = () => {
+    const laeufe = zaehler.map(vorbereiten);
+    const start = performance.now();
+    const schritt = (jetzt) => {
+      const t = Math.min(1, (jetzt - start) / DAUER);
+      for (const l of laeufe) l.el.textContent = String(Math.floor(l.kurve(t) * l.ziel));
+      if (t < 1) { requestAnimationFrame(schritt); return; }
+      for (const l of laeufe) {
+        l.el.textContent = String(l.ziel);
+        l.el.removeAttribute("aria-hidden");
+        l.vorlesen.remove();
+      }
+      document.documentElement.dataset.zaehlerFertig = String(Math.round(performance.now()));
+    };
+    requestAnimationFrame(schritt);
+  };
+
+  const beobachter = new IntersectionObserver((eintraege) => {
+    if (eintraege.some((e) => e.isIntersecting)) {
+      beobachter.disconnect();
+      setTimeout(starten, 250);
+    }
+  }, { threshold: 0.6 });
+  beobachter.observe(zaehler[0].closest("dl") || zaehler[0]);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMenue();
   initAnker();
   initVorbelegung();
   initRegister();
   initZeitstrahl();
+  initZaehler();
 });

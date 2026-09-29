@@ -416,7 +416,9 @@ html:has(body.is-locked) { overflow: hidden; }
   box-shadow: var(--schatten-2);
 }
 .plakette::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--color-primary-strong); }
-.hero h1 { max-width: 13ch; }
+/* Langer Claim (Leistung, Region): kleiner als die übrigen H1, damit er in
+   drei Zeilen steht und nicht die ganze erste Bildschirmhöhe füllt. */
+.hero h1 { max-width: 30ch; font-size: clamp(1.9rem, 1.25rem + 1.75vw, 2.65rem); line-height: 1.1; text-wrap: balance; }
 /* Akzentwort mit Balken darunter (Referenz: 4 px). */
 .akzent {
   color: var(--color-primary-strong);
@@ -425,7 +427,7 @@ html:has(body.is-locked) { overflow: hidden; }
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.hero__zeile { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.45; max-width: 36ch; }
+.hero__zeile { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.45; max-width: 40ch; }
 .hero .aktionen { margin-top: 2rem; }
 .kennzahlen {
   display: flex;
@@ -444,6 +446,10 @@ html:has(body.is-locked) { overflow: hidden; }
   letter-spacing: var(--tracking-display);
   color: var(--color-primary-strong);
 }
+/* Zähler: feste Breite je Stellenzahl, damit beim Hochzählen nichts wackelt */
+.zaehler { display: inline-block; font-variant-numeric: tabular-nums; text-align: left; }
+.zaehler--2 { min-width: 2ch; }
+.zaehler--3 { min-width: 3ch; }
 .kennzahlen dt {
   font-size: var(--step--1);
   font-weight: var(--weight-label);

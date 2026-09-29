@@ -157,3 +157,12 @@ Umsetzung mit Belegpflicht:
 - Ausschlusskriterien nur, was belegt ist: Obergrenze „maximal 10 oder 15 Millionen Bauvolumen" (Transkript), keine reinen privaten Eigenheime (Transkript), keine großen Baukonzerne/Großbaustellen im Bereich 50–100 Mio. (Transkript). Eine Untergrenze (z. B. „unter 1 Mio.") ist NICHT belegt und wird nicht geschrieben.
 - „In unter zwei Minuten anfragen": Aussage von Bruno.
 - Google-Maps-Link: Profil-URL aus quellen/scrape-google.md (kopiert).
+
+## Nachtrag: Hero-Claim und Zähler
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Gestalte den Claim auf dem Hero ähnlich so wie ‚Ihr Partner für Bauüberwachung und Projektsteuerung im Raum …' und schau, wo er überall tätig ist. Und drunter einen Unterclaim, wo man Bauträger und Planungsbüros usw. nennt …" Auf den Vorschlag „Bauingenieur" statt „Partner": „ok, Partner statt Bauingenieur". Zu den Kennzahlen: „Beim Hero bitte eine Animation für die beiden Zahlen einbauen, also dass da hochgezählt wird. Bei über 30 natürlich langsamer … und bei 450 ein bisschen schneller … so, dass das Ganze gleichzeitig fertig ist."
+
+- H1: „Ihr Partner für Bauüberwachung und Projektsteuerung in Berlin, Brandenburg und Sachsen". „Partner" steht auf der Verbotsliste der Branchendatei; bewusste Entscheidung von Bruno.
+- Region: Büro Berlin (Impressum); Objekte in Berlin, Brandenburg (Strausberg) und Sachsen (Dresden, Radebeul, Coswig, Kreischa) laut Referenzliste.
+- Unterclaim: „Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme." Zielgruppen laut DEMO-SPEC.
+- Kennzahlen zählen beim Laden hoch, gemeinsames Ende; Endwerte unverändert (über 30, 450).
