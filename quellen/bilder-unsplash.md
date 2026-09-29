@@ -2,20 +2,20 @@
 
 Stand: 2026-09-29 · Auftrag: Leistungskacheln wie im Beispielbild (`.referenz/leistungen-beispiel-bruno.webp`), freie Fotos von Unsplash, auf der Seite klein als „Symbolbild" gekennzeichnet.
 
-## Status: nicht eingebaut
+## Status: eingebaut (2026-09-29, Überarbeitung 2)
 
-Die Dateien liegen **nicht** im Repo. Grund:
+Der Egress-Proxy der Arbeitsumgebung lehnt `images.unsplash.com`, `unsplash.com` und `api.apify.com` weiter ab (403). Abruf deshalb über Apify `web-fetch` (Format `raw`, Header `Accept: image/jpeg`); das Ergebnis kommt als Base64 aus dem Apify-Dataset, wurde lokal dekodiert und mit PIL geprüft (vollständiges JPEG, Größe = `contentLengthBytes`).
 
-- Der Egress-Proxy der Arbeitsumgebung lehnt `images.unsplash.com`, `unsplash.com` und `api.apify.com` ab (403, Organisationsrichtlinie; geprüft 2026-09-29 über `curl` und `$HTTPS_PROXY/__agentproxy/status`).
-- Apify `web-fetch` lädt das Bild zwar (Lauf `IuGntSPEJVvTHMFTM`, 1.357.457 Byte, AVIF), das Ergebnis liegt aber nur im Apify-Dataset. Von dort kommt es ausschließlich als Base64-Text durch die Chat-Schnittstelle, für ein Bild dieser Größe nicht übertragbar.
+Parameter: aus den kopierten URLs unten nur `w=3000` → `w=2000` geändert, `q=60` unverändert. Ein vorheriger Test mit `Range: bytes=0-39999` (w=1100, q=55) lieferte 206 und `Content-Range: bytes 0-39999/368324`; Teilstücke waren am Ende nicht nötig, weil das Dataset-Ergebnis als Datei gespeichert wird.
 
-Die Seite zeigt deshalb einen gekennzeichneten Bildplatz (dunkle Fläche, „Bildplatz"). Sobald die Dateien vorliegen, genügt je Kachel eine Zeile als erstes Kind von `<article class="kachel">`:
+| Datei | Quelle | Abruf (Apify-Lauf) | Original | Bearbeitung |
+|---|---|---|---|---|
+| `site/assets/images/leistungen/projektsteuerung.webp` / `.jpg` | Kandidat 01 (Jacek Dylag) | `wgz8sPqVxOimmX0nt`, 1.059.814 Byte | 2000 × 3000 | Ausschnitt y 450 bis 2250, auf 1440 × 1296 verkleinert, WebP q66 / JPG q72 |
+| `site/assets/images/leistungen/bauueberwachung.webp` / `.jpg` | Kandidat 02 (Scott Blake) | `psza7JZMsZDe9NQ6b`, 747.538 Byte | 2000 × 1125 | auf 1440 × 810 verkleinert, WebP q60 / JPG q68 |
 
-```html
-<img class="kachel__bild" src="assets/images/leistungen/projektsteuerung.webp" alt="" width="2000" height="1333" loading="lazy">
-```
+Am Bild geprüft: keine Personen. Auf dem Kran in Bild 01 ist klein der Herstellerschriftzug zu sehen (Kranhersteller, keine Baufirma), unter dem Verlauf kaum lesbar. Der Ersatzkandidat (Lauf `Tc9y59ibh7RNwfbEr`) ist **nicht** verwendet: gut sichtbares Firmenlogo auf einem Silo.
 
-Die Kennung wechselt dann per CSS von „Bildplatz" auf „Symbolbild"; den Demo-Hinweis über den Kacheln entfernen.
+Auf der Seite trägt jede Kachel oben rechts die Kennung „Symbolbild". Der Demo-Hinweis über den Kacheln ist entfallen.
 
 ## Ausgewählte Kandidaten (URLs kopiert aus den Abrufen)
 
@@ -36,3 +36,8 @@ Die Motive sind nach Alt-Text und Fotoseite ausgewählt, nicht am Bild geprüft 
 | `mAu3owPswHxDhAgDu` | apify/rag-web-browser | Suche „unsplash construction site building concrete photos" |
 | `Y7qoy7mzWyTTRT4ou` | apify/web-fetch | https://unsplash.com/s/photos/construction-site (Link aus dem ersten Treffer) |
 | `IuGntSPEJVvTHMFTM` | apify/web-fetch (raw) | Testdownload Kandidat 01, siehe Status |
+| `f4d7hZ9OCfbzXUM7G` | apify/web-fetch (raw, Range) | Test Teilstück, 2026-09-29 |
+| `wgz8sPqVxOimmX0nt` | apify/web-fetch (raw) | Kandidat 01, w=2000 |
+| `psza7JZMsZDe9NQ6b` | apify/web-fetch (raw) | Kandidat 02, w=2000 |
+| `Tc9y59ibh7RNwfbEr` | apify/web-fetch (raw) | Ersatz, w=2000, nicht verwendet |
+

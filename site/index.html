@@ -264,9 +264,12 @@
       <p class="lead">Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.</p>
     </header>
 
-    <p class="breakout demo-hinweis demo-hinweis--klein leistung-bildhinweis" role="note"><strong>Demo-Stand:</strong> Die beiden Kacheln sind für Fotos angelegt. Im Projekt stehen hier Aufnahmen von René Gansmüllers Baustellen oder als Symbolbild gekennzeichnete freie Fotos.</p>
     <div class="full kacheln">
       <article class="kachel" id="projektsteuerung" aria-labelledby="projektsteuerung-titel">
+        <picture>
+          <source srcset="assets/images/leistungen/projektsteuerung.webp" type="image/webp">
+          <img class="kachel__bild kachel__bild--oben" src="assets/images/leistungen/projektsteuerung.jpg" alt="" width="1440" height="1296" loading="lazy" decoding="async">
+        </picture>
         <div class="kachel__inhalt">
           <p class="kachel__nr" aria-hidden="true">01</p>
           <h3 id="projektsteuerung-titel">Projektsteuerung</h3>
@@ -275,6 +278,10 @@
         </div>
       </article>
       <article class="kachel" id="bauueberwachung" aria-labelledby="bauueberwachung-titel">
+        <picture>
+          <source srcset="assets/images/leistungen/bauueberwachung.webp" type="image/webp">
+          <img class="kachel__bild" src="assets/images/leistungen/bauueberwachung.jpg" alt="" width="1440" height="810" loading="lazy" decoding="async">
+        </picture>
         <div class="kachel__inhalt">
           <p class="kachel__nr" aria-hidden="true">02</p>
           <p class="kachel__kicker">HOAI Leistungsphase&nbsp;8</p>
@@ -285,38 +292,33 @@
       </article>
     </div>
 
-    <div class="breakout aufgaben-bloecke">
-      <div class="aufgaben-block">
-        <p class="label">Zur Bauüberwachung gehören</p>
-        <ul class="schlagworte">
+    <div class="breakout aufgaben">
+      <div class="aufgaben__spalte">
+        <h3 class="aufgaben__titel">Zur Bauüberwachung gehören</h3>
+        <ul class="aufgaben__liste">
           <li>Kontrolle nach Ausführungsplänen und Regeln der Technik</li>
           <li>Koordination der Gewerke und Handwerker</li>
           <li>Ablaufplan und Terminüberwachung</li>
           <li>Kostenkontrolle, Aufmaß- und Rechnungsprüfung</li>
-          <li>Gewährleistungsabnahme und Revisionsunterlagen, auf Wunsch</li>
+          <li>auf Wunsch Gewährleistungsabnahme und Revisionsunterlagen</li>
         </ul>
       </div>
-      <div class="aufgaben-block" id="vergabe">
-        <p class="label">Auf Wunsch vorher: Vergabe</p>
-        <ul class="schlagworte">
-          <li>Leistungsverzeichnisse mit genauer Mengenermittlung</li>
-          <li>Ausschreibungsunterlagen</li>
-          <li>Angebotsauswertung</li>
-          <li>Bieterverhandlungen</li>
-        </ul>
+      <div class="aufgaben__spalte" id="vergabe">
+        <h3 class="aufgaben__titel">Auf Wunsch vorher: Vergabe</h3>
+        <p>Ich erstelle Leistungsverzeichnisse mit genauer Mengenermittlung und die Ausschreibungsunterlagen, werte die Angebote aus und führe die Bieterverhandlungen.</p>
       </div>
     </div>
 
-    <div class="breakout kacheln-klein">
+    <div class="breakout weitere-leistungen">
       <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.</p>
-      <article class="kachel-klein karte" id="baubetreuung" aria-labelledby="baubetreuung-titel">
-        <p class="kachel-klein__nr" aria-hidden="true">03</p>
+      <article class="leistung-zeile" id="baubetreuung" aria-labelledby="baubetreuung-titel">
+        <p class="leistung-zeile__nr" aria-hidden="true">03</p>
         <h3 id="baubetreuung-titel">Baubetreuung</h3>
         <p>Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen.</p>
         <a class="textlink" href="?leistung=baubetreuung#anfrage" data-vorbelegen>Baubetreuung anfragen<span class="mass" aria-hidden="true"></span></a>
       </article>
-      <article class="kachel-klein karte" id="bauberatung" aria-labelledby="bauberatung-titel">
-        <p class="kachel-klein__nr" aria-hidden="true">04</p>
+      <article class="leistung-zeile" id="bauberatung" aria-labelledby="bauberatung-titel">
+        <p class="leistung-zeile__nr" aria-hidden="true">04</p>
         <h3 id="bauberatung-titel">Bauberatung</h3>
         <p>Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben.</p>
         <a class="textlink" href="?leistung=bauberatung#anfrage" data-vorbelegen>Bauberatung anfragen<span class="mass" aria-hidden="true"></span></a>

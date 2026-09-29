@@ -651,17 +651,17 @@ html:has(body.is-locked) { overflow: hidden; }
   color: var(--color-text-on-dark);
 }
 .kachel::before {
-  /* Bildplatz-Kennung oben rechts, nur ohne Foto sichtbar */
+  /* Kennung oben rechts: „Symbolbild“ mit Foto, „Bildplatz“ ohne */
   content: "Bildplatz";
   position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1.25rem;
   z-index: 1;
-  font-size: var(--step--1);
-  font-weight: var(--weight-label);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-muted-on-dark);
+  padding: 0.15rem 0.45rem;
+  font-size: 0.875rem;
+  color: var(--color-text-on-dark);
+  background: oklch(0.18 0.03 245 / 0.55);
+  border-radius: var(--radius-karte);
 }
 .kachel:has(.kachel__bild)::before { content: "Symbolbild"; }
 .kachel__bild {
@@ -673,13 +673,14 @@ html:has(body.is-locked) { overflow: hidden; }
   object-fit: cover;
   transition: transform 900ms var(--ease-out);
 }
+.kachel__bild--oben { object-position: center 20%; }
 .kachel::after {
   /* dunkler Verlauf unten, damit der Text auf jedem Foto lesbar bleibt */
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(to top, oklch(0.18 0.03 245 / 0.92) 0%, oklch(0.18 0.03 245 / 0.55) 45%, transparent 80%);
+  background: linear-gradient(to top, oklch(0.18 0.03 245 / 0.94) 0%, oklch(0.18 0.03 245 / 0.7) 45%, oklch(0.18 0.03 245 / 0.15) 85%);
 }
 .kachel__inhalt {
   display: grid;
@@ -699,43 +700,62 @@ html:has(body.is-locked) { overflow: hidden; }
 }
 .kachel h3 { transition: color var(--dur-normal) var(--ease-out); }
 
-.aufgaben-bloecke {
+/* Aufgaben: zwei Spalten ohne Kästen, Haarlinien und kleine Striche */
+.aufgaben {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: var(--space-m) var(--space-l);
-  margin-top: var(--space-m);
-}
-.aufgaben-block .label { margin-bottom: 0.75rem; color: var(--color-primary-strong); }
-.schlagworte { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.schlagworte li {
-  padding: 0.4rem 0.8rem;
-  font-size: var(--step--1);
-  line-height: 1.35;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-karte);
-}
-
-.kacheln-klein {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem var(--space-m);
   margin-top: var(--space-l);
 }
-.kacheln-klein > .demo-hinweis { grid-column: 1 / -1; }
-.kachel-klein { display: grid; grid-template-rows: auto auto 1fr auto; justify-items: start; gap: 0.75rem; padding: clamp(1.25rem, 2.5vw, 2rem); }
-.kachel-klein__nr { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); color: var(--color-primary-strong); font-variant-numeric: tabular-nums; }
-.kachel-klein h3 { font-size: var(--step-1-5); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.05; }
-.kachel-klein p:not(.kachel-klein__nr) { max-width: 52ch; }
+.aufgaben__titel { font-size: var(--step-1); font-weight: var(--weight-heading); line-height: 1.25; margin-bottom: 0.9rem; }
+.aufgaben__liste { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-m); border-top: 1px solid var(--color-border); }
+.aufgaben__liste li {
+  position: relative;
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.4;
+}
+.aufgaben__liste li::before {
+  /* kleiner Haken in CI-Blau */
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 1.05rem;
+  width: 0.7rem;
+  height: 0.38rem;
+  border-left: 2px solid var(--color-primary-strong);
+  border-bottom: 2px solid var(--color-primary-strong);
+  transform: rotate(-45deg);
+}
+.aufgaben__spalte > p { max-width: 48ch; padding-top: 0.7rem; border-top: 1px solid var(--color-border); }
+
+/* Baubetreuung und Bauberatung: Zeilen mit Nummer, Haarlinie dazwischen */
+.weitere-leistungen { display: grid; margin-top: var(--space-l); }
+.weitere-leistungen > .demo-hinweis { margin-bottom: 0.75rem; }
+.leistung-zeile {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 14rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.5rem var(--space-m);
+  padding: 1.4rem 0.25rem;
+  border-top: 1px solid var(--color-border);
+  transition: background-color var(--dur-schnell) var(--ease-out);
+}
+.leistung-zeile:last-child { border-bottom: 1px solid var(--color-border); }
+.leistung-zeile__nr { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); color: var(--color-primary-strong); font-variant-numeric: tabular-nums; }
+.leistung-zeile h3 { font-size: var(--step-1); font-weight: var(--weight-heading); line-height: 1.2; }
+.leistung-zeile p:not(.leistung-zeile__nr) { max-width: 60ch; }
+@media (hover: hover) { .leistung-zeile:hover { background: var(--color-surface); } }
+
+/* Partnerzeile: frei, nur eine Linie links */
 .partnerzeile {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem var(--space-m);
-  margin-top: var(--space-m);
-  padding: clamp(1.25rem, 3vw, 2rem);
-  background: var(--color-surface);
-  border-radius: var(--radius-karte);
+  margin-top: var(--space-l);
+  padding: 0.25rem 0 0.25rem clamp(1rem, 2.5vw, 1.75rem);
+  border-left: 3px solid var(--color-primary-strong);
 }
 .partnerzeile p { font-size: var(--step-1); line-height: 1.45; max-width: 60ch; color: var(--color-text); }
 
@@ -1551,14 +1571,15 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .profil-gruppe--dunkel .profile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1000px) {
-  .aufgaben-bloecke { grid-template-columns: minmax(0, 1fr); }
+  .aufgaben { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 900px) {
   .rahmen, .rahmen__spalten { grid-template-columns: minmax(0, 1fr); }
-  .kacheln, .kacheln-klein { grid-template-columns: minmax(0, 1fr); }
+  .kacheln { grid-template-columns: minmax(0, 1fr); }
+  .leistung-zeile { grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .leistung-zeile > p:not(.leistung-zeile__nr), .leistung-zeile .textlink { grid-column: 2; justify-self: start; }
   .kachel { min-height: 24rem; }
-  .partnerzeile .textlink { justify-self: start; }
-  .partnerzeile { grid-template-columns: minmax(0, 1fr); }
+  .partnerzeile { grid-template-columns: minmax(0, 1fr); justify-items: start; }
   .fuss__raster { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .fuss__marke { grid-column: 1 / -1; }
 }
@@ -1567,6 +1588,7 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .panel { margin-inline: 0.5rem; border-radius: calc(var(--radius-panel) / 2); }
 }
 @media (max-width: 700px) {
+  .aufgaben__liste { grid-template-columns: minmax(0, 1fr); }
   .profile, .profil-gruppe--dunkel .profile { grid-template-columns: minmax(0, 1fr); }
   .profil { min-height: 0; gap: 0.5rem; }
   .profil__satz { font-size: var(--step-0); }
