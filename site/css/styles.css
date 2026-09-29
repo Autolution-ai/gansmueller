@@ -206,7 +206,7 @@ a, button, label, summary { -webkit-tap-highlight-color: transparent; }
 
 .aktionen { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem 1.25rem; }
 
-/* Mikro-Claim unter jedem CTA zum Formular (Bruno): überall gleich */
+/* Mikro-Claim unter jedem CTA zum Formular: überall gleich */
 .cta-mit-claim { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 .cta-claim { font-size: 0.875rem; line-height: 1.3; color: var(--color-text-muted); }
 .cta-mit-claim--dunkel .cta-claim { color: var(--color-text-muted-on-dark); }
@@ -839,7 +839,7 @@ html:has(body.is-locked) { overflow: hidden; }
   max-width: 44rem;
 }
 /* Alle Kacheln und die Spalten darunter: derselbe Innenabstand zur linken
-   Bildkante (Bruno, Überarbeitung 3), unabhängig von der Seitenspur. */
+   Bildkante (Überarbeitung 3), unabhängig von der Seitenspur. */
 .leistung-details__spalte > p:not(.label) { max-width: 46ch; }
 .leistung-details .label { color: var(--color-primary-strong); }
 .haken-liste { list-style: none; display: grid; gap: 0.45rem; }
@@ -1356,7 +1356,7 @@ html:has(body.is-locked) { overflow: hidden; }
     grid-template-columns: auto minmax(0, 1fr);
     column-gap: var(--space-m);
     row-gap: 0.75rem;
-    /* Haarlinie trennt Zeitstrahl und Detailfeld (Wunsch Bruno, Überarbeitung 5) */
+    /* Haarlinie trennt Zeitstrahl und Detailfeld (Überarbeitung 5) */
     padding: var(--space-m) 0 0;
     border-top: 1px solid var(--color-border);
   }

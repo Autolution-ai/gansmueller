@@ -413,7 +413,7 @@ function initRegister() {
    Bauherren-Band: Abstand und Bewegung.
    1. Abstand: Eine Liste (6 Marken + Abstände) ist mindestens so breit wie
       das Fenster plus die breiteste Marke. So ist dieselbe Marke nie zweimal
-      gleichzeitig zu sehen (Wunsch Bruno). Neu gemessen bei Größenänderung.
+      gleichzeitig zu sehen. Neu gemessen bei Größenänderung.
    2. Bewegung per requestAnimationFrame mit rund 21 px/s. Bei Hover bremst
       das Band in 0,4 s auf langsames Kriechen ab und läuft danach ebenso
       sanft wieder an, statt hart stehenzubleiben. Außerhalb des Bildes und
@@ -494,13 +494,13 @@ function initMarquee() {
    Für wen: je Weg eine Tab-Liste der Rollen (WAI-ARIA Tabs, senkrecht:
    Pfeil hoch/runter, Pos1/Ende). Hover, Fokus und Klick wählen die Rolle;
    darunter stehen Beschreibung und CTA „Projekt prüfen lassen“ mit
-   ?auftraggeber=. Die Rolle selbst führt nirgendwohin (Bruno).
+   ?auftraggeber=. Die Rolle selbst führt nirgendwohin.
 --------------------------------------------------------------------------- */
 function initWege() {
   const wurzel = document.querySelector("[data-wege]");
   if (!wurzel) return;
   wurzel.classList.add("wege--js");
-  // Ein zentraler CTA unter beiden Spalten (Bruno): sein Ziel folgt der
+  // Ein zentraler CTA unter beiden Spalten: sein Ziel folgt der
   // zuletzt gewählten Rolle, Standard Bauträger.
   const cta = document.querySelector("[data-wege-cta]");
   wurzel.querySelectorAll("[data-weg]").forEach((weg) => {
@@ -541,7 +541,7 @@ function initWege() {
    Ablauf: ab 900 px Tabs mit einem Detailfeld (WAI-ARIA Tabs, automatische
    Aktivierung, Pfeiltasten, Pos1/Ende). Die Liste bleibt im Dokument und ist
    darunter (mobil, ohne JS) die sichtbare Fassung.
-   Autoplay (Wunsch Bruno): Die Linie füllt sich langsam bis zur nächsten
+   Autoplay: Die Linie füllt sich langsam bis zur nächsten
    Station, dann wechselt das Detailfeld. Start erst, wenn der Zeitstrahl zu
    sehen ist; Pause bei Hover, Fokus, verdecktem Tab oder außerhalb des
    Bildes; nach einer Auswahl von Hand 15 s Ruhe, dann geht es weiter. Bei
@@ -725,7 +725,7 @@ function initZeitstrahl() {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero-Kennzahlen zählen hoch (Wunsch Bruno). Beide starten zusammen und
+   Hero-Kennzahlen zählen hoch. Beide starten zusammen und
    enden zusammen; die 30 bremst stark ab (die letzten Schritte sind spürbar),
    die 450 mild. Im HTML steht der Endwert (ohne JS, Screenreader, Prüfung);
    während der Animation ist die Anzeige aria-hidden und der Endwert steht
@@ -789,9 +789,9 @@ function initZaehler() {
    bleibt verborgen. Mit JS: Pfeil-Knöpfe, Klick/Tipp auf die vordere Karte,
    Wischen, Pfeiltasten im Stapel. Weiterblättern in zwei Phasen: die vordere
    Karte gleitet seitlich hinaus (.ist-weg), dann reiht sie sich hinten ein.
-   Automatisch: erster Wechsel nach 3 s, danach alle 8 s (Wunsch Bruno),
+   Automatisch: erster Wechsel nach 3 s, danach alle 8 s,
    nur sichtbar, ohne Hover/Fokus, ohne Wunsch nach reduzierter Bewegung.
-   Kein Pause-Knopf (Wunsch Bruno); Hover und Fokus halten an.
+   Kein Pause-Knopf; Hover und Fokus halten an.
    Nach eigener Auswahl ruht der Automatismus 15 s.
    Weitere Referenz: eine weitere .stapel__karte ins Markup, sonst nichts.
 --------------------------------------------------------------------------- */
