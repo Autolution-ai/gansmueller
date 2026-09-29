@@ -139,3 +139,10 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Finde für den Ablauf eine bessere/schö
 - Bauherren der Referenzliste als laufendes Band (Marquee) direkt unter dem Hero, mit Logos, wo eindeutig belegbar.
 - Referenz-Register standardmäßig eingeklappt.
 - Nicht gewählt: schlankere Demo-Hinweise, mobile Anfrageleiste.
+
+## Nachtrag: Demo-Hinweis über dem Bauherren-Band entfernt
+
+Datum: 2026-09-29 · Wortlaut Bruno (mit Screenshot des Hinweises): „Das raus nehmen"
+
+- Der Demo-Hinweis über dem Bauherren-Band ist entfernt. Namen sind durch die Referenzliste belegt, Logos durch Bruno (quellen/logos.md).
+- Offen für den Termin: Freigabe der Nennung aller Bauherren und der Logos; Abweichungen GVC/GCV, BauBeCon Wohnen/Facility Management, Kaufland Ladenbau/Handelsmarke.
