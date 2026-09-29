@@ -115,7 +115,7 @@ b3f26ff). **Neue sichtbare Texte, von Bruno noch zu bestätigen:**
 | Hero, Kicker | Ingenieurbüro in Berlin | Station 2 (unverändert) |
 | Hero, Knöpfe | Bauüberwachung anfragen · Referenzliste ansehen | Station 2 / STRUKTUR (sekundär) |
 | Hero, Kennzahl 1 | über 30 · Jahre in der Branche | Transkript; steht nur hier (Steckbrief-Zeile gestrichen) |
-| Hero, Kennzahl 2 | 450 · Wohneinheiten in der größten Sanierung der Liste | PDF, Rostocker Str./Woldecker Str., größte Zeile nach WE und Bauvolumen |
+| Hero, Kennzahl 2 | 450 · Wohneinheiten für die HOWOGE | PDF, Rostocker Str./Woldecker Str., Plattenbausanierung 450 WE, Bauherr HOWOGE mbH (Label seit 2026-09-29 kürzer) |
 | Hero, Plankopf-Karte | Referenzliste (Link) · Referenz · Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin · Bauherr HOWOGE mbH · Umfang Komplexe Altbausanierung, 85 WE · Leistung Bauüberwachung, Qualitätscontrolling · Bearbeitung René Gansmüller | Bildunterschrift Altseite 4.html, übrige Felder PDF |
 | Leistungen | H3 „Bauüberwachung“, darunter Kicker „HOAI Leistungsphase 8“ | Wortlaut unverändert, nur getrennt |
 | Leistungen | Vergabe als eigene Zeile: Titel „Vergabe“, Text „Auf Wunsch liegt vorher auch die Vergabe bei mir: …“ | Text unverändert, „Vergabe:“ wird Zeilentitel |
@@ -144,7 +144,7 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 >
 > **CTA:** Bauüberwachung anfragen · *Kontur:* Referenzliste ansehen
 >
-> *Kennzahlen (zählen beim Laden hoch, gemeinsames Ende):* über 30 · Jahre in der Branche / 450 · Wohneinheiten in der größten Sanierung der Liste
+> *Kennzahlen (zählen beim Laden hoch, gemeinsames Ende):* über 30 · Jahre in der Branche / 450 · Wohneinheiten für die HOWOGE
 
 [„Partner" steht auf der Verbotsliste der Branchendatei; bewusste
 Entscheidung von Bruno („ok, Partner statt Bauingenieur") · Region: Büro
