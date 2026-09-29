@@ -205,3 +205,9 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Projektsteuerung den Text … mit dem gl
 - Beide großen Kacheln mit gleichem Innenabstand zur linken Bildkante.
 - Haken unter „Dazu gehört" in Grün (--color-erfolg).
 - Baubetreuung (03) und Bauberatung (04) als kleinere Bildkacheln mit Symbolbild, deutlich abgesetzt; Fotos in quellen/bilder-unsplash.md.
+
+## Nachtrag: Überarbeitung 4 (Hero ohne Marquee, Karten-Shuffle, Logo-Leiste, Funnel)
+
+Datum: 2026-09-29 · Wortlaut Bruno (Auszug): „auf dem Hero … das Marquee bitte doch rauscutten. Das soll quasi direkt kommen, wenn man runterscrollt … Die Texte links sehen … überladen aus … dass direkt natürlich der Claim ins Auge fällt, dann aber drunter … das Unterstatement für wen. Die Buttons, die Animation mit den Zahlen ist gut. Oben Ingenieurbüro und Diplom kannst du ein Stückchen höher machen … Rechts bei der Referenzliste … Karte … hochwertiger darstellen … flippen … oder … Kartenshuffle … wo wir dann später mehrere Referenzen von ihm haben … Leistungen, diesen Untertext ‚Das ist mein Metier …' komplett rausnehmen. Referenzen, den Satz ‚seit über 30 Jahren …' rausnehmen und rechts einen Kasten ‚meine Partner' und dann die Logos von oben sauber darstellen … Sammelleiste … Logos farblich … Funnel … wenn man über keinen Button kommt … Schritt 1 quasi auswählen, was man möchte … wenn man über einen Button kommt, ist das schon vorausgewählt und man ist direkt bei Schritt 2 … Bauvolumen … ein sechstes Feld … selbst eintippen … Falls du an das Kontextlimit kommst, nutze den Kontext-Handoff-Skill."
+
+Abweichung (gemeldet): Überschrift der Logo-Leiste „Auftraggeber aus meiner Referenzliste" statt „Meine Partner", weil die Firmen laut Referenzliste Bauherren/Auftraggeber sind und „Partner" auf der Seite bereits für Planer, Architekt, Statik, Brandschutz steht.
