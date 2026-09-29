@@ -41,3 +41,23 @@ Die Motive sind nach Alt-Text und Fotoseite ausgewählt, nicht am Bild geprüft 
 | `psza7JZMsZDe9NQ6b` | apify/web-fetch (raw) | Kandidat 02, w=2000 |
 | `Tc9y59ibh7RNwfbEr` | apify/web-fetch (raw) | Ersatz, w=2000, nicht verwendet |
 
+## Nachtrag 2026-09-29: Bildkacheln 03 Baubetreuung und 04 Bauberatung
+
+Suche über Apify `rag-web-browser` („unsplash photos architect blueprints construction plans table"), Treffer: https://unsplash.com/s/photos/construction-plans. Die Suche nach Altbau-Fassaden lieferte nur Getty-Seiten (zwei Läufe ohne verwertbares Ergebnis); für 04 stammt der Kandidat deshalb aus der Liste https://unsplash.com/s/photos/construction-site (siehe oben). Abruf wie zuvor (`raw`, Base64 lokal dekodiert, Bytezahl = `contentLengthBytes`), Parameter: nur `w=3000` → `w=1600`.
+
+| Datei | Motiv (Alt-Text Unsplash) | Fotograf | Fotoseite | Bild-URL | Lauf | Bearbeitung |
+|---|---|---|---|---|---|---|
+| `site/assets/images/leistungen/baubetreuung.webp` / `.jpg` | Architectural blueprints spread out on a surface | Marina Zvada (@zvada_photo) | https://unsplash.com/photos/architectural-blueprints-spread-out-on-a-surface-fNxmdlYHRm8 | https://images.unsplash.com/photo-1762146828422-50a8bd416d3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbnN0cnVjdGlvbiUyMHBsYW5zfGVufDB8fDB8fHww | `fXBOxoCf82FXMDbX0`, 444.797 Byte, 1600 × 2133 | Ausschnitt y 650 bis 1650, 1200 × 750, WebP q66 / JPG q72 |
+| `site/assets/images/leistungen/bauberatung.webp` / `.jpg` | two construction workers working on scaffolding on a building | Nik (@helloimnik) | https://unsplash.com/photos/two-construction-workers-working-on-scaffolding-on-a-building-7mtBqZo5G6I | https://images.unsplash.com/photo-1713593930871-e21d7f9ef4a1?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbnN0cnVjdGlvbiUyMHNpdGV8ZW58MHx8MHx8fDA%3D | `wO5syZHQeSWnUjTaJ`, 424.528 Byte, 1600 × 2526 | Ausschnitt y 1000 bis 2000, 1200 × 750, WebP q66 / JPG q72 |
+
+Am Bild geprüft: Personen auf dem Gerüst nur von der Seite/hinten, keine Gesichter erkennbar, keine Firmenlogos. Nicht verwendet: „people reviewing architectural blueprints on desk" (Pedro Miranda, Lauf `f8Q0IlKN78xdhw2zQ`), weil auf den Plänen ein Firmenschriftzug steht. Das Motiv für 04 zeigt ein Gerüst, keinen Altbau; ein passenderes Altbau-Motiv war im Abruflimit nicht zu finden.
+
+| Lauf | Actor | Zweck |
+|---|---|---|
+| `HUgrfKkiXJlcb46q7` | apify/rag-web-browser | Suche Baupläne |
+| `lDj9a6oBQmuiGGIGp` | apify/rag-web-browser | Suche Altbau-Fassade (nur Getty, verworfen) |
+| `f8Q0IlKN78xdhw2zQ` | apify/web-fetch (raw) | Kandidat 03a, verworfen (Logo) |
+| `fXBOxoCf82FXMDbX0` | apify/web-fetch (raw) | 03 Baubetreuung |
+| `wO5syZHQeSWnUjTaJ` | apify/web-fetch (raw) | 04 Bauberatung |
+| `wHJP0a2rgZb7STCLf` | apify/rag-web-browser | Suche Altbau (ohne Ergebnis) |
+

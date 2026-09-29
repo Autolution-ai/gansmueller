@@ -253,7 +253,7 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 Leistungsseite); die Partnerzeile ist in die linke Spalte gewandert; die
 Details der Vergabe stehen im Ablauf, Station 05]
 
-**Demo-Hinweis über 03/04 (nebeneinander, Überarbeitung 3), einzeilig:**
+**Demo-Hinweis über 03/04, einzeilig. 03/04 seit dem Nachtrag vom 2026-09-29 als kleinere Bildkacheln (Symbolbild, Textlink hell, „In unter 2 Min."), deutlich abgesetzt; Haken unter „Dazu gehört" grün:**
 
 > **Demo-Stand:** Baubetreuung stammt aus dem Vorgespräch, der Text ist ein Entwurf.
 

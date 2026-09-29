@@ -653,6 +653,7 @@ html:has(body.is-locked) { overflow: hidden; }
    Datei vorliegt, trägt die dunkle Fläche mit dem Hinweis „Bildplatz“.
 --------------------------------------------------------------------------- */
 .leistung-bildhinweis { margin-top: var(--space-l); }
+.kacheln, .leistung-details { --kachel-innen: clamp(1.5rem, 4vw, 3.5rem); }
 .kacheln {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -708,7 +709,7 @@ html:has(body.is-locked) { overflow: hidden; }
   display: grid;
   justify-items: start;
   gap: 0.9rem;
-  padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter);
+  padding: clamp(1.5rem, 4vw, 3.5rem) var(--kachel-innen);
   max-width: 44rem;
 }
 .kachel__nr { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); color: var(--color-text-muted-on-dark); font-variant-numeric: tabular-nums; }
@@ -735,12 +736,11 @@ html:has(body.is-locked) { overflow: hidden; }
   align-content: start;
   justify-items: start;
   gap: 0.9rem;
-  padding: var(--space-m) var(--gutter) 0;
+  padding: var(--space-m) var(--kachel-innen) 0;
   max-width: 44rem;
 }
-/* linke Spalte (Kachel und Details) bündig mit der Seitenkante des Inhalts */
-.leistung-details__spalte:first-child,
-.kachel:first-child .kachel__inhalt { padding-left: max(var(--gutter), (100vw - var(--breakout-max)) / 2); }
+/* Alle Kacheln und die Spalten darunter: derselbe Innenabstand zur linken
+   Bildkante (Bruno, Überarbeitung 3), unabhängig von der Seitenspur. */
 .leistung-details__spalte > p:not(.label) { max-width: 46ch; }
 .leistung-details .label { color: var(--color-primary-strong); }
 .haken-liste { list-style: none; display: grid; gap: 0.45rem; }
@@ -752,25 +752,20 @@ html:has(body.is-locked) { overflow: hidden; }
   top: 0.4rem;
   width: 0.7rem;
   height: 0.38rem;
-  border-left: 2px solid var(--color-primary-strong);
-  border-bottom: 2px solid var(--color-primary-strong);
+  border-left: 2px solid var(--color-erfolg);
+  border-bottom: 2px solid var(--color-erfolg);
   transform: rotate(-45deg);
 }
 .leistung-details__zusatz { font-size: 0.9375rem; color: var(--color-text-muted); }
 
-.weitere-leistungen {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem clamp(var(--space-m), 5vw, 5rem);
-  margin-top: var(--space-l);
-  padding-top: var(--space-m);
-  border-top: 1px solid var(--color-border);
-}
-.weitere-leistungen > .demo-hinweis { grid-column: 1 / -1; }
-.weitere-leistung { display: grid; grid-template-rows: auto auto 1fr auto; justify-items: start; gap: 0.6rem; }
-.weitere-leistung__nr { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); color: var(--color-primary-strong); font-variant-numeric: tabular-nums; }
-.weitere-leistung h3 { font-size: var(--step-1-5); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 1.05; }
-.weitere-leistung p:not(.weitere-leistung__nr) { max-width: 48ch; }
+/* 03/04: kleinere Bildkacheln, deutlich abgesetzt (Nebenbereiche) */
+.weitere-hinweis { margin-top: clamp(var(--space-l), 8vw, 7rem); }
+.kacheln--klein { margin-top: 0.75rem; }
+.kachel--klein { min-height: clamp(18rem, 24vw, 23rem); }
+.kachel--klein h3 { font-size: var(--step-1-5); }
+.kachel--klein .kachel__inhalt { gap: 0.6rem; padding-block: clamp(1.25rem, 3vw, 2.25rem); }
+.textlink--hell { color: var(--color-text-on-dark); border-bottom-color: var(--color-text-on-dark); }
+@media (hover: hover) { .textlink--hell:hover { color: var(--color-primary-on-dark); border-bottom-color: var(--color-primary-on-dark); } }
 
 /* ---------------------------------------------------------------------------
    4 + 5 · Referenzen: Bauherren-Raster, Denkmal-Fotos, Register
@@ -1534,7 +1529,8 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .weg { grid-row: auto; grid-template-rows: none; }
   .rahmen, .rahmen__spalten { grid-template-columns: minmax(0, 1fr); }
   .kacheln { grid-template-columns: minmax(0, 1fr); }
-  .leistung-details, .weitere-leistungen { grid-template-columns: minmax(0, 1fr); }
+  .leistung-details { grid-template-columns: minmax(0, 1fr); }
+  .kachel.kachel--klein { min-height: 16rem; }
   .leistung-details { gap: 0; }
   .kachel { min-height: 24rem; }
   .fuss__raster { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }

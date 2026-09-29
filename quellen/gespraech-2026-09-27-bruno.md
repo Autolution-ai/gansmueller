@@ -197,3 +197,11 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Hier eine Lösung finden, dass du nur ei
 
 - Beide Spalten wechseln weiter Rolle und Satz, ohne eigenen Button.
 - Darunter ein zentrierter Button „Projekt prüfen lassen" (In unter 2 Min.); das Ziel folgt der zuletzt gewählten Rolle, Standard Bauträger.
+
+## Nachtrag: Leistungen, Innenabstand, grüne Haken, Bildkacheln 03/04
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Projektsteuerung den Text … mit dem gleichen Abstand … nach links rückst. Bei dazu gehört mache die Häkchen alle grün … Baubetreuung und Bauberatung bitte auch Bilder einbauen, wie weiter oben so im Hintergrund … etwas kleiner … mit dem Abstand … räumliche Trennung"
+
+- Beide großen Kacheln mit gleichem Innenabstand zur linken Bildkante.
+- Haken unter „Dazu gehört" in Grün (--color-erfolg).
+- Baubetreuung (03) und Bauberatung (04) als kleinere Bildkacheln mit Symbolbild, deutlich abgesetzt; Fotos in quellen/bilder-unsplash.md.
