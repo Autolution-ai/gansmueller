@@ -582,7 +582,7 @@
                     <span class="zs-ergebnis"><span class="zs-ergebnis__label">Ergebnis</span> <span class="zs-ergebnis__text">Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.</span></span>
                   </span>
                 </summary>
-                <p class="zs-beschreibung">Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.</p>
+                <p class="zs-beschreibung">Sie beantworten ein paar kurze Fragen und hinterlassen Ihre Kontaktdaten.</p>
               </details>
             </li>
             <li class="zs-station" id="station-2" data-station="2">
@@ -672,7 +672,9 @@
     </div>
   </section>
 
-  <!-- 8 · ANFRAGE-FUNNEL – docs/FUNNEL.md, DEMO-SPEC: zwei Pflichtfragen plus Kontakt -->
+  <!-- 8 · ANFRAGE-FUNNEL – docs/FUNNEL.md, DEMO-SPEC: zwei Pflichtfragen plus Kontakt.
+       Dazu der Leistungsschritt vorn (Bruno, Überarbeitung 4); was über einen
+       Button (?leistung=, ?auftraggeber=) schon feststeht, wird übersprungen. -->
   <section class="layout" id="anfrage" aria-labelledby="anfrage-titel">
     <div class="full panel abschnitt layout">
       <div class="breakout anfrage__raster">
@@ -688,23 +690,44 @@
 
         <div class="anfrage__form-spalte" id="anfrage-formular">
           <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Das Formular zeigt den Ablauf, abgeschickt wird im Projekt.</p>
-          <div class="funnel" data-funnel data-funnel-total="3">
+          <div class="funnel" data-funnel data-funnel-total="4">
             <div class="funnel__kopf">
               <p class="funnel__titel">Projektanfrage</p>
-              <p class="label schrittanzeige" aria-live="polite" data-schrittanzeige>Schritt 1 von 3</p>
+              <p class="label schrittanzeige" aria-live="polite" data-schrittanzeige>Schritt 1 von 4</p>
             </div>
             <div class="funnel__balken" aria-hidden="true"><span data-balken></span></div>
 
             <div class="funnel__koerper">
             <form class="funnel__form" action="#anfrage" method="post" novalidate data-form>
-              <div class="funnel__chip" data-chip hidden>
-                <span>Gewählte Leistung: <strong data-chip-wert>Bauüberwachung</strong></span>
-                <span aria-hidden="true">·</span>
-                <button type="button" class="chip-weg" data-chip-weg>ändern</button>
-                <input type="hidden" name="leistung" value="" data-leistung>
+              <!-- Chips: was über einen Button schon feststeht; „ändern“ holt den
+                   übersprungenen Schritt zurück in den Weg. -->
+              <div class="funnel__chips" data-chips hidden>
+                <p class="funnel__chip" data-chip="leistung" hidden>
+                  <span>Leistung: <strong data-chip-wert>Bauüberwachung</strong></span>
+                  <span aria-hidden="true">·</span>
+                  <button type="button" class="chip-weg" data-chip-aendern="leistung">ändern<span class="vh"> (Leistung)</span></button>
+                </p>
+                <p class="funnel__chip" data-chip="auftraggeber" hidden>
+                  <span>Anfrage als: <strong data-chip-wert>Bauträger</strong></span>
+                  <span aria-hidden="true">·</span>
+                  <button type="button" class="chip-weg" data-chip-aendern="auftraggeber">ändern<span class="vh"> (Wer fragt an?)</span></button>
+                </p>
               </div>
 
-              <fieldset data-step="1" tabindex="-1" aria-describedby="fehler-auftraggeber">
+              <fieldset data-step="leistung" tabindex="-1" aria-describedby="fehler-leistung">
+                <legend>Welche Leistung brauchen Sie? <span class="pflicht" aria-hidden="true">*</span><span class="vh">(Pflichtfeld)</span></legend>
+                <div class="optionen">
+                  <label class="option"><input type="radio" name="leistung" value="projektsteuerung" required><span>Projektsteuerung</span></label>
+                  <label class="option"><input type="radio" name="leistung" value="bauueberwachung"><span>Bauüberwachung</span></label>
+                  <label class="option"><input type="radio" name="leistung" value="baubetreuung"><span>Baubetreuung</span></label>
+                  <label class="option"><input type="radio" name="leistung" value="bauberatung"><span>Bauberatung</span></label>
+                  <label class="option"><input type="radio" name="leistung" value="alle-leistungsphasen"><span>Vorhaben mit Planung</span></label>
+                  <label class="option"><input type="radio" name="leistung" value="offen"><span>Noch offen</span></label>
+                </div>
+                <p class="feld-fehler" id="fehler-leistung" data-fehler hidden>Bitte wählen Sie eine Option.</p>
+              </fieldset>
+
+              <fieldset data-step="auftraggeber" tabindex="-1" aria-describedby="fehler-auftraggeber">
                 <legend>Wer fragt an? <span class="pflicht" aria-hidden="true">*</span><span class="vh">(Pflichtfeld)</span></legend>
                 <div class="optionen">
                   <label class="option"><input type="radio" name="auftraggeber" value="bautraeger" required><span>Bauträger</span></label>
@@ -719,7 +742,7 @@
                 <p class="feld-fehler" id="fehler-auftraggeber" data-fehler hidden>Bitte wählen Sie eine Option.</p>
               </fieldset>
 
-              <fieldset data-step="2" tabindex="-1" aria-describedby="fehler-volumen">
+              <fieldset data-step="bauvolumen" tabindex="-1" aria-describedby="fehler-volumen">
                 <legend>Wie groß ist das Bauvolumen ungefähr? <span class="pflicht" aria-hidden="true">*</span><span class="vh">(Pflichtfeld)</span></legend>
                 <div class="optionen">
                   <label class="option"><input type="radio" name="bauvolumen" value="unter-1-mio" required><span>unter 1 Mio. €</span></label>
@@ -727,12 +750,21 @@
                   <label class="option"><input type="radio" name="bauvolumen" value="5-15-mio"><span>5–15 Mio. €</span></label>
                   <label class="option"><input type="radio" name="bauvolumen" value="ueber-15-mio"><span>über 15 Mio. €</span></label>
                   <label class="option"><input type="radio" name="bauvolumen" value="offen"><span>noch offen</span></label>
+                  <label class="option"><input type="radio" name="bauvolumen" value="eigener-betrag" aria-controls="betrag-feld"><span>Selbst eintragen</span></label>
+                </div>
+                <div class="feld feld--betrag" id="betrag-feld" data-betrag-feld hidden>
+                  <label for="f-betrag">Bauvolumen in Euro</label>
+                  <div class="betrag">
+                    <input type="text" id="f-betrag" name="bauvolumen-betrag" inputmode="numeric" autocomplete="off" placeholder="z.&nbsp;B. 2.500.000" aria-describedby="fehler-betrag" data-betrag>
+                    <span class="betrag__einheit" aria-hidden="true">€</span>
+                  </div>
+                  <p class="feld-fehler" id="fehler-betrag" hidden>Bitte tragen Sie einen Betrag in Euro ein, gern auch grob geschätzt.</p>
                 </div>
                 <p class="feld-hinweis" data-hinweis-gross hidden>Das liegt über meinem üblichen Rahmen. Senden Sie Ihre Anfrage ruhig ab, dann klärt sich im Gespräch, wo ich Ihr Vorhaben unterstützen kann.</p>
                 <p class="feld-fehler" id="fehler-volumen" data-fehler hidden>Bitte wählen Sie eine Option.</p>
               </fieldset>
 
-              <fieldset data-step="3" tabindex="-1">
+              <fieldset data-step="kontakt" tabindex="-1">
                 <legend>Ihre Kontaktdaten</legend>
                 <div class="felder-zwei">
                   <div class="feld">

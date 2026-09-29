@@ -543,6 +543,14 @@ html:has(body.is-locked) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .stapel__karte, .stapel__karte > * { transition: none; }
 }
+/* Schmale Fenster: die Karten sind hoch, schon 2,6° Drehung schieben die
+   Ecken über den Fensterrand. Kleinere Drehung, gleicher Stapel-Eindruck. */
+@media (max-width: 700px) {
+  .stapel__karten { padding-right: 0.5rem; }
+  .stapel__karte[data-pos="1"] { transform: translate(0.2rem, 0.6rem) rotate(0.7deg); }
+  .stapel__karte[data-pos="2"],
+  .stapel__karte:where(:not([data-pos="0"]):not([data-pos="1"]):not([data-pos="2"])) { transform: translate(-0.2rem, 1rem) rotate(-0.8deg); }
+}
 
 .stapel__steuerung {
   display: flex;
@@ -1426,11 +1434,10 @@ html:has(body.is-locked) { overflow: hidden; }
   height: 100%;
   background: var(--color-primary-strong);
   transform-origin: left center;
-  transform: scaleX(0.3333);
+  /* Anteil am tatsächlich gegangenen Weg, gesetzt von main.js */
+  transform: scaleX(var(--fortschritt, 0.25));
   transition: transform var(--dur-normal) var(--ease-out);
 }
-[data-schritt="2"] .funnel__balken span { transform: scaleX(0.6667); }
-[data-schritt="3"] .funnel__balken span, [data-schritt="fertig"] .funnel__balken span { transform: scaleX(1); }
 .funnel__koerper { padding: clamp(1.25rem, 3vw, 2.25rem); }
 .funnel form, .zusatz { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 .funnel fieldset { border: 0; min-width: 0; display: grid; gap: 1rem; }
@@ -1564,8 +1571,9 @@ html:has(body.is-locked) { overflow: hidden; }
   border-top: 1px solid var(--color-border);
 }
 .funnel__vor { display: flex; flex: 1; justify-content: flex-end; gap: 1rem; }
-[data-schritt="3"] .funnel__vor .btn { width: 100%; }
+[data-schritt="kontakt"] .funnel__vor .btn { width: 100%; }
 
+.funnel__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .funnel__chip {
   display: flex;
   flex-wrap: wrap;
@@ -1591,6 +1599,20 @@ html:has(body.is-locked) { overflow: hidden; }
   cursor: pointer;
 }
 @media (hover: hover) { .chip-weg:hover { color: var(--color-text); } }
+
+/* Bauvolumen selbst eintragen: erscheint erst bei Auswahl */
+.feld--betrag { max-width: 20rem; }
+.betrag { position: relative; }
+.feld .betrag input[type="text"] { width: 100%; padding-right: 2.5rem; font-variant-numeric: tabular-nums; }
+.betrag__einheit {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-weight: var(--weight-label);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
 
 .funnel__fuss {
   padding: 0.8rem clamp(1.25rem, 3vw, 2.25rem);

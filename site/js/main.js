@@ -88,50 +88,63 @@ function initMenue() {
 }
 
 /* ---------------------------------------------------------------------------
-   Anfrage-Funnel (docs/FUNNEL.md): 2 Pflichtfragen + Kontakt, Vorbelegung
-   über ?leistung= und ?auftraggeber=, Danke-Screen mit freiwilligen Fragen.
+   Anfrage-Funnel (docs/FUNNEL.md): Leistung, Wer fragt an, Bauvolumen,
+   Kontakt. Was über einen Button feststeht (?leistung=, ?auftraggeber=),
+   wird übersprungen und steht als Chip über dem Formular; „ändern“ holt den
+   Schritt zurück in den Weg. Die Schrittanzeige zählt nur den Weg, der
+   tatsächlich gegangen wird („Schritt 1 von 2“ bis „Schritt 1 von 4“).
+   Danke-Screen mit freiwilligen Fragen.
 --------------------------------------------------------------------------- */
 const LEISTUNGEN = {
   projektsteuerung: "Projektsteuerung",
   bauueberwachung: "Bauüberwachung",
   baubetreuung: "Baubetreuung",
   bauberatung: "Bauberatung",
-  "alle-leistungsphasen": "Vorhaben mit Planung"
+  "alle-leistungsphasen": "Vorhaben mit Planung",
+  offen: "Noch offen"
 };
 const AUFTRAGGEBER = [
   "bautraeger", "projektentwickler", "wohnungsunternehmen", "gewerblich",
   "planungsbuero", "generalplaner", "privat"
 ];
+const GROSS_AB = 15000000;
 
 const funnel = (() => {
   const box = document.querySelector("[data-funnel]");
   if (!box) return null;
 
   const form = box.querySelector("[data-form]");
-  const schritte = [...form.querySelectorAll("[data-step]")];
-  const gesamt = schritte.length;
+  const REIHE = ["leistung", "auftraggeber", "bauvolumen", "kontakt"];
+  const schritte = Object.fromEntries(REIHE.map((n) => [n, form.querySelector(`[data-step="${n}"]`)]));
   const anzeige = box.querySelector("[data-schrittanzeige]");
   const zurueck = form.querySelector("[data-zurueck]");
   const weiter = form.querySelector("[data-weiter]");
   const absenden = form.querySelector("[data-absenden]");
   const nav = form.querySelector("[data-nav]");
-  const chip = form.querySelector("[data-chip]");
-  const chipWert = form.querySelector("[data-chip-wert]");
-  const leistungFeld = form.querySelector("[data-leistung]");
+  const chips = form.querySelector("[data-chips]");
+  const betragFeld = form.querySelector("[data-betrag-feld]");
+  const betrag = form.querySelector("[data-betrag]");
   const danke = box.querySelector("[data-danke]");
   const fuss = box.querySelector("[data-fuss]");
-  let aktuell = 1;
+  const uebersprungen = new Set();
+  let aktuell = REIHE[0];
 
-  function zeige(nr, { fokus = true } = {}) {
-    aktuell = nr;
-    schritte.forEach((s, i) => { s.hidden = i + 1 !== nr; });
-    zurueck.hidden = nr === 1;
-    weiter.hidden = nr === gesamt;
-    absenden.hidden = nr !== gesamt;
-    anzeige.textContent = `Schritt ${nr} von ${gesamt}`;
-    box.dataset.schritt = String(nr);
+  const weg = () => REIHE.filter((n) => !uebersprungen.has(n));
+
+  function zeige(name, { fokus = true } = {}) {
+    aktuell = name;
+    const liste = weg();
+    const index = liste.indexOf(name);
+    REIHE.forEach((n) => { schritte[n].hidden = n !== name; });
+    zurueck.hidden = index <= 0;
+    weiter.hidden = name === "kontakt";
+    absenden.hidden = name !== "kontakt";
+    anzeige.textContent = `Schritt ${index + 1} von ${liste.length}`;
+    box.dataset.schritt = name;
+    box.style.setProperty("--fortschritt", String((index + 1) / liste.length));
+    chipsAktualisieren();
     if (fokus) {
-      schritte[nr - 1].focus({ preventScroll: true });
+      schritte[name].focus({ preventScroll: true });
       // Mobil liegt der Kasten nach dem Wechsel oft unter dem Header (S3).
       if (box.getBoundingClientRect().top < kopfHoehe()) scrolleZu(box);
     }
@@ -146,18 +159,33 @@ const funnel = (() => {
     el.hidden = !an;
   }
 
-  function pruefeAuswahl(nr) {
-    const schritt = schritte[nr - 1];
+  // Betrag: nur Ziffern, mit Tausenderpunkten angezeigt
+  const betragWert = () => Number((betrag.value || "").replace(/\D/g, "")) || 0;
+  betrag.addEventListener("input", () => {
+    const ziffern = betrag.value.replace(/\D/g, "").replace(/^0+/, "").slice(0, 12);
+    const ende = betrag.selectionStart === betrag.value.length;
+    betrag.value = ziffern ? Number(ziffern).toLocaleString("de-DE") : "";
+    if (ende) betrag.setSelectionRange(betrag.value.length, betrag.value.length);
+    if (betrag.getAttribute("aria-invalid") === "true" && betragWert() > 0) feldPruefen(betrag, true);
+    hinweiseAktualisieren();
+  });
+
+  function pruefeAuswahl(name) {
+    const schritt = schritte[name];
     const radio = schritt.querySelector('input[type="radio"]');
     if (!radio) return true;
-    const ok = !!gewaehlt(radio.name);
-    const fehlerEl = schritt.querySelector("[data-fehler]");
-    fehler(fehlerEl, !ok);
+    const auswahl = gewaehlt(radio.name);
+    const ok = !!auswahl;
+    fehler(schritt.querySelector("[data-fehler]"), !ok);
     schritt.querySelectorAll('input[type="radio"]').forEach((r) => {
       r.setAttribute("aria-invalid", String(!ok));
     });
-    if (!ok) radio.focus();
-    return ok;
+    if (!ok) { radio.focus(); return false; }
+    if (auswahl.value === "eigener-betrag" && !feldPruefen(betrag, betragWert() > 0)) {
+      betrag.focus();
+      return false;
+    }
+    return true;
   }
 
   function feldPruefen(input, gueltig) {
@@ -181,13 +209,39 @@ const funnel = (() => {
     return !erster;
   }
 
-  // Hinweise bei „Privates Eigenheim“ und „über 15 Mio. €“: Absenden bleibt
-  // möglich, die Anfrage wird markiert.
+  const istGross = () => {
+    const v = gewaehlt("bauvolumen");
+    return !!v && (v.value === "ueber-15-mio" || (v.value === "eigener-betrag" && betragWert() > GROSS_AB));
+  };
+
+  // Hinweise bei „Privates Eigenheim“ und über 15 Mio. € (Auswahl oder
+  // eigener Betrag): Absenden bleibt möglich, die Anfrage wird markiert.
   function hinweiseAktualisieren() {
     const a = gewaehlt("auftraggeber");
     const v = gewaehlt("bauvolumen");
     form.querySelector("[data-hinweis-privat]").hidden = !(a && a.value === "privat");
-    form.querySelector("[data-hinweis-gross]").hidden = !(v && v.value === "ueber-15-mio");
+    form.querySelector("[data-hinweis-gross]").hidden = !istGross();
+    const eigen = !!v && v.value === "eigener-betrag";
+    if (betragFeld.hidden === eigen) {
+      betragFeld.hidden = !eigen;
+      if (!eigen) feldPruefen(betrag, true);
+    }
+  }
+
+  function chipsAktualisieren() {
+    let sichtbar = 0;
+    chips.querySelectorAll("[data-chip]").forEach((chip) => {
+      const name = chip.dataset.chip;
+      const auswahl = gewaehlt(name);
+      const zeigen = uebersprungen.has(name) && !!auswahl;
+      chip.hidden = !zeigen;
+      if (zeigen) {
+        sichtbar++;
+        chip.querySelector("[data-chip-wert]").textContent =
+          auswahl.closest("label").querySelector("span").textContent;
+      }
+    });
+    chips.hidden = sichtbar === 0;
   }
 
   form.addEventListener("change", (e) => {
@@ -198,6 +252,7 @@ const funnel = (() => {
         fehler(schritt.querySelector("[data-fehler]"), false);
         schritt.querySelectorAll('input[type="radio"]').forEach((r) => r.removeAttribute("aria-invalid"));
       }
+      if (e.target.value === "eigener-betrag") betrag.focus();
     }
   });
   // Fehler am Feld verschwindet, sobald die Eingabe passt (auf Verlassen).
@@ -219,14 +274,27 @@ const funnel = (() => {
     if (e.target.checked) feldPruefen(e.target, true);
   });
 
-  weiter.addEventListener("click", () => {
-    if (pruefeAuswahl(aktuell)) zeige(aktuell + 1);
-  });
-  zurueck.addEventListener("click", () => zeige(aktuell - 1));
+  function nachbar(richtung) {
+    const liste = weg();
+    return liste[liste.indexOf(aktuell) + richtung];
+  }
 
-  // Enter in einem Radio soll weiterführen, nicht absenden.
+  weiter.addEventListener("click", () => {
+    if (pruefeAuswahl(aktuell) && nachbar(1)) zeige(nachbar(1));
+  });
+  zurueck.addEventListener("click", () => { if (nachbar(-1)) zeige(nachbar(-1)); });
+
+  // „ändern“ am Chip: Schritt zurück in den Weg holen und dorthin springen.
+  chips.addEventListener("click", (e) => {
+    const knopf = e.target.closest("[data-chip-aendern]");
+    if (!knopf) return;
+    uebersprungen.delete(knopf.dataset.chipAendern);
+    zeige(knopf.dataset.chipAendern);
+  });
+
+  // Enter in einem Radio oder im Betrag soll weiterführen, nicht absenden.
   form.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && e.target.type === "radio" && aktuell < gesamt) {
+    if (e.key === "Enter" && (e.target.type === "radio" || e.target === betrag) && aktuell !== "kontakt") {
       e.preventDefault();
       weiter.click();
     }
@@ -234,18 +302,16 @@ const funnel = (() => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (aktuell < gesamt) { weiter.click(); return; }
+    if (aktuell !== "kontakt") { weiter.click(); return; }
     if (!pruefeKontakt()) return;
     const a = gewaehlt("auftraggeber");
-    const v = gewaehlt("bauvolumen");
     // Markierung für René Gansmüller (im Projekt Teil der Übermittlung).
-    box.dataset.markiert = String(
-      (a && a.value === "privat") || (v && v.value === "ueber-15-mio")
-    );
+    box.dataset.markiert = String((a && a.value === "privat") || istGross());
     form.hidden = true;
     nav.hidden = true;
     fuss.hidden = true;
     box.dataset.schritt = "fertig";
+    box.style.setProperty("--fortschritt", "1");
     danke.hidden = false;
     const titel = danke.querySelector("[data-danke-titel]");
     titel.focus({ preventScroll: true });
@@ -261,36 +327,26 @@ const funnel = (() => {
     meldung.focus({ preventScroll: true });
   });
 
-  function leistungSetzen(wert) {
-    if (!wert || !LEISTUNGEN[wert]) return;
-    leistungFeld.value = wert;
-    chipWert.textContent = LEISTUNGEN[wert];
-    chip.hidden = false;
-  }
-  form.querySelector("[data-chip-weg]").addEventListener("click", () => {
-    leistungFeld.value = "";
-    chip.hidden = true;
-    schritte[aktuell - 1].focus();
-  });
-
-  function auftraggeberSetzen(wert) {
-    if (!AUFTRAGGEBER.includes(wert)) return false;
-    const r = form.querySelector(`input[name="auftraggeber"][value="${wert}"]`);
+  function waehlen(name, wert) {
+    const r = form.querySelector(`input[name="${name}"][value="${CSS.escape(wert || "")}"]`);
     if (!r) return false;
     r.checked = true;
-    hinweiseAktualisieren();
+    fehler(schritte[name].querySelector("[data-fehler]"), false);
     return true;
   }
 
-  // Vorbelegung aus Parametern. Springt bei gesetztem Auftraggeber auf
-  // Schritt 2 (FUNNEL.md: ein Schritt weniger an der Abbruchstelle).
+  // Vorbelegung aus Parametern: gesetzte Werte wählen, ihre Schritte
+  // überspringen und am Anfang des verbleibenden Wegs beginnen.
   function vorbelegen(params, { fokus }) {
-    leistungSetzen(params.get("leistung"));
-    const hatAuftraggeber = auftraggeberSetzen(params.get("auftraggeber"));
-    if (!form.hidden) zeige(hatAuftraggeber ? 2 : aktuell, { fokus });
+    const leistung = params.get("leistung");
+    const auftraggeber = params.get("auftraggeber");
+    if (leistung && LEISTUNGEN[leistung] && waehlen("leistung", leistung)) uebersprungen.add("leistung");
+    if (AUFTRAGGEBER.includes(auftraggeber) && waehlen("auftraggeber", auftraggeber)) uebersprungen.add("auftraggeber");
+    hinweiseAktualisieren();
+    if (!form.hidden) zeige(weg()[0], { fokus });
   }
 
-  zeige(1, { fokus: false });
+  zeige(REIHE[0], { fokus: false });
   return { box, vorbelegen };
 })();
 

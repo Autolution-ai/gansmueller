@@ -144,9 +144,28 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 >
 > **CTA:** Bauüberwachung anfragen (In unter 2 Min.) · *Kontur:* Referenzliste ansehen
 >
-> *Überarbeitung 3:* Auf Desktop füllen Hero und Bauherren-Band zusammen den ersten Bildschirm, das Band sitzt unten bündig.
+> *Überarbeitung 4:* Der Hero füllt auf dem Desktop den ersten Bildschirm allein, das Bauherren-Band folgt direkt beim Scrollen. Plakette und Kicker stehen oben mit Luft darunter, der Claim ist der Blickfang, der Unterclaim ruhiger (Textgrau).
 >
 > *Kennzahlen (zählen beim Laden hoch, gemeinsames Ende):* über 30 · Jahre in der Branche / 450 · Wohneinheiten für die HOWOGE
+
+**Referenz-Stapel rechts (Überarbeitung 4)**, je Karte Plankopf mit Foto
+(Altseite 4.html, nativ oder kleiner), Referenz, Bauherr, Umfang, Leistung
+(Leistung je Bauherr wie im Register, Referenzliste.pdf):
+
+| # | Referenz | Bauherr | Umfang | Leistung |
+|---|---|---|---|---|
+| 1 | Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin | HOWOGE mbH | Komplexe Altbausanierung, 85 WE | Bauüberwachung, Qualitätscontrolling |
+| 2 | Loisenstraße 10, Dresden | Argentum GmbH & Co. KG | Komplexe Altbausanierung, 24 WE (Einzeldenkmal) | Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitätscontrolling, Gewährleistung |
+| 3 | Augustusweg 114, Radebeul | Argentum GmbH & Co. KG | Komplexe Altbausanierung, 10 WE (Einzeldenkmal) | wie 2 |
+| 4 | Bundschuhstraße 1, Dresden | Argentum GmbH & Co. KG | Komplexe Altbausanierung, 22 WE (Einzeldenkmal) | wie 2 |
+
+Steuerung: „Vorherige Referenz" / „Nächste Referenz", Zähler „1 / 4",
+Pause-Knopf „Automatisches Weiterblättern anhalten/starten". Ansage für
+Screenreader: „Referenz 2 von 4: Loisenstraße 10, Dresden". Das Feld
+„Bearbeitung René Gansmüller" der früheren Einzelkarte entfällt (Höhe).
+Karte 4 ergänzt (nicht in Brunos Liste): Mit genau drei Karten zählt der
+Stapel als dritte Dreiergruppe der Seite (§7); Bundschuhstraße ist voll
+belegt und hat ein eigenes Foto.
 
 [„Partner" steht auf der Verbotsliste der Branchendatei; bewusste
 Entscheidung von Bruno („ok, Partner statt Bauingenieur") · Region: Büro
@@ -228,8 +247,8 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 > *Kicker:* Leistungen
 >
 > ## Projektsteuerung und Bauüberwachung
->
-> Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.
+
+[Untertext „Das ist mein Metier …" seit Überarbeitung 4 entfernt (Bruno)]
 
 **Fotos (Überarbeitung 2):** Unsplash-Symbolbilder, je Kachel oben rechts
 „Symbolbild"; der frühere Demo-Hinweis über den Kacheln ist entfallen.
@@ -300,9 +319,16 @@ auf Brunos Wunsch entfernt, Pause bei Hover bleibt]
 >
 > ## Aus meiner Referenzliste
 
-### Heller Teil: Einleitung
+### Logo-Leiste rechts neben der Überschrift (Überarbeitung 4)
 
-> Seit über 30 Jahren bin ich in der Branche tätig und habe unter anderem für die HOWOGE mbH, die BauBeCon Wohnen GmbH und die Kaufland Ladenbau GmbH gearbeitet.
+> *Label:* Auftraggeber aus meiner Referenzliste
+>
+> Logos in Originalfarben: HOWOGE mbH · Argentum GmbH & Co. KG · BauBeCon Wohnen GmbH · GVC mbH · Kaufland Ladenbau GmbH · Ortus GmbH & Co. KG (Wortmarke)
+
+[Alt-Texte exakt wie Referenzliste · „Auftraggeber" statt Brunos „Meine
+Partner", weil „Partner" auf der Seite für Planer, Architekt, Statik,
+Brandschutz steht · Der Einleitungssatz „Seit über 30 Jahren …" ist seit
+Überarbeitung 4 entfernt (Bruno)]
 
 [20 Zeilen, Parkdeck, 450 WE Plattenbausanierung: PDF. Keine Summe, keine
 Jahreszahl (Bruno, Station 1).]
@@ -503,7 +529,9 @@ angeklickter Tab hält es nicht mehr dauerhaft an (das war der Hänger).
 > **Demo-Stand:** Die Stationen 1 bis 3 sind ein Entwurf für die Demo; dass die Beauftragung je Objekt erfolgt, stammt aus dem Vorgespräch. Die Stationen 4 bis 7 folgen dem Leistungsangebot der bisherigen Website. Im Projekt legt René Gansmüller den Einstieg so fest, wie er tatsächlich arbeitet.
 
 > **1 · Anfrage** (H3)
-> Sie beantworten zwei kurze Fragen und hinterlassen Ihre Kontaktdaten.
+> Sie beantworten ein paar kurze Fragen und hinterlassen Ihre Kontaktdaten.
+
+[„ein paar" statt „zwei": Die Zahl der Fragen hängt seit Überarbeitung 4 vom Weg ab]
 > *Ergebnis:* Ihr Vorhaben ist in groben Zügen bekannt, bevor das erste Gespräch beginnt.
 
 > **2 · Erstgespräch** (H3)
@@ -556,19 +584,37 @@ Fortschrittsbalken, Fußzeile. Zwei Pflichtfragen plus Kontakt.
 [„unverbindlich prüfen": Briefing · Der Text unter der Überschrift ist seit
 2026-09-29 entfernt (Bruno)]
 
-**Kopfzeile des Kastens:** Projektanfrage · Schritt 1 von 3
+**Kopfzeile des Kastens:** Projektanfrage · Schritt 1 von 4 (ohne Vorauswahl)
 
-**Vorbelegte Leistung** (nur sichtbar, wenn `?leistung=` gesetzt ist, als
-Chip über Schritt 1):
+**Weg je Einstieg (Überarbeitung 4):** Was über einen Button feststeht, wird
+übersprungen und steht als Chip über dem Formular. „ändern" holt den Schritt
+zurück in den Weg, die Schrittanzeige zählt mit.
 
-> Gewählte Leistung: **Bauüberwachung** · ändern
+| Einstieg | Weg | Anzeige |
+|---|---|---|
+| direkt (gescrollt, Header, Ablauf, Footer) | Leistung · Wer fragt an? · Bauvolumen · Kontakt | Schritt 1 von 4 |
+| `?leistung=` (Leistungs-Buttons, Hero) | Wer fragt an? · Bauvolumen · Kontakt | Schritt 1 von 3 |
+| `?auftraggeber=` (Für wen) | Leistung · Bauvolumen · Kontakt | Schritt 1 von 3 |
+| beides | Bauvolumen · Kontakt | Schritt 1 von 2 |
+
+> Leistung: **Bauüberwachung** · ändern
+> Anfrage als: **Bauträger** · ändern
 
 Werte für `?leistung=`: `projektsteuerung` → Projektsteuerung ·
 `bauueberwachung` → Bauüberwachung · `baubetreuung` → Baubetreuung ·
 `bauberatung` → Bauberatung · `alle-leistungsphasen` → Vorhaben mit Planung.
-„ändern" entfernt den Chip.
 
-### Schritt 1 von 3 (Pflicht, Tap)
+### Leistung (Pflicht, Tap; nur ohne Vorauswahl)
+
+> **Welche Leistung brauchen Sie?** *
+>
+> ◯ Projektsteuerung · ◯ Bauüberwachung · ◯ Baubetreuung · ◯ Bauberatung · ◯ Vorhaben mit Planung · ◯ Noch offen
+
+[Bruno, Überarbeitung 4. Abweichung von docs/FUNNEL.md (max. 2
+Pflichtfragen): Der Leistungsschritt ist ausdrücklich gewünscht und entfällt
+bei jedem Einstieg über einen Leistungs-Button]
+
+### Wer fragt an? (Pflicht, Tap; entfällt bei `?auftraggeber=`)
 
 > **Wer fragt an?** *
 >
@@ -583,21 +629,23 @@ Absenden bleibt möglich, Anfrage wird markiert):
 Option kann der Link aus „Für wen" Schritt 1 nicht vorbelegen, siehe offene
 Punkte) · Verhalten: Bruno, Nachtrag „Privates Eigenheim"]
 
-### Schritt 2 von 3 (Pflicht, Tap)
+### Bauvolumen (Pflicht, Tap)
 
 > **Wie groß ist das Bauvolumen ungefähr?** *
 >
-> ◯ unter 1 Mio. € · ◯ 1–5 Mio. € · ◯ 5–15 Mio. € · ◯ über 15 Mio. € · ◯ noch offen
+> ◯ unter 1 Mio. € · ◯ 1–5 Mio. € · ◯ 5–15 Mio. € · ◯ über 15 Mio. € · ◯ noch offen · ◯ Selbst eintragen
+>
+> *Bei „Selbst eintragen" erscheint:* Bauvolumen in Euro · Platzhalter: z. B. 2.500.000 · Fehlermeldung: „Bitte tragen Sie einen Betrag in Euro ein, gern auch grob geschätzt."
 
-**Hinweis bei Auswahl „über 15 Mio. €"** (Absenden bleibt möglich, Anfrage
-wird markiert):
+**Hinweis bei Auswahl „über 15 Mio. €" oder eingetragenem Betrag über
+15 Mio. €** (Absenden bleibt möglich, Anfrage wird markiert):
 
 > Das liegt über meinem üblichen Rahmen. Senden Sie Ihre Anfrage ruhig ab, dann klärt sich im Gespräch, wo ich Ihr Vorhaben unterstützen kann.
 
 [Stufen: Bruno, delegierte Entscheidung · Verhalten: Spec · „Rahmen" greift
 das Wort aus „Für wen" auf, ohne die Zahl zu wiederholen]
 
-### Schritt 3 von 3 (Pflicht: Kontakt)
+### Kontakt (Pflicht, immer letzter Schritt)
 
 > **Ihre Kontaktdaten**
 >
@@ -612,8 +660,9 @@ das Wort aus „Für wen" auf, ohne die Zahl zu wiederholen]
 >
 > *Fußzeile (p):* Pflichtfelder sind mit * markiert.
 
-Navigation: **Weiter** (Schritt 1, 2), **Zurück** (ab Schritt 2, auf Schritt
-1 per `hidden` ausgeblendet), **Anfrage absenden** (Schritt 3).
+Navigation: **Weiter** (bis vor Kontakt), **Zurück** (ab dem zweiten Schritt
+des jeweiligen Wegs; übersprungene Schritte über „ändern" am Chip),
+**Anfrage absenden** (Kontakt).
 Fehlermeldungen: „Bitte wählen Sie eine Option." · „Bitte geben Sie Ihren
 Namen ein." · „Bitte geben Sie eine gültige E-Mail-Adresse ein." · „Bitte
 bestätigen Sie die Einwilligung."
