@@ -142,7 +142,9 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 >
 > Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme. *(seit Überarbeitung 2 in Fließtextgröße, 18 px, auf 1440 zweizeilig)*
 >
-> **CTA:** Bauüberwachung anfragen · *Kontur:* Referenzliste ansehen
+> **CTA:** Bauüberwachung anfragen (In unter 2 Min.) · *Kontur:* Referenzliste ansehen
+>
+> *Überarbeitung 3:* Auf Desktop füllen Hero und Bauherren-Band zusammen den ersten Bildschirm, das Band sitzt unten bündig.
 >
 > *Kennzahlen (zählen beim Laden hoch, gemeinsames Ende):* über 30 · Jahre in der Branche / 450 · Wohneinheiten für die HOWOGE
 
@@ -156,7 +158,15 @@ DEMO-SPEC · „über 30" steht zusätzlich unter „Über mich" (Wunsch Bruno)]
 
 ## 2 · Für wen ich arbeite  `#fuer-wen`
 
-**Stand 2026-09-29, Überarbeitung 2:** Profil-Wähler statt Kartenraster.
+**Stand Überarbeitung 3 (gilt):** Zwei Spalten nebeneinander, je Weg ein
+großer Gruppenkopf (H3) mit Satz, darunter die Rollen als Tabs (kein Link).
+Hover, Fokus oder Klick auf eine Rolle zeigt darunter in derselben Spalte
+Rolle, Beschreibung und den CTA **„Projekt prüfen lassen"** mit
+„In unter 2 Min." (`?auftraggeber=<rolle>#anfrage`). Vorausgewählt:
+Bauträger bzw. Architektur- und Planungsbüros. Mobil untereinander, Text
+und CTA unter der Rollenliste.
+
+*Vorher (Überarbeitung 2, ersetzt):* Profil-Wähler statt Kartenraster.
 Die Rollen stehen als typografische Liste mit Profilsatz, **ohne Link in
 den Funnel** (Bruno: „da ist noch kein Intent da"). Ab 900 px zeigt rechts,
 vertikal mittig, die Rolle groß und darunter der Satz in 20 bis 22 px
@@ -230,21 +240,26 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 > Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag: Ausführung, Termine und Kosten, bevor Sie zahlen.
 > **CTA:** Bauüberwachung anfragen
 
-> ### Zur Bauüberwachung gehören (Liste mit Haken, zweispaltig)
-> Kontrolle nach Ausführungsplänen und Regeln der Technik · Koordination der Gewerke und Handwerker · Ablaufplan und Terminüberwachung · Kostenkontrolle, Aufmaß- und Rechnungsprüfung · auf Wunsch Gewährleistungsabnahme und Revisionsunterlagen
+**Unter den Kacheln (Überarbeitung 3), zwei Spalten bündig mit den Kacheln:**
+
+> *Links, Label „Mit Planung":* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab: Planer, Architekt, Statiker und Brandschutzexperte arbeiten dann an Ihrem Vorhaben mit. **Textlink:** Vorhaben mit Planung anfragen · In unter 2 Min.
 >
-> ### Auf Wunsch vorher: Vergabe
-> Ich erstelle Leistungsverzeichnisse mit genauer Mengenermittlung und die Ausschreibungsunterlagen, werte die Angebote aus und führe die Bieterverhandlungen.
+> *Rechts, Label „Dazu gehört":* Ausführung nach Plan und Regeln der Technik prüfen · Gewerke und Handwerker koordinieren · Termine und Kosten überwachen · Aufmaß und Rechnungen prüfen, bevor Sie zahlen
+> *kleine Zeile:* Auf Wunsch auch die Vergabe vorher und die Gewährleistungsabnahme danach.
 
-**Demo-Hinweis über den Zeilen 03/04 (Zeilen statt Karten seit Überarbeitung 2):**
+[Gekürzt aus der bisherigen Aufgabenliste und dem Vergabe-Absatz (Scrape,
+Leistungsseite); die Partnerzeile ist in die linke Spalte gewandert; die
+Details der Vergabe stehen im Ablauf, Station 05]
 
-> **Demo-Stand:** Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.
+**Demo-Hinweis über 03/04 (nebeneinander, Überarbeitung 3), einzeilig:**
+
+> **Demo-Stand:** Baubetreuung stammt aus dem Vorgespräch, der Text ist ein Entwurf.
 
 > **03 · Baubetreuung** (H3) Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen. *Textlink:* Baubetreuung anfragen
 >
 > **04 · Bauberatung** (H3) Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben. *Textlink:* Bauberatung anfragen
 
-> *Partnerzeile (ohne Fläche, Linie links):* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit. **CTA:** Vorhaben mit Planung anfragen
+> *Partnerzeile (entfallen, Text jetzt links unter der Projektsteuerungs-Kachel):* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit. **CTA:** Vorhaben mit Planung anfragen
 
 [Leistungen, Aufgaben, Vergabe: Scrape (Leistungsseite) · Projektsteuerung
 ab Planungsphase, GU/GÜ: Transkript · Baubetreuung: Transkript, Text Entwurf
@@ -476,7 +491,10 @@ Fokus, nach einer Auswahl von Hand 15 s Ruhe; bei reduzierter Bewegung kein
 Autoplay. **Überarbeitung 2:** Schalter entfernt (Bruno), keine
 Strichelungen mehr: Linie in zwei Farbabschnitten, Phasen-Labels mit feiner
 Klammer, Ring- vs. gefüllte Punkte, „Am Bau" auf getönter Fläche ohne
-Rahmen; Detailfeld ohne Rahmen und Schatten.
+Rahmen; Detailfeld ohne Rahmen und Schatten. **Überarbeitung 3:** Autoplay
+startet ab 20 % Sichtbarkeit; Pause nur bei Maus über Zeitstrahl oder
+Detailfeld und bei Tastaturfokus in der Tab-Liste. Ein per Maus
+angeklickter Tab hält es nicht mehr dauerhaft an (das war der Hänger).
 
 **Demo-Hinweis direkt über Station 1:**
 
