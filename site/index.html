@@ -75,19 +75,20 @@
 
 <main id="top" tabindex="-1">
 
-  <!-- Erster Bildschirm (Desktop): Hero und Bauherren-Band füllen zusammen
-       die Fensterhöhe, das Band sitzt unten bündig (Bruno, Überarbeitung 3). -->
-  <div class="erster-schirm">
-
-  <!-- 1 · HERO – Referenz-Split. Inhalte aus Hero C (Station 2), Plankopf-Karte
-       mit echter Referenz. Quellen: Objekt, Bauherr, Umfang, Leistung:
-       Referenzliste.pdf; Bildunterschrift: Altseite 4.html; Titel: Impressum;
-       „über 30 Jahre in der Branche“: Transkript; 450 WE: Referenzliste.pdf. -->
+  <!-- 1 · HERO – füllt auf dem Desktop allein den ersten Bildschirm, das
+       Bauherren-Band folgt direkt darunter (Bruno, Überarbeitung 4).
+       Rechts ein Karten-Stapel mit Referenzen. Quellen: Objekt, Bauherr, Umfang,
+       Leistung: Referenzliste.pdf (Leistung je Bauherr wie im Register); Fotos:
+       Altseite 4.html, in nativer Größe oder kleiner; Titel: Impressum;
+       „über 30 Jahre in der Branche“: Transkript; 450 WE: Referenzliste.pdf.
+       Weitere Referenz = eine weitere .stapel__karte mit data-pos, sonst nichts. -->
   <section class="hero layout" aria-labelledby="hero-titel">
     <div class="breakout hero__raster">
       <div class="hero__text">
-        <p class="plakette">Dipl.-Ing. (FH) Bauwesen</p>
-        <p class="kicker">Ingenieurbüro René Gansmüller</p>
+        <div class="hero__marke">
+          <p class="plakette">Dipl.-Ing. (FH) Bauwesen</p>
+          <p class="kicker">Ingenieurbüro René Gansmüller</p>
+        </div>
         <h1 id="hero-titel">Ihr Partner für <span class="akzent">Bauüberwachung und Projektsteuerung</span> in Berlin, Brandenburg und Sachsen</h1>
         <p class="hero__zeile">Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme.</p>
         <div class="aktionen">
@@ -100,21 +101,84 @@
         </dl>
       </div>
 
-      <div class="plankopf">
-        <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#referenzen">Referenzliste</a></div>
-        <figure class="plankopf__objekt">
-          <picture>
-            <source srcset="assets/images/altbau-berlin-koenigswinterstrasse.webp" type="image/webp">
-            <img src="assets/images/altbau-berlin-koenigswinterstrasse.jpg" alt="Wohngebäude an der Königswinterstraße in Berlin" width="284" height="186" decoding="async">
-          </picture>
-          <figcaption><span class="label">Referenz</span><strong>Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin</strong></figcaption>
-        </figure>
-        <dl class="schriftfeld">
-          <div><dt>Bauherr</dt><dd>HOWOGE mbH</dd></div>
-          <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 85&nbsp;WE</dd></div>
-          <div><dt>Leistung</dt><dd>Bauüberwachung, Qualitäts&shy;controlling</dd></div>
-          <div><dt>Bearbeitung</dt><dd>René Gansmüller</dd></div>
-        </dl>
+      <div class="stapel" data-stapel role="region" aria-roledescription="Karten-Stapel" aria-label="Referenzen aus meiner Referenzliste">
+        <div class="stapel__karten" data-stapel-karten>
+          <article class="plankopf stapel__karte" data-pos="0" aria-roledescription="Referenz" aria-label="Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin">
+            <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#register">Referenzliste</a></div>
+            <figure class="plankopf__objekt">
+              <div class="plankopf__bild">
+                <picture>
+                  <source srcset="assets/images/altbau-berlin-koenigswinterstrasse.webp" type="image/webp">
+                  <img src="assets/images/altbau-berlin-koenigswinterstrasse.jpg" alt="Wohngebäude an der Königswinterstraße in Berlin" width="284" height="186" decoding="async">
+                </picture>
+              </div>
+              <figcaption><span class="label">Referenz</span><strong>Königswinterstr./ Andernacher Str./ Ehrenfelsstraße, Berlin</strong></figcaption>
+            </figure>
+            <dl class="schriftfeld">
+              <div><dt>Bauherr</dt><dd>HOWOGE mbH</dd></div>
+              <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 85&nbsp;WE</dd></div>
+              <div class="schriftfeld__breit"><dt>Leistung</dt><dd>Bauüberwachung, Qualitäts&shy;controlling</dd></div>
+            </dl>
+          </article>
+          <article class="plankopf stapel__karte" data-pos="1" aria-roledescription="Referenz" aria-label="Loisenstraße 10, Dresden">
+            <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#register">Referenzliste</a></div>
+            <figure class="plankopf__objekt">
+              <div class="plankopf__bild">
+                <picture>
+                  <source srcset="assets/images/denkmal-dresden-loisenstrasse.webp" type="image/webp">
+                  <img src="assets/images/denkmal-dresden-loisenstrasse.jpg" alt="Wohnhaus Loisenstraße 10 in Dresden, Straßenansicht" width="167" height="251" decoding="async">
+                </picture>
+              </div>
+              <figcaption><span class="label">Referenz</span><strong>Loisenstraße 10, Dresden</strong></figcaption>
+            </figure>
+            <dl class="schriftfeld">
+              <div><dt>Bauherr</dt><dd>Argentum GmbH &amp; Co.&nbsp;KG</dd></div>
+              <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 24&nbsp;WE (Einzeldenkmal)</dd></div>
+              <div class="schriftfeld__breit"><dt>Leistung</dt><dd>Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitäts&shy;controlling, Gewährleistung</dd></div>
+            </dl>
+          </article>
+          <article class="plankopf stapel__karte" data-pos="2" aria-roledescription="Referenz" aria-label="Augustusweg 114, Radebeul">
+            <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#register">Referenzliste</a></div>
+            <figure class="plankopf__objekt">
+              <div class="plankopf__bild">
+                <picture>
+                  <source srcset="assets/images/denkmal-radebeul-augustusweg.webp" type="image/webp">
+                  <img src="assets/images/denkmal-radebeul-augustusweg.jpg" alt="Wohnhaus Augustusweg 114 in Radebeul" width="413" height="251" decoding="async">
+                </picture>
+              </div>
+              <figcaption><span class="label">Referenz</span><strong>Augustusweg 114, Radebeul</strong></figcaption>
+            </figure>
+            <dl class="schriftfeld">
+              <div><dt>Bauherr</dt><dd>Argentum GmbH &amp; Co.&nbsp;KG</dd></div>
+              <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 10&nbsp;WE (Einzeldenkmal)</dd></div>
+              <div class="schriftfeld__breit"><dt>Leistung</dt><dd>Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitäts&shy;controlling, Gewährleistung</dd></div>
+            </dl>
+          </article>
+          <article class="plankopf stapel__karte" data-pos="3" aria-roledescription="Referenz" aria-label="Bundschuhstraße 1, Dresden">
+            <div class="plankopf__kopf"><img src="assets/images/logo.svg" alt="" width="156" height="32"><a href="#register">Referenzliste</a></div>
+            <figure class="plankopf__objekt">
+              <div class="plankopf__bild">
+                <picture>
+                  <source srcset="assets/images/denkmal-dresden-bundschuhstrasse.webp" type="image/webp">
+                  <img src="assets/images/denkmal-dresden-bundschuhstrasse.jpg" alt="Wohnhaus Bundschuhstraße 1 in Dresden, Straßenansicht" width="191" height="269" loading="lazy" decoding="async">
+                </picture>
+              </div>
+              <figcaption><span class="label">Referenz</span><strong>Bundschuhstraße 1, Dresden</strong></figcaption>
+            </figure>
+            <dl class="schriftfeld">
+              <div><dt>Bauherr</dt><dd>Argentum GmbH &amp; Co.&nbsp;KG</dd></div>
+              <div><dt>Umfang</dt><dd>Komplexe Altbausanierung, 22&nbsp;WE (Einzeldenkmal)</dd></div>
+              <div class="schriftfeld__breit"><dt>Leistung</dt><dd>Behördenabstimmungen, Angebotsauswertung, Vergabe, Bauüberwachung, Qualitäts&shy;controlling, Gewährleistung</dd></div>
+            </dl>
+          </article>
+        </div>
+        <div class="stapel__steuerung" data-stapel-steuerung hidden>
+          <button class="stapel__knopf" type="button" data-stapel-zurueck aria-label="Vorherige Referenz"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square"/></svg></button>
+          <p class="stapel__zaehler" aria-hidden="true"><span data-stapel-nr>1</span> / <span data-stapel-summe></span></p>
+          <button class="stapel__knopf" type="button" data-stapel-vor aria-label="Nächste Referenz"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="square"/></svg></button>
+          <button class="stapel__knopf stapel__knopf--pause" type="button" data-stapel-pause aria-pressed="false" aria-label="Automatisches Weiterblättern anhalten"><svg class="stapel__icon-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2.5"/></svg><svg class="stapel__icon-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5l12 7-12 7z" fill="currentColor"/></svg></button>
+        </div>
+        <p class="vh" aria-live="polite" aria-atomic="true" data-stapel-status></p>
       </div>
     </div>
   </section>
@@ -180,7 +244,6 @@
       </div>
     </div>
   </section>
-  </div>
 
   <!-- 2 · FÜR WEN – zwei getrennte Wege (§9), abgesetzte Fläche -->
   <section class="layout" id="fuer-wen" aria-labelledby="fuer-wen-titel">

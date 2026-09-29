@@ -398,56 +398,40 @@ html:has(body.is-locked) { overflow: hidden; }
 /* ---------------------------------------------------------------------------
    1 · Hero: Zweispalter, links Text, rechts Plankopf-Karte mit 12/12-Schatten
 --------------------------------------------------------------------------- */
-.hero { padding-block: clamp(2rem, 6vh, 5.5rem) clamp(var(--space-l), 7vh, 6rem); }
-/* Desktop mit ausreichender Höhe: Hero + Band = erster Bildschirm, Band
-   unten bündig. Passt der Inhalt nicht, wächst der Block einfach weiter. */
+.hero {
+  padding-block: clamp(2rem, 6vh, 5.5rem) clamp(var(--space-l), 7vh, 6rem);
+  /* Die hinausgeschobene Karte des Stapels darf keinen Seitenscroll erzeugen */
+  overflow-x: clip;
+}
+/* Desktop mit ausreichender Höhe: der Hero füllt den ersten Bildschirm
+   allein, das Bauherren-Band folgt direkt beim Scrollen. Passt der Inhalt
+   nicht, wächst der Hero einfach weiter. */
 @media (min-width: 1024px) and (min-height: 700px) {
-  .erster-schirm {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100svh - var(--header-h));
-  }
-  .erster-schirm .hero {
-    flex: 1 0 auto;
+  .hero {
     display: grid;
     align-content: center;
-    padding-block: clamp(1.5rem, 4vh, 3.5rem);
+    min-height: calc(100svh - var(--header-h));
+    padding-block: clamp(1.5rem, 5vh, 4rem);
   }
-  .erster-schirm .marquee-band { padding-bottom: 0; }
-}
-/* Niedrige Desktop-Fenster (z. B. 1366 × 768): Abstände im ersten Bildschirm
-   straffen, damit Hero und Band gemeinsam hineinpassen. */
-@media (min-width: 1024px) and (min-height: 700px) and (max-height: 820px) {
-  .erster-schirm .hero { padding-block: 1rem; }
-  .erster-schirm .plakette { margin-bottom: 0.75rem; }
-  .erster-schirm .hero__zeile { margin-top: 0.75rem; }
-  .erster-schirm .hero .aktionen { margin-top: 1.25rem; }
-  .erster-schirm .kennzahlen { margin-top: 1.25rem; padding-top: 1rem; }
-  .erster-schirm .marquee-band { padding-top: 0.5rem; }
-  .erster-schirm .marquee__liste { padding-block: 0.75rem; }
-  .erster-schirm .plankopf__objekt { padding-block: 0.9rem; }
-  .erster-schirm .schriftfeld > div { padding-block: 0.6rem; }
-}
-@media (min-width: 1024px) and (min-height: 700px) and (max-height: 760px) {
-  .erster-schirm .hero { padding-block: 0.5rem; }
-  .erster-schirm .hero h1 { font-size: 2.4rem; }
-  .erster-schirm .kennzahlen dd { font-size: 2rem; }
-  .erster-schirm .plankopf__objekt { padding-block: 0.6rem; }
-  .erster-schirm .schriftfeld > div { padding-block: 0.45rem; }
-  .erster-schirm .plankopf__kopf { padding-block: 0.6rem; }
 }
 .hero__raster {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 32.75rem);
   align-items: center;
   gap: var(--space-l) clamp(var(--space-m), 4vw, 4.5rem);
 }
 .hero__text { display: grid; justify-items: start; }
+/* Marke oben mit Luft darunter, damit der Claim allein als Blickfang steht */
+.hero__marke {
+  display: grid;
+  justify-items: start;
+  gap: 0.9rem;
+  margin-bottom: clamp(2rem, 6vh, 3.75rem);
+}
 .plakette {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 1.25rem;
   padding: 0.45rem 1rem;
   font-size: var(--step--1);
   font-weight: var(--weight-label);
@@ -460,7 +444,7 @@ html:has(body.is-locked) { overflow: hidden; }
 .plakette::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--color-primary-strong); }
 /* Langer Claim (Leistung, Region): kleiner als die übrigen H1, damit er in
    drei Zeilen steht und nicht die ganze erste Bildschirmhöhe füllt. */
-.hero h1 { max-width: 30ch; font-size: clamp(1.7rem, 1.25rem + 1.75vw, 2.85rem); line-height: 1.1; text-wrap: balance; }
+.hero h1 { max-width: 33ch; font-size: clamp(1.75rem, 1.25rem + 1.8vw, 3rem); line-height: 1.08; text-wrap: balance; }
 /* Akzentwort mit Balken darunter (Referenz: 4 px). */
 .akzent {
   color: var(--color-primary-strong);
@@ -469,14 +453,14 @@ html:has(body.is-locked) { overflow: hidden; }
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.hero__zeile { margin-top: 1.25rem; font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); line-height: 1.55; max-width: 62ch; }
-.hero .aktionen { margin-top: 2rem; }
+.hero__zeile { margin-top: 1.5rem; font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); line-height: 1.55; max-width: 52ch; color: var(--color-text-muted); }
+.hero .aktionen { margin-top: 2.25rem; }
 .kennzahlen {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem clamp(var(--space-m), 5vw, 5rem);
   width: 100%;
-  margin-top: 2.5rem;
+  margin-top: clamp(2.25rem, 5vh, 3.25rem);
   padding-top: 1.75rem;
   border-top: 1px solid var(--color-border);
 }
@@ -501,11 +485,102 @@ html:has(body.is-locked) { overflow: hidden; }
   max-width: 38ch;
 }
 
-/* Plankopf-Karte: Schriftfeld einer Bauzeichnung mit echter Referenz. Das
-   Foto steht in nativer Größe (284 × 186), nicht hochskaliert. */
-.plankopf {
+/* Referenz-Stapel: Karten im Stil eines Plankopfs, übereinander in einer
+   Rasterzelle (gleiche Höhe von selbst). data-pos 0 liegt vorn, 1 und 2
+   schauen versetzt und leicht gedreht dahinter hervor, alle weiteren warten
+   unsichtbar. Fotos höchstens in nativer Größe: max-height über --bild-h,
+   Breite automatisch, nie hochskaliert. */
+.stapel {
+  --bild-h: 11.625rem; /* 186 px = Höhe des flachsten Fotos */
+  --stapel-dauer: 0.55s;
   justify-self: end;
-  width: min(100%, 31rem);
+  width: min(100%, 32rem);
+  display: grid;
+  gap: 1.25rem;
+}
+.stapel__karten {
+  display: grid;
+  padding: 0 0.75rem 1.25rem 0;
+  touch-action: pan-y;
+}
+.stapel__karte {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  transform-origin: 50% 60%;
+  transition:
+    transform var(--stapel-dauer) cubic-bezier(0.22, 0.8, 0.24, 1),
+    opacity var(--stapel-dauer) var(--ease-out),
+    box-shadow var(--dur-normal) var(--ease-out);
+}
+.stapel__karte[data-pos="0"] { z-index: 3; }
+.stapel__karte:not([data-pos="0"]) { box-shadow: none; }
+.stapel__karte[data-pos="1"] { z-index: 2; transform: translate(0.5rem, 0.7rem) rotate(2.2deg); }
+.stapel__karte[data-pos="2"] { z-index: 1; transform: translate(-0.35rem, 1.2rem) rotate(-2.6deg); }
+/* Ab der vierten Karte: deckungsgleich hinter der dritten, also verdeckt */
+.stapel__karte:where(:not([data-pos="0"]):not([data-pos="1"]):not([data-pos="2"])) {
+  z-index: 0;
+  transform: translate(-0.35rem, 1.2rem) rotate(-2.6deg);
+}
+/* Hintere Karten nur als Kante: Inhalt gedämpft, damit vorn ruhig bleibt */
+.stapel__karte:not([data-pos="0"]) > * { opacity: 0.35; }
+.stapel__karte > * { transition: opacity var(--stapel-dauer) var(--ease-out); }
+/* Phase 1 des Weiterblätterns: die vordere Karte gleitet seitlich hinaus,
+   danach reiht sie sich hinten ein (main.js, initStapel). */
+.stapel__karte.ist-weg {
+  z-index: 4;
+  transform: translate(68%, -0.5rem) rotate(9deg);
+  transition-timing-function: cubic-bezier(0.5, 0, 0.75, 0.4);
+  transition-duration: calc(var(--stapel-dauer) * 0.6);
+}
+.stapel__karte.ist-weg--hinten { z-index: 0; }
+.stapel--js .stapel__karte[data-pos="0"] { cursor: pointer; }
+@media (hover: hover) {
+  .stapel--js .stapel__karten:hover .stapel__karte[data-pos="0"]:not(.ist-weg) { transform: translate(-3px, -3px); box-shadow: 15px 15px 0 0 var(--color-text); }
+  .stapel--js .stapel__karten:hover .stapel__karte[data-pos="1"]:not(.ist-weg) { transform: translate(0.9rem, 0.8rem) rotate(3.6deg); }
+  .stapel--js .stapel__karten:hover .stapel__karte[data-pos="2"]:not(.ist-weg) { transform: translate(-0.7rem, 1.3rem) rotate(-4deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stapel__karte, .stapel__karte > * { transition: none; }
+}
+
+.stapel__steuerung {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.stapel__steuerung[hidden] { display: none; }
+.stapel__knopf {
+  display: inline-grid;
+  place-items: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  color: var(--color-text);
+  background: var(--color-karte);
+  border: 2px solid var(--color-text);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--dur-schnell) var(--ease-out), color var(--dur-schnell) var(--ease-out), transform var(--dur-schnell) var(--ease-out);
+}
+.stapel__knopf:active { transform: scale(0.94); }
+@media (hover: hover) { .stapel__knopf:hover { background: var(--color-text); color: var(--color-bg); } }
+.stapel__knopf--pause { margin-left: 0.5rem; width: 2.75rem; height: 2.75rem; border-width: 1px; border-color: var(--color-text-muted); color: var(--color-text-muted); }
+.stapel__icon-play { display: none; }
+.stapel__knopf--pause[aria-pressed="true"] .stapel__icon-play { display: block; }
+.stapel__knopf--pause[aria-pressed="true"] .stapel__icon-pause { display: none; }
+.stapel__zaehler {
+  min-width: 4.5ch;
+  text-align: center;
+  font-size: var(--step--1);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+/* Karte: Schriftfeld einer Bauzeichnung */
+.plankopf {
   background: var(--color-karte);
   border: 2px solid var(--color-text);
   border-radius: var(--radius-karte);
@@ -517,14 +592,14 @@ html:has(body.is-locked) { overflow: hidden; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0.25rem 1.25rem;
   border-bottom: 2px solid var(--color-text);
 }
 .plankopf__kopf img { height: 28px; width: auto; }
 .plankopf__kopf a {
   display: inline-flex;
   align-items: center;
-  min-height: 48px;
+  min-height: 44px;
   font-size: var(--step--1);
   font-weight: var(--weight-label);
   letter-spacing: var(--tracking-label);
@@ -536,21 +611,41 @@ html:has(body.is-locked) { overflow: hidden; }
   transition: color var(--dur-schnell) var(--ease-out);
 }
 @media (hover: hover) { .plankopf__kopf a:hover { color: var(--color-text); } }
+/* Die Bildfläche nimmt auf, was eine Karte an Höhe übrig hat (alle Karten
+   im Stapel sind gleich hoch), statt eines Lochs über dem Schriftfeld. */
 .plankopf__objekt {
+  flex: 1 0 auto;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: end;
-  gap: 1.25rem;
+  grid-template-rows: 1fr auto;
+  gap: 0.9rem;
   padding: 1.25rem;
   border-bottom: 1px solid var(--color-text);
 }
-.plankopf__objekt img { display: block; max-width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--color-text); }
-.plankopf__objekt figcaption { display: grid; gap: 0.35rem; }
+/* Passepartout: das Foto sitzt auf einer ruhigen Fläche, statt aufgeblasen zu werden */
+.plankopf__bild {
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--bild-h, 11.625rem) + 1.5rem);
+  padding: 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+.plankopf__bild img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--bild-h, 11.625rem);
+  border: 1px solid var(--color-text);
+}
+.plankopf__objekt figcaption { display: grid; gap: 0.3rem; }
 .plankopf__objekt figcaption strong { font-size: var(--step-0); line-height: 1.3; }
 .schriftfeld { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.schriftfeld > div { padding: 0.8rem 1.25rem 0.9rem; border-bottom: 1px solid var(--color-text); }
-.schriftfeld > div:nth-child(odd) { border-right: 1px solid var(--color-text); }
-.schriftfeld > div:nth-last-child(-n + 2) { border-bottom: 0; }
+.schriftfeld > div { padding: 0.75rem 1.25rem 0.8rem; border-bottom: 1px solid var(--color-text); }
+.schriftfeld > div:nth-child(odd):not(.schriftfeld__breit) { border-right: 1px solid var(--color-text); }
+.schriftfeld__breit { grid-column: 1 / -1; }
+.schriftfeld > div:last-child { border-bottom: 0; }
 .schriftfeld dt {
   font-size: var(--step--1);
   font-weight: var(--weight-label);
@@ -1502,6 +1597,27 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
 /* ---------------------------------------------------------------------------
    Rechtsseiten (Impressum, Datenschutz)
 --------------------------------------------------------------------------- */
+
+/* Niedrige Desktop-Fenster (1280 × 720, 1366 × 768): Abstände straffen,
+   Fotos im Stapel etwas kleiner (nie größer als nativ). */
+@media (min-width: 1024px) and (min-height: 700px) and (max-height: 820px) {
+  .hero { padding-block: 1rem; }
+  .hero__marke { margin-bottom: 1.75rem; }
+  .hero__zeile { margin-top: 1rem; }
+  .hero .aktionen { margin-top: 1.5rem; }
+  .kennzahlen { margin-top: 1.75rem; padding-top: 1.25rem; }
+  .stapel { --bild-h: 8.5rem; }
+  .plankopf__objekt { padding-block: 0.75rem; }
+  .schriftfeld > div { padding-block: 0.55rem 0.6rem; }
+}
+@media (min-width: 1024px) and (min-height: 700px) and (max-height: 760px) {
+  .hero { padding-block: 0.25rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .kennzahlen dd { font-size: 2rem; }
+  .stapel { --bild-h: 7rem; }
+  .plankopf__kopf { padding-block: 0.1rem; }
+}
+
 .rechtsseite .panel { min-height: 55vh; align-content: center; }
 .rechtsseite h1 { margin-bottom: var(--space-m); }
 .rechtsseite .textlink { margin-top: var(--space-m); }
@@ -1519,7 +1635,7 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
 }
 @media (max-width: 1100px) {
   .hero__raster { grid-template-columns: minmax(0, 1fr); }
-  .plankopf { justify-self: start; }
+  .stapel { justify-self: start; }
   .anfrage__raster { grid-template-columns: minmax(0, 1fr); }
   .fuer-wen__kopf { grid-template-columns: minmax(0, 1fr); }
 }
@@ -1545,7 +1661,6 @@ html:not(.js) [data-schrittanzeige], html:not(.js) .funnel__balken { display: no
   .btn { letter-spacing: 0.02em; }
   .hero .aktionen { flex-direction: column; align-items: stretch; width: 100%; }
   .hero .aktionen .btn { justify-content: space-between; }
-  .plankopf__objekt { grid-template-columns: minmax(0, 1fr); }
   .ueber { grid-template-columns: minmax(0, 1fr); }
   .steckbrief { grid-template-columns: minmax(0, 1fr); }
   .steckbrief div, .steckbrief div:nth-child(odd), .steckbrief div:nth-child(even) { border-right: 0; padding-inline: 0; border-bottom: 1px solid var(--color-border); }

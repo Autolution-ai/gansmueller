@@ -727,6 +727,181 @@ function initZaehler() {
   beobachter.observe(zaehler[0].closest("dl") || zaehler[0]);
 }
 
+/* ---------------------------------------------------------------------------
+   Referenz-Stapel im Hero
+   Ohne JS liegt die erste Karte vorn (data-pos im Markup), die Steuerung
+   bleibt verborgen. Mit JS: Pfeil-Knöpfe, Klick/Tipp auf die vordere Karte,
+   Wischen, Pfeiltasten im Stapel. Weiterblättern in zwei Phasen: die vordere
+   Karte gleitet seitlich hinaus (.ist-weg), dann reiht sie sich hinten ein.
+   Automatisch alle 6 s, nur sichtbar, ohne Hover/Fokus, ohne Wunsch nach
+   reduzierter Bewegung und nicht angehalten (Pause-Knopf, WCAG 2.2.2).
+   Nach eigener Auswahl ruht der Automatismus 15 s.
+   Weitere Referenz: eine weitere .stapel__karte ins Markup, sonst nichts.
+--------------------------------------------------------------------------- */
+function initStapel() {
+  const wurzel = document.querySelector("[data-stapel]");
+  if (!wurzel) return;
+  const ablage = wurzel.querySelector("[data-stapel-karten]");
+  const karten = [...ablage.querySelectorAll(".stapel__karte")];
+  if (karten.length < 2) return;
+
+  const steuerung = wurzel.querySelector("[data-stapel-steuerung]");
+  const nr = wurzel.querySelector("[data-stapel-nr]");
+  const status = wurzel.querySelector("[data-stapel-status]");
+  const pauseKnopf = wurzel.querySelector("[data-stapel-pause]");
+  const ruhig = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const n = karten.length;
+  const TAKT = 6000;
+  const RUHE = 15000;
+
+  // reihe[0] liegt vorn
+  let reihe = karten.slice();
+  let beschaeftigt = false;
+
+  wurzel.querySelector("[data-stapel-summe]").textContent = String(n);
+  steuerung.hidden = false;
+  wurzel.classList.add("stapel--js");
+
+  function ordnen() {
+    reihe.forEach((karte, pos) => {
+      karte.dataset.pos = String(pos);
+      const vorn = pos === 0;
+      karte.inert = !vorn;
+      if (vorn) karte.removeAttribute("aria-hidden");
+      else karte.setAttribute("aria-hidden", "true");
+    });
+    nr.textContent = String(karten.indexOf(reihe[0]) + 1);
+  }
+
+  function melden() {
+    const karte = reihe[0];
+    status.textContent = `Referenz ${karten.indexOf(karte) + 1} von ${n}: ${karte.getAttribute("aria-label")}`;
+  }
+
+  function dauer() {
+    const wert = parseFloat(getComputedStyle(wurzel).getPropertyValue("--stapel-dauer")) || 0.55;
+    return wert * 1000;
+  }
+
+  function blaettern(richtung, { vonHand = false } = {}) {
+    if (beschaeftigt) return;
+    if (vonHand) ruhenLassen();
+    if (ruhig.matches) {
+      reihe = richtung > 0 ? [...reihe.slice(1), reihe[0]] : [reihe[n - 1], ...reihe.slice(0, -1)];
+      ordnen();
+      if (vonHand) melden();
+      return;
+    }
+    beschaeftigt = true;
+    const phase = dauer() * 0.6;
+    if (richtung > 0) {
+      // vorn hinaus, dann hinten einreihen
+      const raus = reihe[0];
+      raus.classList.add("ist-weg");
+      reihe = [...reihe.slice(1), raus];
+      reihe.forEach((k, pos) => { if (k !== raus) k.dataset.pos = String(pos); });
+      nr.textContent = String(karten.indexOf(reihe[0]) + 1);
+      if (vonHand) melden();
+      setTimeout(() => {
+        raus.classList.add("ist-weg--hinten");
+        raus.classList.remove("ist-weg");
+        ordnen();
+        requestAnimationFrame(() => raus.classList.remove("ist-weg--hinten"));
+        setTimeout(() => { beschaeftigt = false; }, dauer() * 0.5);
+      }, phase);
+    } else {
+      // hinterste Karte seitlich heraus, dann vorn einreihen
+      const rein = reihe[n - 1];
+      rein.classList.add("ist-weg", "ist-weg--hinten");
+      setTimeout(() => {
+        reihe = [rein, ...reihe.slice(0, -1)];
+        rein.classList.remove("ist-weg--hinten");
+        ordnen();
+        if (vonHand) melden();
+        requestAnimationFrame(() => rein.classList.remove("ist-weg"));
+        setTimeout(() => { beschaeftigt = false; }, dauer() * 0.6);
+      }, phase);
+    }
+  }
+
+  // Automatik
+  let angehalten = false;
+  let sichtbar = false;
+  let schwebt = false;
+  let fokussiert = false;
+  let ruhtBis = 0;
+  let uhr = null;
+
+  function laeuft() {
+    return !angehalten && sichtbar && !schwebt && !fokussiert && !ruhig.matches && !document.hidden;
+  }
+  function planen() {
+    clearTimeout(uhr);
+    if (!laeuft()) return;
+    const warten = Math.max(TAKT, ruhtBis - Date.now());
+    uhr = setTimeout(() => {
+      if (laeuft()) blaettern(1);
+      planen();
+    }, warten);
+  }
+  function ruhenLassen() { ruhtBis = Date.now() + RUHE; planen(); }
+
+  wurzel.querySelector("[data-stapel-vor]").addEventListener("click", () => blaettern(1, { vonHand: true }));
+  wurzel.querySelector("[data-stapel-zurueck]").addEventListener("click", () => blaettern(-1, { vonHand: true }));
+  pauseKnopf.addEventListener("click", () => {
+    angehalten = !angehalten;
+    pauseKnopf.setAttribute("aria-pressed", String(angehalten));
+    pauseKnopf.setAttribute("aria-label", angehalten ? "Automatisches Weiterblättern starten" : "Automatisches Weiterblättern anhalten");
+    planen();
+  });
+  if (ruhig.matches) pauseKnopf.hidden = true;
+  ruhig.addEventListener("change", () => { pauseKnopf.hidden = ruhig.matches; planen(); });
+
+  // Pfeiltasten, solange der Fokus im Stapel liegt
+  wurzel.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); blaettern(1, { vonHand: true }); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); blaettern(-1, { vonHand: true }); }
+  });
+
+  // Klick/Tipp auf die vordere Karte und Wischen
+  let start = null;
+  let gewischt = false;
+  ablage.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0) return;
+    start = { x: e.clientX, y: e.clientY };
+    gewischt = false;
+  });
+  ablage.addEventListener("pointerup", (e) => {
+    if (!start) return;
+    const dx = e.clientX - start.x;
+    const dy = e.clientY - start.y;
+    start = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      gewischt = true;
+      blaettern(dx < 0 ? 1 : -1, { vonHand: true });
+    }
+  });
+  ablage.addEventListener("pointercancel", () => { start = null; });
+  ablage.addEventListener("click", (e) => {
+    if (gewischt) { gewischt = false; return; }
+    if (e.target.closest("a, button")) return;
+    if (!e.target.closest('.stapel__karte[data-pos="0"]')) return;
+    blaettern(1, { vonHand: true });
+  });
+
+  wurzel.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { schwebt = true; planen(); } });
+  wurzel.addEventListener("pointerleave", () => { schwebt = false; planen(); });
+  wurzel.addEventListener("focusin", () => { fokussiert = wurzel.matches(":focus-within") && !!wurzel.querySelector(":focus-visible"); planen(); });
+  wurzel.addEventListener("focusout", () => { requestAnimationFrame(() => { fokussiert = !!wurzel.querySelector(":focus-visible"); planen(); }); });
+  document.addEventListener("visibilitychange", planen);
+  new IntersectionObserver((eintraege) => {
+    sichtbar = eintraege.some((e) => e.isIntersecting);
+    planen();
+  }, { threshold: 0.5 }).observe(ablage);
+
+  ordnen();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMenue();
   initAnker();
@@ -736,4 +911,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initZaehler();
   initWege();
   initMarquee();
+  initStapel();
 });
