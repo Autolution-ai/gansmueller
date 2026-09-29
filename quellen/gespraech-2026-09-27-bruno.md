@@ -179,3 +179,10 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Hier den Mitarbeiter Satz raus und sagen
 
 - Neuer Absatz: „Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Die Zusammenarbeit läuft dabei immer direkt und auf Augenhöhe. Wenn Sie anrufen, haben Sie mich am Telefon."
 - Entfernt: „Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen." sowie die Formel „Für Sie heißt das:".
+
+## Nachtrag: Profil-Wähler und Mikro-Claim an allen CTAs
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Diesen Text mittig auf die rechte Seite packen und die Textgröße anpassen. Die Beschreibung ist größer als der Oberbegriff. Auch hier die Verlinkung zum Formular raus, da ist noch kein intent da, außerdem ist ja ein passender Button. Auch die Größe von SIE BAUEN SELBST … und SIE PLANEN … anpassen. Ergänze bei allen CTAs ‚In unter 2 Min' als Claim"
+
+- Profil-Wähler: Aussage rechts vertikal mittig, Rolle groß, Beschreibung klein; kein Link in den Funnel mehr.
+- Mikro-Claim „In unter 2 Min." unter jedem CTA zum Formular (Header ausgenommen), auch im Ablauf statt „In unter zwei Minuten angefragt.".

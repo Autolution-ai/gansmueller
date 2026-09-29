@@ -435,11 +435,11 @@ function initMarquee() {
 }
 
 /* ---------------------------------------------------------------------------
-   Für wen: Profil-Wähler. Ab 900 px zeigt die rechte Spalte die Aussage zur
-   Rolle, die gerade unter Maus oder Fokus liegt (Standard: die erste). Die
-   Links in der Liste bleiben die eigentlichen Ziele (Funnel, vorbelegt) und
-   tragen Satz und Linktext weiterhin für Screenreader. Die Anzeige rechts
-   ist eine Wiederholung und deshalb aria-hidden, ihr Link nicht fokussierbar.
+   Für wen: Profil-Wähler. Ab 900 px zeigt die rechte Spalte Rolle und Satz
+   zur Rolle unter Maus oder Fokus (Standard: die erste). Dafür werden die
+   Rollen per Tastatur erreichbar (tabindex nur am Desktop). Die Anzeige ist
+   eine Wiederholung und deshalb aria-hidden; der Satz steht in der Liste
+   weiter für Screenreader. Kein Link in den Funnel (Bruno).
 --------------------------------------------------------------------------- */
 function initProfilwahl() {
   const wurzel = document.querySelector("[data-profilwahl]");
@@ -450,28 +450,30 @@ function initProfilwahl() {
   anzeige.setAttribute("aria-hidden", "true");
   anzeige.innerHTML = `
     <p class="profilwahl__anzeige-rolle"></p>
-    <p class="profilwahl__anzeige-satz"></p>
-    <a class="btn" tabindex="-1" data-vorbelegen><span></span><span class="mass"></span></a>`;
+    <p class="profilwahl__anzeige-satz"></p>`;
   wurzel.appendChild(anzeige);
   wurzel.classList.add("profilwahl--js");
 
   const rolle = anzeige.querySelector(".profilwahl__anzeige-rolle");
   const satz = anzeige.querySelector(".profilwahl__anzeige-satz");
-  const link = anzeige.querySelector("a");
+  const breit = window.matchMedia("(min-width: 900px)");
 
   function zeigen(li) {
     profile.forEach((p) => p.classList.toggle("profil--aktiv", p === li));
-    const a = li.querySelector(".profil__link");
     rolle.textContent = li.querySelector(".profil__rolle").textContent;
     satz.textContent = li.querySelector(".profil__satz").textContent;
-    link.href = a.getAttribute("href");
-    link.querySelector("span").textContent = li.querySelector(".profil__weiter").textContent;
+  }
+  function fokusSetzen() {
+    profile.forEach((li) => {
+      if (breit.matches) li.tabIndex = 0; else li.removeAttribute("tabindex");
+    });
   }
   profile.forEach((li) => {
-    const a = li.querySelector(".profil__link");
-    a.addEventListener("mouseenter", () => zeigen(li));
-    a.addEventListener("focus", () => zeigen(li));
+    li.addEventListener("mouseenter", () => zeigen(li));
+    li.addEventListener("focus", () => zeigen(li));
   });
+  breit.addEventListener("change", fokusSetzen);
+  fokusSetzen();
   zeigen(profile[0]);
 }
 

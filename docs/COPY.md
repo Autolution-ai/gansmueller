@@ -157,11 +157,12 @@ DEMO-SPEC · „über 30" steht zusätzlich unter „Über mich" (Wunsch Bruno)]
 ## 2 · Für wen ich arbeite  `#fuer-wen`
 
 **Stand 2026-09-29, Überarbeitung 2:** Profil-Wähler statt Kartenraster.
-Die Rollen stehen als typografische Liste; jeder Eintrag ist ein Link
-`?auftraggeber=…#anfrage` mit Rolle, Profilsatz und „Anfrage als …
-beginnen". Ab 900 px zeigt rechts eine große Aussage die Rolle unter Maus
-oder Fokus (Wiederholung, aria-hidden). Der Einleitungssatz unter der H2
-ist entfernt.
+Die Rollen stehen als typografische Liste mit Profilsatz, **ohne Link in
+den Funnel** (Bruno: „da ist noch kein Intent da"). Ab 900 px zeigt rechts,
+vertikal mittig, die Rolle groß und darunter der Satz in 20 bis 22 px
+(Wiederholung, aria-hidden); die Rollen sind dort per Tastatur erreichbar.
+Der Einleitungssatz unter der H2 ist entfernt. Gruppenköpfe klein
+(Kicker), Gruppensatz 15 px.
 
 > ## Für wen ich arbeite
 
@@ -175,7 +176,6 @@ ist entfernt.
 > - *Wohnungsunternehmen:* Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.
 > - *Gewerbliche Auftraggeber:* Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.
 >
-> Link je Rolle: **Anfrage als Bauträger beginnen** / als Projektentwickler / als Wohnungsunternehmen / als gewerblicher Auftraggeber
 
 **Gruppe dunkel**
 
@@ -184,8 +184,7 @@ ist entfernt.
 >
 > - *Architektur- und Planungsbüros:* Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.
 > - *Generalplaner:* Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.
->
-> Link je Rolle: **Anfrage als Planungsbüro beginnen** / als Generalplaner
+
 
 **Projektrahmen**
 
@@ -465,7 +464,7 @@ Seit 2026-09-29 als Zeitstrahl. Gruppenlabels: **Bevor es losgeht**
 Tabs („Stationen der Zusammenarbeit") mit einem Detailfeld (Titel,
 Beschreibung, Ergebnis); mobil eine Zeile je Station (Ziffer, Titel,
 Ergebnis), die Beschreibung klappt auf. Neben dem Detailfeld bzw. unter der
-Liste: CTA und darunter „In unter zwei Minuten angefragt." (Aussage Bruno,
+Liste: CTA und darunter der Mikro-Claim „In unter 2 Min." (Aussage Bruno,
 2026-09-29; die Telefonnummer steht dort nicht mehr). Stationstexte unverändert.
 
 **Stand 2026-09-29:** Die Phasen sind deutlich getrennt: „Bevor es losgeht"
@@ -656,6 +655,11 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 
 ## CTA-Liste (vereinheitlicht)
 
+**Mikro-Claim (Bruno, 2026-09-29):** Unter jedem CTA zum Formular steht klein
+„In unter 2 Min." (Hero, beide Leistungskacheln, Baubetreuung, Bauberatung,
+Partnerzeile, Referenzen, Ablauf, Footer). Ausgenommen: Header (kein Platz)
+und „Anfrage absenden" im Formular selbst.
+
 | Ziel | Label | Wo | Ziel-URL |
 |---|---|---|---|
 | Hauptziel Anfrage | **Projekt unverbindlich prüfen lassen** | Ablauf (neben dem Detailfeld), Footer (Header: Kurzfassung **Projekt prüfen lassen**) | `#anfrage` |
@@ -664,7 +668,7 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 | Baubetreuung | **Baubetreuung anfragen** | Leistungen | `?leistung=baubetreuung#anfrage` |
 | Bauberatung | **Bauberatung anfragen** | Leistungen | `?leistung=bauberatung#anfrage` |
 | Planung mit Partnern | **Vorhaben mit Planung anfragen** (Textlink) | Leistungen, Partnerzeile | `?leistung=alle-leistungsphasen#anfrage` |
-| Zielgruppe | Profilkarte „Anfrage beginnen" | Für wen (6×) | `?auftraggeber=…#anfrage` |
+| Zielgruppe | entfallen (Profil-Wähler ohne Link, Bruno); Parameter `?auftraggeber=` funktioniert weiter | – | – |
 | Referenzen | Referenzliste ansehen (Textlink) | Hero (Vorschlag) | `#referenzen` |
 | Hauptziel aus den Referenzen | **Ähnliches Vorhaben? Projekt prüfen lassen** | unter den Referenzen | `#anfrage` |
 | Register | Alle 20 Objekte anzeigen · Weniger anzeigen | Referenzen | – (klappt auf) |
