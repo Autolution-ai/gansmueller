@@ -435,46 +435,46 @@ function initMarquee() {
 }
 
 /* ---------------------------------------------------------------------------
-   Für wen: Profil-Wähler. Ab 900 px zeigt die rechte Spalte Rolle und Satz
-   zur Rolle unter Maus oder Fokus (Standard: die erste). Dafür werden die
-   Rollen per Tastatur erreichbar (tabindex nur am Desktop). Die Anzeige ist
-   eine Wiederholung und deshalb aria-hidden; der Satz steht in der Liste
-   weiter für Screenreader. Kein Link in den Funnel (Bruno).
+   Für wen: je Weg eine Tab-Liste der Rollen (WAI-ARIA Tabs, senkrecht:
+   Pfeil hoch/runter, Pos1/Ende). Hover, Fokus und Klick wählen die Rolle;
+   darunter stehen Beschreibung und CTA „Projekt prüfen lassen“ mit
+   ?auftraggeber=. Die Rolle selbst führt nirgendwohin (Bruno).
 --------------------------------------------------------------------------- */
-function initProfilwahl() {
-  const wurzel = document.querySelector("[data-profilwahl]");
+function initWege() {
+  const wurzel = document.querySelector("[data-wege]");
   if (!wurzel) return;
-  const profile = [...wurzel.querySelectorAll("[data-profil]")];
-  const anzeige = document.createElement("div");
-  anzeige.className = "profilwahl__anzeige";
-  anzeige.setAttribute("aria-hidden", "true");
-  anzeige.innerHTML = `
-    <p class="profilwahl__anzeige-rolle"></p>
-    <p class="profilwahl__anzeige-satz"></p>`;
-  wurzel.appendChild(anzeige);
-  wurzel.classList.add("profilwahl--js");
-
-  const rolle = anzeige.querySelector(".profilwahl__anzeige-rolle");
-  const satz = anzeige.querySelector(".profilwahl__anzeige-satz");
-  const breit = window.matchMedia("(min-width: 900px)");
-
-  function zeigen(li) {
-    profile.forEach((p) => p.classList.toggle("profil--aktiv", p === li));
-    rolle.textContent = li.querySelector(".profil__rolle").textContent;
-    satz.textContent = li.querySelector(".profil__satz").textContent;
-  }
-  function fokusSetzen() {
-    profile.forEach((li) => {
-      if (breit.matches) li.tabIndex = 0; else li.removeAttribute("tabindex");
+  wurzel.classList.add("wege--js");
+  wurzel.querySelectorAll("[data-weg]").forEach((weg) => {
+    const tabs = [...weg.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
+    function waehlen(i, { fokus = false } = {}) {
+      tabs.forEach((t, j) => {
+        const aktiv = i === j;
+        t.setAttribute("aria-selected", String(aktiv));
+        t.tabIndex = aktiv ? 0 : -1;
+        panels[j].classList.toggle("rollen-text--aktiv", aktiv);
+        if (aktiv) panels[j].removeAttribute("inert"); else panels[j].setAttribute("inert", "");
+        panels[j].setAttribute("aria-hidden", String(!aktiv));
+      });
+      if (fokus) tabs[i].focus();
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => waehlen(i));
+      t.addEventListener("mouseenter", () => waehlen(i));
+      t.addEventListener("keydown", (e) => {
+        const letzte = tabs.length - 1;
+        let ziel = null;
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") ziel = i === letzte ? 0 : i + 1;
+        else if (e.key === "ArrowUp" || e.key === "ArrowLeft") ziel = i === 0 ? letzte : i - 1;
+        else if (e.key === "Home") ziel = 0;
+        else if (e.key === "End") ziel = letzte;
+        if (ziel === null) return;
+        e.preventDefault();
+        waehlen(ziel, { fokus: true });
+      });
     });
-  }
-  profile.forEach((li) => {
-    li.addEventListener("mouseenter", () => zeigen(li));
-    li.addEventListener("focus", () => zeigen(li));
+    waehlen(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")));
   });
-  breit.addEventListener("change", fokusSetzen);
-  fokusSetzen();
-  zeigen(profile[0]);
 }
 
 /* ---------------------------------------------------------------------------
@@ -628,21 +628,37 @@ function initZeitstrahl() {
     });
   });
 
-  tabs.addEventListener("mouseenter", () => { zustand.hover = true; pruefen(); });
-  tabs.addEventListener("mouseleave", () => { zustand.hover = false; pruefen(); });
-  tabs.addEventListener("focusin", () => { zustand.fokus = true; pruefen(); });
-  tabs.addEventListener("focusout", (e) => {
-    if (tabs.contains(e.relatedTarget)) return;
+  // Pause nur, solange die Maus über Zeitstrahl oder Detailfeld steht und
+  // solange ein Tab per Tastatur fokussiert ist (:focus-visible). Ein per
+  // Maus angeklickter Tab behält zwar den Fokus, hält das Autoplay aber nach
+  // der Ruhezeit nicht mehr an (Ursache des Hängers, Überarbeitung 3).
+  const tabliste = tabs.querySelector('[role="tablist"]');
+  [tabliste, panel].forEach((el) => {
+    el.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { zustand.hover = true; pruefen(); } });
+    el.addEventListener("pointerleave", () => { zustand.hover = false; pruefen(); });
+  });
+  tabliste.addEventListener("focusin", (e) => {
+    zustand.fokus = e.target.matches(":focus-visible");
+    pruefen();
+  });
+  tabliste.addEventListener("focusout", (e) => {
+    if (tabliste.contains(e.relatedTarget)) return;
     zustand.fokus = false;
     pruefen();
   });
+  // Nach dem Scrollen kann „hover" hängen bleiben, wenn die Maus stillsteht
+  // und der Inhalt unter ihr wegläuft: dann neu prüfen.
+  window.addEventListener("scroll", () => {
+    if (!zustand.hover) return;
+    if (!tabliste.matches(":hover") && !panel.matches(":hover")) { zustand.hover = false; pruefen(); }
+  }, { passive: true });
   document.addEventListener("visibilitychange", pruefen);
   reduziert.addEventListener("change", () => { if (reduziert.matches && lauf) { lauf.cancel(); lauf = null; melden(); } pruefen(); });
   breit.addEventListener("change", pruefen);
   new IntersectionObserver((eintraege) => {
     zustand.sichtbar = eintraege[0].isIntersecting;
     pruefen();
-  }, { threshold: 0.35 }).observe(tabs);
+  }, { threshold: 0.2 }).observe(tabs);
 
   waehlen(0);
   melden();
@@ -714,6 +730,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initRegister();
   initZeitstrahl();
   initZaehler();
-  initProfilwahl();
+  initWege();
   initMarquee();
 });

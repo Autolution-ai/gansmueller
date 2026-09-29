@@ -75,6 +75,10 @@
 
 <main id="top" tabindex="-1">
 
+  <!-- Erster Bildschirm (Desktop): Hero und Bauherren-Band füllen zusammen
+       die Fensterhöhe, das Band sitzt unten bündig (Bruno, Überarbeitung 3). -->
+  <div class="erster-schirm">
+
   <!-- 1 · HERO – Referenz-Split. Inhalte aus Hero C (Station 2), Plankopf-Karte
        mit echter Referenz. Quellen: Objekt, Bauherr, Umfang, Leistung:
        Referenzliste.pdf; Bildunterschrift: Altseite 4.html; Titel: Impressum;
@@ -176,6 +180,7 @@
       </div>
     </div>
   </section>
+  </div>
 
   <!-- 2 · FÜR WEN – zwei getrennte Wege (§9), abgesetzte Fläche -->
   <section class="layout" id="fuer-wen" aria-labelledby="fuer-wen-titel">
@@ -183,43 +188,61 @@
       <header class="breakout fuer-wen__kopf">
         <h2 id="fuer-wen-titel">Für wen ich arbeite</h2>
       </header>
-      <div class="breakout profilwahl" data-profilwahl>
-        <div class="profilwahl__liste">
-          <div class="profilwahl__gruppe">
-            <h3 class="profilwahl__titel">Sie bauen selbst</h3>
-            <p class="profilwahl__text">Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.</p>
-            <ul class="profile">
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Bauträger</span>
-              <span class="profil__satz">Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.</span>
-            </li>
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Projektentwickler</span>
-              <span class="profil__satz">Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.</span>
-            </li>
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Wohnungsunternehmen</span>
-              <span class="profil__satz">Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.</span>
-            </li>
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Gewerbliche Auftraggeber</span>
-              <span class="profil__satz">Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.</span>
-            </li>
-            </ul>
+      <div class="breakout wege" data-wege>
+        <div class="weg" data-weg>
+          <header class="weg__kopf">
+            <h3 class="weg__titel" id="weg-bauen">Sie bauen selbst</h3>
+            <p class="weg__satz">Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.</p>
+          </header>
+          <div class="rollen" role="tablist" aria-labelledby="weg-bauen" aria-orientation="vertical" data-rollen>
+            <button class="rolle" type="button" role="tab" id="rolle-bautraeger" aria-controls="rolle-bautraeger-text" aria-selected="true" tabindex="0">Bauträger</button>
+            <button class="rolle" type="button" role="tab" id="rolle-projektentwickler" aria-controls="rolle-projektentwickler-text" aria-selected="false" tabindex="-1">Projektentwickler</button>
+            <button class="rolle" type="button" role="tab" id="rolle-wohnungsunternehmen" aria-controls="rolle-wohnungsunternehmen-text" aria-selected="false" tabindex="-1">Wohnungsunternehmen</button>
+            <button class="rolle" type="button" role="tab" id="rolle-gewerblich" aria-controls="rolle-gewerblich-text" aria-selected="false" tabindex="-1">Gewerbliche Auftraggeber</button>
           </div>
-          <div class="profilwahl__gruppe">
-            <h3 class="profilwahl__titel">Sie planen und brauchen die Bauüberwachung</h3>
-            <p class="profilwahl__text">Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.</p>
-            <ul class="profile">
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Architektur- und Planungsbüros</span>
-              <span class="profil__satz">Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.</span>
-            </li>
-            <li class="profil" data-profil>
-              <span class="profil__rolle">Generalplaner</span>
-              <span class="profil__satz">Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.</span>
-            </li>
-            </ul>
+          <div class="rollen-texte">
+            <div class="rollen-text" role="tabpanel" id="rolle-bautraeger-text" aria-labelledby="rolle-bautraeger">
+              <p class="rollen-text__rolle">Bauträger</p>
+              <p class="rollen-text__satz">Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=bautraeger#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
+            <div class="rollen-text" role="tabpanel" id="rolle-projektentwickler-text" aria-labelledby="rolle-projektentwickler">
+              <p class="rollen-text__rolle">Projektentwickler</p>
+              <p class="rollen-text__satz">Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=projektentwickler#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
+            <div class="rollen-text" role="tabpanel" id="rolle-wohnungsunternehmen-text" aria-labelledby="rolle-wohnungsunternehmen">
+              <p class="rollen-text__rolle">Wohnungsunternehmen</p>
+              <p class="rollen-text__satz">Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=wohnungsunternehmen#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
+            <div class="rollen-text" role="tabpanel" id="rolle-gewerblich-text" aria-labelledby="rolle-gewerblich">
+              <p class="rollen-text__rolle">Gewerbliche Auftraggeber</p>
+              <p class="rollen-text__satz">Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=gewerblich#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="weg" data-weg>
+          <header class="weg__kopf">
+            <h3 class="weg__titel" id="weg-planen">Sie planen und brauchen die Bauüberwachung</h3>
+            <p class="weg__satz">Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.</p>
+          </header>
+          <div class="rollen" role="tablist" aria-labelledby="weg-planen" aria-orientation="vertical" data-rollen>
+            <button class="rolle" type="button" role="tab" id="rolle-planungsbuero" aria-controls="rolle-planungsbuero-text" aria-selected="true" tabindex="0">Architektur- und Planungsbüros</button>
+            <button class="rolle" type="button" role="tab" id="rolle-generalplaner" aria-controls="rolle-generalplaner-text" aria-selected="false" tabindex="-1">Generalplaner</button>
+          </div>
+          <div class="rollen-texte">
+            <div class="rollen-text" role="tabpanel" id="rolle-planungsbuero-text" aria-labelledby="rolle-planungsbuero">
+              <p class="rollen-text__rolle">Architektur- und Planungsbüros</p>
+              <p class="rollen-text__satz">Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=planungsbuero#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
+            <div class="rollen-text" role="tabpanel" id="rolle-generalplaner-text" aria-labelledby="rolle-generalplaner">
+              <p class="rollen-text__rolle">Generalplaner</p>
+              <p class="rollen-text__satz">Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.</p>
+              <span class="cta-mit-claim"><a class="btn" href="?auftraggeber=generalplaner#anfrage" data-vorbelegen>Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -283,43 +306,39 @@
       </article>
     </div>
 
-    <div class="breakout aufgaben">
-      <div class="aufgaben__spalte">
-        <h3 class="aufgaben__titel">Zur Bauüberwachung gehören</h3>
-        <ul class="aufgaben__liste">
-          <li>Kontrolle nach Ausführungsplänen und Regeln der Technik</li>
-          <li>Koordination der Gewerke und Handwerker</li>
-          <li>Ablaufplan und Terminüberwachung</li>
-          <li>Kostenkontrolle, Aufmaß- und Rechnungsprüfung</li>
-          <li>auf Wunsch Gewährleistungsabnahme und Revisionsunterlagen</li>
-        </ul>
+    <div class="full leistung-details">
+      <div class="leistung-details__spalte">
+        <p class="label">Mit Planung</p>
+        <p>Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab: Planer, Architekt, Statiker und Brandschutzexperte arbeiten dann an Ihrem Vorhaben mit.</p>
+        <span class="cta-mit-claim"><a class="textlink" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
       </div>
-      <div class="aufgaben__spalte" id="vergabe">
-        <h3 class="aufgaben__titel">Auf Wunsch vorher: Vergabe</h3>
-        <p>Ich erstelle Leistungsverzeichnisse mit genauer Mengenermittlung und die Ausschreibungsunterlagen, werte die Angebote aus und führe die Bieterverhandlungen.</p>
+      <div class="leistung-details__spalte" id="vergabe">
+        <p class="label">Dazu gehört</p>
+        <ul class="haken-liste">
+          <li>Ausführung nach Plan und Regeln der Technik prüfen</li>
+          <li>Gewerke und Handwerker koordinieren</li>
+          <li>Termine und Kosten überwachen</li>
+          <li>Aufmaß und Rechnungen prüfen, bevor Sie zahlen</li>
+        </ul>
+        <p class="leistung-details__zusatz">Auf Wunsch auch die Vergabe vorher und die Gewährleistungsabnahme danach.</p>
       </div>
     </div>
 
     <div class="breakout weitere-leistungen">
-      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.</p>
-      <article class="leistung-zeile" id="baubetreuung" aria-labelledby="baubetreuung-titel">
-        <p class="leistung-zeile__nr" aria-hidden="true">03</p>
+      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Baubetreuung stammt aus dem Vorgespräch, der Text ist ein Entwurf.</p>
+      <article class="weitere-leistung" id="baubetreuung" aria-labelledby="baubetreuung-titel">
+        <p class="weitere-leistung__nr" aria-hidden="true">03</p>
         <h3 id="baubetreuung-titel">Baubetreuung</h3>
         <p>Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen.</p>
         <span class="cta-mit-claim"><a class="textlink" href="?leistung=baubetreuung#anfrage" data-vorbelegen>Baubetreuung anfragen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
       </article>
-      <article class="leistung-zeile" id="bauberatung" aria-labelledby="bauberatung-titel">
-        <p class="leistung-zeile__nr" aria-hidden="true">04</p>
+      <article class="weitere-leistung" id="bauberatung" aria-labelledby="bauberatung-titel">
+        <p class="weitere-leistung__nr" aria-hidden="true">04</p>
         <h3 id="bauberatung-titel">Bauberatung</h3>
         <p>Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben.</p>
         <span class="cta-mit-claim"><a class="textlink" href="?leistung=bauberatung#anfrage" data-vorbelegen>Bauberatung anfragen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
       </article>
     </div>
-
-    <aside class="breakout partnerzeile" aria-label="Planung mit Partnern">
-      <p>Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit.</p>
-      <span class="cta-mit-claim"><a class="btn btn--kontur btn--klein" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a><span class="cta-claim">In unter 2 Min.</span></span>
-    </aside>
   </section>
 
   <!-- 4 + 5 · REFERENZEN – Bauherren-Raster, Altbau und Denkmal, Register.
