@@ -335,7 +335,6 @@
     <header class="breakout abschnitt-kopf">
       <p class="kicker">Leistungen</p>
       <h2 id="leistungen-titel">Projektsteuerung und Bauüberwachung</h2>
-      <p class="lead">Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.</p>
     </header>
 
     <div class="full kacheln">
@@ -417,12 +416,26 @@
        Alle Daten: Referenzliste.pdf (quellen/scrape-website.md), Schreibweise
        nach PDF. Objektzahl je Bauherr = Zeilen im Register. -->
   <section class="abschnitt layout referenzen" id="referenzen" aria-labelledby="referenzen-titel">
-    <header class="breakout abschnitt-kopf">
-      <p class="kicker">Referenzen</p>
-      <h2 id="referenzen-titel">Aus meiner Referenzliste</h2>
-    </header>
-
-    <p class="ref-intro breakout">Seit über 30 Jahren bin ich in der Branche tätig und habe unter anderem für die HOWOGE mbH, die BauBeCon Wohnen GmbH und die Kaufland Ladenbau GmbH gearbeitet.</p>
+    <!-- Kopf mit Logo-Leiste. Namen und Alt-Texte: Referenzliste.pdf; Logos:
+         quellen/logos.md, hier in Originalfarben. „Auftraggeber“ statt „Partner“,
+         weil „Partner“ auf der Seite für Planer, Architekt, Statik, Brandschutz steht. -->
+    <div class="breakout referenzen-kopf">
+      <header class="abschnitt-kopf">
+        <p class="kicker">Referenzen</p>
+        <h2 id="referenzen-titel">Aus meiner Referenzliste</h2>
+      </header>
+      <aside class="auftraggeber" aria-labelledby="auftraggeber-titel">
+        <p class="label auftraggeber__titel" id="auftraggeber-titel">Auftraggeber aus meiner Referenzliste</p>
+        <ul class="auftraggeber__liste">
+          <li><img class="logo-farbe logo-farbe--howoge" src="assets/images/logos/howoge.svg" alt="HOWOGE mbH" width="108" height="36" loading="lazy"></li>
+          <li><img class="logo-farbe logo-farbe--argentum" src="assets/images/logos/argentum.svg" alt="Argentum GmbH &amp; Co. KG" width="175" height="35" loading="lazy"></li>
+          <li><img class="logo-farbe logo-farbe--baubecon" src="assets/images/logos/baubecon.svg" alt="BauBeCon Wohnen GmbH" width="173" height="37" loading="lazy"></li>
+          <li><img class="logo-farbe logo-farbe--gcv" src="assets/images/logos/gcv.svg" alt="GVC mbH" width="147" height="43" loading="lazy"></li>
+          <li><img class="logo-farbe logo-farbe--kaufland" src="assets/images/logos/kaufland.svg" alt="Kaufland Ladenbau GmbH" width="53" height="53" loading="lazy"></li>
+          <li><span class="wortmarke auftraggeber__wortmarke">Ortus GmbH &amp; Co. KG</span></li>
+        </ul>
+      </aside>
+    </div>
 
     <div class="breakout denkmal">
       <div class="denkmal__text">
