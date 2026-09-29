@@ -180,34 +180,83 @@
   <!-- 2 · FÜR WEN – zwei getrennte Wege (§9), abgesetzte Fläche -->
   <section class="layout" id="fuer-wen" aria-labelledby="fuer-wen-titel">
     <div class="full panel abschnitt layout">
-      <div class="breakout fuer-wen__kopf">
+      <header class="breakout fuer-wen__kopf">
         <h2 id="fuer-wen-titel">Für wen ich arbeite</h2>
-        <p>Vorhaben bis etwa 15 Mio. € Bauvolumen sind der Rahmen, in dem ich arbeite. In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</p>
-      </div>
-      <div class="breakout wege">
-        <div class="weg karte">
-          <h3>Sie bauen selbst</h3>
-          <p>Sie haben ein Bauvorhaben und brauchen jemanden, der es auf Ihrer Seite steuert oder überwacht. Vielleicht ist Ihre eigene Bauleitung gerade ausgelastet, vielleicht haben Sie keine. Sie beauftragen mich für dieses eine Objekt, und mit dem Objekt endet auch Ihre Verpflichtung.</p>
-          <ul class="zielgruppen">
-            <li><a href="?auftraggeber=bautraeger#anfrage" aria-label="Anfrage als Bauträger beginnen" data-vorbelegen>Bauträger<span class="mass" aria-hidden="true"></span></a></li>
-            <li><a href="?auftraggeber=projektentwickler#anfrage" aria-label="Anfrage als Projektentwickler beginnen" data-vorbelegen>Projektentwickler<span class="mass" aria-hidden="true"></span></a></li>
-            <li><a href="?auftraggeber=wohnungsunternehmen#anfrage" aria-label="Anfrage als Wohnungsunternehmen beginnen" data-vorbelegen>Wohnungsunternehmen<span class="mass" aria-hidden="true"></span></a></li>
-            <li><a href="?auftraggeber=gewerblich#anfrage" aria-label="Anfrage als gewerblicher Auftraggeber beginnen" data-vorbelegen>Gewerbliche Auftraggeber<span class="mass" aria-hidden="true"></span></a></li>
+        <p>Erkennen Sie sich in einem Profil wieder, führt die Karte direkt in die Anfrage, mit Ihrer Rolle schon eingetragen.</p>
+      </header>
+      <div class="breakout profil-gruppen">
+        <div class="profil-gruppe">
+          <div class="profil-gruppe__kopf">
+            <h3>Sie bauen selbst</h3>
+            <p>Sie sind Bauherr und brauchen jemanden auf Ihrer Seite, beauftragt für ein Objekt.</p>
+          </div>
+          <ul class="profile">
+            <li><a class="profil" href="?auftraggeber=bautraeger#anfrage" aria-label="Anfrage als Bauträger beginnen" data-vorbelegen>
+              <span class="profil__rolle">Bauträger</span>
+              <span class="profil__satz">Sie bauen für den Verkauf, und Ihre eigene Bauleitung ist gerade ausgelastet.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
+            <li><a class="profil" href="?auftraggeber=projektentwickler#anfrage" aria-label="Anfrage als Projektentwickler beginnen" data-vorbelegen>
+              <span class="profil__rolle">Projektentwickler</span>
+              <span class="profil__satz">Sie entwickeln ein Vorhaben und wollen schon in der Planung jemanden an Ihrer Seite, der vom Bau kommt.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
+            <li><a class="profil" href="?auftraggeber=wohnungsunternehmen#anfrage" aria-label="Anfrage als Wohnungsunternehmen beginnen" data-vorbelegen>
+              <span class="profil__rolle">Wohnungsunternehmen</span>
+              <span class="profil__satz">Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
+            <li><a class="profil" href="?auftraggeber=gewerblich#anfrage" aria-label="Anfrage als gewerblicher Auftraggeber beginnen" data-vorbelegen>
+              <span class="profil__rolle">Gewerbliche Auftraggeber</span>
+              <span class="profil__satz">Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
           </ul>
         </div>
-        <div class="weg karte">
-          <h3>Sie planen und brauchen die Bauüberwachung</h3>
-          <p>Die Planung liegt bei Ihnen, auf der Baustelle fehlt gerade jemand. Die Bauüberwachung für Ihr Projekt können Sie an mich abgeben. Sie behalten die Planung und haben vor Ort jemanden, der die Ausführung an Ihren Plänen misst.</p>
-          <ul class="zielgruppen">
-            <li><a href="?auftraggeber=planungsbuero#anfrage" aria-label="Anfrage als Architektur- oder Planungsbüro beginnen" data-vorbelegen>Architektur- und Planungsbüros<span class="mass" aria-hidden="true"></span></a></li>
-            <li><a href="?auftraggeber=generalplaner#anfrage" aria-label="Anfrage als Generalplaner beginnen" data-vorbelegen>Generalplaner<span class="mass" aria-hidden="true"></span></a></li>
+        <div class="profil-gruppe profil-gruppe--dunkel">
+          <div class="profil-gruppe__kopf">
+            <h3>Sie planen und brauchen die Bauüberwachung</h3>
+            <p>Die Planung bleibt bei Ihnen, die Ausführung messe ich an Ihren Plänen.</p>
+          </div>
+          <ul class="profile">
+            <li><a class="profil" href="?auftraggeber=planungsbuero#anfrage" aria-label="Anfrage als Architektur- oder Planungsbüro beginnen" data-vorbelegen>
+              <span class="profil__rolle">Architektur- und Planungsbüros</span>
+              <span class="profil__satz">Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
+            <li><a class="profil" href="?auftraggeber=generalplaner#anfrage" aria-label="Anfrage als Generalplaner beginnen" data-vorbelegen>
+              <span class="profil__rolle">Generalplaner</span>
+              <span class="profil__satz">Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.</span>
+              <span class="profil__weiter">Anfrage beginnen<span class="mass" aria-hidden="true"></span></span>
+            </a></li>
           </ul>
+        </div>
+      </div>
+      <div class="breakout rahmen">
+        <h3 class="rahmen__titel">Projektrahmen</h3>
+        <div class="rahmen__spalten">
+          <div class="rahmen__spalte rahmen__spalte--passt">
+            <p class="label">Passt gut</p>
+            <ul>
+              <li><strong>Vorhaben bis etwa 15&nbsp;Mio.&nbsp;€ Bauvolumen.</strong> In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.</li>
+              <li><strong>Ein konkretes Objekt.</strong> Sie beauftragen mich für dieses eine Vorhaben, und mit dem Objekt endet auch Ihre Verpflichtung.</li>
+            </ul>
+          </div>
+          <div class="rahmen__spalte rahmen__spalte--weniger">
+            <p class="label">Passt weniger</p>
+            <ul>
+              <li><strong>Reine private Eigenheime.</strong> Meine Arbeit richtet sich an Bauträger, Unternehmen und Planungsbüros.</li>
+              <li><strong>Großbaustellen im Bereich von 50 bis 100&nbsp;Mio.&nbsp;€.</strong> Solche Projekte brauchen ein ganzes Bauleitungsteam; bei mir haben Sie mich selbst als Ansprechpartner.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3 · LEISTUNGEN – zwei große Karten, Zeilen, Partnerzeile -->
+  <!-- 3 · LEISTUNGEN – zwei große Fotokacheln (randlos), Aufgaben als Schlagworte,
+       zwei kleine Kacheln, Partnerzeile. Fotos: Bildplatz, Herkunft und Stand in
+       quellen/bilder-unsplash.md. Texte: Scrape (Leistungen), Transkript. -->
   <section class="abschnitt layout" id="leistungen" aria-labelledby="leistungen-titel">
     <header class="breakout abschnitt-kopf">
       <p class="kicker">Leistungen</p>
@@ -215,49 +264,69 @@
       <p class="lead">Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.</p>
     </header>
 
-    <div class="breakout leistung-gross">
-      <article class="leistung karte" id="projektsteuerung" aria-labelledby="projektsteuerung-titel">
-        <h3 id="projektsteuerung-titel">Projektsteuerung</h3>
-        <p>Mit einer Projektsteuerung haben Sie schon in der Planungsphase einen Bauingenieur auf Ihrer Seite, also früher als bei einer reinen Bauüberwachung. Zwischen Ihnen und dem Generalunternehmer oder Generalübernehmer vertrete ich Ihre Interessen, solange geplant und gebaut wird.</p>
-        <p>Das passt, wenn Sie Bauherr sind und Ihr Vorhaben nicht selbst durch Planung und Bau führen möchten.</p>
-        <a class="btn btn--kontur" href="?leistung=projektsteuerung#anfrage" data-vorbelegen>Projektsteuerung anfragen<span class="mass" aria-hidden="true"></span></a>
+    <p class="breakout demo-hinweis demo-hinweis--klein leistung-bildhinweis" role="note"><strong>Demo-Stand:</strong> Die beiden Kacheln sind für Fotos angelegt. Im Projekt stehen hier Aufnahmen von René Gansmüllers Baustellen oder als Symbolbild gekennzeichnete freie Fotos.</p>
+    <div class="full kacheln">
+      <article class="kachel" id="projektsteuerung" aria-labelledby="projektsteuerung-titel">
+        <div class="kachel__inhalt">
+          <p class="kachel__nr" aria-hidden="true">01</p>
+          <h3 id="projektsteuerung-titel">Projektsteuerung</h3>
+          <p>Schon in der Planungsphase ein Bauingenieur auf Ihrer Seite, der Ihre Interessen gegenüber dem Generalunternehmer vertritt, bis gebaut ist.</p>
+          <a class="btn" href="?leistung=projektsteuerung#anfrage" data-vorbelegen>Projektsteuerung anfragen<span class="mass" aria-hidden="true"></span></a>
+        </div>
       </article>
-      <article class="leistung karte" id="bauueberwachung" aria-labelledby="bauueberwachung-titel">
-        <h3 id="bauueberwachung-titel">Bauüberwachung</h3>
-        <p class="kicker">HOAI Leistungsphase&nbsp;8</p>
-        <p>Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag. Dazu gehören:</p>
-        <ul class="aufgaben">
-          <li>die Kontrolle, ob nach den Ausführungsplänen und nach den Regeln der Technik gebaut wird</li>
-          <li>die Koordination der Gewerke und Handwerker</li>
-          <li>ein Ablaufplan für die Bauzeit und die Überwachung der Termine</li>
-          <li>Kostenkontrolle sowie Aufmaß- und Rechnungsprüfung, bevor Sie zahlen</li>
-        </ul>
-        <p><strong>Danach:</strong> Auf Wunsch nehme ich vor Ablauf der Gewährleistungsfrist die Leistungen noch einmal ab und übergebe Ihnen die Revisionsunterlagen.</p>
-        <a class="btn btn--kontur" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
+      <article class="kachel" id="bauueberwachung" aria-labelledby="bauueberwachung-titel">
+        <div class="kachel__inhalt">
+          <p class="kachel__nr" aria-hidden="true">02</p>
+          <p class="kachel__kicker">HOAI Leistungsphase&nbsp;8</p>
+          <h3 id="bauueberwachung-titel">Bauüberwachung</h3>
+          <p>Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag: Ausführung, Termine und Kosten, bevor Sie zahlen.</p>
+          <a class="btn" href="?leistung=bauueberwachung#anfrage" data-vorbelegen>Bauüberwachung anfragen<span class="mass" aria-hidden="true"></span></a>
+        </div>
       </article>
     </div>
 
-    <div class="breakout leistung-zeilen">
-      <div class="leistung-zeile" id="vergabe">
-        <p class="zeile-titel">Vergabe</p>
-        <p>Auf Wunsch liegt vorher auch die Vergabe bei mir: Leistungsverzeichnisse mit genauer Mengenermittlung, Ausschreibungsunterlagen, Angebotsauswertung und Bieterverhandlungen.</p>
+    <div class="breakout aufgaben-bloecke">
+      <div class="aufgaben-block">
+        <p class="label">Zur Bauüberwachung gehören</p>
+        <ul class="schlagworte">
+          <li>Kontrolle nach Ausführungsplänen und Regeln der Technik</li>
+          <li>Koordination der Gewerke und Handwerker</li>
+          <li>Ablaufplan und Terminüberwachung</li>
+          <li>Kostenkontrolle, Aufmaß- und Rechnungsprüfung</li>
+          <li>Gewährleistungsabnahme und Revisionsunterlagen, auf Wunsch</li>
+        </ul>
       </div>
-      <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Die Leistung Baubetreuung stammt aus dem Vorgespräch, eine Beschreibung dazu gab es noch nicht. Der Text ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt, in seinen eigenen Worten.</p>
-      <div class="leistung-zeile" id="baubetreuung">
-        <h3>Baubetreuung</h3>
+      <div class="aufgaben-block" id="vergabe">
+        <p class="label">Auf Wunsch vorher: Vergabe</p>
+        <ul class="schlagworte">
+          <li>Leistungsverzeichnisse mit genauer Mengenermittlung</li>
+          <li>Ausschreibungsunterlagen</li>
+          <li>Angebotsauswertung</li>
+          <li>Bieterverhandlungen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="breakout kacheln-klein">
+      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.</p>
+      <article class="kachel-klein karte" id="baubetreuung" aria-labelledby="baubetreuung-titel">
+        <p class="kachel-klein__nr" aria-hidden="true">03</p>
+        <h3 id="baubetreuung-titel">Baubetreuung</h3>
         <p>Ich vertrete Ihr Vorhaben gegenüber Behörden und Baufirmen und halte die Abstimmungen für Sie zusammen.</p>
         <a class="textlink" href="?leistung=baubetreuung#anfrage" data-vorbelegen>Baubetreuung anfragen<span class="mass" aria-hidden="true"></span></a>
-      </div>
-      <div class="leistung-zeile" id="bauberatung">
-        <h3>Bauberatung</h3>
+      </article>
+      <article class="kachel-klein karte" id="bauberatung" aria-labelledby="bauberatung-titel">
+        <p class="kachel-klein__nr" aria-hidden="true">04</p>
+        <h3 id="bauberatung-titel">Bauberatung</h3>
         <p>Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben.</p>
         <a class="textlink" href="?leistung=bauberatung#anfrage" data-vorbelegen>Bauberatung anfragen<span class="mass" aria-hidden="true"></span></a>
-      </div>
-      <aside class="partnerzeile" aria-label="Planung mit Partnern">
-        <p>Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit.</p>
-        <a class="btn btn--kontur btn--klein" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a>
-      </aside>
+      </article>
     </div>
+
+    <aside class="breakout partnerzeile" aria-label="Planung mit Partnern">
+      <p>Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit.</p>
+      <a class="btn btn--kontur btn--klein" href="?leistung=alle-leistungsphasen#anfrage" data-vorbelegen>Vorhaben mit Planung anfragen<span class="mass" aria-hidden="true"></span></a>
+    </aside>
   </section>
 
   <!-- 4 + 5 · REFERENZEN – Bauherren-Raster, Altbau und Denkmal, Register.
@@ -294,7 +363,7 @@
       </div>
     </div>
 
-    <div class="breakout register-block">
+    <div class="breakout register-block" id="register">
       <div class="register-kopf">
         <h3>Alle Objekte nach Bauherr</h3>
         <p class="label">WE = Wohneinheiten</p>
@@ -348,17 +417,17 @@
       <button class="btn btn--kontur btn--klein register-knopf" type="button" aria-expanded="true" aria-controls="register-tabelle" data-register-knopf hidden><span data-register-knopf-text>Weniger anzeigen</span></button>
     </div>
 
-    <div class="breakout bereiche">
-      <p class="demo-hinweis" role="note"><strong>Demo-Stand:</strong> Industriebau sowie Arztpraxen und Krankenhäuser nennt René Gansmüller selbst als Bereiche seiner Arbeit. Die Referenzliste der bisherigen Website enthält dazu noch keine Objekte. Im Projekt stehen hier seine Beispiele mit Foto und Leistung.</p>
-      <h3>Projektbereiche</h3>
-      <ul>
-        <li>Wohnungsbau</li>
-        <li>Gewerbe</li>
-        <li>Industrie</li>
-        <li>Arztpraxen</li>
-        <li>Krankenhäuser</li>
-      </ul>
+    <div class="breakout bereiche-kopf">
+      <h3 id="bereiche-titel">Projektbereiche</h3>
+      <p class="demo-hinweis demo-hinweis--klein" role="note"><strong>Demo-Stand:</strong> Industrie, Arztpraxen und Krankenhäuser nennt René Gansmüller selbst als Bereiche; im Projekt stehen hier seine Beispiele mit Foto.</p>
     </div>
+    <ul class="full bereiche" aria-labelledby="bereiche-titel">
+      <li><a class="bereich" href="#register"><span class="bereich__name">Wohnungsbau</span><span class="bereich__zusatz">Objekte im Register<span class="mass" aria-hidden="true"></span></span></a></li>
+      <li><a class="bereich" href="#register"><span class="bereich__name">Gewerbe</span><span class="bereich__zusatz">Objekte im Register<span class="mass" aria-hidden="true"></span></span></a></li>
+      <li><span class="bereich"><span class="bereich__name">Industrie</span></span></li>
+      <li><span class="bereich"><span class="bereich__name">Arztpraxen</span></span></li>
+      <li><span class="bereich"><span class="bereich__name">Krankenhäuser</span></span></li>
+    </ul>
 
     <p class="breakout referenzen-cta"><a class="btn" href="#anfrage">Ähnliches Vorhaben? Projekt prüfen lassen<span class="mass" aria-hidden="true"></span></a></p>
   </section>
@@ -379,13 +448,13 @@
         <div class="ueber__text">
           <p class="kicker">Über mich</p>
           <h2 id="ueber-mich-titel">René Gansmüller, Bauingenieur</h2>
-          <p>Mein Büro ist klein, und Sie sprechen deshalb mit dem, der Ihr Projekt auch verantwortet.</p>
-          <p>Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.</p>
-          <p>Die meisten neuen Auftraggeber kommen über Empfehlungen. Mit einigen arbeite ich seit 20 bis 30 Jahren zusammen.</p>
+          <p>Ich bin seit über 30 Jahren in der Branche, als Diplom-Ingenieur (FH) für Bauwesen. Seit 2007 arbeite ich von Berlin aus, davor lag mein Wirkungskreis im Raum Dresden. Einige Auftraggeber begleite ich seit 20 bis 30 Jahren, von Projekt zu Projekt.</p>
+          <p>Für Sie heißt das: Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.</p>
         </div>
         <dl class="steckbrief karte" aria-label="Steckbrief">
           <div><dt>Abschluss</dt><dd>Dipl.-Ing. (FH) Bauwesen</dd></div>
-          <div><dt>Büro</dt><dd>Berlin seit 2007, vorher im Raum Dresden</dd></div>
+          <div><dt>Büro</dt><dd><address>Schwedenstraße 13, 13357 Berlin</address><a class="steckbrief__karte" href="https://www.google.com/maps/search/?api=1&amp;query=Ingenieurb%C3%BCro%20Ren%C3%A9%20Gansm%C3%BCller&amp;query_place_id=ChIJ05l4ri9SqEcRroDNaNdCBEY" target="_blank" rel="noopener">In Google Maps öffnen<span class="vh"> (öffnet in neuem Tab)</span></a></dd></div>
+          <div><dt>In Berlin</dt><dd>seit 2007, vorher Raum Dresden</dd></div>
           <div><dt>Direkt erreichbar</dt><dd class="telefonzeile"><a href="tel:+493069520364">030/ 69 520 364</a> <a href="tel:+491735731045">mobil 0173/ 57 31 045</a></dd></div>
         </dl>
       </div>
