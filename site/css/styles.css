@@ -614,7 +614,9 @@ html:has(body.is-locked) { overflow: hidden; }
 .rollen-text { display: grid; justify-items: start; gap: 0.6rem; }
 .rollen-text__rolle { font-size: var(--step--1); font-weight: var(--weight-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-primary-strong); }
 .rollen-text__satz { font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem); line-height: 1.5; max-width: 42ch; color: var(--color-text); }
-.rollen-text .cta-mit-claim { margin-top: 0.6rem; }
+.wege-cta { display: flex; justify-content: center; margin-top: var(--space-l); }
+.wege-cta .cta-mit-claim { align-items: center; }
+.rollen-text:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
 /* mit JS: alle Texte im selben Feld, nur der gewählte sichtbar */
 .wege--js .rollen-texte > .rollen-text { grid-area: 1 / 1; visibility: hidden; }
 .wege--js .rollen-texte > .rollen-text--aktiv { visibility: visible; }

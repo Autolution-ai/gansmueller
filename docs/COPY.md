@@ -161,10 +161,12 @@ DEMO-SPEC · „über 30" steht zusätzlich unter „Über mich" (Wunsch Bruno)]
 **Stand Überarbeitung 3 (gilt):** Zwei Spalten nebeneinander, je Weg ein
 großer Gruppenkopf (H3) mit Satz, darunter die Rollen als Tabs (kein Link).
 Hover, Fokus oder Klick auf eine Rolle zeigt darunter in derselben Spalte
-Rolle, Beschreibung und den CTA **„Projekt prüfen lassen"** mit
-„In unter 2 Min." (`?auftraggeber=<rolle>#anfrage`). Vorausgewählt:
-Bauträger bzw. Architektur- und Planungsbüros. Mobil untereinander, Text
-und CTA unter der Rollenliste.
+Rolle und Beschreibung. Darunter, über beide Spalten zentriert, **ein**
+CTA **„Projekt prüfen lassen"** mit „In unter 2 Min."; sein Ziel folgt der
+zuletzt gewählten Rolle (`?auftraggeber=<rolle>#anfrage`, Standard
+Bauträger; Bruno: „Zwei Buttons sind auf jeden Fall zu viel"). Vorausgewählt:
+Bauträger bzw. Architektur- und Planungsbüros. Mobil untereinander, der
+Button unter beiden Gruppen.
 
 *Vorher (Überarbeitung 2, ersetzt):* Profil-Wähler statt Kartenraster.
 Die Rollen stehen als typografische Liste mit Profilsatz, **ohne Link in

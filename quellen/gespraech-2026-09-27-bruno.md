@@ -190,3 +190,10 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Diesen Text mittig auf die rechte Seite 
 ## Nachtrag: Überarbeitung 3 (Hero-Marquee, Für wen, Leistungen unten, Ablauf)
 
 Datum: 2026-09-29 · Wortlaut Bruno (Auszug): „passe beim Hero bitte einmal an, dass das Marquee beim Desktop zumindest unten ist … Für wen ich arbeite, die Beschreibung, sie planen und brauchen die Bauüberwachung, ist immer noch … klein, also diese große Gruppierung, diese Unterscheidung. Und dann hier hast du den Button mit der Kontaktanfrage jetzt ganz rausgenommen, baue den Button ein. Ich wollte nur, dass die interne Verlinkung raus ist, wenn man auf Bauträger drückt, dass man dann rausfliegt. Schaue … ob man sie baut selbst und sie planen … rechts und links nebeneinander macht und dann die Beschreibung, wenn man drüber hovert, da drunter mit dem Button … Die Bilder gefallen mir sehr gut, aber da drunter der Bereich … sieht noch sehr unorganisiert aus und sind zu viele Informationen … Das muss sauber angeordnet werden … Auch beim Ablauf der Zusammenarbeit kontrolliere nochmal, dass da das ganz normal automatisch durchläuft."
+
+## Nachtrag: Ein zentraler Button in „Für wen"
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Hier eine Lösung finden, dass du nur einen Button mittig machst, aber die Information natürlich immer noch tauschen. Zwei Buttons sind auf jeden Fall zu viel. Schau, dass du da einen zentralen Button machst."
+
+- Beide Spalten wechseln weiter Rolle und Satz, ohne eigenen Button.
+- Darunter ein zentrierter Button „Projekt prüfen lassen" (In unter 2 Min.); das Ziel folgt der zuletzt gewählten Rolle, Standard Bauträger.

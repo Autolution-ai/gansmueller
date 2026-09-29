@@ -444,10 +444,14 @@ function initWege() {
   const wurzel = document.querySelector("[data-wege]");
   if (!wurzel) return;
   wurzel.classList.add("wege--js");
+  // Ein zentraler CTA unter beiden Spalten (Bruno): sein Ziel folgt der
+  // zuletzt gewählten Rolle, Standard Bauträger.
+  const cta = document.querySelector("[data-wege-cta]");
   wurzel.querySelectorAll("[data-weg]").forEach((weg) => {
     const tabs = [...weg.querySelectorAll('[role="tab"]')];
     const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
-    function waehlen(i, { fokus = false } = {}) {
+    function waehlen(i, { fokus = false, ziel = true } = {}) {
+      if (ziel && cta) cta.setAttribute("href", `?auftraggeber=${tabs[i].id.replace("rolle-", "")}#anfrage`);
       tabs.forEach((t, j) => {
         const aktiv = i === j;
         t.setAttribute("aria-selected", String(aktiv));
@@ -473,7 +477,7 @@ function initWege() {
         waehlen(ziel, { fokus: true });
       });
     });
-    waehlen(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")));
+    waehlen(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")), { ziel: false });
   });
 }
 
