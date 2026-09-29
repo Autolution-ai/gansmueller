@@ -1,3 +1,176 @@
+# HANDOFF — Demo „Ingenieurbüro René Gansmüller" (Autolution-ai/gansmueller)
+**Erstellt:** 2026-09-29
+**Session-Nr.:** 1 (sehr lang, 27.–29.09.2026)
+**Auslöser:** manuell auf Wunsch von Bruno („Falls du an das Kontextlimit kommst, nutze den Kontext-Handoff-Skill")
+
+---
+
+## 1. KURZFASSUNG (30 Sekunden)
+
+Demo-Website für René Gansmüller, Dipl.-Ing. (FH) Bauwesen, Ingenieurbüro in Berlin (Bauüberwachung, Projektsteuerung, Baubetreuung, Bauberatung; B2B-Neukunden). Die Seite ist komplett gebaut und live auf **https://gansmueller.vercel.app** (jeder Push nach `main` deployed sofort; Root Directory `site`, `/CLAUDE.md` = 404, `X-Robots-Tag: noindex, nofollow` geprüft). Seit Station 2 läuft ein iterativer Überarbeitungsmodus direkt mit Bruno (viele kleine Runden). Beim Schreiben dieser Datei läuft **Überarbeitung 4** (Hero ohne Marquee im ersten Bildschirm, Referenz-Karten-Shuffle im Hero, Logo-Leiste in Referenzen, Funnel mit Leistungs-Schritt + „Selbst eintragen"-Bauvolumen) beim Bau-Agenten `hero-specialist` (Agent-ID `a3b9157cbaf2305f5`). Nächster Schritt: dessen Bericht prüfen, Bruno kurz in Text melden (KEINE Screenshots mehr schicken).
+
+---
+
+## 2. PROJEKT-KONTEXT
+
+**Übergeordnetes Ziel:** Überzeugende Demo für den Kundentermin (ursprünglich Di 29.09.2026, 15 Uhr, Zoom), die besser ist als die Altseite (1&1-Baukasten, Stand 14.06.2008).
+**Hauptziel der Seite:** Neukunden B2B (Bauträger, Projektentwickler, Wohnungsunternehmen, gewerbliche Auftraggeber, Architektur-/Planungsbüros, Generalplaner). Vorqualifizierung über Funnel.
+**Auftraggeber intern:** Bruno (Autolution). Er gibt Feedback im Chat, oft per Sprachnachricht, teils mit Screenshots.
+**Repos:** Nur `Autolution-ai/gansmueller` (Branch `main`). `Autolution-ai/anonym` ist auf Brunos Wunsch („anonym bitte raus machen") komplett außen vor – nicht anfassen.
+
+---
+
+## 3. TOOL-STACK & UMGEBUNG
+
+| Kategorie | Konkret | Begründung |
+|---|---|---|
+| Site | Statisches HTML5, Vanilla CSS (Custom Properties in `site/css/tokens.css`), Vanilla JS | CLAUDE.md §5 |
+| Schrift | Schibsted Grotesk (variabel, lokal `site/assets/fonts/`) | Nach Referenz-Stil maler-heusser.de; Space Grotesk (exakte Referenz) verworfen = „Standard-Schrift"-Risiko. Vorher Archivo, dann Anybody+Martian Mono – beide verworfen |
+| Farben | CI aus dem Logo: Primär #507fa6 (oklch ≈ 0.579 0.079 245), `--color-primary-strong` für Text/Buttons (Kontrast 5,7), Blaugrau #576c73, Text #2c2c2d, Malve #d6ced4, `--color-erfolg` (grün), `--color-fehler` | Altseiten-Farben stammen vom 1&1-Baukasten, nicht vom Kunden |
+| Animation | nur CSS + Vanilla-JS (rAF). Lenis/GSAP wurden entfernt (Referenzstil: Bewegung nur bei Hover) | Referenz-Analyse |
+| Hosting | Vercel, Projekt `gansmueller` (prj_DAvVJL368XiMAslM3lSOwe8qjeo4, Team autolution-ais-projects). Bruno hat es verknüpft. **Nicht mehr per Vercel-MCP abfragen** (Bruno hat einen Aufruf abgelehnt: „du musst nur auf main pushen") | |
+| Web-Zugriff | Egress-Proxy blockiert fast alles (turboscribe, Unsplash, api.apify.com, Referenzseite). **Apify-MCP** (`apify/web-fetch`, `apify/rag-web-browser`, `compass/crawler-google-places`) ist der Weg nach draußen. Bilder: `web-fetch` mit `formats: ["raw"]`, Dataset über `get-dataset-items` wird als Datei abgelegt → Base64 lokal dekodieren | |
+| Higgsfield | In dieser Session KEINE Bildgenerierung verfügbar (nur Galerie-Presets) | geprüft |
+| Prüfskripte | `node scripts/beleg-check.mjs site/index.html`, `node scripts/copy-check.mjs site/index.html --perspektive ich --gewerk bauueberwachung-projektsteuerung`, `node scripts/layout-check.mjs site/index.html`, `node scripts/hero-check.mjs <datei>` | Gates aus CLAUDE.md |
+| Playwright | Chromium unter `/opt/pw-browsers` (WebKit fehlt) | |
+
+**Bekannte Nebenwirkung:** Aufrufe des Skills `ui-ux-pro-max` verändern `.claude/skills/ui-ux-pro-max/scripts/__pycache__/*.pyc` → immer `git checkout -- .claude/skills/ui-ux-pro-max/scripts/__pycache__/`, nie committen. (Template-Aufgabe dazu vorgeschlagen.)
+
+**Commit-Schlusszeilen (Pflicht):**
+```
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01DCE9bGKsT4pspMGCnaUdFw
+```
+Workflow: direkt auf `main` (CLAUDE.md §5), `git pull --rebase origin main` vor jedem Commit, push.
+
+---
+
+## 4. KONZEPTION / ARCHITEKTUR
+
+Seitenaufbau `site/index.html` (Stand vor Überarbeitung 4):
+1. Header (sticky, Nav Leistungen/Referenzen/Über mich/Ablauf, Telefon ab 1280, CTA „Projekt prüfen lassen", mobil „Projekt prüfen")
+2. Hero (Split): Plakette „Dipl.-Ing. (FH) Bauwesen", Kicker „Ingenieurbüro René Gansmüller", H1 „Ihr Partner für **Bauüberwachung und Projektsteuerung** in Berlin, Brandenburg und Sachsen", Unterclaim „Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme." (18 px), CTA „Bauüberwachung anfragen" + „Referenzliste ansehen", Zähler „über 30" / „450" (rAF, 2,4 s, gemeinsames Ende), rechts Plankopf-Karte (Königswinterstr.-Foto, HOWOGE, 85 WE)
+3. Bauherren-Band (Marquee, rAF 21 px/s, Hover bremst weich auf 3 px/s, Abstände so, dass keine Marke doppelt sichtbar; Logos SVG vektorisiert)
+4. Für wen: zwei Spalten „Sie bauen selbst" / „Sie planen und brauchen die Bauüberwachung", Rollen als Tabs (keine Links), Beschreibung wechselt, EIN zentraler Button „Projekt prüfen lassen" (Ziel folgt gewählter Rolle `?auftraggeber=`); Projektrahmen mit grünen Haken / roten Kreuzen
+5. Leistungen: 2 große Fotokacheln (01 Projektsteuerung, 02 Bauüberwachung „HOAI Leistungsphase 8"), darunter „Mit Planung" + „Dazu gehört" (grüne Haken), dann 03 Baubetreuung / 04 Bauberatung als kleinere Fotokacheln (60 % Höhe)
+6. Referenzen: Denkmal-Fotos, Register (20 Objekte, eingeklappt, „Alle 20 Objekte anzeigen"), Projektbereiche als kleine Zeile, CTA „Ähnliches Vorhaben?"
+7. Über mich: Expertise zuerst, dann „Ihr Ansprechpartner bin ich selbst … direkt und auf Augenhöhe … haben Sie mich am Telefon.", Porträt (Titelbild 2008, Bruno bestätigt: ist René), Adresse mit Google-Maps-Link (URL aus `quellen/scrape-google.md`)
+8. Ablauf: Zeitstrahl 7 Stationen, Phasen „Bevor es losgeht" (hell) / „Am Bau" (CI-Blau, getönte Fläche), Detailfeld, Autoplay 6,5–9 s/Station (Start ab 20 % Sichtbarkeit, Pause nur Hover über Zeitstrahl/Detail + Tastaturfokus), KEIN Schalter
+9. Anfrage-Funnel (Schritte: Wer fragt an? 7 Optionen inkl. Privates Eigenheim → Hinweis; Bauvolumen 5 Stufen; Kontakt; Danke mit freiwilligen Fragen; sendet in der Demo nicht)
+10. Footer (dunkel), `site/impressum.html`, `site/datenschutz.html` (Platzhalter)
+Alle Formular-CTAs tragen „In unter 2 Min." (Bruno).
+
+---
+
+## 5. GETROFFENE ENTSCHEIDUNGEN (Auswahl, alle belegt in `quellen/gespraech-2026-09-27-bruno.md`)
+
+| # | Entscheidung | Begründung | Verworfen |
+|---|---|---|---|
+| 1 | Perspektive „ich" | Einzelunternehmer, Bruno | „wir" |
+| 2 | Funnel-Bauvolumen: unter 1 / 1–5 / 5–15 / über 15 Mio. / noch offen; keine Untergrenze | von Bruno an Claude delegiert; Untergrenze nicht belegt | „unter 1 Mio. ausschließen" (Bruno fragte danach – nicht belegt, nicht geschrieben) |
+| 3 | Privates Eigenheim / über 15 Mio.: Hinweis, Absenden möglich, markiert | Conversion, §8 kein Türsteher-Ton | harter Abbruch |
+| 4 | HOAI nur „Leistungsphase 8" bei Bauüberwachung; „gemeinsam mit Partnern alle Leistungsphasen" | Transkript; LPH 6/7 nicht freigegeben | AHO nennen |
+| 5 | Referenzen ohne Jahreszahlen, Schreibweise nach PDF | Liste von 2008 | |
+| 6 | H1 mit „Partner" | Bruno ausdrücklich („ok, Partner statt Bauingenieur") trotz Verbotsliste | „Bauingenieur" |
+| 7 | Logos Argentum, BauBeCon, GCV, Kaufland von Bruno geliefert, vektorisiert (potracer), HOWOGE-SVG von howoge.de | Bruno | |
+| 8 | Leistungsfotos von Unsplash (Symbolbild) | keine eigenen Fotos, Higgsfield kann nicht generieren | KI-Bild (Apify-Drittanbieter) – verworfen nach Kritik |
+| 9 | Demo-Hinweis über Bauherren-Band entfernt | Bruno („Das raus nehmen") | |
+| 10 | Kein Pause-Knopf am Marquee, kein Schalter im Ablauf | Bruno ausdrücklich; WCAG-2.2.2-Risiko gemeldet | |
+| 11 | Mitarbeiter-/Präsenz-Satz entfernt, „direkt und auf Augenhöhe" | Bruno | |
+
+---
+
+## 6. BEREITS ERLEDIGT
+
+- Phase 0–1b: `docs/DEMO-SPEC.md`, `docs/DOSSIER.md`, `docs/STRUKTUR.md`, `docs/COPY.md`, `docs/SEO-NOTIZEN.md`, `docs/REFERENZ-ANALYSE.md` (maler-heusser.de), Branchendatei `.claude/skills/branchen-wissen/references/bauueberwachung-projektsteuerung.md`
+- Belege: `quellen/briefing.md`, `quellen/gespraech-2026-09-16-setting-transkript.md`, `quellen/gespraech-2026-09-27-bruno.md` (ALLE Bruno-Entscheidungen als Nachträge), `quellen/scrape-website.md/.json` (inkl. Referenzliste 20 Objekte, Download-Log), `quellen/scrape-google.md/.json`, `quellen/logos.md` + `quellen/logos/*-bruno.png`, `quellen/bilder-unsplash.md`
+- Seite: `site/index.html`, `site/css/{tokens,base,styles,hero}.css`, `site/js/main.js`, `site/js/recht.js`, Bilder unter `site/assets/images/` (leistungen/, logos/, original/)
+- 61 Commits auf main, letzter vor Überarbeitung 4: `79a0afe`
+- Prüfstand zuletzt: beleg-check grün, layout-check 0 Fehler (Warnungen: Text auf Verlauf = Fotokacheln, Rhythmus-Grundfarbe), copy-check nur bekannte Ausnahmen „qualität" 7× (Qualitätscontrolling aus Register, freigegeben) und „modern" 3× (Zählfehler Skript), Überlauf 320–1920 ohne Befund, Funnel-Durchlauf ok
+
+---
+
+## 7. NICHT FUNKTIONIERT / SACKGASSEN
+
+| Ansatz | Warum gescheitert |
+|---|---|
+| curl auf turboscribe.ai, unsplash, howoge, maler-heusser.de, api.apify.com | Proxy 403 (connect_rejected) → Apify-MCP nutzen |
+| Vercel-MCP-Abfragen | Bruno hat abgelehnt – nicht wieder nutzen |
+| Higgsfield-Bildgenerierung | nicht verfügbar in dieser Session |
+| Erste Hero-Runde A/B (Archivo, flache Buttons, lange Texte) | Bruno: „komplett AI-Slop" |
+| Kartenraster/Boxen überall | Bruno: „boxenbelastet, AI-Slop" – nur Formular, Plankopf-Karte, Register dürfen Rahmen haben |
+| Gestrichelte Phasen im Ablauf | „sieht billig programmiert aus" |
+| Rollen-Links, die direkt ins Formular springen | Bruno: kein Intent; nur Button führt ins Formular |
+| Zwei Buttons in Für wen | Bruno: zu viel, ein zentraler Button |
+| Autoplay pausierte dauerhaft | Ursache: angeklickter Tab behielt Fokus → behoben |
+| beleg-check erkennt „4.500.000,00 €" nicht | Skriptfehler; Register-Beträge ohne „€" mit Spaltenkopf „Bauvolumen in €"; Template-Aufgabe vorgeschlagen |
+
+---
+
+## 8. OFFENE PUNKTE
+
+**Läuft gerade (Überarbeitung 4, Agent a3b9157cbaf2305f5):**
+- Hero: Marquee aus dem ersten Bildschirm raus (kommt direkt beim Scrollen), linke Spalte entschlackt (Plakette/Kicker höher, Claim → Unterclaim → Buttons → Zahlen), rechts Karten-Shuffle mit 3 Referenzen (Königswinterstr./HOWOGE, Loisenstraße/Argentum, Augustusweg/Argentum)
+- Leistungen: Untertext „Das ist mein Metier …" raus
+- Referenzen: Satz „Seit über 30 Jahren …" raus; rechts Fläche „Auftraggeber aus meiner Referenzliste" mit Logos in Originalfarben (NICHT „Meine Partner" – Begründung an Bruno gemeldet, er kann umentscheiden)
+- Funnel: neuer Schritt „Welche Leistung brauchen Sie?" nur ohne Vorauswahl; ?leistung= bzw. ?auftraggeber= überspringen die jeweiligen Schritte; Bauvolumen 6. Feld „Selbst eintragen"; Texte mit Fragenzahl anpassen
+
+**Offen für den Kundentermin (Frageliste):** Nennung aller Bauherren + Logos freigeben; GVC vs. GCV; BauBeCon Wohnen vs. Facility Management; Kaufland Ladenbau vs. Handelsmarke; Straßennamen (Andenacher/Winterfelsstr. vs. Andernacher/Ehrenfelsstraße; Schönerberger); E-Mail/Mobil aktuell?; Startjahr Berufstätigkeit („über 30 Jahre" bestätigen); aktuelle Fotos/Porträt; Diska vs. Edeka Kreischa
+
+**Bekannte Schwächen:** Bauberatung-Foto zeigt Gerüst statt Altbau; Kran-Foto mit kleinem Herstellerschriftzug; WCAG 2.2.2 (Marquee/Ablauf ohne Stopp-Knopf, auf Brunos Wunsch).
+
+---
+
+## 9. NUTZER-PRÄFERENZEN & CONSTRAINTS (Bruno)
+
+- Deutsch, kurz, direkt. **Keine Screenshots mehr schicken** („ok, schicke mir aber keine Screenshots"). Nur Text-Status.
+- Nicht dauernd Apify-Anfragen vorrechnen – einfach umsetzen („Du musst mir nicht 20 Apify-Anfragen jedes Mal schicken … setze das um").
+- Kein AI-Slop: keine Standardschrift, keine langweiligen Buttons, keine langen Hero-Texte, keine Boxen/Kachelraster.
+- Direkt auf `main`, keine Rückfragen zum Branch.
+- Bei Kontextlimit: context-handoff statt Compaction.
+- Keine internen Namen (z. B. „Bruno") auf der Seite oder im ausgelieferten Code.
+
+**Explizite Verbote:** `anonym`-Repo anfassen; Vercel-MCP abfragen; Hero-Layout ändern, wenn nicht beauftragt; erfundene Zahlen (z. B. Untergrenze).
+
+---
+
+## 10. FOKUS BEIM ABBRUCH
+
+**Zuletzt gearbeitet an:** Überarbeitung 4 an den Bau-Agenten übergeben (SendMessage an `a3b9157cbaf2305f5`), Beleg-Commit `79a0afe`.
+**Unterbrochen bei:** Warten auf dessen Bericht.
+**Plan:** Bericht prüfen (Commits, Prüfskripte, Funnel-Wege), `__pycache__` zurücksetzen, `git status` sauber, Bruno in Text melden, inkl. Hinweis „Auftraggeber" statt „Partner".
+
+---
+
+## 11. NÄCHSTE SCHRITTE
+
+1. Bericht des Bau-Agenten zu Überarbeitung 4 abwarten; bei Abweichungen nachsteuern.
+2. `cd /home/user/gansmueller && git pull --rebase origin main && git status --short` – sauber halten.
+3. Bruno kurz melden (ohne Screenshots).
+4. Weitere Wünsche von Bruno jeweils: Wortlaut als Nachtrag in `quellen/gespraech-2026-09-27-bruno.md`, dann an Bau-Agent.
+5. Wenn Bruno fertig ist: `/closing` (Rückmeldung + Vertriebs-Briefing), Frageliste für den Kunden einbauen.
+
+---
+
+## 12. EMPFOHLENE SKILLS / TOOLS
+
+`section-craft`, `ui-ux-pro-max` (danach __pycache__ zurücksetzen), `hero-craft`, `motion-toolkit`, `website-copy`/`anti-slop` bei Texten; Agenten `hero-specialist` (Bau), `qa-reviewer`, `responsive-qa`, `visual-critic`; Apify-MCP für Web; `/closing` am Ende.
+
+---
+
+## 13. DATEIEN DIE ZUERST GELESEN WERDEN SOLLTEN
+
+| Priorität | Pfad | Warum |
+|---|---|---|
+| 1 | `quellen/gespraech-2026-09-27-bruno.md` | alle Entscheidungen/Wünsche Brunos im Wortlaut |
+| 2 | `docs/DEMO-SPEC.md` | Ziel, Zielgruppen, Funnel, Stationen |
+| 3 | `docs/COPY.md` | aktuelle Texte + Nachträge |
+| 4 | `docs/STRUKTUR.md` | Sektionen/Rhythmus aktuell |
+| 5 | `quellen/scrape-website.md` | Referenzliste (Belege für Zahlen/Namen) |
+| 6 | `site/index.html`, `site/css/styles.css`, `site/js/main.js` | Code |
+
+---
+
 # HANDOFF — Autolution Demo-Template
 
 **Erstellt:** 2026-09-14 10:30
