@@ -755,9 +755,9 @@ html:has(body.is-locked) { overflow: hidden; }
    Läuft nur, wenn keine reduzierte Bewegung gewünscht ist; hält bei Hover,
    Fokus und per Knopf an. Die zweite Liste ist die Kopie für die Schleife.
 --------------------------------------------------------------------------- */
-.marquee-band { padding-block: var(--space-m) clamp(var(--space-m), 4vw, var(--space-l)); }
-.marquee-kopf { display: grid; gap: 1rem; }
-.demo-hinweis--klein { font-size: var(--step--1); padding-block: 0.55rem 0.6rem; }
+.marquee-band { padding-block: var(--space-s) clamp(var(--space-m), 4vw, var(--space-l)); }
+.marquee-kopf { display: grid; gap: 0.75rem; }
+.demo-hinweis--klein { font-size: 0.875rem; line-height: 1.45; padding-block: 0.4rem 0.45rem; max-width: none; justify-self: start; }
 .marquee-zeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
 .marquee-titel { color: var(--color-text-muted); font-weight: var(--weight-label); line-height: 1.4; }
 .marquee-knopf {
@@ -816,11 +816,14 @@ html:has(body.is-locked) { overflow: hidden; }
   margin: 0;
 }
 .marquee__eintrag { display: flex; align-items: center; min-height: 2.5rem; flex: none; }
+/* HOWOGE-Logo: weiße Schrift auf eigener Farbfläche. Graustufen machen daraus
+   einen grauen Block, deshalb Originalfarbe, gedämpft; voll bei Hover.
+   Höhe an der Wortmarke ausgerichtet (Fläche etwa 1,55 × Schriftgröße). */
 .marquee__eintrag img {
-  height: 2.25rem;
+  height: calc(var(--step-1) * 1.55);
   width: auto;
-  filter: grayscale(1) contrast(0.9);
-  opacity: 0.8;
+  filter: saturate(0.55);
+  opacity: 0.7;
   transition: filter var(--dur-normal) var(--ease-out), opacity var(--dur-normal) var(--ease-out);
 }
 .wortmarke {

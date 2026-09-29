@@ -310,7 +310,9 @@ und H2 „Aus meiner Referenzliste" stehen seitdem am Kopf der Referenzen.
 
 **Demo-Hinweis direkt über dem Band (dritte Person):**
 
-> **Demo-Stand:** Die Namen stammen aus der Referenzliste der bisherigen Website, das HOWOGE-Logo von der eigenen Website der HOWOGE. Vor dem Live-Gang klärt René Gansmüller, wer genannt werden darf.
+> **Demo-Stand:** Namen aus der Referenzliste der bisherigen Website, HOWOGE-Logo von der Website der HOWOGE. Wer genannt werden darf, klärt René Gansmüller vor dem Live-Gang.
+
+[Seit 2026-09-29 gekürzt, damit der Hinweis auf dem Desktop in einer Zeile steht. Aussage unverändert.]
 
 > *H2 als Label:* Bauherren aus meiner Referenzliste
 >
