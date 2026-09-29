@@ -303,18 +303,31 @@ keine Partnernamen, keine Logos]
 
 ## 4 + 5 · Referenzen  `#referenzen`
 
-### Band (randlos, dunkel)
+### Bauherren-Band (direkt unter dem Hero, seit 2026-09-29)
+
+Eigene Sektion zwischen Hero und „Für wen", randlos laufendes Band. Kicker
+und H2 „Aus meiner Referenzliste" stehen seitdem am Kopf der Referenzen.
+
+**Demo-Hinweis direkt über dem Band (dritte Person):**
+
+> **Demo-Stand:** Die Namen stammen aus der Referenzliste der bisherigen Website, das HOWOGE-Logo von der eigenen Website der HOWOGE. Vor dem Live-Gang klärt René Gansmüller, wer genannt werden darf.
+
+> *H2 als Label:* Bauherren aus meiner Referenzliste
+>
+> HOWOGE mbH (Logo) · Argentum GmbH & Co. KG · Ortus GmbH & Co. KG · BauBeCon Wohnen GmbH · GVC mbH · Kaufland Ladenbau GmbH
+>
+> *Knopf:* Band anhalten / Band abspielen
+
+[Namen exakt nach PDF, Spalte „Bauherr" · Logo nur HOWOGE, Datei und
+Herkunft in `quellen/logos.md` · alle anderen als Wortmarke (kein
+eindeutiges Logo oder nicht geprüft, Begründung dort) · Alt-Text des Logos
+„HOWOGE mbH", im Duplikat leer (aria-hidden)]
+
+### Kopf der Referenzen
 
 > *Kicker (p):* Referenzen
 >
 > ## Aus meiner Referenzliste
->
-> *Label (p):* Bauherren
->
-> HOWOGE mbH · Argentum GmbH & Co. KG · Ortus GmbH & Co. KG · BauBeCon Wohnen GmbH · GVC mbH · Kaufland Ladenbau GmbH
-
-[Namen exakt nach PDF, Spalte „Bauherr" · Reihenfolge: Struktur. Nur
-Schriftzug, keine Logos (keine vorhanden, nicht nachbauen).]
 
 ### Heller Teil: Einleitung
 
@@ -357,6 +370,10 @@ Dreiergruppen-Grenze frei.]
 > ### Alle Objekte nach Bauherr
 >
 > *Legende (p):* WE = Wohneinheiten
+>
+> *Gruppenkopf je Bauherr:* Objektzahl („2 Objekte", „10 Objekte", „1 Objekt"), übernommen aus dem entfallenen Bauherren-Raster
+>
+> *Knopf unter der Tabelle:* Alle 20 Objekte anzeigen / Weniger anzeigen
 
 Umsetzung als `<table>` mit `<caption>` „Referenzobjekte nach Bauherr",
 Spalten **Objekt · Ort · Umfang · Bauvolumen**. Je Bauherr eine
@@ -440,6 +457,13 @@ Krankenhäuser" als 1 + 2 gesetzt, damit keine Dreiergruppe entsteht ·
 Keine Aussage, dass es dort keine Projekte gibt (§3, Abwesenheit ≠
 Nichtexistenz)]
 
+### Abschluss der Referenzen
+
+> **CTA:** Ähnliches Vorhaben? Projekt prüfen lassen → `#anfrage`
+
+[Vorgabe Koordination 2026-09-29. Bewusst mit Bezug auf die Referenzliste,
+Ziel identisch mit dem Hauptziel.]
+
 ### Alt-Texte der Referenzfotos
 
 Nur Objekt und Ort laut Referenzliste, ergänzt um die sichtbare Ansicht. Keine
@@ -510,6 +534,13 @@ stehen schon unter Leistungen und werden hier nicht noch einmal aufgezählt
 (Ein-Nennung), hier steht die Folge.
 
 > ## Ablauf der Zusammenarbeit
+
+Seit 2026-09-29 als Zeitstrahl. Gruppenlabels: **Bevor es losgeht**
+(Stationen 1 bis 3) und **Am Bau** (4 bis 7). Ab 900 px sind die Stationen
+Tabs („Stationen der Zusammenarbeit") mit einem Detailfeld (Titel,
+Beschreibung, Ergebnis); mobil eine Zeile je Station (Ziffer, Titel,
+Ergebnis), die Beschreibung klappt auf. Neben dem Detailfeld bzw. unter der
+Liste: CTA und „Telefon 030/ 69 520 364". Stationstexte unverändert.
 
 **Demo-Hinweis direkt über Station 1:**
 
@@ -692,7 +723,7 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 
 | Ziel | Label | Wo | Ziel-URL |
 |---|---|---|---|
-| Hauptziel Anfrage | **Projekt unverbindlich prüfen lassen** | Ablauf Station 7, Footer (Header: Kurzfassung **Projekt prüfen lassen**) | `#anfrage` |
+| Hauptziel Anfrage | **Projekt unverbindlich prüfen lassen** | Ablauf (neben dem Detailfeld), Footer (Header: Kurzfassung **Projekt prüfen lassen**) | `#anfrage` |
 | Bauüberwachung | **Bauüberwachung anfragen** | Hero, Leistungen | `?leistung=bauueberwachung#anfrage` |
 | Projektsteuerung | **Projektsteuerung anfragen** | Leistungen | `?leistung=projektsteuerung#anfrage` |
 | Baubetreuung | **Baubetreuung anfragen** | Leistungen | `?leistung=baubetreuung#anfrage` |
@@ -700,6 +731,9 @@ Station 1) · keine Jahreszahl im Copyright, weil keine belegt ist]
 | Planung mit Partnern | **Vorhaben mit Planung anfragen** (Textlink) | Leistungen, Partnerzeile | `?leistung=alle-leistungsphasen#anfrage` |
 | Zielgruppe | Name der Zielgruppe als Link | Für wen (6×) | `?auftraggeber=…#anfrage` |
 | Referenzen | Referenzliste ansehen (Textlink) | Hero (Vorschlag) | `#referenzen` |
+| Hauptziel aus den Referenzen | **Ähnliches Vorhaben? Projekt prüfen lassen** | unter den Referenzen | `#anfrage` |
+| Register | Alle 20 Objekte anzeigen · Weniger anzeigen | Referenzen | – (klappt auf) |
+| Band | Band anhalten · Band abspielen | Bauherren-Band | – |
 | Funnel | Weiter · Zurück · **Anfrage absenden** · Angaben ergänzen · Zurück zur Seite | Funnel | – |
 
 Ein Label je Ziel, keine Varianten. Die H2 des Funnels („Lassen Sie Ihr
