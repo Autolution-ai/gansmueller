@@ -140,7 +140,7 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 >
 > # Ihr Partner für **Bauüberwachung und Projektsteuerung** in Berlin, Brandenburg und Sachsen
 >
-> Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme.
+> Für Bauträger, Projektentwickler, Wohnungsunternehmen und Planungsbüros, vom ersten Plan bis zur Abnahme. *(seit Überarbeitung 2 in Fließtextgröße, 18 px, auf 1440 zweizeilig)*
 >
 > **CTA:** Bauüberwachung anfragen · *Kontur:* Referenzliste ansehen
 >
@@ -156,12 +156,14 @@ DEMO-SPEC · „über 30" steht zusätzlich unter „Über mich" (Wunsch Bruno)]
 
 ## 2 · Für wen ich arbeite  `#fuer-wen`
 
-**Stand 2026-09-29:** Kundenprofile statt Leistungsbeschreibung. Jede
-Profilkarte ist ein Link `?auftraggeber=…#anfrage` (aria-label „Anfrage als … beginnen").
+**Stand 2026-09-29, Überarbeitung 2:** Profil-Wähler statt Kartenraster.
+Die Rollen stehen als typografische Liste; jeder Eintrag ist ein Link
+`?auftraggeber=…#anfrage` mit Rolle, Profilsatz und „Anfrage als …
+beginnen". Ab 900 px zeigt rechts eine große Aussage die Rolle unter Maus
+oder Fokus (Wiederholung, aria-hidden). Der Einleitungssatz unter der H2
+ist entfernt.
 
 > ## Für wen ich arbeite
->
-> Erkennen Sie sich in einem Profil wieder, führt die Karte direkt in die Anfrage, mit Ihrer Rolle schon eingetragen.
 
 **Gruppe hell**
 
@@ -173,7 +175,7 @@ Profilkarte ist ein Link `?auftraggeber=…#anfrage` (aria-label „Anfrage als 
 > - *Wohnungsunternehmen:* Sie sanieren Ihren Bestand und brauchen für ein Haus jemanden, der die Baustelle für Sie im Blick hat.
 > - *Gewerbliche Auftraggeber:* Sie bauen für Ihren eigenen Betrieb, und das Tagesgeschäft lässt keine Zeit für die Baustelle.
 >
-> Karten-Link: **Anfrage beginnen**
+> Link je Rolle: **Anfrage als Bauträger beginnen** / als Projektentwickler / als Wohnungsunternehmen / als gewerblicher Auftraggeber
 
 **Gruppe dunkel**
 
@@ -182,10 +184,12 @@ Profilkarte ist ein Link `?auftraggeber=…#anfrage` (aria-label „Anfrage als 
 >
 > - *Architektur- und Planungsbüros:* Sie haben geplant, und für die Bauüberwachung fehlt im Büro gerade die Kapazität.
 > - *Generalplaner:* Sie verantworten die gesamte Planung und geben die Bauüberwachung für ein Objekt ab.
+>
+> Link je Rolle: **Anfrage als Planungsbüro beginnen** / als Generalplaner
 
 **Projektrahmen**
 
-> ### Projektrahmen
+> ### Projektrahmen *(je Punkt grüner Haken bzw. rotes Kreuz, dazu unsichtbar „Passt gut:" / „Passt weniger:")*
 > **Passt gut**
 > - **Vorhaben bis etwa 15 Mio. € Bauvolumen.** In dieser Größe bleibt ein Projekt überschaubar, und ich behalte Ihres selbst im Blick.
 > - **Ein konkretes Objekt.** Sie beauftragen mich für dieses eine Vorhaben, und mit dem Objekt endet auch Ihre Verpflichtung.
@@ -216,9 +220,8 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 >
 > Das ist mein Metier. Welche der beiden Sie brauchen, hängt davon ab, in welcher Phase Ihr Vorhaben gerade steckt.
 
-**Demo-Hinweis über den Kacheln:**
-
-> **Demo-Stand:** Die beiden Kacheln sind für Fotos angelegt. Im Projekt stehen hier Aufnahmen von René Gansmüllers Baustellen oder als Symbolbild gekennzeichnete freie Fotos.
+**Fotos (Überarbeitung 2):** Unsplash-Symbolbilder, je Kachel oben rechts
+„Symbolbild"; der frühere Demo-Hinweis über den Kacheln ist entfallen.
 
 > **01 · Projektsteuerung** (H3)
 > Schon in der Planungsphase ein Bauingenieur auf Ihrer Seite, der Ihre Interessen gegenüber dem Generalunternehmer vertritt, bis gebaut ist.
@@ -228,11 +231,13 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 > Während gebaut wird, überwache ich die Baustelle in Ihrem Auftrag: Ausführung, Termine und Kosten, bevor Sie zahlen.
 > **CTA:** Bauüberwachung anfragen
 
-> *Zur Bauüberwachung gehören:* Kontrolle nach Ausführungsplänen und Regeln der Technik · Koordination der Gewerke und Handwerker · Ablaufplan und Terminüberwachung · Kostenkontrolle, Aufmaß- und Rechnungsprüfung · Gewährleistungsabnahme und Revisionsunterlagen, auf Wunsch
+> ### Zur Bauüberwachung gehören (Liste mit Haken, zweispaltig)
+> Kontrolle nach Ausführungsplänen und Regeln der Technik · Koordination der Gewerke und Handwerker · Ablaufplan und Terminüberwachung · Kostenkontrolle, Aufmaß- und Rechnungsprüfung · auf Wunsch Gewährleistungsabnahme und Revisionsunterlagen
 >
-> *Auf Wunsch vorher: Vergabe:* Leistungsverzeichnisse mit genauer Mengenermittlung · Ausschreibungsunterlagen · Angebotsauswertung · Bieterverhandlungen
+> ### Auf Wunsch vorher: Vergabe
+> Ich erstelle Leistungsverzeichnisse mit genauer Mengenermittlung und die Ausschreibungsunterlagen, werte die Angebote aus und führe die Bieterverhandlungen.
 
-**Demo-Hinweis über den kleinen Kacheln:**
+**Demo-Hinweis über den Zeilen 03/04 (Zeilen statt Karten seit Überarbeitung 2):**
 
 > **Demo-Stand:** Die Leistung Baubetreuung stammt aus dem Vorgespräch, der Text dazu ist ein Entwurf. Im Projekt steht hier, was René Gansmüller als Baubetreuer übernimmt.
 
@@ -240,12 +245,12 @@ als Schlagworte, zwei kleine Kacheln, Partnerzeile.
 >
 > **04 · Bauberatung** (H3) Bei Sanierung und Modernisierung ermittle ich den Zustand der Bausubstanz und schätze die Kosten, bevor Sie planen oder ausschreiben. *Textlink:* Bauberatung anfragen
 
-> *Partnerzeile:* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit. **CTA:** Vorhaben mit Planung anfragen
+> *Partnerzeile (ohne Fläche, Linie links):* Brauchen Sie auch die Planung, decke ich gemeinsam mit Partnern alle Leistungsphasen ab. Dann arbeiten Planer, Architekt, Statiker und Brandschutzexperte an Ihrem Vorhaben mit. **CTA:** Vorhaben mit Planung anfragen
 
 [Leistungen, Aufgaben, Vergabe: Scrape (Leistungsseite) · Projektsteuerung
 ab Planungsphase, GU/GÜ: Transkript · Baubetreuung: Transkript, Text Entwurf
-· Fotos: gekennzeichneter Bildplatz; Unsplash-Kandidaten und Grund
-(Proxy sperrt den Download) in `quellen/bilder-unsplash.md`]
+· Fotos: Unsplash-Symbolbilder, Herkunft, Apify-Läufe und Bearbeitung in
+`quellen/bilder-unsplash.md`]
 
 ---
 
@@ -281,7 +286,7 @@ auf Brunos Wunsch entfernt, Pause bei Hover bleibt]
 
 ### Heller Teil: Einleitung
 
-> Zwanzig Objekte, sortiert nach Bauherr. Zu jedem Objekt stehen Umfang und Bauvolumen, zu jedem Bauherrn meine Leistung. Die Spanne reicht vom Umbau eines Parkdecks bis zur Plattenbausanierung für die HOWOGE.
+> Seit über 30 Jahren bin ich in der Branche tätig und habe unter anderem für die HOWOGE mbH, die BauBeCon Wohnen GmbH und die Kaufland Ladenbau GmbH gearbeitet.
 
 [20 Zeilen, Parkdeck, 450 WE Plattenbausanierung: PDF. Keine Summe, keine
 Jahreszahl (Bruno, Station 1).]
@@ -392,19 +397,14 @@ siehe offene Punkte.]
 
 ### Projektbereiche
 
-**Stand 2026-09-29:** großer typografischer Streifen über die volle Breite.
+**Stand Überarbeitung 2:** eine unauffällige Zeile unter dem Register.
 
-**Demo-Hinweis (einzeilig, direkt über dem Streifen):**
-
-> **Demo-Stand:** Industrie, Arztpraxen und Krankenhäuser nennt René Gansmüller selbst als Bereiche; im Projekt stehen hier seine Beispiele mit Foto.
-
-> ### Projektbereiche
+> **Demo-Stand:** Industrie, Arztpraxen und Krankenhäuser nennt René Gansmüller selbst; Beispiele dazu stehen im Projekt hier.
 >
-> Wohnungsbau (*Objekte im Register*, Link `#register`) · Gewerbe (*Objekte im Register*) · Industrie · Arztpraxen · Krankenhäuser
+> PROJEKTBEREICHE Wohnungsbau · Gewerbe · Industrie · Arztpraxen · Krankenhäuser
 
 [Bereiche: Transkript · Wohnungsbau und Gewerbe durch die Referenzliste
-belegt, deshalb der Verweis ins Register · für Industrie, Arztpraxen und
-Krankenhäuser keine Objekte behauptet]
+belegt · für Industrie, Arztpraxen und Krankenhäuser keine Objekte behauptet]
 
 ### Alt-Texte der Referenzfotos
 
@@ -437,14 +437,15 @@ Ansprechpartner. Nicht „Mein Büro ist klein".
 >
 > Ich bin seit über 30 Jahren in der Branche, als Diplom-Ingenieur (FH) für Bauwesen. Seit 2007 arbeite ich von Berlin aus, davor lag mein Wirkungskreis im Raum Dresden. Einige Auftraggeber begleite ich seit 20 bis 30 Jahren, von Projekt zu Projekt.
 >
-> Für Sie heißt das: Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen. Wenn Sie anrufen, erreichen Sie mich direkt.
+> Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Die Zusammenarbeit läuft dabei immer direkt und auf Augenhöhe. Wenn Sie anrufen, haben Sie mich am Telefon.
 
 **Steckbrief:** Abschluss: Dipl.-Ing. (FH) Bauwesen · Büro: Schwedenstraße 13, 13357 Berlin, Link „In Google Maps öffnen" (neuer Tab) · In Berlin: seit 2007, vorher Raum Dresden · Direkt erreichbar: 030/ 69 520 364, mobil 0173/ 57 31 045
 
 **Demo-Hinweis über dem Porträt (unverändert):** Foto von der bisherigen Website, wird durch ein aktuelles Porträt ersetzt.
 
-[über 30 Jahre, Stammkunden 20 bis 30 Jahre, ein Mitarbeiter täglich vor
-Ort: Transkript · Dipl.-Ing. (FH) Bauwesen: Impressum · Berlin seit 2007,
+[über 30 Jahre, Stammkunden 20 bis 30 Jahre: Transkript · Absatz
+„Ihr Ansprechpartner …, direkt und auf Augenhöhe": Vorgabe Bruno
+2026-09-29, der Mitarbeiter-Satz ist entfernt · Dipl.-Ing. (FH) Bauwesen: Impressum · Berlin seit 2007,
 zuvor Raum Dresden: Scrape · Adresse: Impressum, Google-Eintrag (geprüft) ·
 Maps-Link: Profil-URL aus `quellen/scrape-google.md`, kopiert]
 
@@ -472,8 +473,11 @@ mit gestrichelter Fläche, Linie und Ziffern, „Am Bau" getönt und
 durchgezogen; das Detailfeld nennt die Phase. Autoplay: Die Linie füllt sich
 in 6,5 bis 9 s (nach Textlänge) bis zur nächsten Station, dann wechselt das
 Detailfeld, nach 07 wieder 01. Start erst im Bild, Pause bei Hover und
-Fokus, nach einer Auswahl von Hand 15 s Ruhe; Schalter „Stationen
-automatisch weiterschalten"; bei reduzierter Bewegung kein Autoplay.
+Fokus, nach einer Auswahl von Hand 15 s Ruhe; bei reduzierter Bewegung kein
+Autoplay. **Überarbeitung 2:** Schalter entfernt (Bruno), keine
+Strichelungen mehr: Linie in zwei Farbabschnitten, Phasen-Labels mit feiner
+Klammer, Ring- vs. gefüllte Punkte, „Am Bau" auf getönter Fläche ohne
+Rahmen; Detailfeld ohne Rahmen und Schatten.
 
 **Demo-Hinweis direkt über Station 1:**
 

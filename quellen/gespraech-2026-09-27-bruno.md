@@ -172,3 +172,10 @@ Datum: 2026-09-29 · Wortlaut Bruno: „Gestalte den Claim auf dem Hero ähnlich
 Datum: 2026-09-29 · Wortlaut Bruno (Auszug): „Schalter raus nehmen … ‚Erkennen Sie sich in einem Profil wieder …' raus nehmen. Bei für wen ich arbeite, weg von dieser Boxenlogik, das sieht sehr AI-Slop aus … Bei Projektrahmen … bei passt gut ein Symbol mit so einem grünen Haken und bei passt weniger mit so einem roten Kreuz … Bei den Leistungen … suche entweder Stockfotos oder entwickle selber mit Higgsfield passende Bilder und auch darunter ‚zur Bauüberwachung gehören' anders darstellen als einfach nur diese Boxen. Allgemein ist die gesamte Website so sehr boxenbelastet, dann auch Baubetreuung und Bauberatung. Bei Referenzen den Satz ‚20 Objekte sortiert nach Bauherr' auf jeden Fall weg. Schreibe dann lieber einen kleinen Satz: Ich habe bereits über 30 Jahre Erfahrung und habe schon mit großen Unternehmen wie Kaufland und den anderen großen Unternehmen, die oben im Marquee sind, zusammengearbeitet. Beim Marquee die Abstände anpassen, dass man nicht gleichzeitig zweimal Kaufland sieht … wenn man drüber hovert, ist gerade so ein Bug, dass es sich komplett anhält … Projektbereiche … viel zu groß dargestellt … Ablauf der Zusammenarbeit … dieses gestrichelte … sieht sehr billig programmiert aus … hochwertigere Darstellung … ‚Station automatisch weiterschalten', den Schalter auf jeden Fall wegmachen."
 
 Hinweise: Higgsfield bietet in dieser Session keine Bildgenerierung (nur Galerie-Presets); Unsplash per Proxy gesperrt, Abruf über Apify in kleinen Teilstücken.
+
+## Nachtrag: Über mich ohne Mitarbeiter-Satz
+
+Datum: 2026-09-29 · Wortlaut Bruno: „Hier den Mitarbeiter Satz raus und sagen, dass es immer eine direkte Zusammenarbeit auf Augenhöhe gibt"
+
+- Neuer Absatz: „Ihr Ansprechpartner bin ich selbst, vom ersten Gespräch bis zur Abnahme. Die Zusammenarbeit läuft dabei immer direkt und auf Augenhöhe. Wenn Sie anrufen, haben Sie mich am Telefon."
+- Entfernt: „Wo ein Projekt tägliche Betreuung braucht, ist mein Mitarbeiter jeden Tag vor Ort, und ich komme zu den Baubesprechungen." sowie die Formel „Für Sie heißt das:".
