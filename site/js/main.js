@@ -789,8 +789,9 @@ function initZaehler() {
    bleibt verborgen. Mit JS: Pfeil-Knöpfe, Klick/Tipp auf die vordere Karte,
    Wischen, Pfeiltasten im Stapel. Weiterblättern in zwei Phasen: die vordere
    Karte gleitet seitlich hinaus (.ist-weg), dann reiht sie sich hinten ein.
-   Automatisch alle 6 s, nur sichtbar, ohne Hover/Fokus, ohne Wunsch nach
-   reduzierter Bewegung und nicht angehalten (Pause-Knopf, WCAG 2.2.2).
+   Automatisch: erster Wechsel nach 3 s, danach alle 8 s (Wunsch Bruno),
+   nur sichtbar, ohne Hover/Fokus, ohne Wunsch nach reduzierter Bewegung.
+   Kein Pause-Knopf (Wunsch Bruno); Hover und Fokus halten an.
    Nach eigener Auswahl ruht der Automatismus 15 s.
    Weitere Referenz: eine weitere .stapel__karte ins Markup, sonst nichts.
 --------------------------------------------------------------------------- */
@@ -804,10 +805,10 @@ function initStapel() {
   const steuerung = wurzel.querySelector("[data-stapel-steuerung]");
   const nr = wurzel.querySelector("[data-stapel-nr]");
   const status = wurzel.querySelector("[data-stapel-status]");
-  const pauseKnopf = wurzel.querySelector("[data-stapel-pause]");
   const ruhig = window.matchMedia("(prefers-reduced-motion: reduce)");
   const n = karten.length;
-  const TAKT = 6000;
+  const ERSTER_TAKT = 3000;
+  const TAKT = 8000;
   const RUHE = 15000;
 
   // reihe[0] liegt vorn
@@ -881,7 +882,7 @@ function initStapel() {
   }
 
   // Automatik
-  let angehalten = false;
+  let erster = true;
   let sichtbar = false;
   let schwebt = false;
   let fokussiert = false;
@@ -889,29 +890,22 @@ function initStapel() {
   let uhr = null;
 
   function laeuft() {
-    return !angehalten && sichtbar && !schwebt && !fokussiert && !ruhig.matches && !document.hidden;
+    return sichtbar && !schwebt && !fokussiert && !ruhig.matches && !document.hidden;
   }
   function planen() {
     clearTimeout(uhr);
     if (!laeuft()) return;
-    const warten = Math.max(TAKT, ruhtBis - Date.now());
+    const warten = Math.max(erster ? ERSTER_TAKT : TAKT, ruhtBis - Date.now());
     uhr = setTimeout(() => {
-      if (laeuft()) blaettern(1);
+      if (laeuft()) { erster = false; blaettern(1); }
       planen();
     }, warten);
   }
-  function ruhenLassen() { ruhtBis = Date.now() + RUHE; planen(); }
+  function ruhenLassen() { erster = false; ruhtBis = Date.now() + RUHE; planen(); }
 
   wurzel.querySelector("[data-stapel-vor]").addEventListener("click", () => blaettern(1, { vonHand: true }));
   wurzel.querySelector("[data-stapel-zurueck]").addEventListener("click", () => blaettern(-1, { vonHand: true }));
-  pauseKnopf.addEventListener("click", () => {
-    angehalten = !angehalten;
-    pauseKnopf.setAttribute("aria-pressed", String(angehalten));
-    pauseKnopf.setAttribute("aria-label", angehalten ? "Automatisches Weiterblättern starten" : "Automatisches Weiterblättern anhalten");
-    planen();
-  });
-  if (ruhig.matches) pauseKnopf.hidden = true;
-  ruhig.addEventListener("change", () => { pauseKnopf.hidden = ruhig.matches; planen(); });
+  ruhig.addEventListener("change", planen);
 
   // Pfeiltasten, solange der Fokus im Stapel liegt
   wurzel.addEventListener("keydown", (e) => {

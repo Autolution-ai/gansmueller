@@ -573,10 +573,6 @@ html:has(body.is-locked) { overflow: hidden; }
 }
 .stapel__knopf:active { transform: scale(0.94); }
 @media (hover: hover) { .stapel__knopf:hover { background: var(--color-text); color: var(--color-bg); } }
-.stapel__knopf--pause { margin-left: 0.5rem; width: 2.75rem; height: 2.75rem; border-width: 1px; border-color: var(--color-text-muted); color: var(--color-text-muted); }
-.stapel__icon-play { display: none; }
-.stapel__knopf--pause[aria-pressed="true"] .stapel__icon-play { display: block; }
-.stapel__knopf--pause[aria-pressed="true"] .stapel__icon-pause { display: none; }
 .stapel__zaehler {
   min-width: 4.5ch;
   text-align: center;
@@ -1256,7 +1252,7 @@ html:has(body.is-locked) { overflow: hidden; }
 .zs-tabs { display: none; }
 @media (min-width: 900px) {
   .zeitstrahl--tabs .zs-gruppen { display: none; }
-  .zeitstrahl--tabs .zs-tabs { display: grid; gap: var(--space-m); }
+  .zeitstrahl--tabs .zs-tabs { display: grid; gap: var(--space-l); }
   .zeitstrahl--tabs { grid-template-columns: minmax(0, 1fr); }
   /* Zwei Phasen als getönte Flächen hinter den Stationen, Label oben.
      Die Linie läuft in der zweiten Zeile: gestrichelt bis zwischen 03 und 04,
@@ -1360,7 +1356,9 @@ html:has(body.is-locked) { overflow: hidden; }
     grid-template-columns: auto minmax(0, 1fr);
     column-gap: var(--space-m);
     row-gap: 0.75rem;
-    padding: var(--space-s) 0 0;
+    /* Haarlinie trennt Zeitstrahl und Detailfeld (Wunsch Bruno, Überarbeitung 5) */
+    padding: var(--space-m) 0 0;
+    border-top: 1px solid var(--color-border);
   }
   .zs-panel:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
   .zs-panel__nr { font-size: clamp(3rem, 2rem + 3vw, 5.5rem); font-weight: var(--weight-display); line-height: 1; letter-spacing: var(--tracking-display); color: var(--color-primary-strong); }

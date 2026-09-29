@@ -160,7 +160,7 @@ den Zielgruppen-Links, der Projektrahmen-Satz neben der H2.
 | 4 | Bundschuhstraße 1, Dresden | Argentum GmbH & Co. KG | Komplexe Altbausanierung, 22 WE (Einzeldenkmal) | wie 2 |
 
 Steuerung: „Vorherige Referenz" / „Nächste Referenz", Zähler „1 / 4",
-Pause-Knopf „Automatisches Weiterblättern anhalten/starten". Ansage für
+kein Pause-Knopf (Überarbeitung 5, Wunsch Bruno). Ansage für
 Screenreader: „Referenz 2 von 4: Loisenstraße 10, Dresden". Das Feld
 „Bearbeitung René Gansmüller" der früheren Einzelkarte entfällt (Höhe).
 Karte 4 ergänzt (nicht in Brunos Liste): Mit genau drei Karten zählt der
